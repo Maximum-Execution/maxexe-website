@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* ============================================
+   FONTS — Geist family only
+   ============================================ */
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/GeistSans.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Pixel';
+  src: url('/fonts/GeistPixel.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ============================================
+   TOKENS — from MAXEXE_dashboard.html :root
+   ============================================ */
+
+:root {
+  /* Backgrounds */
+  --bg-dark:      oklch(0.10 0.09 62);
+  --bg:           oklch(0.15 0.09 62);
+  --bg-light:     oklch(0.20 0.09 62);
+
+  /* Text */
+  --text:         oklch(0.90 0.16 62);
+  --text-muted:   oklch(0.76 0.12 62);
+
+  /* Brand */
+  --primary:      oklch(0.76 0.18 62);
+  --highlight:    oklch(0.50 0.18 62);
+  --afterglow:    oklch(0.45 0.12 56);
+  --glow-bloom:   oklch(0.92 0.12 82);
+  --crt-floor:    oklch(0.08 0.02 62);
+
+  /* Semantic */
+  --secondary:    oklch(0.76 0.18 242);
+  --danger:       oklch(0.70 0.18 30);
+  --warning:      oklch(0.70 0.18 100);
+  --success:      oklch(0.70 0.18 160);
+  --info:         oklch(0.70 0.18 260);
+
+  /* Borders */
+  --border:       oklch(0.40 0.18 62);
+  --border-muted: oklch(0.30 0.18 62);
+
+  /* Fonts */
+  --font-sans:   'Geist', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono:   'Geist Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  --font-pixel:  'Geist Pixel', 'Geist Mono', monospace;
+
+  /* Fluid type scale (375px → 1920px) */
+  --step--2: clamp(0.75rem, 0.7045rem + 0.2045vw, 0.875rem);
+  --step--1: clamp(0.875rem, 0.8409rem + 0.1705vw, 0.9375rem);
+  --step-0:  clamp(1.0625rem, 1.0511rem + 0.0568vw, 1.125rem);
+  --step-1:  clamp(1.125rem, 1.0739rem + 0.2557vw, 1.3125rem);
+  --step-2:  clamp(1.5rem, 1.4205rem + 0.3977vw, 1.75rem);
+  --step-3:  clamp(2.25rem, 1.9659rem + 1.4205vw, 3.5rem);
+  --step-4:  clamp(3rem, 2.5455rem + 2.2727vw, 4.5rem);
+  --step-5:  clamp(3.5rem, 2.8409rem + 3.2955vw, 6rem);
+
+  /* Spacing (4px base) */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
+  --space-4: 16px;  --space-5: 20px;  --space-6: 24px;
+  --space-8: 32px;  --space-10: 40px; --space-12: 48px;
+  --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+  /* Layout */
+  --container-xl: 1280px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --measure-normal: 65ch;
+
+  /* Motion */
+  --dur-micro:     100ms;
+  --dur-cursor:    533ms;
+  --ease-phosphor: cubic-bezier(0.0, 0.85, 0.35, 1.0);
+  --ease-beam:     cubic-bezier(0.0, 0.0, 0.1, 1.0);
+  --ease-ui:       cubic-bezier(0.2, 0.0, 0.0, 1.0);
+}
+
+/* ============================================
+   TAILWIND THEME MAPPING
+   ============================================ */
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+/* ============================================
+   BASE STYLES — from dashboard body rules
+   ============================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* CRT Scanlines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    oklch(0 0 0 / 0.03) 0px,
+    oklch(0 0 0 / 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* CRT Vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 65%, oklch(0 0 0 / 0.35) 100%);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  body::before { display: none; }
+}
+
+/* ============================================
+   KEYFRAMES — from dashboard
+   ============================================ */
+
+@keyframes hw-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes phosphor-flicker {
+  0%,100% { opacity: 1; }
+  2% { opacity: 0.93; }
+  4% { opacity: 1; }
+  19% { opacity: 1; }
+  21% { opacity: 0.94; }
+  23% { opacity: 1; }
+  62% { opacity: 1; }
+  64% { opacity: 0.96; }
+  66% { opacity: 1; }
+}
