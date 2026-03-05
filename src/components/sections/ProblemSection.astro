@@ -1,0 +1,213 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import BruteCard from '../BruteCard.astro';
+import Badge from '../Badge.astro';
+---
+<div class="problem-divider" aria-hidden="true"></div>
+<SectionWrapper bg="dark" id="problem" class="problem-section">
+  <!-- Section label -->
+  <p class="section-label">// 01 THE PROBLEM</p>
+
+  <!-- Headline -->
+  <h2 class="problem-headline">
+    <span>The problem isn't your effort.</span>
+    <span>It's that no one diagnosed the actual problem.</span>
+  </h2>
+
+  <!-- Body copy -->
+  <div class="problem-body">
+    <p>
+      Every day, 81% of your potential customers research your business online
+      before they ever call, email, or walk in. What they find in the first
+      0.05 seconds determines whether they stay or leave — and 94% of that snap
+      judgment is based entirely on design and clarity. Not your price. Not your
+      experience. How your business reads at first glance.
+    </p>
+
+    <p>
+      But the website is only the entry point of a larger problem.
+    </p>
+
+    <p>
+      The average small business runs 15 to 30 separate tools — a CRM that
+      doesn't talk to the scheduling app, a website that can't see the
+      inventory, invoices living in one place while client history lives in
+      three others. Employees switch between apps 1,200 times a day. That's
+      44 hours per employee, per year, lost to nothing but switching tabs.
+      For a 10-person team: 440 hours. More than 11 full work weeks evaporating
+      every year into the space between your tools.
+    </p>
+
+    <p>
+      Then someone told you AI would fix it. You tried a tool. Maybe two. They
+      generated content that didn't sound like you. They answered questions your
+      customers weren't asking. And 47% of small business owners say they can't
+      even figure out which AI tool is right for their business — let alone how
+      to make it work with everything else they already run.
+    </p>
+
+    <p class="problem-closing">
+      The problem isn't effort. You've put in the effort.<br />
+      The problem is that every solution you've tried was built for someone
+      else's business. No one diagnosed yours first.
+    </p>
+  </div>
+
+  <!-- Diagnostic cards -->
+  <div class="diagnostic-grid">
+    <BruteCard>
+      <Badge variant="err">[ERR]</Badge>
+      <h3 class="card-title">FIRST IMPRESSION</h3>
+      <p class="card-desc">Visitors form their opinion in 0.05s.</p>
+      <p class="card-stat">67% of businesses lose revenue to poor website performance.</p>
+    </BruteCard>
+
+    <BruteCard>
+      <Badge variant="err">[ERR]</Badge>
+      <h3 class="card-title">TOOL FRAGMENTATION</h3>
+      <p class="card-desc">23 tools. 0 operating system.</p>
+      <p class="card-stat">440 hrs/year lost per 10 employees.</p>
+    </BruteCard>
+
+    <BruteCard>
+      <Badge variant="err">[ERR]</Badge>
+      <h3 class="card-title">AI MISFIT</h3>
+      <p class="card-desc">68% of small businesses use AI.</p>
+      <p class="card-stat">47% can't figure out the right tool.</p>
+    </BruteCard>
+  </div>
+
+  <!-- Closing comment -->
+  <p class="section-comment">// this is a diagnosis problem, not a hustle problem.</p>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule between hero and problem */
+  .problem-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Section label — monospace, small, amber at 35% */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Headline — Geist Pixel, two hard-break lines */
+  .problem-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-10);
+  }
+
+  .problem-headline span {
+    display: block;
+  }
+
+  .problem-headline span:first-child {
+    color: var(--primary);
+  }
+
+  .problem-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* Body copy */
+  .problem-body {
+    max-width: 640px;
+    margin-bottom: var(--space-16);
+  }
+
+  .problem-body p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: oklch(0.88 0.06 62);
+    margin-bottom: var(--space-6);
+  }
+
+  .problem-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .problem-closing {
+    margin-top: var(--space-10);
+    font-style: italic;
+    color: var(--text-muted) !important;
+    border-left: 2px solid oklch(0.76 0.18 62 / 0.25);
+    padding-left: var(--space-6);
+  }
+
+  /* Diagnostic card grid */
+  .diagnostic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  /* Card internals */
+  .card-title {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .card-desc {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: var(--space-4);
+  }
+
+  .card-stat {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.5);
+    line-height: 1.4;
+    font-feature-settings: 'tnum' 1;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-muted);
+  }
+
+  /* Closing comment */
+  .section-comment {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--text-muted);
+    opacity: 0.5;
+    letter-spacing: 0.06em;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .problem-headline {
+      font-size: var(--step-3);
+    }
+
+    .diagnostic-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .problem-headline {
+      font-size: var(--step-2);
+    }
+  }
+</style>
