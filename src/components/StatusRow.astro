@@ -1,0 +1,50 @@
+---
+interface Props {
+  status?: 'nominal' | 'caution' | 'warning' | 'critical';
+  label: string;
+  value: string;
+}
+const { status = 'nominal', label, value } = Astro.props;
+---
+<div class="status-row">
+  <span class:list={['sdot', `sdot-${status}`]}></span>
+  <span class="status-label">{label}</span>
+  <span class="status-val">{value}</span>
+</div>
+
+<style>
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border-muted);
+  }
+  .status-row:last-child { border-bottom: none; }
+  .sdot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .sdot-nominal  { background: var(--success); box-shadow: 0 0 6px var(--success); }
+  .sdot-caution  { background: var(--primary); box-shadow: 0 0 6px var(--primary); animation: phosphor-flicker 4s infinite; }
+  .sdot-warning  { background: var(--warning); box-shadow: 0 0 6px var(--warning); }
+  .sdot-critical { background: var(--danger);  box-shadow: 0 0 6px var(--danger);  animation: phosphor-flicker 2s infinite; }
+  .status-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 1;
+    font-feature-settings: 'tnum' 1;
+  }
+  .status-val {
+    font-size: var(--step--1);
+    color: var(--text);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    font-feature-settings: 'tnum' 1;
+  }
+</style>

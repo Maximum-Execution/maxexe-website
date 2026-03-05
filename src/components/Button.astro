@@ -1,0 +1,67 @@
+---
+interface Props {
+  variant?: 'primary' | 'ghost';
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+}
+const { variant = 'primary', href, class: className, type = 'button' } = Astro.props;
+---
+{href ? (
+  <a href={href} class:list={['btn', `btn-${variant}`, className]}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class:list={['btn', `btn-${variant}`, className]}>
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-feature-settings: 'tnum' 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    border-radius: var(--radius-sm);
+    transition: background var(--dur-micro) var(--ease-ui),
+                border-color var(--dur-micro) var(--ease-ui),
+                color var(--dur-micro) var(--ease-ui),
+                box-shadow var(--dur-micro) var(--ease-ui),
+                transform var(--dur-micro) var(--ease-ui);
+  }
+  .btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--bg-dark);
+    font-weight: 600;
+  }
+  .btn-primary:hover {
+    background: oklch(0.82 0.18 62);
+    border-color: oklch(0.82 0.18 62);
+    box-shadow: 0 0 16px oklch(0.76 0.18 62 / 0.4);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active {
+    background: oklch(0.68 0.19 58);
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--primary);
+  }
+  .btn-ghost:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 8px oklch(0.76 0.18 62 / 0.25);
+  }
+</style>

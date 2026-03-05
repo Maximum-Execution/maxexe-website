@@ -1,0 +1,147 @@
+---
+import Cursor from './Cursor.astro';
+---
+<nav class="topbar" aria-label="Main navigation">
+  <a href="#" class="topbar-brand">
+    <span class="brand-text">MAX.EXE</span><Cursor />
+  </a>
+
+  <ul class="topbar-nav">
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#diagnostic">Diagnostic</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <a href="#about">About</a>
+  <a href="#process">Process</a>
+  <a href="#diagnostic">Diagnostic</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileNav?.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    mobileNav?.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  // Close mobile nav on link click
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      mobileNav.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
+
+<style>
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-8);
+    border-bottom: 1px solid var(--border-muted);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: oklch(0.15 0.09 62 / 0.85);
+    min-height: 44px;
+  }
+  .topbar-brand {
+    font-family: var(--font-pixel);
+    font-size: var(--step--1);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .topbar-nav {
+    display: flex;
+    gap: var(--space-8);
+    align-items: center;
+    list-style: none;
+  }
+  .topbar-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color var(--dur-micro) var(--ease-ui);
+  }
+  .topbar-nav a:hover { color: var(--primary); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+  .hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--text-muted);
+    transition: background var(--dur-micro) var(--ease-ui);
+  }
+  .hamburger:hover span { background: var(--primary); }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 44px;
+    left: 0;
+    right: 0;
+    background: oklch(0.10 0.09 62 / 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--space-6);
+    z-index: 99;
+    border-bottom: 1px solid var(--border-muted);
+  }
+  .mobile-nav.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .mobile-nav a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: var(--space-2) 0;
+    transition: color var(--dur-micro) var(--ease-ui);
+  }
+  .mobile-nav a:hover { color: var(--primary); }
+
+  @media (max-width: 768px) {
+    .topbar-nav { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>

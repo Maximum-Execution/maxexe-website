@@ -1,0 +1,26 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+<div class:list={['brute-card', className]}>
+  <slot />
+</div>
+
+<style>
+  .brute-card {
+    background: var(--bg-light);
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 0 var(--border-muted);
+    padding: var(--space-8);
+    transition: border-color var(--dur-micro) var(--ease-ui),
+                box-shadow var(--dur-micro) var(--ease-ui),
+                transform var(--dur-micro) var(--ease-ui);
+  }
+  .brute-card:hover {
+    border-color: var(--primary);
+    box-shadow: 6px 6px 0 0 var(--primary);
+    transform: translate(-2px, -2px);
+  }
+</style>

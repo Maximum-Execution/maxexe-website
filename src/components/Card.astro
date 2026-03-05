@@ -1,0 +1,30 @@
+---
+interface Props {
+  glow?: boolean;
+  class?: string;
+}
+const { glow = false, class: className } = Astro.props;
+---
+<div class:list={['card', { 'glow-box': glow }, className]}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius-sm);
+    padding: var(--space-8);
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--dur-micro) var(--ease-ui),
+                box-shadow var(--dur-micro) var(--ease-ui);
+  }
+  .card:hover {
+    border-color: var(--border);
+  }
+  .card.glow-box:hover {
+    box-shadow: 0 0 0 1px oklch(0.50 0.18 62 / 0.3),
+                0 0 20px oklch(0.76 0.18 62 / 0.12);
+  }
+</style>

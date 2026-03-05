@@ -1,13 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionWrapper from '../components/SectionWrapper.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Terminal from '../components/Terminal.astro';
+import Card from '../components/Card.astro';
+import GlassCard from '../components/GlassCard.astro';
+import BruteCard from '../components/BruteCard.astro';
+import Button from '../components/Button.astro';
+import StatusRow from '../components/StatusRow.astro';
+import Badge from '../components/Badge.astro';
 ---
 <BaseLayout>
-  <main>
-    <h1 style="font-family: var(--font-pixel); font-size: var(--step-3); color: var(--primary); padding: var(--space-10);">
-      MAX.EXE_
-    </h1>
-    <p style="padding: 0 var(--space-10); color: var(--text-muted); font-family: var(--font-mono);">
-      // Site under construction. Scaffolding complete.
-    </p>
-  </main>
+  <SectionWrapper bg="dark">
+    <SectionHeader num="// 00" title="Component Test" tag="DEV" />
+
+    <div style="display: grid; gap: var(--space-8); margin-bottom: var(--space-8);">
+      <Terminal title="max.exe // status">
+        <StatusRow status="nominal" label="Build" value="PASS" />
+        <StatusRow status="caution" label="Deploy" value="PENDING" />
+        <StatusRow status="warning" label="Tests" value="3 WARNINGS" />
+      </Terminal>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6);">
+        <Card glow>
+          <Badge variant="ok">[OK]</Badge>
+          <h3 style="font-size: var(--step-2); margin-top: var(--space-4); color: var(--text);">Standard Card</h3>
+          <p style="color: var(--text-muted); margin-top: var(--space-2);">Dashboard card with glow hover.</p>
+        </Card>
+
+        <GlassCard>
+          <Badge variant="amber">GLASS</Badge>
+          <h3 style="font-size: var(--step-2); margin-top: var(--space-4); color: var(--text);">Glass Card</h3>
+          <p style="color: var(--text-muted); margin-top: var(--space-2);">Frosted glass with backdrop blur.</p>
+        </GlassCard>
+
+        <BruteCard>
+          <Badge variant="err">[ERR]</Badge>
+          <h3 style="font-size: var(--step-2); margin-top: var(--space-4); color: var(--text);">Brute Card</h3>
+          <p style="color: var(--text-muted); margin-top: var(--space-2);">Brutalist offset shadow.</p>
+        </BruteCard>
+      </div>
+
+      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+        <Button variant="primary" href="#diagnostic">[RUN FREE DIAGNOSTIC &gt;]</Button>
+        <Button variant="ghost" href="#process">[SEE HOW IT WORKS &gt;]</Button>
+      </div>
+    </div>
+  </SectionWrapper>
 </BaseLayout>
