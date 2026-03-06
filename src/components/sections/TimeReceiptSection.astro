@@ -110,13 +110,14 @@ import Button from '../Button.astro';
     <div class="slider-label-row">
       <span class="slider-label">TEAM SIZE:</span>
       <span class="slider-ticks">
-        <span class="tick" data-tick="1">1</span>
-        <span class="tick" data-tick="5">5</span>
-        <span class="tick active" data-tick="10">10</span>
-        <span class="tick" data-tick="20">20</span>
-        <span class="tick" data-tick="50">50</span>
+        <button type="button" class="tick" data-tick="1" aria-label="Set team size to 1">1</button>
+        <button type="button" class="tick" data-tick="5" aria-label="Set team size to 5">5</button>
+        <button type="button" class="tick active" data-tick="10" aria-label="Set team size to 10">10</button>
+        <button type="button" class="tick" data-tick="20" aria-label="Set team size to 20">20</button>
+        <button type="button" class="tick" data-tick="50" aria-label="Set team size to 50">50</button>
       </span>
     </div>
+    <label for="team-slider" class="sr-only">Team size selector</label>
     <input
       type="range"
       class="team-slider"
@@ -125,7 +126,6 @@ import Button from '../Button.astro';
       max="4"
       value="2"
       step="1"
-      aria-label="Team size selector"
     />
     <p class="slider-hint">// Drag to recalculate for your team</p>
   </div>
@@ -150,7 +150,7 @@ import Button from '../Button.astro';
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: oklch(0.76 0.18 62 / 0.35);
+    color: var(--text-accent-dim);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: var(--space-6);
@@ -223,7 +223,7 @@ import Button from '../Button.astro';
   }
 
   .receipt-label {
-    color: oklch(0.76 0.18 62 / 0.5);
+    color: var(--text-accent-dim);
     text-transform: uppercase;
     letter-spacing: 0.04em;
     flex-shrink: 0;
@@ -251,7 +251,7 @@ import Button from '../Button.astro';
   }
 
   .receipt-item-name {
-    color: oklch(0.76 0.18 62 / 0.5);
+    color: var(--text-accent-dim);
     flex-shrink: 0;
   }
 
@@ -276,7 +276,7 @@ import Button from '../Button.astro';
   }
 
   .receipt-total-label {
-    color: oklch(0.76 0.18 62 / 0.7);
+    color: var(--text-accent-dim);
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
@@ -325,7 +325,7 @@ import Button from '../Button.astro';
   /* Sources */
   .receipt-sources {
     font-size: 11px;
-    color: oklch(0.76 0.18 62 / 0.35);
+    color: var(--text-accent-dim);
     line-height: 1.5;
   }
 
@@ -345,7 +345,7 @@ import Button from '../Button.astro';
   }
 
   .slider-label {
-    color: oklch(0.76 0.18 62 / 0.5);
+    color: var(--text-accent-dim);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     flex-shrink: 0;
@@ -358,7 +358,11 @@ import Button from '../Button.astro';
   }
 
   .tick {
-    color: oklch(0.76 0.18 62 / 0.35);
+    background: none;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-accent-dim);
     font-feature-settings: 'tnum' 1;
     cursor: pointer;
     padding: var(--space-1) var(--space-2);
@@ -374,6 +378,11 @@ import Button from '../Button.astro';
     color: oklch(0.76 0.18 62 / 0.7);
   }
 
+  .tick:focus-visible {
+    outline: 2px solid oklch(0.76 0.18 62);
+    outline-offset: 2px;
+  }
+
   /* Range slider custom styling */
   .team-slider {
     -webkit-appearance: none;
@@ -382,7 +391,6 @@ import Button from '../Button.astro';
     height: 4px;
     background: oklch(0.76 0.18 62 / 0.2);
     border-radius: 2px;
-    outline: none;
     cursor: pointer;
   }
 
@@ -421,10 +429,15 @@ import Button from '../Button.astro';
     border-radius: 2px;
   }
 
+  .team-slider:focus-visible {
+    outline: 2px solid oklch(0.76 0.18 62);
+    outline-offset: 4px;
+  }
+
   .slider-hint {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: oklch(0.76 0.18 62 / 0.3);
+    color: var(--text-accent-dim);
     margin-top: var(--space-2);
     letter-spacing: 0.04em;
   }

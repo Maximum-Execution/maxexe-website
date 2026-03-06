@@ -64,4 +64,20 @@ const { variant = 'primary', href, class: className, type = 'button' } = Astro.p
     border-color: var(--primary);
     box-shadow: 0 0 8px oklch(0.76 0.18 62 / 0.25);
   }
+
+  .btn:focus-visible {
+    outline: 2px solid oklch(0.76 0.18 62);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .btn {
+      max-width: 100%;
+      text-align: center;
+      justify-content: center;
+      font-size: var(--step--2);
+      padding: var(--space-3) var(--space-4);
+      word-break: break-word;
+    }
+  }
 </style>

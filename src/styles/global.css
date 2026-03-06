@@ -47,6 +47,11 @@
   --glow-bloom:   oklch(0.92 0.12 82);
   --crt-floor:    oklch(0.08 0.02 62);
 
+  /* Contrast-safe text scale (all pass WCAG AA on dark backgrounds) */
+  --text-accent:       oklch(0.76 0.18 62);           /* full opacity — headings, labels */
+  --text-accent-muted: oklch(0.76 0.18 62 / 0.85);   /* secondary text — passes AA */
+  --text-accent-dim:   oklch(0.76 0.18 62 / 0.75);   /* tertiary text — passes AA */
+
   /* Semantic */
   --secondary:    oklch(0.76 0.18 242);
   --danger:       oklch(0.70 0.18 30);
@@ -108,7 +113,7 @@
    ============================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   background: var(--bg-dark);
@@ -201,4 +206,48 @@ body::after {
     transform: none;
     transition: none;
   }
+}
+
+/* ============================================
+   ACCESSIBILITY UTILITIES
+   ============================================ */
+
+/* Screen reader only — visually hidden, accessible to AT */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip-to-content link — visible only on focus */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 10000;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.5rem;
+  background: oklch(0.15 0.09 62);
+  color: oklch(0.76 0.18 62);
+  border: 2px solid oklch(0.76 0.18 62);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  text-decoration: none;
+  z-index: 10000;
 }

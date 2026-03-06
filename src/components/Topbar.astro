@@ -21,13 +21,13 @@ import Cursor from './Cursor.astro';
   </button>
 </nav>
 
-<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
   <a href="#about">About</a>
   <a href="#process">Process</a>
   <a href="#diagnostic">Diagnostic</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Contact</a>
-</div>
+</nav>
 
 <script>
   const hamburger = document.querySelector('.hamburger');
@@ -109,6 +109,17 @@ import Cursor from './Cursor.astro';
     transition: background var(--dur-micro) var(--ease-ui);
   }
   .hamburger:hover span { background: var(--primary); }
+
+  .topbar-brand:focus-visible,
+  .topbar-nav a:focus-visible,
+  .mobile-nav a:focus-visible {
+    outline: 2px solid oklch(0.76 0.18 62);
+    outline-offset: 2px;
+  }
+  .hamburger:focus-visible {
+    outline: 2px solid oklch(0.76 0.18 62);
+    outline-offset: 2px;
+  }
 
   .mobile-nav {
     display: none;

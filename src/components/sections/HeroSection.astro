@@ -92,7 +92,8 @@ import Cursor from '../Cursor.astro';
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     height: 400px;
     background: radial-gradient(ellipse, oklch(0.76 0.18 62 / 0.08) 0%, transparent 70%);
     pointer-events: none;
@@ -108,6 +109,11 @@ import Cursor from '../Cursor.astro';
     align-items: center;
     position: relative;
     z-index: 2;
+  }
+
+  /* Override DaisyUI .hero-content which sets display:flex */
+  .hero-content {
+    display: block;
   }
 
   .hero-logotype {
@@ -134,7 +140,7 @@ import Cursor from '../Cursor.astro';
 
   .hero-headline .line-2 {
     display: block;
-    color: oklch(0.76 0.18 62 / 0.8);
+    color: var(--text-accent-muted);
   }
 
   .hero-subhead {
@@ -164,8 +170,7 @@ import Cursor from '../Cursor.astro';
   .hero-support {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: var(--text-muted);
-    opacity: 0.6;
+    color: var(--text-accent-dim);
   }
 
   /* Terminal widget */
@@ -265,8 +270,27 @@ import Cursor from '../Cursor.astro';
       gap: var(--space-10);
     }
 
+    .hero-content,
+    .hero-terminal {
+      min-width: 0;
+      overflow: hidden;
+    }
+
     .hero-headline {
       font-size: var(--step-4);
+    }
+
+    .status-line {
+      flex-wrap: wrap;
+    }
+
+    .status-text {
+      white-space: normal;
+    }
+
+    .status-value {
+      margin-left: 0;
+      padding-left: var(--space-4);
     }
 
     .hero-ctas {

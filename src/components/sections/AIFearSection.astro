@@ -89,6 +89,14 @@ import Button from '../Button.astro';
   <div class="chart-section">
     <p class="chart-label">// WHAT AI ACTUALLY DOES FOR SMALL BUSINESSES:</p>
 
+    <div class="sr-only" role="table" aria-label="AI use cases in small businesses">
+      <div role="row"><span role="columnheader">Use case</span><span role="columnheader">Adoption rate</span></div>
+      <div role="row"><span role="cell">Marketing and content</span><span role="cell">43%</span></div>
+      <div role="row"><span role="cell">Customer service</span><span role="cell">36%</span></div>
+      <div role="row"><span role="cell">Admin tasks</span><span role="cell">33%</span></div>
+      <div role="row"><span role="cell">Data processing</span><span role="cell">32%</span></div>
+    </div>
+
     <div class="chart-rows">
       <div class="chart-row">
         <span class="chart-name">Marketing &amp; content</span>
@@ -149,7 +157,7 @@ import Button from '../Button.astro';
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: oklch(0.76 0.18 62 / 0.45);
+    color: var(--text-accent-dim);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: var(--space-4);
@@ -174,7 +182,7 @@ import Button from '../Button.astro';
   }
 
   .fear-headline span:last-child {
-    color: oklch(0.76 0.18 62 / 0.7);
+    color: var(--text-accent-muted);
   }
 
   /* ── Table card ── */
@@ -199,7 +207,7 @@ import Button from '../Button.astro';
     font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
-    color: oklch(0.76 0.18 62 / 0.45);
+    color: var(--text-accent-dim);
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
@@ -228,7 +236,7 @@ import Button from '../Button.astro';
     font-family: var(--font-mono);
     font-size: 14px;
     line-height: 1.55;
-    color: oklch(0.76 0.18 62 / 0.4);
+    color: var(--text-accent-dim);
     border-right: 1px solid oklch(0.76 0.18 62 / 0.25);
   }
 
@@ -245,7 +253,7 @@ import Button from '../Button.astro';
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 600;
-    color: oklch(0.76 0.18 62 / 0.45);
+    color: var(--text-accent-dim);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: var(--space-2);
@@ -277,7 +285,7 @@ import Button from '../Button.astro';
   .chart-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: oklch(0.76 0.18 62 / 0.45);
+    color: var(--text-accent-dim);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin-bottom: var(--space-6);
@@ -299,7 +307,7 @@ import Button from '../Button.astro';
   .chart-name {
     font-family: var(--font-mono);
     font-size: 13px;
-    color: oklch(0.76 0.18 62 / 0.7);
+    color: var(--text-accent-dim);
     letter-spacing: 0.02em;
     white-space: nowrap;
   }
@@ -331,7 +339,7 @@ import Button from '../Button.astro';
   .chart-source {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: oklch(0.76 0.18 62 / 0.35);
+    color: var(--text-accent-dim);
     letter-spacing: 0.04em;
     margin-top: var(--space-4);
   }
@@ -340,7 +348,7 @@ import Button from '../Button.astro';
   .data-footnote {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: oklch(0.76 0.18 62 / 0.35);
+    color: var(--text-accent-dim);
     letter-spacing: 0.04em;
     line-height: 1.6;
     max-width: 1080px;

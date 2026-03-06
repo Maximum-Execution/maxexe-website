@@ -45,6 +45,7 @@ import Cursor from '../Cursor.astro';
   .site-footer {
     background: oklch(0.14 0.022 85);
     padding: var(--space-16) var(--space-8);
+    overflow: hidden;
   }
 
   /* Inner container */
@@ -91,7 +92,7 @@ import Cursor from '../Cursor.astro';
   .brand-tagline {
     font-family: var(--font-mono);
     font-size: 13px;
-    color: oklch(0.76 0.18 62 / 0.45);
+    color: var(--text-accent-dim);
     letter-spacing: 0.04em;
   }
 
@@ -113,13 +114,13 @@ import Cursor from '../Cursor.astro';
   }
 
   .contact-line {
-    color: oklch(0.76 0.18 62 / 0.5);
+    color: var(--text-accent-dim);
     margin-bottom: var(--space-1);
   }
 
   .contact-link {
     display: block;
-    color: oklch(0.76 0.18 62 / 0.5);
+    color: var(--text-accent-dim);
     text-decoration: none;
     margin-bottom: var(--space-3);
     transition: color var(--dur-micro) var(--ease-ui);
@@ -130,7 +131,7 @@ import Cursor from '../Cursor.astro';
   }
 
   .copyright {
-    color: oklch(0.76 0.18 62 / 0.4);
+    color: var(--text-accent-dim);
     font-size: 12px;
   }
 
@@ -144,7 +145,7 @@ import Cursor from '../Cursor.astro';
   .signoff-comment {
     font-family: var(--font-mono);
     font-size: 13px;
-    color: oklch(0.76 0.18 62 / 0.35);
+    color: var(--text-accent-dim);
     letter-spacing: 0.04em;
     margin-bottom: var(--space-4);
   }
@@ -153,7 +154,7 @@ import Cursor from '../Cursor.astro';
     font-family: var(--font-mono);
     font-size: 13px;
     font-weight: 600;
-    color: oklch(0.76 0.18 62 / 0.25);
+    color: var(--text-accent-dim);
     letter-spacing: 0.2em;
   }
 
