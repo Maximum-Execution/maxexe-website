@@ -1,0 +1,342 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
+---
+<div class="process-divider" aria-hidden="true"></div>
+<SectionWrapper bg="dark" id="process" class="process-section">
+  <!-- Section label -->
+  <p class="section-label">// 04 THE PROCESS</p>
+
+  <!-- Intro headline -->
+  <h2 class="process-headline">
+    <span>Clarity. Code. Results.</span>
+    <span>Three steps. No fog. No surprises.</span>
+  </h2>
+
+  <!-- Pipeline -->
+  <div class="pipeline" data-animate>
+    <!-- Pipeline connecting line (desktop: horizontal, mobile: vertical) -->
+    <div class="pipeline-line" aria-hidden="true"></div>
+
+    <!-- Step 01 -->
+    <div class="step">
+      <div class="step-node-area">
+        <span class="step-num-label">Step 01</span>
+        <div class="step-node">01</div>
+      </div>
+      <div class="step-content">
+        <h3 class="step-title">We diagnose the problem.</h3>
+        <p class="step-body">
+          The diagnostic asks only the questions that apply to your situation
+          &mdash; website, software, or both. Before anything gets built, we
+          identify what's actually broken. Most businesses have at least two
+          failure points. The diagnostic tells you exactly which ones and why,
+          in plain language, not a generic PDF.
+        </p>
+        <p class="step-outcome">&gt; OUTCOME: A written problem statement you can read and verify.</p>
+      </div>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="step">
+      <div class="step-node-area">
+        <span class="step-num-label">Step 02</span>
+        <div class="step-node">02</div>
+      </div>
+      <div class="step-content">
+        <h3 class="step-title">We build what the diagnosis calls for.</h3>
+        <p class="step-body">
+          Not a template. Not a guess. One person writes every line of code and
+          holds the full system in working memory from start to finish. Every
+          build ships with documentation so your team can make basic changes
+          without calling us. The scope is driven by the diagnosis &mdash;
+          nothing more, nothing less.
+        </p>
+        <p class="step-outcome">&gt; OUTCOME: Production-ready code. Documented. Tested. Deployed.</p>
+      </div>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="step">
+      <div class="step-node-area">
+        <span class="step-num-label">Step 03</span>
+        <div class="step-node">03</div>
+      </div>
+      <div class="step-content">
+        <h3 class="step-title">You launch with a system you own.</h3>
+        <p class="step-body">
+          Thirty days of post-launch support. A handoff document your team can
+          actually use. And 100% of the code is yours at delivery &mdash; no
+          subscriptions, no platform lock-in, no rental fees. The goal is for
+          you to never need to call us again unless you want to build something
+          new.
+        </p>
+        <p class="step-outcome">&gt; OUTCOME: Your code. Your system. Complete ownership.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bridge -->
+  <div class="bridge">
+    <div class="bridge-rule" aria-hidden="true"></div>
+    <p class="bridge-text">
+      <span>Ready to find out what's broken?</span>
+      <span>The diagnostic is free. Results are instant.</span>
+    </p>
+    <Button variant="primary" href="#diagnostic">RUN FREE DIAGNOSTIC &gt;</Button>
+    <p class="bridge-support">// no commitment required &mdash; just data</p>
+  </div>
+
+  <!-- Section bottom rule -->
+  <div class="section-bottom-rule" aria-hidden="true"></div>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule at top */
+  .process-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Headline — Geist Pixel, two lines */
+  .process-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-16);
+  }
+
+  .process-headline span {
+    display: block;
+  }
+
+  .process-headline span:first-child {
+    color: var(--primary);
+  }
+
+  .process-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* ── Pipeline layout ── */
+  .pipeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-10);
+    margin-bottom: var(--space-16);
+  }
+
+  /* Horizontal connecting line (desktop) */
+  .pipeline-line {
+    position: absolute;
+    top: 38px; /* vertically centered on 24px node + label above */
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.8s var(--ease-phosphor);
+  }
+
+  .pipeline.revealed .pipeline-line {
+    transform: scaleX(1);
+  }
+
+  /* ── Step ── */
+  .step {
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-node-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: var(--space-6);
+  }
+
+  .step-num-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-feature-settings: 'tnum' 1;
+    color: oklch(0.76 0.18 62 / 0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+  }
+
+  .step-node {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--bg-dark);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    font-feature-settings: 'tnum' 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: var(--space-4);
+  }
+
+  .step-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: oklch(0.88 0.06 62);
+    margin-bottom: var(--space-5);
+  }
+
+  .step-outcome {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-feature-settings: 'tnum' 1;
+    color: oklch(0.76 0.18 62 / 0.65);
+    line-height: 1.5;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-muted);
+  }
+
+  /* ── Bridge ── */
+  .bridge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .bridge-rule {
+    width: 48px;
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.25);
+    margin-bottom: var(--space-10);
+  }
+
+  .bridge-text {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: var(--space-8);
+  }
+
+  .bridge-text span {
+    display: block;
+  }
+
+  .bridge-support {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.4);
+    letter-spacing: 0.06em;
+    margin-top: var(--space-4);
+  }
+
+  /* ── Section bottom rule ── */
+  .section-bottom-rule {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.20);
+    margin-top: var(--space-20);
+    max-width: 100%;
+  }
+
+  /* ── Responsive: mobile ── */
+  @media (max-width: 768px) {
+    .process-headline {
+      font-size: var(--step-3);
+    }
+
+    /* Stack vertically with left-edge pipeline */
+    .pipeline {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      padding-left: var(--space-10);
+    }
+
+    /* Vertical pipeline line on left edge */
+    .pipeline-line {
+      top: 16px;
+      bottom: 16px;
+      left: 12px;
+      right: auto;
+      width: 2px;
+      height: auto;
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+
+    .pipeline.revealed .pipeline-line {
+      transform: scaleY(1);
+    }
+
+    /* Node area: row layout, node on left edge */
+    .step {
+      position: relative;
+    }
+
+    .step-node-area {
+      position: absolute;
+      left: calc(-1 * var(--space-10));
+      top: 0;
+      align-items: center;
+    }
+
+    .step-title {
+      font-size: 20px;
+    }
+
+    .bridge-text {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .process-headline {
+      font-size: var(--step-2);
+    }
+
+    .step-title {
+      font-size: 18px;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .pipeline-line {
+      transition: none;
+      transform: scaleX(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) and (max-width: 768px) {
+    .pipeline-line {
+      transform: scaleY(1);
+    }
+  }
+</style>
