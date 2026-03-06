@@ -1,50 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionWrapper from '../components/SectionWrapper.astro';
-import SectionHeader from '../components/SectionHeader.astro';
-import Terminal from '../components/Terminal.astro';
-import Card from '../components/Card.astro';
-import GlassCard from '../components/GlassCard.astro';
-import BruteCard from '../components/BruteCard.astro';
-import Button from '../components/Button.astro';
-import StatusRow from '../components/StatusRow.astro';
-import Badge from '../components/Badge.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import ProblemSection from '../components/sections/ProblemSection.astro';
+import ValuePropSection from '../components/sections/ValuePropSection.astro';
+import GuideSection from '../components/sections/GuideSection.astro';
+import ProcessSection from '../components/sections/ProcessSection.astro';
+import TimeReceiptSection from '../components/sections/TimeReceiptSection.astro';
+import SystemScanSection from '../components/sections/SystemScanSection.astro';
+import AIFearSection from '../components/sections/AIFearSection.astro';
+import StakesSection from '../components/sections/StakesSection.astro';
+import DiagnosticSection from '../components/sections/DiagnosticSection.astro';
+import SuccessVisionSection from '../components/sections/SuccessVisionSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import Footer from '../components/sections/Footer.astro';
 ---
 <BaseLayout>
-  <SectionWrapper bg="dark">
-    <SectionHeader num="// 00" title="Component Test" tag="DEV" />
-
-    <div style="display: grid; gap: var(--space-8); margin-bottom: var(--space-8);">
-      <Terminal title="max.exe // status">
-        <StatusRow status="nominal" label="Build" value="PASS" />
-        <StatusRow status="caution" label="Deploy" value="PENDING" />
-        <StatusRow status="warning" label="Tests" value="3 WARNINGS" />
-      </Terminal>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6);">
-        <Card glow>
-          <Badge variant="ok">[OK]</Badge>
-          <h3 style="font-size: var(--step-2); margin-top: var(--space-4); color: var(--text);">Standard Card</h3>
-          <p style="color: var(--text-muted); margin-top: var(--space-2);">Dashboard card with glow hover.</p>
-        </Card>
-
-        <GlassCard>
-          <Badge variant="amber">GLASS</Badge>
-          <h3 style="font-size: var(--step-2); margin-top: var(--space-4); color: var(--text);">Glass Card</h3>
-          <p style="color: var(--text-muted); margin-top: var(--space-2);">Frosted glass with backdrop blur.</p>
-        </GlassCard>
-
-        <BruteCard>
-          <Badge variant="err">[ERR]</Badge>
-          <h3 style="font-size: var(--step-2); margin-top: var(--space-4); color: var(--text);">Brute Card</h3>
-          <p style="color: var(--text-muted); margin-top: var(--space-2);">Brutalist offset shadow.</p>
-        </BruteCard>
-      </div>
-
-      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
-        <Button variant="primary" href="#diagnostic">[RUN FREE DIAGNOSTIC &gt;]</Button>
-        <Button variant="ghost" href="#process">[SEE HOW IT WORKS &gt;]</Button>
-      </div>
-    </div>
-  </SectionWrapper>
+  <HeroSection />
+  <ProblemSection />
+  <ValuePropSection />
+  <GuideSection />
+  <ProcessSection />
+  <TimeReceiptSection />
+  <SystemScanSection />
+  <AIFearSection />
+  <StakesSection />
+  <DiagnosticSection />
+  <SuccessVisionSection />
+  <FAQSection />
+  <ContactSection />
+  <Footer />
 </BaseLayout>

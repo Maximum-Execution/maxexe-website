@@ -11,7 +11,7 @@ const bgMap = {
   light: 'var(--bg-light)'
 };
 ---
-<section id={id} class:list={['section-wrap', className]} style={`background: ${bgMap[bg]};`}>
+<section id={id} class:list={['section-wrap', 'reveal', className]} style={`background: ${bgMap[bg]};`}>
   <div class="section-inner">
     <slot />
   </div>

@@ -26,5 +26,37 @@ const {
     <main>
       <slot />
     </main>
+
+    <script>
+      // Scroll reveal — IntersectionObserver
+      const reveals = document.querySelectorAll('.reveal');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReduced) {
+        reveals.forEach(el => el.classList.add('revealed'));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        reveals.forEach(el => observer.observe(el));
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const target = document.querySelector(anchor.getAttribute('href')!);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
