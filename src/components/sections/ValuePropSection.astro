@@ -1,0 +1,172 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Card from '../Card.astro';
+---
+<div class="value-divider" aria-hidden="true"></div>
+<SectionWrapper bg="base" id="services" class="value-section">
+  <!-- Section label -->
+  <p class="section-label">// 02 WHAT WE BUILD</p>
+
+  <!-- Intro headline -->
+  <h2 class="value-headline">
+    <span>One diagnosis. Three things we build.</span>
+    <span>One person responsible, start to finish.</span>
+  </h2>
+
+  <!-- Subhead -->
+  <div class="value-subhead">
+    <p>// The diagnostic tells us which one you need.</p>
+    <p>// Sometimes it's all three.</p>
+  </div>
+
+  <!-- Service cards bento grid -->
+  <div class="services-grid">
+    <!-- Card 01 — WEBSITES -->
+    <Card glow>
+      <p class="card-label">// WEBSITES</p>
+      <h3 class="card-headline">Your website should be closing deals while you sleep.</h3>
+      <p class="card-body">We build custom marketing websites that tell your business's story clearly and move visitors toward a decision. Not a template dressed up as custom work. Not a site with a new logo slapped on a stock layout. A site engineered to convert, built from a clear message, and handed off with code you own completely.</p>
+      <p class="card-stat">&gt; 67% of businesses lose revenue to poor website performance.</p>
+      <p class="card-timeline">// Simple sites ship in under one week.</p>
+    </Card>
+
+    <!-- Card 02 — APPS + SOFTWARE -->
+    <Card glow>
+      <p class="card-label">// APPS + SOFTWARE</p>
+      <h3 class="card-headline">Your team should use tools built for how they actually work.</h3>
+      <p class="card-body">Custom business apps for the workflows that off-the-shelf software never quite covers: intake portals, client dashboards, booking systems, internal tools, operations apps. Built around your actual process. Documented. Owned by you at delivery — not rented from us by the month.</p>
+      <p class="card-stat">&gt; 53% of small businesses report data problems from disconnected tools.</p>
+      <p class="card-timeline">// App projects start at 2 weeks.</p>
+    </Card>
+
+    <!-- Card 03 — AI TOOLS -->
+    <Card glow>
+      <p class="card-label">// AI TOOLS</p>
+      <h3 class="card-headline">Your AI should know your business, not just the internet.</h3>
+      <p class="card-body">We don't bolt a chatbot onto your site and call it AI. We diagnose where AI actually saves your team time — answering FAQs, capturing leads, drafting follow-up emails, processing intake — and build a narrow, focused system trained on your data. No vaporware. No black boxes. A specific tool that does one job well.</p>
+      <p class="card-stat">&gt; Small businesses using AI save 5.6 hrs per person, per week.</p>
+      <p class="card-timeline">// You see exactly what it does and why.</p>
+    </Card>
+  </div>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule at top */
+  .value-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Section label — monospace, small, amber at 35% */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Headline — Geist Pixel, two lines */
+  .value-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-8);
+  }
+
+  .value-headline span {
+    display: block;
+  }
+
+  .value-headline span:first-child {
+    color: var(--primary);
+  }
+
+  .value-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* Subhead — terminal comments, mono, amber 60% */
+  .value-subhead {
+    margin-bottom: var(--space-16);
+  }
+
+  .value-subhead p {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: oklch(0.76 0.18 62 / 0.6);
+    line-height: 1.6;
+  }
+
+  /* Services bento grid — 3 cols desktop, 1 col mobile */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  /* Card internals */
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: oklch(0.76 0.18 62 / 0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-5);
+  }
+
+  .card-headline {
+    font-family: var(--font-pixel);
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: var(--space-5);
+  }
+
+  .card-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: oklch(0.90 0.16 62 / 0.8);
+    margin-bottom: var(--space-6);
+  }
+
+  .card-stat {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: oklch(0.76 0.18 62 / 0.7);
+    line-height: 1.5;
+    font-feature-settings: 'tnum' 1;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .card-timeline {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: oklch(0.76 0.18 62 / 0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .value-headline {
+      font-size: var(--step-3);
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .value-headline {
+      font-size: var(--step-2);
+    }
+  }
+</style>
