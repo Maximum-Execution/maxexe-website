@@ -1,0 +1,331 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
+---
+<div class="diagnostic-divider" aria-hidden="true"></div>
+<SectionWrapper bg="light" id="diagnostic" class="diagnostic-section">
+  <div class="diagnostic-inner">
+    <!-- Section label -->
+    <p class="section-label">// 07 THE MAX.EXE DIAGNOSTIC</p>
+
+    <!-- Headline -->
+    <h2 class="diagnostic-headline">
+      <span>84% of technology projects fail.</span>
+      <span>Yours doesn't have to.</span>
+    </h2>
+
+    <!-- Subhead -->
+    <p class="diagnostic-subhead">
+      Find out what's actually broken &mdash; before you spend a dollar trying to fix it.
+    </p>
+
+    <!-- Body -->
+    <div class="diagnostic-body">
+      <p>
+        The MAX.EXE Business Diagnostic is a branching decision tree &mdash; you only
+        answer questions that apply to your situation. Tell it you need a website and it
+        asks about your website. Tell it you need software and it digs into your workflow.
+        Add AI and it explores where AI actually fits your business.
+      </p>
+      <p>
+        Takes about five minutes. You complete the full diagnostic before we ask for your
+        email &mdash; because results you haven't seen yet aren't worth much.
+      </p>
+      <p>
+        At the end: an AI-generated analysis of your specific answers, a gap assessment
+        tied to the outcome you described, and a clear recommendation for what to build
+        first. Not a score bucket. Not a generic PDF. A diagnosis that reads like it was
+        written for your business &mdash; because it was.
+      </p>
+    </div>
+
+    <!-- Preview rows -->
+    <div class="preview-rows">
+      <div class="preview-row">
+        <div class="preview-num">&gt; [01]</div>
+        <div class="preview-content">
+          <p class="preview-title">TELL US WHAT YOU NEED</p>
+          <p class="preview-desc">
+            Website, software, or both. The diagnostic only asks
+            questions that apply to your situation.
+          </p>
+        </div>
+      </div>
+
+      <div class="preview-row">
+        <div class="preview-num">&gt; [02]</div>
+        <div class="preview-content">
+          <p class="preview-title">ANSWER WHAT APPLIES</p>
+          <p class="preview-desc">
+            No generic quiz. Questions adapt to your path.
+            Takes about five minutes.
+          </p>
+        </div>
+      </div>
+
+      <div class="preview-row">
+        <div class="preview-num">&gt; [03]</div>
+        <div class="preview-content">
+          <p class="preview-title">GET YOUR DIAGNOSIS</p>
+          <p class="preview-desc">
+            Complete the diagnostic, enter your email, receive
+            an AI-generated gap analysis built from your answers.
+            One follow-up. No noise.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email capture form -->
+    <div class="form-block">
+      <p class="form-label">RECEIVE YOUR FREE RESULTS</p>
+
+      <form class="email-form" action="#" method="POST">
+        <div class="form-row">
+          <input
+            type="email"
+            name="email"
+            class="email-input"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+            aria-label="Email address"
+          />
+          <Button variant="primary" type="submit">RUN DIAGNOSTIC &gt;</Button>
+        </div>
+      </form>
+
+      <div class="form-reassurance">
+        <p>// Free. Complete it before you give us your email.</p>
+        <p>// AI-generated results based on your specific answers.</p>
+        <p>// One follow-up email based on your score. That's it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section bottom rule -->
+  <div class="section-bottom-rule" aria-hidden="true"></div>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule at top */
+  .diagnostic-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Inner container — 860px max */
+  .diagnostic-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Section label — monospace, small, amber at 35% */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Headline — Geist Pixel, two lines */
+  .diagnostic-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-8);
+  }
+
+  .diagnostic-headline span {
+    display: block;
+  }
+
+  .diagnostic-headline span:first-child {
+    color: var(--primary);
+  }
+
+  .diagnostic-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* Subhead — Geist Mono, amber 60% */
+  .diagnostic-subhead {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: oklch(0.76 0.18 62 / 0.6);
+    line-height: 1.6;
+    margin-bottom: var(--space-10);
+  }
+
+  /* Body — Geist Sans, 17px, warm off-white */
+  .diagnostic-body {
+    margin-bottom: var(--space-12);
+  }
+
+  .diagnostic-body p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: oklch(0.88 0.06 62);
+    margin-bottom: var(--space-6);
+  }
+
+  .diagnostic-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Preview rows ── */
+  .preview-rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-muted);
+  }
+
+  .preview-row {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+  }
+
+  .preview-num {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-feature-settings: 'tnum' 1;
+    color: var(--primary);
+    flex-shrink: 0;
+    line-height: 1.5;
+    padding-top: 1px;
+  }
+
+  .preview-content {
+    flex: 1;
+  }
+
+  .preview-title {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: var(--space-1);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .preview-desc {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: oklch(0.88 0.06 62 / 0.8);
+  }
+
+  /* ── Email capture form ── */
+  .form-block {
+    padding: var(--space-10);
+    background: var(--bg-dark);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius-md);
+  }
+
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: oklch(0.76 0.18 62 / 0.8);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  .email-form {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-row {
+    display: flex;
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+
+  .email-input {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--text);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--primary);
+    padding: var(--space-3) var(--space-1);
+    border-radius: 0;
+    outline: none;
+    transition: border-color var(--dur-micro) var(--ease-ui),
+                box-shadow var(--dur-micro) var(--ease-ui);
+  }
+
+  .email-input::placeholder {
+    color: oklch(0.76 0.18 62 / 0.35);
+  }
+
+  .email-input:focus {
+    border-bottom-color: oklch(0.82 0.18 62);
+    box-shadow: 0 1px 0 0 oklch(0.76 0.18 62 / 0.4);
+  }
+
+  .form-reassurance {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .form-reassurance p {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: oklch(0.76 0.18 62 / 0.45);
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
+  /* ── Section bottom rule ── */
+  .section-bottom-rule {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.20);
+    margin-top: var(--space-20);
+    max-width: 100%;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .diagnostic-headline {
+      font-size: var(--step-3);
+    }
+
+    .form-row {
+      flex-direction: column;
+    }
+
+    .email-input {
+      width: 100%;
+    }
+
+    .form-block {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .diagnostic-headline {
+      font-size: var(--step-2);
+    }
+
+    .preview-row {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>
