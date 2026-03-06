@@ -1,0 +1,436 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
+---
+<div class="scan-divider" aria-hidden="true"></div>
+<SectionWrapper bg="dark" id="scan" class="scan-section">
+  <!-- Section label -->
+  <p class="section-label">// 06 YOUR SYSTEM, SCANNED</p>
+
+  <!-- Bridge copy -->
+  <p class="bridge-copy">
+    Most disconnected systems don&rsquo;t announce themselves. They hide in the
+    gap between your tools. This is what a diagnostic scan finds in a typical
+    10-person business &mdash; and what the same business looks like after the
+    problems are fixed.
+  </p>
+
+  <!-- Terminal panels grid -->
+  <div class="scan-grid">
+    <!-- ── BEFORE panel ── -->
+    <div class="terminal-panel panel-before">
+      <div class="panel-content">
+        <p class="panel-header">&gt; SYSTEM_SCAN.EXE</p>
+        <p class="panel-header">&gt; Entity: 10-person business</p>
+        <p class="panel-header">&gt; Scan initiated...</p>
+
+        <div class="panel-spacer"></div>
+
+        <p class="panel-section-title">TOOLS DETECTED:</p>
+
+        <div class="scan-lines">
+          <p class="scan-line"><span class="badge-warn">[WARN]</span> CRM <span class="dots">.......................</span> not connected to website</p>
+          <p class="scan-line"><span class="badge-err">[ERR]</span>&nbsp; Website forms <span class="dots">...........</span> not syncing to CRM</p>
+          <p class="scan-line"><span class="badge-warn">[WARN]</span> Invoicing <span class="dots">...............</span> manual entry required</p>
+          <p class="scan-line"><span class="badge-warn">[WARN]</span> Scheduling <span class="dots">..............</span> disconnected from CRM</p>
+          <p class="scan-line"><span class="badge-err">[ERR]</span>&nbsp; Inventory <span class="dots">...............</span> lives in spreadsheet</p>
+          <p class="scan-line"><span class="badge-warn">[WARN]</span> Email marketing <span class="dots">.........</span> manual list uploads</p>
+          <p class="scan-line"><span class="badge-err">[ERR]</span>&nbsp; Analytics <span class="dots">...............</span> no conversion tracking</p>
+          <p class="scan-line"><span class="badge-err">[ERR]</span>&nbsp; AI tools (3 active) <span class="dots">.....</span> 0 integrated</p>
+          <p class="scan-line"><span class="badge-warn">[WARN]</span> Client support <span class="dots">..........</span> inbox + sticky notes</p>
+          <p class="scan-line"><span class="badge-warn">[WARN]</span> Project mgmt <span class="dots">..........</span> 2 competing tools</p>
+        </div>
+
+        <div class="panel-spacer"></div>
+        <p class="scan-status-label">SCAN COMPLETE</p>
+        <div class="panel-sep" aria-hidden="true"></div>
+
+        <div class="summary-block">
+          <div class="summary-row">
+            <span class="summary-label">TOOLS DETECTED:</span>
+            <span class="summary-value">23</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">ACTIVE INTEGRATIONS:</span>
+            <span class="summary-value">0</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">SINGLE SOURCE OF TRUTH:</span>
+            <span class="summary-value">NONE</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">DATA SILOS:</span>
+            <span class="summary-value">6</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">MANUAL PROCESSES:</span>
+            <span class="summary-value">14</span>
+          </div>
+        </div>
+
+        <div class="panel-spacer"></div>
+        <p class="status-line status-err"><span class="badge-err">[ERR]</span> NO OPERATING SYSTEM DETECTED</p>
+        <p class="panel-summary">&gt; SUMMARY: 23 TOOLS. 0 OPERATING SYSTEM.</p>
+      </div>
+    </div>
+
+    <!-- ── Transition bar ── -->
+    <div class="transition-bar" aria-hidden="true">
+      <span class="transition-label">&gt; MAX.EXE DIAGNOSTIC RUNNING... <span class="transition-fill">████████████████████</span> DONE</span>
+    </div>
+
+    <!-- ── AFTER panel ── -->
+    <div class="terminal-panel panel-after">
+      <div class="panel-content">
+        <p class="panel-header">&gt; REBUILD COMPLETE</p>
+        <p class="panel-header">&gt; MAX.EXE SYSTEM ONLINE</p>
+
+        <div class="panel-spacer"></div>
+
+        <p class="panel-section-title">SYSTEM STATUS:</p>
+
+        <div class="scan-lines">
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Website &harr; CRM <span class="dots">.............</span> real-time sync active</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Lead forms <span class="dots">..............</span> automated pipeline</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Inventory <span class="dots">...............</span> live on website</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Scheduling <span class="dots">..............</span> synced to CRM</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Invoicing <span class="dots">...............</span> auto-triggers on close</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Email marketing <span class="dots">.........</span> driven by CRM events</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Analytics <span class="dots">...............</span> full conversion tracking</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; AI assistant <span class="dots">............</span> trained on your data</p>
+          <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Single source of truth: &nbsp; <span class="value-inline">ACTIVE</span></p>
+        </div>
+
+        <div class="panel-spacer"></div>
+        <div class="panel-sep" aria-hidden="true"></div>
+
+        <div class="summary-block">
+          <div class="summary-row">
+            <span class="summary-label">TOOLS REPLACED:</span>
+            <span class="summary-value">12</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">MANUAL PROCESSES REMOVED:</span>
+            <span class="summary-value">14</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">HOURS RECOVERED/YEAR:</span>
+            <span class="summary-value">440</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">CODE OWNERSHIP:</span>
+            <span class="summary-value">100% YOURS</span>
+          </div>
+        </div>
+
+        <div class="panel-spacer"></div>
+        <p class="status-line status-ok"><span class="badge-ok">[OK]</span> MAX.EXE SYSTEM ONLINE</p>
+        <p class="panel-summary">&gt; delta(value) = deployed &minus; theoretical</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="scan-cta">
+    <Button variant="primary" href="#diagnostic">RUN YOUR OWN SCAN &mdash; FREE DIAGNOSTIC &gt;</Button>
+    <p class="cta-support">// See where your stack breaks down</p>
+  </div>
+
+  <!-- Section bottom rule -->
+  <div class="section-bottom-rule" aria-hidden="true"></div>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule at top */
+  .scan-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Bridge copy */
+  .bridge-copy {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    line-height: 1.6;
+    color: oklch(0.88 0.06 62);
+    max-width: 660px;
+    margin-bottom: var(--space-12);
+  }
+
+  /* ── Terminal panels grid ── */
+  .scan-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── Terminal panel base ── */
+  .terminal-panel {
+    max-width: 560px;
+    width: 100%;
+    background: oklch(0.16 0.025 85);
+    border: 1px solid oklch(0.76 0.18 62 / 0.2);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-feature-settings: 'tnum' 1;
+    overflow: hidden;
+  }
+
+  .panel-content {
+    padding: var(--space-6);
+  }
+
+  /* Before panel — muted border */
+  .panel-before {
+    border-color: oklch(0.76 0.18 62 / 0.2);
+    justify-self: end;
+  }
+
+  /* After panel — full amber border + glow */
+  .panel-after {
+    border-color: oklch(0.76 0.18 62 / 1);
+    box-shadow: 0 0 32px oklch(0.75 0.18 85 / 0.12);
+    justify-self: start;
+  }
+
+  /* ── Panel header lines ── */
+  .panel-header {
+    font-size: 13px;
+    line-height: 1.6;
+    color: oklch(0.76 0.18 62 / 0.8);
+  }
+
+  .panel-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: oklch(0.76 0.18 62 / 0.6);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-2);
+  }
+
+  .panel-spacer {
+    height: var(--space-4);
+  }
+
+  .panel-sep {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.2);
+    margin: var(--space-2) 0;
+  }
+
+  /* ── Scan lines ── */
+  .scan-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .scan-line {
+    font-size: 12px;
+    line-height: 1.6;
+    color: oklch(0.76 0.18 62 / 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Dot leaders */
+  .dots {
+    color: oklch(0.76 0.18 62 / 0.25);
+  }
+
+  /* Value inline (for "ACTIVE" in after panel) */
+  .value-inline {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* ── Status badges ── */
+  .badge-err {
+    color: var(--danger);
+    font-weight: 700;
+  }
+
+  .badge-warn {
+    color: var(--warning);
+    font-weight: 700;
+  }
+
+  .badge-ok {
+    color: var(--success);
+    font-weight: 700;
+  }
+
+  /* ── Scan status label ── */
+  .scan-status-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: oklch(0.76 0.18 62 / 0.6);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Summary block ── */
+  .summary-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .summary-label {
+    color: oklch(0.76 0.18 62 / 0.5);
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .summary-value {
+    color: var(--primary);
+    font-weight: 700;
+    text-align: right;
+  }
+
+  /* ── Status line + panel summary ── */
+  .status-line {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .status-err {
+    color: var(--danger);
+  }
+
+  .status-ok {
+    color: var(--success);
+  }
+
+  .panel-summary {
+    font-size: 12px;
+    line-height: 1.6;
+    color: oklch(0.76 0.18 62 / 0.6);
+    margin-top: var(--space-2);
+  }
+
+  /* ── Transition bar (between panels) ── */
+  .transition-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-4);
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+  }
+
+  .transition-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: oklch(0.76 0.18 62 / 0.5);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .transition-fill {
+    color: var(--primary);
+  }
+
+  /* ── CTA ── */
+  .scan-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--space-12);
+    gap: var(--space-4);
+  }
+
+  .cta-support {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.4);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Section bottom rule ── */
+  .section-bottom-rule {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.20);
+    margin-top: var(--space-20);
+    max-width: 100%;
+  }
+
+  /* ── Responsive: tablet ── */
+  @media (max-width: 1024px) {
+    .scan-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+      max-width: 560px;
+    }
+
+    .terminal-panel {
+      max-width: 100%;
+      justify-self: stretch;
+    }
+
+    .panel-before {
+      justify-self: stretch;
+    }
+
+    .panel-after {
+      justify-self: stretch;
+    }
+
+    /* Transition bar goes horizontal on mobile */
+    .transition-bar {
+      writing-mode: horizontal-tb;
+      text-orientation: initial;
+      padding: var(--space-4) 0;
+    }
+  }
+
+  /* ── Responsive: mobile small ── */
+  @media (max-width: 640px) {
+    .bridge-copy {
+      font-size: 17px;
+    }
+
+    .panel-content {
+      padding: var(--space-4);
+    }
+
+    .scan-line {
+      font-size: 11px;
+    }
+
+    .summary-row {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bridge-copy {
+      font-size: 16px;
+    }
+
+    .scan-line {
+      font-size: 10px;
+    }
+  }
+</style>
