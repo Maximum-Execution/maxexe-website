@@ -1,0 +1,181 @@
+---
+import Button from '../Button.astro';
+import Cursor from '../Cursor.astro';
+---
+<div class="footer-rule" aria-hidden="true"></div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- Three-column grid on desktop -->
+    <div class="footer-grid">
+      <!-- Left column: brand + tagline -->
+      <div class="footer-col footer-brand">
+        <p class="brand-name">MAXIMUM EXECUTION<Cursor class="footer-cursor" /></p>
+        <p class="brand-tagline">// Clarity. Code. Results.</p>
+      </div>
+
+      <!-- Center column: CTA -->
+      <div class="footer-col footer-action">
+        <Button variant="primary" href="#diagnostic" class="footer-btn">[RUN FREE DIAGNOSTIC &gt;]</Button>
+      </div>
+
+      <!-- Right column: contact + legal -->
+      <div class="footer-col footer-contact">
+        <p class="contact-line">Richmond, VA</p>
+        <a href="mailto:contact@maximumexecution.com" class="contact-link">contact@maximumexecution.com</a>
+        <p class="copyright">&copy; 2026 Maximum Execution</p>
+      </div>
+    </div>
+
+    <!-- Bottom sign-off -->
+    <div class="footer-signoff">
+      <p class="signoff-comment">// Compiled. Deployed. Executing.</p>
+      <p class="signoff-eof">EOF</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* 1px amber rule separating from contact section */
+  .footer-rule {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Footer background — slightly lighter than base dark */
+  .site-footer {
+    background: oklch(0.14 0.022 85);
+    padding: var(--space-16) var(--space-8);
+  }
+
+  /* Inner container */
+  .footer-inner {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+  }
+
+  /* Three-column grid */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    gap: var(--space-10);
+    margin-bottom: var(--space-12);
+  }
+
+  /* Column base styles */
+  .footer-col {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* ── Left: Brand ── */
+  .footer-brand {
+    text-align: left;
+  }
+
+  .brand-name {
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    color: var(--primary);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-2);
+  }
+
+  :global(.footer-cursor) {
+    width: 0.45em;
+    height: 0.85em;
+    margin-left: 2px;
+  }
+
+  .brand-tagline {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: oklch(0.76 0.18 62 / 0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Center: CTA ── */
+  .footer-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(.footer-btn) {
+    font-size: 12px !important;
+    padding: var(--space-2) var(--space-5) !important;
+  }
+
+  /* ── Right: Contact ── */
+  .footer-contact {
+    text-align: right;
+  }
+
+  .contact-line {
+    color: oklch(0.76 0.18 62 / 0.5);
+    margin-bottom: var(--space-1);
+  }
+
+  .contact-link {
+    display: block;
+    color: oklch(0.76 0.18 62 / 0.5);
+    text-decoration: none;
+    margin-bottom: var(--space-3);
+    transition: color var(--dur-micro) var(--ease-ui);
+  }
+
+  .contact-link:hover {
+    color: var(--primary);
+  }
+
+  .copyright {
+    color: oklch(0.76 0.18 62 / 0.4);
+    font-size: 12px;
+  }
+
+  /* ── Bottom sign-off ── */
+  .footer-signoff {
+    border-top: 1px solid oklch(0.76 0.18 62 / 0.1);
+    padding-top: var(--space-6);
+    text-align: center;
+  }
+
+  .signoff-comment {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-4);
+  }
+
+  .signoff-eof {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: oklch(0.76 0.18 62 / 0.25);
+    letter-spacing: 0.2em;
+  }
+
+  /* ── Responsive — single column on mobile ── */
+  @media (max-width: 768px) {
+    .site-footer {
+      padding: var(--space-12) var(--space-6);
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      text-align: center;
+    }
+
+    .footer-brand,
+    .footer-contact {
+      text-align: center;
+    }
+
+    .brand-name {
+      font-size: 16px;
+    }
+  }
+</style>

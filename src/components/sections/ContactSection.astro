@@ -1,0 +1,136 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
+---
+<div class="contact-divider" aria-hidden="true"></div>
+<SectionWrapper bg="dark" id="contact" class="contact-section">
+  <!-- Section label -->
+  <p class="section-label">// 09 LET'S WORK</p>
+
+  <!-- Content wrapper — 640px centered -->
+  <div class="contact-content">
+    <!-- Headline -->
+    <h2 class="contact-headline">Ready to find out what&rsquo;s broken?</h2>
+
+    <!-- Body copy -->
+    <div class="contact-body">
+      <p>Start with the diagnostic. Five minutes, instant results. If what it surfaces is a problem worth solving together, we&rsquo;ll be in touch within 24 hours. If it surfaces something you can fix on your own, you&rsquo;ll have a clearer picture of your business than you had before.</p>
+      <p>Either way: you leave with data, not a sales pitch.</p>
+    </div>
+
+    <!-- CTA stack — vertically stacked, centered -->
+    <div class="contact-cta-stack">
+      <div class="cta-group">
+        <Button variant="primary" href="#diagnostic" class="cta-full">[RUN FREE DIAGNOSTIC &gt;]</Button>
+        <span class="cta-support">// &larr; start here</span>
+      </div>
+      <div class="cta-group">
+        <Button variant="ghost" href="https://cal.com" class="cta-full">[BOOK A 20-MINUTE CALL &gt;]</Button>
+        <span class="cta-support">// &larr; book directly on Cal.com, no form</span>
+      </div>
+    </div>
+  </div>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule at top */
+  .contact-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Section label — monospace, small, amber at 35% */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Content wrapper — centered 640px */
+  .contact-content {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Headline — Geist Pixel, ~44px via step-4 */
+  .contact-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    margin-bottom: var(--space-8);
+  }
+
+  /* Body copy */
+  .contact-body {
+    margin-bottom: var(--space-12);
+  }
+
+  .contact-body p {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: oklch(0.88 0.06 62);
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-body p:last-child {
+    margin-bottom: 0;
+    font-style: italic;
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* CTA stack */
+  .contact-cta-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  /* Support text below each button */
+  .cta-support {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* Full-width buttons on mobile */
+  @media (max-width: 768px) {
+    .contact-headline {
+      font-size: var(--step-3);
+    }
+
+    .contact-body p {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-headline {
+      font-size: var(--step-2);
+    }
+
+    :global(.cta-full) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .cta-group {
+      width: 100%;
+    }
+  }
+</style>
