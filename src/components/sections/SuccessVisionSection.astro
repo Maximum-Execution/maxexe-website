@@ -1,0 +1,183 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
+---
+<div class="success-divider" aria-hidden="true"></div>
+<SectionWrapper bg="base" id="success" class="success-section">
+  <!-- Section label -->
+  <p class="section-label">// <span class="label-ok">[OK]</span> WHAT SHIPPED LOOKS LIKE</p>
+
+  <!-- Content wrapper — 640px centered -->
+  <div class="success-content">
+    <!-- Headline -->
+    <h2 class="success-headline">
+      <span>Your business, running the way</span>
+      <span>it was supposed to from the start.</span>
+    </h2>
+
+    <!-- Confirmation stack -->
+    <div class="confirmation-stack">
+      <div class="confirm-line">
+        <span class="confirm-badge">[OK]</span>
+        <span class="confirm-text">Website brings in qualified leads while you&rsquo;re running the business.</span>
+      </div>
+      <div class="confirm-line">
+        <span class="confirm-badge">[OK]</span>
+        <span class="confirm-text">Your team uses tools built for how they actually work &mdash; not around them.</span>
+      </div>
+      <div class="confirm-line">
+        <span class="confirm-badge">[OK]</span>
+        <span class="confirm-text">AI handles intake, FAQs, and follow-ups. In your voice. On your data.</span>
+      </div>
+      <div class="confirm-line">
+        <span class="confirm-badge">[OK]</span>
+        <span class="confirm-text">You own every line of code. No subscriptions. No lock-in. No rental fees.</span>
+      </div>
+      <div class="confirm-line">
+        <span class="confirm-badge">[OK]</span>
+        <span class="confirm-text">One person knows your entire system. Responds in under 24 hours.</span>
+      </div>
+      <div class="confirm-line">
+        <span class="confirm-badge">[OK]</span>
+        <span class="confirm-text">Your stack isn&rsquo;t a collection of tools. It&rsquo;s a system.</span>
+      </div>
+    </div>
+
+    <!-- Terminal equation -->
+    <div class="terminal-equation">
+      <p class="equation-line">&gt; delta(value) = deployed &minus; theoretical</p>
+      <p class="equation-comment">// execution is the only metric that matters.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="success-cta">
+      <Button variant="primary" href="#diagnostic">[RUN FREE DIAGNOSTIC &gt;]</Button>
+    </div>
+  </div>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule at top */
+  .success-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Section label — monospace, small, amber at 35% */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  .label-ok {
+    color: var(--success);
+  }
+
+  /* Content wrapper — centered 640px */
+  .success-content {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Headline — Geist Pixel, step-4 */
+  .success-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    margin-bottom: var(--space-12);
+  }
+
+  .success-headline span {
+    display: block;
+  }
+
+  .success-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* ── Confirmation stack ── */
+  .confirmation-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-bottom: var(--space-12);
+  }
+
+  .confirm-line {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .confirm-badge {
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--success);
+    text-shadow: 0 0 4px oklch(0.70 0.18 160 / 0.9), 0 0 8px oklch(0.70 0.18 160 / 0.35);
+  }
+
+  .confirm-text {
+    color: oklch(0.88 0.06 62);
+  }
+
+  /* ── Terminal equation ── */
+  .terminal-equation {
+    margin-bottom: var(--space-12);
+    padding: var(--space-5) 0;
+    border-top: 1px solid var(--border-muted);
+    border-bottom: 1px solid var(--border-muted);
+  }
+
+  .equation-line {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: oklch(0.76 0.18 62 / 0.55);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-2);
+  }
+
+  .equation-comment {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-style: italic;
+    color: oklch(0.76 0.18 62 / 0.55);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── CTA ── */
+  .success-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .success-headline {
+      font-size: var(--step-3);
+    }
+
+    .confirm-line {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .success-headline {
+      font-size: var(--step-2);
+    }
+
+    .confirm-line {
+      font-size: 14px;
+      gap: var(--space-2);
+    }
+  }
+</style>
