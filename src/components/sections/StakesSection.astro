@@ -1,0 +1,309 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
+---
+<div class="stakes-divider" aria-hidden="true"></div>
+<section id="stakes" class="stakes-section">
+  <div class="stakes-inner">
+    <!-- Section label -->
+    <p class="section-label">// <span class="label-err">[ERR]</span> THE COST OF WAITING</p>
+
+    <!-- Contained card -->
+    <div class="stakes-card">
+      <!-- Headline -->
+      <h2 class="stakes-headline">
+        <span>You&rsquo;re already paying for this.</span>
+        <span>You just don&rsquo;t have an invoice for it yet.</span>
+      </h2>
+
+      <!-- Subhead -->
+      <p class="stakes-subhead">
+        440 hours a year. That&rsquo;s what a fragmented stack costs a 10-person team.<br />
+        What&rsquo;s it costing yours?
+      </p>
+
+      <!-- Body copy -->
+      <div class="stakes-body">
+        <p>
+          Every month without a website that converts, your best prospects are
+          finding a competitor with a clearer message. Every month your tools
+          don&rsquo;t connect, your team loses hours to work that should run on its
+          own. Every month without AI that knows your business, you&rsquo;re writing
+          the same emails, answering the same questions, and doing manually what
+          should have been automated a year ago.
+        </p>
+
+        <p class="stakes-closing">
+          The diagnostic is free.<br />
+          The cost of staying where you are is not.
+        </p>
+      </div>
+
+      <!-- Terminal block -->
+      <div class="stakes-terminal">
+        <div class="terminal-line">
+          <span class="terminal-prompt">&gt;</span>
+          <span class="terminal-key">TIME LOST (10-person team, 1 year):</span>
+          <span class="terminal-val">440 hrs</span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">&gt;</span>
+          <span class="terminal-key">TIME LOST TODAY (10 employees):</span>
+          <span class="terminal-val terminal-counter" id="time-lost-counter">0h 0m 0s</span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">&gt;</span>
+          <span class="terminal-key">REVENUE AT RISK:</span>
+          <span class="terminal-val terminal-active">active now</span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">&gt;</span>
+          <span class="terminal-key">COST TO DIAGNOSE:</span>
+          <span class="terminal-val terminal-free">$0.00</span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">&gt;</span>
+          <span class="terminal-key">COST TO DO NOTHING:</span>
+          <span class="terminal-val terminal-danger">compounding</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="stakes-cta">
+        <Button variant="primary" href="#diagnostic">[RUN FREE DIAGNOSTIC &gt;]</Button>
+        <p class="cta-support">// find out what it&rsquo;s actually costing you</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Live counter script — client-side JS -->
+<script>
+  const counter = document.getElementById('time-lost-counter');
+  if (counter) {
+    const startTime = Date.now();
+    // 44 hrs/year per employee * 10 employees = 440 hrs/year
+    // Working seconds per year: 52 weeks * 5 days * 8 hrs * 3600 sec = 7,488,000 sec
+    // Lost seconds per working second: (440 * 3600) / 7,488,000 = 0.2115
+    const lossRate = (10 * 44 * 3600) / (52 * 5 * 8 * 3600);
+
+    function updateCounter() {
+      const elapsedSeconds = (Date.now() - startTime) / 1000;
+      const totalSecondsLost = elapsedSeconds * lossRate;
+
+      const hours = Math.floor(totalSecondsLost / 3600);
+      const minutes = Math.floor((totalSecondsLost % 3600) / 60);
+      const seconds = Math.floor(totalSecondsLost % 60);
+
+      counter.textContent = `${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      setInterval(updateCounter, 1000);
+    }
+    updateCounter();
+  }
+</script>
+
+<style>
+  /* Amber divider rule at top */
+  .stakes-divider {
+    height: 1px;
+    background: oklch(0.76 0.18 62 / 0.15);
+  }
+
+  /* Custom section wrapper — amber wash over dark base */
+  .stakes-section {
+    background: oklch(0.75 0.18 85 / 0.08);
+    padding: var(--space-20) var(--space-8);
+  }
+
+  .stakes-inner {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: oklch(0.76 0.18 62 / 0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  .label-err {
+    color: var(--danger);
+  }
+
+  /* Contained card — centered 680px */
+  .stakes-card {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Headline — Geist Pixel, amber primary */
+  .stakes-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    margin-bottom: var(--space-8);
+  }
+
+  .stakes-headline span {
+    display: block;
+  }
+
+  .stakes-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* Subhead — Geist Mono, amber 60% */
+  .stakes-subhead {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    color: oklch(0.76 0.18 62 / 0.6);
+    margin-bottom: var(--space-10);
+    letter-spacing: 0.02em;
+  }
+
+  /* Body copy */
+  .stakes-body {
+    margin-bottom: var(--space-10);
+  }
+
+  .stakes-body p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: oklch(0.88 0.06 62);
+    margin-bottom: var(--space-6);
+  }
+
+  .stakes-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .stakes-closing {
+    margin-top: var(--space-6);
+    font-weight: 600;
+    color: var(--text) !important;
+  }
+
+  /* Terminal block */
+  .stakes-terminal {
+    background: oklch(0.12 0.02 85);
+    border: 1px solid oklch(0.76 0.18 62 / 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--space-6);
+    margin-bottom: var(--space-10);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-feature-settings: 'tnum' 1;
+  }
+
+  .terminal-line {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+    line-height: 1.5;
+  }
+
+  .terminal-prompt {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .terminal-key {
+    color: oklch(0.76 0.18 62 / 0.55);
+    white-space: nowrap;
+  }
+
+  .terminal-val {
+    color: var(--text);
+    margin-left: auto;
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .terminal-counter {
+    color: var(--primary);
+    min-width: 100px;
+  }
+
+  .terminal-active {
+    color: var(--warning);
+  }
+
+  .terminal-free {
+    color: var(--success);
+  }
+
+  .terminal-danger {
+    color: var(--danger);
+  }
+
+  /* CTA */
+  .stakes-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .cta-support {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--text-muted);
+    opacity: 0.5;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Responsive: tablet ── */
+  @media (max-width: 768px) {
+    .stakes-section {
+      padding: var(--space-12) var(--space-6);
+    }
+
+    .stakes-headline {
+      font-size: var(--step-3);
+    }
+
+    .terminal-line {
+      flex-wrap: wrap;
+      gap: var(--space-1);
+    }
+
+    .terminal-key {
+      white-space: normal;
+    }
+
+    .terminal-val {
+      margin-left: 0;
+      padding-left: var(--space-4);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stakes-headline {
+      font-size: var(--step-2);
+    }
+
+    .stakes-terminal {
+      padding: var(--space-4);
+      font-size: var(--step--2);
+    }
+
+    .terminal-counter {
+      min-width: 80px;
+    }
+  }
+</style>
