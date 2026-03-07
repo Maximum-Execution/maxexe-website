@@ -25,6 +25,11 @@ import '../styles/global.css';
     <meta name="twitter:title" content="Business Diagnostic | MAXIMUM EXECUTION" />
     <meta name="twitter:description" content="Free diagnostic tool. 5 minutes. Find out where your business is losing ground and what to build first." />
     <meta name="twitter:image" content="https://maximumexecution.com/og-image.png" />
+    <!-- Analytics (Plausible) -->
+    <script defer data-domain="maximumexecution.com" src="https://plausible.io/js/script.js"></script>
+    <!-- Error Monitoring (Sentry) -->
+    <script src="https://js.sentry-cdn.com/db6e3b69e4be76fafc18e6e339b4c684.min.js" crossorigin="anonymous"></script>
+
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
@@ -50,6 +55,13 @@ import '../styles/global.css';
       </div>
     </header>
     <main id="main-content">
+      <noscript>
+        <div style="max-width:600px;margin:4rem auto;padding:2rem;text-align:center;font-family:monospace;color:#d4a574;">
+          <h1 style="font-size:1.5rem;color:#c8841d;margin-bottom:1rem;">JavaScript Required</h1>
+          <p style="line-height:1.6;">The diagnostic tool needs JavaScript to run. Please enable JavaScript in your browser settings, then reload this page.</p>
+          <p style="margin-top:1.5rem;"><a href="/" style="color:#c8841d;text-decoration:underline;">Return to homepage</a></p>
+        </div>
+      </noscript>
       <section class="diagnostic-section relative" style="min-height:calc(100dvh - 52px);">
         <div class="pointer-events-none absolute inset-0 z-10" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, oklch(0 0 0 / 0.03) 2px, oklch(0 0 0 / 0.03) 4px);" aria-hidden="true"></div>
         <div class="relative z-20 flex justify-center px-6" style="min-height:calc(100dvh - 52px);padding-top:var(--space-10);padding-bottom:var(--space-16);">
