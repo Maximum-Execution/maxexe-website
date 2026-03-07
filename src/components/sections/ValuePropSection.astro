@@ -57,11 +57,11 @@ import Card from '../Card.astro';
     background: oklch(0.76 0.18 62 / 0.15);
   }
 
-  /* Section label - monospace, small, amber at 35% */
+  /* Section label - monospace, small */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: oklch(0.76 0.18 62 / 0.35);
+    color: var(--text-accent-dim);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: var(--space-6);
@@ -89,7 +89,7 @@ import Card from '../Card.astro';
     color: oklch(0.76 0.18 62 / 0.7);
   }
 
-  /* Subhead - terminal comments, mono, amber 60% */
+  /* Subhead - terminal comments, mono */
   .value-subhead {
     margin-bottom: var(--space-16);
   }
@@ -97,7 +97,7 @@ import Card from '../Card.astro';
   .value-subhead p {
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: oklch(0.76 0.18 62 / 0.6);
+    color: var(--text-accent-dim);
     line-height: 1.6;
   }
 
@@ -112,7 +112,7 @@ import Card from '../Card.astro';
   .card-label {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: oklch(0.76 0.18 62 / 0.5);
+    color: var(--text-accent-dim);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: var(--space-5);
@@ -130,14 +130,14 @@ import Card from '../Card.astro';
     font-family: var(--font-sans);
     font-size: 15px;
     line-height: 1.65;
-    color: oklch(0.90 0.16 62 / 0.8);
+    color: var(--text-accent-muted);
     margin-bottom: var(--space-6);
   }
 
   .card-stat {
     font-family: var(--font-mono);
     font-size: 13px;
-    color: oklch(0.76 0.18 62 / 0.7);
+    color: var(--text-accent-dim);
     line-height: 1.5;
     font-feature-settings: 'tnum' 1;
     padding-top: var(--space-4);
@@ -148,7 +148,7 @@ import Card from '../Card.astro';
   .card-timeline {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: oklch(0.76 0.18 62 / 0.45);
+    color: var(--text-accent-dim);
     letter-spacing: 0.04em;
   }
 
