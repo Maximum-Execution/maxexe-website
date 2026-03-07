@@ -38,9 +38,9 @@ import '../styles/global.css';
     })} />
   </head>
   <body class="min-h-screen bg-base-100 text-base-content">
-    <main id="main-content">
-      <div class="mx-auto max-w-4xl px-4 pt-4 sm:px-6 lg:px-8">
-        <a href="/" class="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-base-content/60 transition-colors duration-200 hover:text-primary">
+    <header class="sticky top-0 z-50 border-b border-base-content/5 bg-base-100/80 backdrop-blur-md">
+      <div class="mx-auto max-w-4xl px-4 py-2 sm:px-6 lg:px-8">
+        <a href="/" aria-label="Return to homepage" class="inline-flex min-h-[44px] items-center gap-2 font-mono text-xs tracking-wider text-base-content/60 transition-colors duration-200 hover:text-primary">
           <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
@@ -48,6 +48,8 @@ import '../styles/global.css';
           Back to home
         </a>
       </div>
+    </header>
+    <main id="main-content">
       <section class="diagnostic-section relative min-h-dvh">
         <div class="pointer-events-none absolute inset-0 z-10" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, oklch(0 0 0 / 0.03) 2px, oklch(0 0 0 / 0.03) 4px);" aria-hidden="true"></div>
         <div class="relative z-20 flex min-h-dvh items-center justify-center px-4 py-16">
@@ -101,11 +103,11 @@ import '../styles/global.css';
           W4: {
             dimension: "ONLINE PRESENCE",
             skipScore: 2,
-            question: "If you had to explain what your business does to a complete stranger in one sentence, how confident are you that they\u2019d immediately get it?",
+            question: "Do you have a documented one-liner or elevator pitch that you\u2019ve tested with real prospects?",
             options: [
-              { label: "Very confident. I have a clear, practiced one-liner that lands every time.", value: "A", score: 3 },
-              { label: "I can explain it, but I usually ramble or get different reactions from different people.", value: "B", score: 2 },
-              { label: "I struggle with this. It\u2019s hard to explain what makes us different.", value: "C", score: 1 },
+              { label: "Yes. I have a clear, tested sentence that consistently lands with new people.", value: "A", score: 3 },
+              { label: "I have something, but it changes every time I say it and gets mixed reactions.", value: "B", score: 2 },
+              { label: "No. I don\u2019t have a documented pitch. I wing it every time.", value: "C", score: 1 },
             ],
           },
           S1a: {
@@ -171,11 +173,11 @@ import '../styles/global.css';
           S3: {
             dimension: "OPERATIONS",
             skipScore: 2,
-            question: "What\u2019s your biggest frustration with how your business runs day-to-day?",
+            question: "In the last month, how many times did a task fall through the cracks because there was no system to catch it?",
             options: [
-              { label: "Honestly, things run pretty well. I\u2019m looking to optimize, not fix.", value: "A", score: 3 },
-              { label: "There are a few bottlenecks that slow us down, but we manage.", value: "B", score: 2 },
-              { label: "It\u2019s chaotic. Too many things depend on me remembering or following up.", value: "C", score: 1 },
+              { label: "Rarely or never. Our systems catch things before they slip.", value: "A", score: 3 },
+              { label: "A few times. Some things get missed when we\u2019re busy.", value: "B", score: 2 },
+              { label: "Regularly. Dropped balls are a recurring problem.", value: "C", score: 1 },
             ],
           },
           WS1: {
@@ -519,15 +521,7 @@ import '../styles/global.css';
             type: "text-input",
             question: "If time and money were not an issue, what would be the ultimate outcome for this project?",
             placeholder: "No limits. No budget. No timeline. What does the dream version look like?",
-            buttonLabel: "SEE MY RESULTS",
-            getNextScreen: () => "email-gate",
-          },
-
-          // --- Email Gate ---
-          "email-gate": {
-            id: "email-gate",
-            type: "email-gate",
-            buttonLabel: "SEE MY RESULTS",
+            buttonLabel: "FINISH",
             getNextScreen: () => "loading",
           },
 
@@ -535,6 +529,21 @@ import '../styles/global.css';
           loading: {
             id: "loading",
             type: "loading",
+            getNextScreen: () => "score-preview",
+          },
+
+          // --- Score Preview (shows score, gates detailed breakdown behind email) ---
+          "score-preview": {
+            id: "score-preview",
+            type: "score-preview",
+            getNextScreen: () => "email-gate",
+          },
+
+          // --- Email Gate ---
+          "email-gate": {
+            id: "email-gate",
+            type: "email-gate",
+            buttonLabel: "UNLOCK FULL BREAKDOWN",
             getNextScreen: () => "results",
           },
 
@@ -557,28 +566,28 @@ import '../styles/global.css';
           W: {
             low: {
               headline: "Your website is costing you business.",
-              body: "Based on your answers, your online presence has significant gaps in clarity, lead generation, and follow-up systems. Visitors are landing on your site and leaving without taking action. The good news: these are fixable problems with a clear, proven approach.",
+              body: "You scored in the bottom third for online presence. Businesses that convert well online typically score 75%+ in this area \u2014 yours indicates significant gaps in clarity, lead generation, and follow-up systems. Visitors are landing on your site and leaving without taking action. The good news: these are fixable problems with a clear, proven approach.",
               buildDescription: "A conversion-focused website built on the StoryBrand framework. Clear messaging, a lead generation system, and automated follow-up sequences that turn visitors into customers.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
             },
             mid: {
               headline: "Your website is working, but leaving money on the table.",
-              body: "You have a foundation, but your site isn\u2019t converting at its potential. There are specific, identifiable gaps in messaging clarity or lead capture that are costing you qualified leads every week.",
+              body: "You scored in the middle range for online presence. Top-performing businesses in your category typically score above 80% here. You have a foundation, but there are specific, identifiable gaps in messaging clarity or lead capture that are costing you qualified leads every week.",
               buildDescription: "A strategic overhaul of your website\u2019s messaging and conversion architecture. Tighten the narrative, add lead capture systems, and build follow-up automation.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
             },
             high: {
               headline: "Your online presence is strong.",
-              body: "Your website is clear, generates leads, and has systems in place. You\u2019re in a strong position. The next step is optimization \u2014 refining what works and scaling what converts.",
+              body: "You scored in the top tier for online presence \u2014 that puts you ahead of most businesses we assess. Your website is clear, generates leads, and has systems in place. The next step is optimization \u2014 refining what works and scaling what converts.",
               buildDescription: "Advanced optimization: A/B testing, conversion rate improvements, expanded automation, and analytics-driven refinement.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
             },
             critical: {
               headline: "You\u2019re invisible online. That\u2019s the first problem to fix.",
-              body: "Without a website or with a site that isn\u2019t doing any work for you, you\u2019re relying entirely on word-of-mouth and personal outreach. That\u2019s a ceiling on your growth. A clear, well-built online presence is the foundation everything else builds on.",
+              body: "You scored below 25% for online presence. Businesses that grow predictably score 60%+ here. Without a website or with a site that isn\u2019t doing any work for you, you\u2019re relying entirely on word-of-mouth and personal outreach. A clear, well-built online presence is the foundation everything else builds on.",
               buildDescription: "A complete website build from the ground up. Brand messaging, a site that communicates your value in five seconds, and lead capture that works while you sleep.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
@@ -587,21 +596,21 @@ import '../styles/global.css';
           S: {
             low: {
               headline: "Your operations need serious attention.",
-              body: "The way your business runs day-to-day is creating friction, inconsistency, and missed opportunities. The problems you described aren\u2019t just annoyances \u2014 they\u2019re costing you real money and limiting your ability to grow.",
+              body: "You scored in the bottom half for operational efficiency. Businesses with strong operations typically score 70%+ in this area. The way your business runs day-to-day is creating friction, inconsistency, and missed opportunities \u2014 these gaps are costing you real money and limiting your ability to grow.",
               buildDescription: "Custom business software built around your actual workflow. We map your processes, identify what should be automated, and build a system that reduces manual work and eliminates bottlenecks.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
             },
             mid: {
               headline: "Your operations work, but they\u2019re holding you back.",
-              body: "You have systems in place, but they\u2019re fragmented or manual in key areas. The bottlenecks you\u2019re experiencing are solvable with the right tools and architecture.",
+              body: "You scored in the middle range for operations. Well-systematized businesses typically score above 75% here. You have systems in place, but they\u2019re fragmented or manual in key areas. The bottlenecks you\u2019re experiencing are solvable with the right tools and architecture.",
               buildDescription: "Targeted software solutions for your biggest operational gaps. Centralized dashboards, automated workflows, or customer management systems tailored to how you actually work.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
             },
             high: {
               headline: "Your operations are solid.",
-              body: "Your business runs well. Systems are in place and things are mostly consistent. You\u2019re in a position to optimize and scale rather than fix foundational issues.",
+              body: "You scored in the top tier for operational efficiency \u2014 most businesses we assess don\u2019t reach this level. Your business runs well, systems are in place, and things are mostly consistent. You\u2019re in a position to optimize and scale rather than fix foundational issues.",
               buildDescription: "Advanced tooling: real-time dashboards, predictive analytics, deeper automation, and integrations that connect your existing systems.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
@@ -610,7 +619,7 @@ import '../styles/global.css';
           WS: {
             default: {
               headline: "Your business has gaps on both fronts.",
-              body: "Your online presence and internal operations both need work. The biggest gap is in your {primaryGap} \u2014 that\u2019s where we\u2019d start. But the full picture requires addressing both sides to build a business that attracts customers and serves them well.",
+              body: "Your online presence and internal operations both need work. The biggest gap is in your {primaryGap} \u2014 that\u2019s where we\u2019d start. Businesses that run well and grow predictably score 70%+ in both areas. A phased approach addresses the most urgent gap first, then builds out the other side.",
               buildDescription: "A phased approach: fix the most urgent gap first, then build out the other side. Website + operations, designed to work together from day one.",
               ctaLabel: "EMAIL US TO GET STARTED",
               ctaHref: "mailto:contact@maximumexecution.com",
@@ -750,6 +759,17 @@ import '../styles/global.css';
         // ------------------------------------------------------------
         // 5. SCORING & ROUTING
         // ------------------------------------------------------------
+
+        // Resolve answer for a base key (e.g. "W1"), also checking
+        // WS-prefixed variants (e.g. "WS-rA-W1", "WS-rB-W1").
+        function resolveAnswer(state, baseKey) {
+          if (state.answers[baseKey]?.score != null) return state.answers[baseKey];
+          for (const k of Object.keys(state.answers)) {
+            if (k.endsWith(`-${baseKey}`) && state.answers[k]?.score != null) return state.answers[k];
+          }
+          return null;
+        }
+
         function calculatePathScore(state) {
           const wKeys = ["W1", "W2", "W3", "W4"];
           const sKeys = ["S1a", "S2a", "S1b", "S2b", "S1c", "S2c", "S3"];
@@ -757,7 +777,7 @@ import '../styles/global.css';
           let max = 0;
           const keys = state.path === "W" ? wKeys : state.path === "S" ? sKeys : [...wKeys, ...sKeys];
           for (const key of keys) {
-            const answer = state.answers[key];
+            const answer = resolveAnswer(state, key);
             if (answer?.score != null) {
               score += answer.score;
               max += 3;
@@ -769,11 +789,11 @@ import '../styles/global.css';
         function splitWSScore(state) {
           let wScore = 0, wMax = 0, sScore = 0, sMax = 0;
           for (const key of ["W1", "W2", "W3", "W4"]) {
-            const a = state.answers[key];
+            const a = resolveAnswer(state, key);
             if (a?.score != null) { wScore += a.score; wMax += 3; }
           }
           for (const key of ["S1a", "S2a", "S1b", "S2b", "S1c", "S2c", "S3"]) {
-            const a = state.answers[key];
+            const a = resolveAnswer(state, key);
             if (a?.score != null) { sScore += a.score; sMax += 3; }
           }
           return { w: { score: wScore, max: wMax || W_MAX_SCORE }, s: { score: sScore, max: sMax || S_MAX_SCORE } };
@@ -825,6 +845,40 @@ import '../styles/global.css';
           return { result, aiModifier, pathScore, tier };
         }
 
+        function getStrengths(state) {
+          const scoredKeys = state.path === "W"
+            ? ["W1", "W2", "W3", "W4"]
+            : state.path === "S"
+            ? ["S1a", "S2a", "S1b", "S2b", "S1c", "S2c", "S3"]
+            : ["W1", "W2", "W3", "W4", "S1a", "S2a", "S1b", "S2b", "S1c", "S2c", "S3"];
+
+          const strengthMap = {
+            W1: "Your homepage clarity is strong \u2014 visitors understand what you do immediately.",
+            W2: "Your website is actively generating inbound leads without manual effort.",
+            W3: "You have automated follow-up systems that nurture leads while you sleep.",
+            W4: "You have a clear, tested message that communicates your value consistently.",
+            S1a: "Your core processes are well-systematized and repeatable.",
+            S2a: "Your business can operate independently \u2014 it doesn\u2019t depend entirely on you.",
+            S1b: "Your customer experience is consistent and intentional.",
+            S2b: "Your customer management tools are centralized and efficient.",
+            S1c: "You have visibility into your business performance in real time.",
+            S2c: "Your business data is clean, current, and trustworthy.",
+            S3: "Your day-to-day operations run smoothly with minimal friction.",
+          };
+
+          const found = [];
+          for (const key of scoredKeys) {
+            const answer = resolveAnswer(state, key);
+            if (answer?.score === 3 && strengthMap[key]) found.push(strengthMap[key]);
+          }
+
+          if (found.length === 0) {
+            return "You\u2019re taking this assessment \u2014 that\u2019s a strength in itself. Most business owners operate on gut feeling. You\u2019re looking for data, and that puts you ahead.";
+          }
+
+          return found.slice(0, 3).join(" ");
+        }
+
         function getRoutingOutcome(state) {
           const q2 = state.answers.Q2?.value;
           const q3 = state.answers.Q3?.value;
@@ -833,9 +887,85 @@ import '../styles/global.css';
           return "standard-nurture";
         }
 
+        // Build the exact screen sequence for the user's current path.
+        // Sequences do NOT include "opening" (handled separately).
+        // Progress formula uses (index + 1) / (length + 1) to account for
+        // the implicit "opening" step, ensuring monotonic advancement.
+        function getScreenSequence(state) {
+          // Common tail: qualification + score preview + email gate (loading/results hidden)
+          const qualTail = ["Q1", "Q1-type", "Q2", "Q3", "Q4", "score-preview", "email-gate"];
+          const aiModule = ["AI1", "AI2"];
+          const withAI = state.aiInterest === "yes" || state.aiInterest === "maybe";
+
+          // Before G1: estimate with placeholders
+          if (!state.path) return ["G1", "G2", "p1", "p2", "p3", "p4", "p5", ...qualTail];
+
+          // Before G2: know path but not AI interest — estimate with AI included
+          if (state.aiInterest == null) {
+            if (state.path === "W") return ["G1", "G2", "W0", "W1", "W2", "W3", "W4", ...aiModule, ...qualTail];
+            if (state.path === "S") return ["G1", "G2", "S0", "S1x", "S2x", "S3", ...aiModule, ...qualTail];
+            return ["G1", "G2", "WS0", "W0", "W1", "W2", "W3", "W4", "S0", "S1x", "S2x", "S3", "WS1", ...aiModule, ...qualTail];
+          }
+
+          const aiPart = withAI ? aiModule : [];
+
+          if (state.path === "W") {
+            const w0Answer = state.answers["W0"]?.value;
+            if (w0Answer === "B") return ["G1", "G2", "W0", "W4", ...aiPart, ...qualTail];
+            return ["G1", "G2", "W0", "W1", "W2", "W3", "W4", ...aiPart, ...qualTail];
+          }
+
+          if (state.path === "S") {
+            const s0Answer = state.answers["S0"]?.value;
+            const suffix = s0Answer ? { A: "a", B: "b", C: "c" }[s0Answer] || "a" : "a";
+            return ["G1", "G2", "S0", `S1${suffix}`, `S2${suffix}`, "S3", ...aiPart, ...qualTail];
+          }
+
+          // Path WS — three routing variants (A, B, C)
+          const wsPriority = state.wsPriority || "A";
+          const prefix = `WS-r${wsPriority}`;
+
+          if (wsPriority === "A" || wsPriority === "C") {
+            const w0Key = `${prefix}-W0`;
+            const w0Answer = state.answers[w0Key]?.value;
+            const s0Key = `${prefix}-S0`;
+            const s0Answer = state.answers[s0Key]?.value;
+            const sSuffix = s0Answer ? { A: "a", B: "b", C: "c" }[s0Answer] || "a" : "a";
+            const wScreens = w0Answer === "B"
+              ? [w0Key, `${prefix}-W4`]
+              : [w0Key, `${prefix}-W1`, `${prefix}-W2`, `${prefix}-W3`, `${prefix}-W4`];
+            const sScreens = [s0Key, `${prefix}-S1${sSuffix}`, `${prefix}-S2${sSuffix}`, `${prefix}-S3`];
+            return ["G1", "G2", "WS0", ...wScreens, ...sScreens, "WS1", ...aiPart, ...qualTail];
+          }
+
+          // wsPriority === "B" — Software first, then website
+          const s0Key = `${prefix}-S0`;
+          const s0Answer = state.answers[s0Key]?.value;
+          const sSuffix = s0Answer ? { A: "a", B: "b", C: "c" }[s0Answer] || "a" : "a";
+          const sScreens = [s0Key, `${prefix}-S1${sSuffix}`, `${prefix}-S2${sSuffix}`, `${prefix}-S3`];
+          const w0Key = `${prefix}-W0`;
+          const w0Answer = state.answers[w0Key]?.value;
+          const wScreens = w0Answer === "B"
+            ? [w0Key, `${prefix}-W4`]
+            : [w0Key, `${prefix}-W1`, `${prefix}-W2`, `${prefix}-W3`, `${prefix}-W4`];
+          return ["G1", "G2", "WS0", ...sScreens, ...wScreens, "WS1", ...aiPart, ...qualTail];
+        }
+
         function calculateProgress(state) {
-          const totalEstimate = state.path === "WS" ? 18 : 12;
-          return Math.min(0.1 + (state.history.length / totalEstimate) * 0.9, 1);
+          if (state.screen === "opening") return 0.1;
+          if (state.screen === "results") return 1;
+          if (state.screen === "loading") return -1; // keep previous value during analysis animation
+          if (isSkipScreen(state.screen)) return -1; // signal: keep previous value
+
+          const sequence = getScreenSequence(state);
+          const currentIndex = sequence.indexOf(state.screen);
+          // +1 accounts for the implicit "opening" step before the sequence
+          const total = sequence.length + 1;
+          if (currentIndex === -1) {
+            // Screen not in sequence (routing sub-screen) — use history as fallback
+            return Math.min(0.1 + ((state.history.length + 1) / (total + 2)) * 0.9, 0.95);
+          }
+          return Math.min(0.1 + ((currentIndex + 1) / total) * 0.9, 0.99);
         }
 
         // ------------------------------------------------------------
@@ -892,7 +1022,7 @@ import '../styles/global.css';
         // ------------------------------------------------------------
         function renderSplash(screen, _state, dispatch) {
           const container = el("div");
-          const heading = el("h2", "font-pixel text-3xl sm:text-4xl text-primary mb-6");
+          const heading = el("h1", "font-pixel text-3xl sm:text-4xl text-primary mb-6");
           heading.textContent = "BUSINESS DIAGNOSTIC_";
           container.appendChild(heading);
           if (screen.body) {
@@ -926,7 +1056,7 @@ import '../styles/global.css';
               const btn = document.createElement("button");
               const isSelected = state.answers[screen.id]?.value === opt.value;
               btn.className = [
-                "w-full text-left border-2 bg-base-200 p-4 font-mono text-sm leading-relaxed transition-colors duration-200 cursor-pointer",
+                "w-full text-left border-2 bg-base-200 p-4 font-mono text-sm leading-relaxed transition-colors duration-200 cursor-pointer min-h-[44px]",
                 isSelected ? "border-primary" : "border-base-300",
                 "hover:border-primary",
               ].join(" ");
@@ -953,7 +1083,8 @@ import '../styles/global.css';
             const skipWrap = el("div", "mt-6");
             const skipBtn = document.createElement("button");
             skipBtn.type = "button";
-            skipBtn.className = "btn btn-ghost font-mono text-xs tracking-wider text-base-content/40 hover:text-base-content/60";
+            skipBtn.className = "btn btn-ghost font-mono text-xs tracking-wider text-base-content/40 hover:text-base-content/60 min-h-[44px]";
+            skipBtn.setAttribute("aria-label", "Skip this question");
             skipBtn.textContent = "THIS DOESN\u2019T APPLY TO ME >";
             skipBtn.addEventListener("click", () => {
               skipBtn.textContent = "// Noted. Moving on.";
@@ -993,13 +1124,129 @@ import '../styles/global.css';
           return container;
         }
 
+        function renderDimensionBreakdown(state) {
+          const ws = splitWSScore(state);
+          const wPct = ws.w.max > 0 ? Math.round((ws.w.score / ws.w.max) * 100) : 0;
+          const sPct = ws.s.max > 0 ? Math.round((ws.s.score / ws.s.max) * 100) : 0;
+          const wTier = W_TIERS[ws.w.score] || "low";
+          const sTier = S_TIERS[ws.s.score] || "low";
+
+          const wrapper = el("div", "mb-8 p-4 border border-base-content/10 bg-base-200/50");
+
+          const title = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-4");
+          title.textContent = "// DIMENSION BREAKDOWN";
+          wrapper.appendChild(title);
+
+          // Online Presence bar
+          const wRow = el("div", "mb-4");
+          const wLabel = el("div", "flex justify-between items-center mb-1");
+          const wName = el("span", "font-mono text-xs tracking-wider");
+          wName.textContent = "ONLINE PRESENCE";
+          const wScoreEl = el("span", "font-mono text-xs text-primary");
+          wScoreEl.textContent = `${ws.w.score}/${ws.w.max} (${wPct}%)`;
+          wLabel.appendChild(wName);
+          wLabel.appendChild(wScoreEl);
+          wRow.appendChild(wLabel);
+          const wBar = el("div", "h-2 w-full bg-base-300");
+          const wFill = el("div", "h-2 bg-primary transition-all duration-1000");
+          wFill.style.width = wPct + "%";
+          wBar.appendChild(wFill);
+          wRow.appendChild(wBar);
+          const wBadge = tierBadge(wTier);
+          const wTierLabel = el("p", `font-mono text-xs mt-1 ${wBadge.colorClass}`);
+          wTierLabel.textContent = `${wBadge.text} ${wTier.toUpperCase()}`;
+          wRow.appendChild(wTierLabel);
+          wrapper.appendChild(wRow);
+
+          // Operations bar
+          const sRow = el("div");
+          const sLabel = el("div", "flex justify-between items-center mb-1");
+          const sName = el("span", "font-mono text-xs tracking-wider");
+          sName.textContent = "OPERATIONS";
+          const sScoreEl = el("span", "font-mono text-xs text-accent");
+          sScoreEl.textContent = `${ws.s.score}/${ws.s.max} (${sPct}%)`;
+          sLabel.appendChild(sName);
+          sLabel.appendChild(sScoreEl);
+          sRow.appendChild(sLabel);
+          const sBar = el("div", "h-2 w-full bg-base-300");
+          const sFill = el("div", "h-2 bg-accent transition-all duration-1000");
+          sFill.style.width = sPct + "%";
+          sBar.appendChild(sFill);
+          sRow.appendChild(sBar);
+          const sBadge = tierBadge(sTier);
+          const sTierLabel = el("p", `font-mono text-xs mt-1 ${sBadge.colorClass}`);
+          sTierLabel.textContent = `${sBadge.text} ${sTier.toUpperCase()}`;
+          sRow.appendChild(sTierLabel);
+          wrapper.appendChild(sRow);
+
+          return wrapper;
+        }
+
+        function renderScorePreview(_screen, state, dispatch) {
+          const container = el("div");
+          const { result, pathScore, tier } = getFullResults(state);
+
+          const dimLabel = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-4");
+          dimLabel.textContent = "// YOUR SCORE";
+          container.appendChild(dimLabel);
+
+          const headline = el("h2", "text-2xl sm:text-3xl font-bold mb-6");
+          headline.textContent = result.headline;
+          container.appendChild(headline);
+
+          // Big percentage
+          const pct = pathScore.max > 0 ? Math.round((pathScore.score / pathScore.max) * 100) : 0;
+          const scoreBig = el("p", "font-pixel text-5xl text-primary mb-4");
+          scoreBig.textContent = `${pct}%`;
+          container.appendChild(scoreBig);
+
+          // Score bar
+          const pathName = pathDisplayName(state.path);
+          const scoreLabel = el("p", "font-mono text-sm mb-2");
+          scoreLabel.textContent = `${pathName}: ${pathScore.score} / ${pathScore.max}`;
+          container.appendChild(scoreLabel);
+
+          const barBg = el("div", "h-2 w-full bg-base-300");
+          barBg.setAttribute("role", "meter");
+          barBg.setAttribute("aria-valuenow", String(pathScore.score));
+          barBg.setAttribute("aria-valuemin", "0");
+          barBg.setAttribute("aria-valuemax", String(pathScore.max));
+          barBg.setAttribute("aria-label", `${pathName} score: ${pathScore.score} out of ${pathScore.max}`);
+          const barFill = el("div", "h-2 bg-primary transition-all duration-1000");
+          barFill.style.width = pct + "%";
+          barBg.appendChild(barFill);
+          container.appendChild(barBg);
+
+          const badge = tierBadge(tier);
+          const tierLabel = el("p", `font-mono text-xs mt-2 mb-8 ${badge.colorClass}`);
+          tierLabel.textContent = `${badge.text} ${tier.toUpperCase()}`;
+          container.appendChild(tierLabel);
+
+          // WS path: show dimension breakdown
+          if (state.path === "WS") {
+            container.appendChild(renderDimensionBreakdown(state));
+          }
+
+          // Teaser
+          const teaser = el("p", "text-base-content/80 leading-relaxed mb-8");
+          teaser.textContent = "Want the detailed breakdown, what we\u2019d build, and your custom next step?";
+          container.appendChild(teaser);
+
+          // CTA button
+          const btn = primaryButton("YES, SHOW ME EVERYTHING");
+          btn.addEventListener("click", () => dispatch({ type: "ADVANCE", screenId: "score-preview" }));
+          container.appendChild(btn);
+
+          return container;
+        }
+
         function renderEmailGate(screen, state, dispatch) {
           const container = el("div");
           const heading = el("h2", "text-xl sm:text-2xl font-bold leading-snug mb-4");
-          heading.textContent = "Enter your email to see your full results.";
+          heading.textContent = "Enter your email to unlock your full breakdown.";
           container.appendChild(heading);
           const hint = el("p", "font-mono text-sm text-phosphor-dim mb-8");
-          hint.textContent = "// We don\u2019t send noise. One follow-up based on your score.";
+          hint.textContent = "// You\u2019ll get your results plus actionable insights via email. Unsubscribe anytime.";
           container.appendChild(hint);
 
           const form = el("div", "space-y-4");
@@ -1015,6 +1262,7 @@ import '../styles/global.css';
           nameInput.id = "diag-name";
           nameInput.type = "text";
           nameInput.required = true;
+          nameInput.setAttribute("aria-required", "true");
           nameInput.autocomplete = "name";
           nameInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
           if (state.contactName) nameInput.value = state.contactName;
@@ -1037,6 +1285,7 @@ import '../styles/global.css';
           emailInput.id = "diag-email";
           emailInput.type = "email";
           emailInput.required = true;
+          emailInput.setAttribute("aria-required", "true");
           emailInput.autocomplete = "email";
           emailInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
           if (state.contactEmail) emailInput.value = state.contactEmail;
@@ -1120,6 +1369,13 @@ import '../styles/global.css';
           btnWrap.appendChild(btn);
           form.appendChild(btnWrap);
           container.appendChild(form);
+
+          // Enter key submits the form from any input
+          const handleEnter = (e) => { if (e.key === "Enter") { e.preventDefault(); btn.click(); } };
+          nameInput.addEventListener("keydown", handleEnter);
+          emailInput.addEventListener("keydown", handleEnter);
+          companyInput.addEventListener("keydown", handleEnter);
+
           return container;
         }
 
@@ -1152,7 +1408,16 @@ import '../styles/global.css';
           body.textContent = result.body;
           container.appendChild(body);
 
-          // Score breakdown
+          // --- 30% STRENGTHS SECTION ---
+          const strengthSep = el("p", "font-mono text-xs text-base-content/30 mb-4");
+          strengthSep.textContent = "\u2500\u2500 WHAT\u2019S WORKING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
+          container.appendChild(strengthSep);
+
+          const strengthBody = el("p", "text-base-content/80 leading-relaxed mb-6");
+          strengthBody.textContent = getStrengths(state);
+          container.appendChild(strengthBody);
+
+          // --- 50% SCORE BREAKDOWN ---
           const scoreSep = el("p", "font-mono text-xs text-base-content/30 mb-4");
           scoreSep.textContent = "\u2500\u2500 SCORE BREAKDOWN \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
           container.appendChild(scoreSep);
@@ -1178,6 +1443,13 @@ import '../styles/global.css';
           const tierLabel = el("p", `font-mono text-xs mt-2 ${badge.colorClass}`);
           tierLabel.textContent = `${badge.text} ${tier.toUpperCase()}`;
           container.appendChild(tierLabel);
+
+          // WS path: show dimension breakdown chart
+          if (state.path === "WS") {
+            const dimBreakdown = renderDimensionBreakdown(state);
+            dimBreakdown.className = "mt-6 mb-2 p-4 border border-base-content/10 bg-base-200/50";
+            container.appendChild(dimBreakdown);
+          }
 
           // Build description
           if (result.buildDescription) {
@@ -1224,13 +1496,13 @@ import '../styles/global.css';
         function renderProgressBar(progress) {
           const wrapper = el("div", "mb-8");
           const pct = Math.round(progress * 100);
-          const barBg = el("div", "h-1 w-full bg-base-300");
+          const barBg = el("div", "progress-bar-bg h-1 w-full bg-base-300 overflow-hidden");
           barBg.setAttribute("role", "progressbar");
           barBg.setAttribute("aria-valuenow", String(pct));
           barBg.setAttribute("aria-valuemin", "0");
           barBg.setAttribute("aria-valuemax", "100");
           barBg.setAttribute("aria-label", `Diagnostic progress: ${pct}%`);
-          const barFill = el("div", "h-1 bg-primary transition-all duration-500");
+          const barFill = el("div", "progress-bar-fill relative h-1 bg-primary transition-all duration-500");
           barFill.style.width = pct + "%";
           barBg.appendChild(barFill);
           wrapper.appendChild(barBg);
@@ -1252,10 +1524,11 @@ import '../styles/global.css';
           await delay(transitionMs);
           root.replaceChildren();
 
-          currentProgress = Math.max(currentProgress, calculateProgress(state));
+          const calcProg = calculateProgress(state);
+          if (calcProg >= 0) currentProgress = Math.max(currentProgress, calcProg);
 
           // Show progress bar on question screens (not opening, results, loading, or skip screens)
-          const showProgress = !new Set(["opening", "results", "loading"]).has(state.screen);
+          const showProgress = !new Set(["opening", "results", "loading", "score-preview"]).has(state.screen);
           const isSkip = isSkipScreen(state.screen);
           if (showProgress && !isSkip) {
             root.appendChild(renderProgressBar(currentProgress));
@@ -1275,6 +1548,9 @@ import '../styles/global.css';
             case "text-input":
               content = renderTextInput(screen, state, dispatch);
               break;
+            case "score-preview":
+              content = renderScorePreview(screen, state, dispatch);
+              break;
             case "email-gate":
               content = renderEmailGate(screen, state, dispatch);
               break;
@@ -1291,12 +1567,13 @@ import '../styles/global.css';
           root.appendChild(content);
 
           // Back button (not on results or loading)
-          const noBackScreens = new Set(["results", "loading"]);
+          const noBackScreens = new Set(["results", "loading", "score-preview"]);
           if (state.history.length > 0 && !noBackScreens.has(screen.type)) {
             const backWrap = el("div", "mt-8");
             const backBtn = document.createElement("button");
             backBtn.type = "button";
-            backBtn.className = "btn btn-ghost font-mono text-xs text-base-content/40 hover:text-base-content/60";
+            backBtn.className = "btn btn-ghost font-mono text-xs text-base-content/40 hover:text-base-content/60 min-h-[44px]";
+            backBtn.setAttribute("aria-label", "Go back to previous question");
             backBtn.textContent = "< BACK";
             backBtn.addEventListener("click", () => dispatch({ type: "BACK" }));
             backWrap.appendChild(backBtn);
@@ -1392,11 +1669,48 @@ import '../styles/global.css';
 </html>
 
 <style is:global>
+  /* Focus-visible for keyboard users (WCAG 2.4.7) */
+  .diagnostic-section *:focus-visible {
+    outline: 2px solid oklch(0.85 0.15 85);
+    outline-offset: 2px;
+  }
+
+  /* Loading bar animation */
   @keyframes loading-fill {
     0% { width: 0%; }
     100% { width: 100%; }
   }
   .animate-loading-fill {
     animation: loading-fill 1.5s ease-out forwards;
+  }
+
+  /* Progress bar shimmer — compositor-only transform */
+  @keyframes progress-shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(1 0 0 / 0.08) 50%,
+      transparent 100%
+    );
+    animation: progress-shimmer 2.5s ease-in-out infinite;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-loading-fill {
+      animation: none;
+      width: 100%;
+    }
+    .progress-bar-fill::after {
+      animation: none;
+      display: none;
+    }
   }
 </style>
