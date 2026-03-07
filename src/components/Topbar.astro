@@ -147,35 +147,39 @@ import Cursor from './Cursor.astro';
     display: flex;
     align-items: center;
     gap: 2px;
+    position: relative;
   }
 
   .brand-full, .brand-short {
     display: inline-block;
-    overflow: hidden;
     white-space: nowrap;
     vertical-align: bottom;
+    transform-origin: left center;
+    will-change: transform, opacity;
   }
 
   .brand-full {
-    max-width: 24ch;
     opacity: 1;
-    transition: max-width 400ms var(--ease-ui), opacity 250ms var(--ease-ui);
+    transform: scaleX(1);
+    transition: transform 400ms var(--ease-ui), opacity 250ms var(--ease-ui);
   }
 
   .brand-short {
-    max-width: 0;
+    position: absolute;
+    left: 0;
     opacity: 0;
-    transition: max-width 400ms var(--ease-ui), opacity 250ms var(--ease-ui);
+    transform: scaleX(0);
+    transition: transform 400ms var(--ease-ui), opacity 250ms var(--ease-ui);
   }
 
-  /* Scrolled state */
+  /* Scrolled state — compositor-only: transform + opacity */
   .topbar.scrolled .brand-full {
-    max-width: 0;
+    transform: scaleX(0);
     opacity: 0;
   }
 
   .topbar.scrolled .brand-short {
-    max-width: 10ch;
+    transform: scaleX(1);
     opacity: 1;
   }
 
@@ -258,7 +262,7 @@ import Cursor from './Cursor.astro';
   @media (max-width: 768px) {
     .topbar-nav { display: none; }
     .hamburger { display: flex; }
-    .brand-full { max-width: 0; opacity: 0; }
-    .brand-short { max-width: 10ch; opacity: 1; }
+    .brand-full { transform: scaleX(0); opacity: 0; }
+    .brand-short { transform: scaleX(1); opacity: 1; }
   }
 </style>
