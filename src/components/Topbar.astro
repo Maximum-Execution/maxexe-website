@@ -3,7 +3,10 @@ import Cursor from './Cursor.astro';
 ---
 <nav class="topbar" aria-label="Main navigation">
   <a href="#" class="topbar-brand">
-    <span class="brand-text">MAX.EXE</span><Cursor />
+    <span class="brand-full" aria-hidden="true">MAXIMUM EXECUTION</span>
+    <span class="brand-short" aria-hidden="true">MAX.EXE</span>
+    <span class="sr-only">Maximum Execution</span>
+    <Cursor />
   </a>
 
   <ul class="topbar-nav">
@@ -47,6 +50,26 @@ import Cursor from './Cursor.astro';
       mobileNav.setAttribute('aria-hidden', 'true');
     });
   });
+
+  // Logo scroll animation
+  const topbar = document.querySelector('.topbar');
+  const SCROLL_THRESHOLD = 80;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReduced) {
+    topbar?.classList.add('scrolled');
+  } else {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          topbar?.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 </script>
 
 <style>
@@ -59,9 +82,9 @@ import Cursor from './Cursor.astro';
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: oklch(0.15 0.09 62 / 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: oklch(0.15 0.09 62 / 0.75);
     min-height: 44px;
   }
   .topbar-brand {
@@ -75,6 +98,37 @@ import Cursor from './Cursor.astro';
     align-items: center;
     gap: 2px;
   }
+
+  .brand-full, .brand-short {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+
+  .brand-full {
+    max-width: 24ch;
+    opacity: 1;
+    transition: max-width 400ms var(--ease-ui), opacity 250ms var(--ease-ui);
+  }
+
+  .brand-short {
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 400ms var(--ease-ui), opacity 250ms var(--ease-ui);
+  }
+
+  /* Scrolled state */
+  .topbar.scrolled .brand-full {
+    max-width: 0;
+    opacity: 0;
+  }
+
+  .topbar.scrolled .brand-short {
+    max-width: 10ch;
+    opacity: 1;
+  }
+
   .topbar-nav {
     display: flex;
     gap: var(--space-8);
@@ -154,5 +208,7 @@ import Cursor from './Cursor.astro';
   @media (max-width: 768px) {
     .topbar-nav { display: none; }
     .hamburger { display: flex; }
+    .brand-full { max-width: 0; opacity: 0; }
+    .brand-short { max-width: 10ch; opacity: 1; }
   }
 </style>

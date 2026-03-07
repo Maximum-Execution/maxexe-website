@@ -39,7 +39,7 @@ import '../styles/global.css';
   </head>
   <body class="min-h-screen bg-base-100 text-base-content">
     <header class="sticky top-0 z-50 border-b border-base-content/5 bg-base-100/80 backdrop-blur-md">
-      <div class="mx-auto max-w-4xl px-4 py-2 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl px-6 py-2 lg:px-8">
         <a href="/" aria-label="Return to homepage" class="inline-flex min-h-[44px] items-center gap-2 font-mono text-xs tracking-wider text-base-content/60 transition-colors duration-200 hover:text-primary">
           <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -50,12 +50,25 @@ import '../styles/global.css';
       </div>
     </header>
     <main id="main-content">
-      <section class="diagnostic-section relative min-h-dvh">
+      <section class="diagnostic-section relative" style="min-height:calc(100dvh - 52px);">
         <div class="pointer-events-none absolute inset-0 z-10" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, oklch(0 0 0 / 0.03) 2px, oklch(0 0 0 / 0.03) 4px);" aria-hidden="true"></div>
-        <div class="relative z-20 flex min-h-dvh items-center justify-center px-4 py-16">
-          <div id="diagnostic-root" class="w-full max-w-2xl transition-opacity duration-150" role="region" aria-label="Business diagnostic assessment" aria-live="polite">
-            <p class="font-mono text-sm text-phosphor-dim">[DIAGNOSTIC TOOL]</p>
-            <p class="mt-2 text-base-content/60">Interactive assessment // loading...</p>
+        <div class="relative z-20 flex justify-center px-6" style="min-height:calc(100dvh - 52px);padding-top:var(--space-10);padding-bottom:var(--space-16);">
+          <div class="w-full max-w-2xl">
+            <!-- Fixed scaffold: progress chrome stays in place -->
+            <div id="diagnostic-chrome" style="display:none;">
+              <div id="diag-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Diagnostic progress" class="w-full bg-base-300 overflow-hidden" style="height:3px;">
+                <div id="diag-progress-fill" class="progress-bar-fill relative bg-primary transition-all duration-500" style="height:3px;width:10%;"></div>
+              </div>
+              <div class="flex justify-between items-baseline" style="margin-top:var(--space-3);margin-bottom:var(--space-8);">
+                <p id="diag-phase-title" class="font-mono tracking-wider text-phosphor-dim uppercase" style="font-size:var(--step--2);letter-spacing:0.08em;"></p>
+                <p id="diag-progress-pct" class="font-mono text-phosphor-dim" style="font-size:var(--step--2);letter-spacing:0.04em;"></p>
+              </div>
+            </div>
+            <!-- Content area: this is what swaps -->
+            <div id="diagnostic-root" class="transition-opacity duration-150" role="region" aria-label="Business diagnostic assessment" aria-live="polite">
+              <p class="font-mono text-phosphor-dim" style="font-size:var(--step--1);">[DIAGNOSTIC TOOL]</p>
+              <p class="mt-2 text-base-content/60" style="font-size:var(--step--1);">Interactive assessment // loading...</p>
+            </div>
           </div>
         </div>
       </section>
@@ -216,7 +229,7 @@ import '../styles/global.css';
             id: "opening",
             type: "splash",
             body: "Five minutes. A handful of honest answers. A clear picture of where your business stands and what to build first.",
-            buttonLabel: "RUN THE DIAGNOSTIC",
+            buttonLabel: "START DIAGNOSTIC",
             getNextScreen: () => "G1",
           },
 
@@ -543,7 +556,7 @@ import '../styles/global.css';
           "email-gate": {
             id: "email-gate",
             type: "email-gate",
-            buttonLabel: "UNLOCK FULL BREAKDOWN",
+            buttonLabel: "SEE FULL BREAKDOWN",
             getNextScreen: () => "results",
           },
 
@@ -892,8 +905,8 @@ import '../styles/global.css';
         // Progress formula uses (index + 1) / (length + 1) to account for
         // the implicit "opening" step, ensuring monotonic advancement.
         function getScreenSequence(state) {
-          // Common tail: qualification + score preview + email gate (loading/results hidden)
-          const qualTail = ["Q1", "Q1-type", "Q2", "Q3", "Q4", "score-preview", "email-gate"];
+          // Common tail: qualification only (score-preview/email-gate hidden from progress)
+          const qualTail = ["Q1", "Q1-type", "Q2", "Q3", "Q4"];
           const aiModule = ["AI1", "AI2"];
           const withAI = state.aiInterest === "yes" || state.aiInterest === "maybe";
 
@@ -959,13 +972,12 @@ import '../styles/global.css';
 
           const sequence = getScreenSequence(state);
           const currentIndex = sequence.indexOf(state.screen);
-          // +1 accounts for the implicit "opening" step before the sequence
-          const total = sequence.length + 1;
           if (currentIndex === -1) {
             // Screen not in sequence (routing sub-screen) — use history as fallback
-            return Math.min(0.1 + ((state.history.length + 1) / (total + 2)) * 0.9, 0.95);
+            return Math.min(0.1 + ((state.history.length + 1) / (sequence.length + 2)) * 0.89, 0.95);
           }
-          return Math.min(0.1 + ((currentIndex + 1) / total) * 0.9, 0.99);
+          // Maps first question to ~17% and last question (Q4) to exactly 99%
+          return Math.min(0.1 + ((currentIndex + 1) / sequence.length) * 0.89, 0.99);
         }
 
         // ------------------------------------------------------------
@@ -981,7 +993,8 @@ import '../styles/global.css';
 
         function primaryButton(label) {
           const btn = document.createElement("button");
-          btn.className = "btn btn-primary font-mono font-bold tracking-wider uppercase border-2 border-primary hover:border-accent hover:bg-accent hover:text-accent-content text-base px-8 py-3";
+          btn.className = "btn btn-primary font-mono font-semibold tracking-wider uppercase border-2 border-primary hover:border-accent hover:bg-accent hover:text-accent-content";
+          btn.style.cssText = "font-size:var(--step--1);padding:var(--space-3) var(--space-8);min-height:48px;letter-spacing:0.04em;";
           btn.type = "button";
           btn.textContent = `[ ${label} > ]`;
           return btn;
@@ -989,7 +1002,8 @@ import '../styles/global.css';
 
         function primaryLink(label, href) {
           const link = document.createElement("a");
-          link.className = "btn btn-primary font-mono font-bold tracking-wider uppercase border-2 border-primary hover:border-accent hover:bg-accent hover:text-accent-content text-base px-8 py-3";
+          link.className = "btn btn-primary font-mono font-semibold tracking-wider uppercase border-2 border-primary hover:border-accent hover:bg-accent hover:text-accent-content";
+          link.style.cssText = "font-size:var(--step--1);padding:var(--space-3) var(--space-8);min-height:48px;letter-spacing:0.04em;";
           link.href = href;
           link.textContent = `[ ${label} > ]`;
           return link;
@@ -1017,16 +1031,31 @@ import '../styles/global.css';
           return { text: "[ERR]", colorClass: "text-error" };
         }
 
+        function getPhaseTitle(screenId) {
+          if (screenId === "opening") return "";
+          if (screenId === "G1" || screenId === "G2") return "// 01 SETUP";
+          if (/^(W[0-4]|WS-r[ABC]-W[0-4])/.test(screenId)) return "// 02 ONLINE PRESENCE";
+          if (/^(S[0-3]|WS-r[ABC]-S[0-3])/.test(screenId)) return "// 03 OPERATIONS";
+          if (screenId === "WS0") return "// 01 SETUP";
+          if (screenId === "WS1") return "// 04 COMBINED";
+          if (screenId === "AI1" || screenId === "AI2") return "// 04 AI READINESS";
+          if (/^Q[0-4]/.test(screenId) || screenId === "Q1-type") return "// 05 ABOUT YOUR BUSINESS";
+          if (screenId === "score-preview" || screenId === "email-gate") return "// RESULTS";
+          return "";
+        }
+
         // ------------------------------------------------------------
         // 7. RENDERERS
         // ------------------------------------------------------------
         function renderSplash(screen, _state, dispatch) {
           const container = el("div");
-          const heading = el("h1", "font-pixel text-3xl sm:text-4xl text-primary mb-6");
+          const heading = el("h1", "font-pixel text-primary uppercase");
+          heading.style.cssText = "font-size:var(--step-4);line-height:1.1;letter-spacing:-0.03em;margin-bottom:var(--space-6);";
           heading.textContent = "BUSINESS DIAGNOSTIC_";
           container.appendChild(heading);
           if (screen.body) {
-            const body = el("p", "text-base-content/80 leading-relaxed mb-8");
+            const body = el("p", "font-sans text-base-content/80");
+            body.style.cssText = "font-size:var(--step-0);line-height:1.6;margin-bottom:var(--space-10);max-width:65ch;";
             body.textContent = screen.body;
             container.appendChild(body);
           }
@@ -1038,28 +1067,26 @@ import '../styles/global.css';
 
         function renderQuestion(screen, state, dispatch) {
           const container = el("div");
-          if (screen.dimension) {
-            const dim = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-2");
-            dim.textContent = `// ${screen.dimension}`;
-            container.appendChild(dim);
-          }
           if (screen.question) {
-            const q = el("h2", "text-xl sm:text-2xl font-bold leading-snug mb-8");
+            const q = el("h2", "font-sans font-bold");
+            q.style.cssText = "font-size:var(--step-2);line-height:1.3;letter-spacing:-0.01em;margin-bottom:var(--space-8);max-width:40ch;";
             q.textContent = screen.question;
             container.appendChild(q);
           }
           if (screen.options && screen.options.length > 0) {
-            const group = el("div", "space-y-3");
+            const group = el("div");
+            group.style.cssText = "display:flex;flex-direction:column;gap:var(--space-3);";
             group.setAttribute("role", "radiogroup");
             if (screen.question) group.setAttribute("aria-label", screen.question);
             screen.options.forEach((opt, i) => {
               const btn = document.createElement("button");
               const isSelected = state.answers[screen.id]?.value === opt.value;
               btn.className = [
-                "w-full text-left border-2 bg-base-200 p-4 font-mono text-sm leading-relaxed transition-colors duration-200 cursor-pointer min-h-[44px]",
+                "w-full text-left border-2 bg-base-200 font-sans transition-colors duration-200 cursor-pointer",
                 isSelected ? "border-primary" : "border-base-300",
                 "hover:border-primary",
               ].join(" ");
+              btn.style.cssText = "font-size:var(--step-0);line-height:1.5;padding:var(--space-4) var(--space-5);min-height:44px;";
               btn.type = "button";
               btn.setAttribute("role", "radio");
               btn.setAttribute("aria-checked", isSelected ? "true" : "false");
@@ -1080,10 +1107,12 @@ import '../styles/global.css';
             container.appendChild(group);
           }
           if (screen.type === "scored" && screen.skipScore != null) {
-            const skipWrap = el("div", "mt-6");
+            const skipWrap = el("div");
+            skipWrap.style.cssText = "margin-top:var(--space-6);";
             const skipBtn = document.createElement("button");
             skipBtn.type = "button";
-            skipBtn.className = "btn btn-ghost font-mono text-xs tracking-wider text-base-content/40 hover:text-base-content/60 min-h-[44px]";
+            skipBtn.className = "btn btn-ghost font-mono tracking-wider text-base-content/40 hover:text-base-content/60";
+            skipBtn.style.cssText = "font-size:var(--step--2);letter-spacing:0.04em;min-height:44px;";
             skipBtn.setAttribute("aria-label", "Skip this question");
             skipBtn.textContent = "THIS DOESN\u2019T APPLY TO ME >";
             skipBtn.addEventListener("click", () => {
@@ -1098,25 +1127,23 @@ import '../styles/global.css';
 
         function renderTextInput(screen, state, dispatch) {
           const container = el("div");
-          if (screen.dimension) {
-            const dim = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-2");
-            dim.textContent = `// ${screen.dimension}`;
-            container.appendChild(dim);
-          }
           if (screen.question) {
-            const q = el("h2", "text-xl sm:text-2xl font-bold leading-snug mb-8");
+            const q = el("h2", "font-sans font-bold");
+            q.style.cssText = "font-size:var(--step-2);line-height:1.3;letter-spacing:-0.01em;margin-bottom:var(--space-8);max-width:40ch;";
             q.textContent = screen.question;
             container.appendChild(q);
           }
           const textarea = document.createElement("textarea");
-          textarea.className = "textarea textarea-bordered w-full border-2 border-base-300 bg-base-200 font-mono text-sm focus:border-primary focus:outline-none";
+          textarea.className = "textarea textarea-bordered w-full border-2 border-base-300 bg-base-200 font-sans focus:border-primary focus:outline-none";
+          textarea.style.cssText = "font-size:var(--step-0);line-height:1.6;padding:var(--space-3) var(--space-4);";
           textarea.rows = 4;
           if (screen.question) textarea.setAttribute("aria-label", screen.question);
           if (screen.placeholder) textarea.placeholder = screen.placeholder;
           const existing = state.answers[screen.id]?.value;
           if (existing) textarea.value = existing;
           container.appendChild(textarea);
-          const btnWrap = el("div", "mt-6");
+          const btnWrap = el("div");
+          btnWrap.style.cssText = "margin-top:var(--space-6);";
           const btn = primaryButton(screen.buttonLabel || "CONTINUE");
           btn.addEventListener("click", () => dispatch({ type: "TEXT_INPUT", screenId: screen.id, value: textarea.value }));
           btnWrap.appendChild(btn);
@@ -1131,18 +1158,24 @@ import '../styles/global.css';
           const wTier = W_TIERS[ws.w.score] || "low";
           const sTier = S_TIERS[ws.s.score] || "low";
 
-          const wrapper = el("div", "mb-8 p-4 border border-base-content/10 bg-base-200/50");
+          const wrapper = el("div", "border border-base-content/10 bg-base-200/50");
+          wrapper.style.cssText = "padding:var(--space-6);margin-bottom:var(--space-8);";
 
-          const title = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-4");
+          const title = el("p", "font-mono tracking-wider text-phosphor-dim uppercase");
+          title.style.cssText = "font-size:var(--step--2);letter-spacing:0.08em;margin-bottom:var(--space-4);";
           title.textContent = "// DIMENSION BREAKDOWN";
           wrapper.appendChild(title);
 
           // Online Presence bar
-          const wRow = el("div", "mb-4");
-          const wLabel = el("div", "flex justify-between items-center mb-1");
-          const wName = el("span", "font-mono text-xs tracking-wider");
+          const wRow = el("div");
+          wRow.style.cssText = "margin-bottom:var(--space-4);";
+          const wLabel = el("div", "flex justify-between items-center");
+          wLabel.style.cssText = "margin-bottom:var(--space-1);";
+          const wName = el("span", "font-mono tracking-wider uppercase");
+          wName.style.cssText = "font-size:var(--step--2);letter-spacing:0.04em;";
           wName.textContent = "ONLINE PRESENCE";
-          const wScoreEl = el("span", "font-mono text-xs text-primary");
+          const wScoreEl = el("span", "font-mono text-primary");
+          wScoreEl.style.cssText = "font-size:var(--step--2);";
           wScoreEl.textContent = `${ws.w.score}/${ws.w.max} (${wPct}%)`;
           wLabel.appendChild(wName);
           wLabel.appendChild(wScoreEl);
@@ -1153,17 +1186,21 @@ import '../styles/global.css';
           wBar.appendChild(wFill);
           wRow.appendChild(wBar);
           const wBadge = tierBadge(wTier);
-          const wTierLabel = el("p", `font-mono text-xs mt-1 ${wBadge.colorClass}`);
+          const wTierLabel = el("p", `font-mono ${wBadge.colorClass}`);
+          wTierLabel.style.cssText = "font-size:var(--step--2);margin-top:var(--space-1);";
           wTierLabel.textContent = `${wBadge.text} ${wTier.toUpperCase()}`;
           wRow.appendChild(wTierLabel);
           wrapper.appendChild(wRow);
 
           // Operations bar
           const sRow = el("div");
-          const sLabel = el("div", "flex justify-between items-center mb-1");
-          const sName = el("span", "font-mono text-xs tracking-wider");
+          const sLabel = el("div", "flex justify-between items-center");
+          sLabel.style.cssText = "margin-bottom:var(--space-1);";
+          const sName = el("span", "font-mono tracking-wider uppercase");
+          sName.style.cssText = "font-size:var(--step--2);letter-spacing:0.04em;";
           sName.textContent = "OPERATIONS";
-          const sScoreEl = el("span", "font-mono text-xs text-accent");
+          const sScoreEl = el("span", "font-mono text-accent");
+          sScoreEl.style.cssText = "font-size:var(--step--2);";
           sScoreEl.textContent = `${ws.s.score}/${ws.s.max} (${sPct}%)`;
           sLabel.appendChild(sName);
           sLabel.appendChild(sScoreEl);
@@ -1174,7 +1211,8 @@ import '../styles/global.css';
           sBar.appendChild(sFill);
           sRow.appendChild(sBar);
           const sBadge = tierBadge(sTier);
-          const sTierLabel = el("p", `font-mono text-xs mt-1 ${sBadge.colorClass}`);
+          const sTierLabel = el("p", `font-mono ${sBadge.colorClass}`);
+          sTierLabel.style.cssText = "font-size:var(--step--2);margin-top:var(--space-1);";
           sTierLabel.textContent = `${sBadge.text} ${sTier.toUpperCase()}`;
           sRow.appendChild(sTierLabel);
           wrapper.appendChild(sRow);
@@ -1186,23 +1224,27 @@ import '../styles/global.css';
           const container = el("div");
           const { result, pathScore, tier } = getFullResults(state);
 
-          const dimLabel = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-4");
+          const dimLabel = el("p", "font-mono tracking-wider text-phosphor-dim uppercase");
+          dimLabel.style.cssText = "font-size:var(--step--2);letter-spacing:0.08em;margin-bottom:var(--space-4);";
           dimLabel.textContent = "// YOUR SCORE";
           container.appendChild(dimLabel);
 
-          const headline = el("h2", "text-2xl sm:text-3xl font-bold mb-6");
+          const headline = el("h2", "font-sans font-bold");
+          headline.style.cssText = "font-size:var(--step-3);line-height:1.15;letter-spacing:-0.02em;margin-bottom:var(--space-6);";
           headline.textContent = result.headline;
           container.appendChild(headline);
 
-          // Big percentage
+          // Big percentage — hero impact element
           const pct = pathScore.max > 0 ? Math.round((pathScore.score / pathScore.max) * 100) : 0;
-          const scoreBig = el("p", "font-pixel text-5xl text-primary mb-4");
+          const scoreBig = el("p", "font-pixel text-primary uppercase");
+          scoreBig.style.cssText = "font-size:var(--step-5);line-height:1.0;letter-spacing:-0.04em;margin-bottom:var(--space-4);";
           scoreBig.textContent = `${pct}%`;
           container.appendChild(scoreBig);
 
           // Score bar
           const pathName = pathDisplayName(state.path);
-          const scoreLabel = el("p", "font-mono text-sm mb-2");
+          const scoreLabel = el("p", "font-mono");
+          scoreLabel.style.cssText = "font-size:var(--step--1);margin-bottom:var(--space-2);";
           scoreLabel.textContent = `${pathName}: ${pathScore.score} / ${pathScore.max}`;
           container.appendChild(scoreLabel);
 
@@ -1218,7 +1260,8 @@ import '../styles/global.css';
           container.appendChild(barBg);
 
           const badge = tierBadge(tier);
-          const tierLabel = el("p", `font-mono text-xs mt-2 mb-8 ${badge.colorClass}`);
+          const tierLabel = el("p", `font-mono ${badge.colorClass}`);
+          tierLabel.style.cssText = "font-size:var(--step--2);margin-top:var(--space-2);margin-bottom:var(--space-10);";
           tierLabel.textContent = `${badge.text} ${tier.toUpperCase()}`;
           container.appendChild(tierLabel);
 
@@ -1228,7 +1271,8 @@ import '../styles/global.css';
           }
 
           // Teaser
-          const teaser = el("p", "text-base-content/80 leading-relaxed mb-8");
+          const teaser = el("p", "font-sans text-base-content/80");
+          teaser.style.cssText = "font-size:var(--step-0);line-height:1.6;margin-bottom:var(--space-8);max-width:65ch;";
           teaser.textContent = "Want the detailed breakdown, what we\u2019d build, and your custom next step?";
           container.appendChild(teaser);
 
@@ -1242,19 +1286,23 @@ import '../styles/global.css';
 
         function renderEmailGate(screen, state, dispatch) {
           const container = el("div");
-          const heading = el("h2", "text-xl sm:text-2xl font-bold leading-snug mb-4");
-          heading.textContent = "Enter your email to unlock your full breakdown.";
+          const heading = el("h2", "font-sans font-bold");
+          heading.style.cssText = "font-size:var(--step-2);line-height:1.3;letter-spacing:-0.01em;margin-bottom:var(--space-4);";
+          heading.textContent = "Enter your email to see your full breakdown.";
           container.appendChild(heading);
-          const hint = el("p", "font-mono text-sm text-phosphor-dim mb-8");
+          const hint = el("p", "font-mono text-phosphor-dim");
+          hint.style.cssText = "font-size:var(--step--1);margin-bottom:var(--space-8);";
           hint.textContent = "// You\u2019ll get your results plus actionable insights via email. Unsubscribe anytime.";
           container.appendChild(hint);
 
-          const form = el("div", "space-y-4");
+          const form = el("div");
+          form.style.cssText = "display:flex;flex-direction:column;gap:var(--space-5);";
 
           // Name field
           const nameWrap = el("div");
           const nameLabel = document.createElement("label");
-          nameLabel.className = "font-mono text-xs tracking-wider text-phosphor-dim mb-2 block";
+          nameLabel.className = "font-mono tracking-wider text-phosphor-dim block uppercase";
+          nameLabel.style.cssText = "font-size:var(--step--2);letter-spacing:0.08em;margin-bottom:var(--space-1);";
           nameLabel.htmlFor = "diag-name";
           nameLabel.textContent = "> NAME";
           nameWrap.appendChild(nameLabel);
@@ -1264,10 +1312,12 @@ import '../styles/global.css';
           nameInput.required = true;
           nameInput.setAttribute("aria-required", "true");
           nameInput.autocomplete = "name";
-          nameInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
+          nameInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-sans focus:border-primary focus:outline-none";
+          nameInput.style.cssText = "font-size:var(--step-0);line-height:1.4;padding:var(--space-3) var(--space-4);min-height:44px;";
           if (state.contactName) nameInput.value = state.contactName;
           nameWrap.appendChild(nameInput);
-          const nameError = el("span", "hidden font-mono text-xs text-error mt-1 block");
+          const nameError = el("span", "hidden font-mono text-error block");
+          nameError.style.cssText = "font-size:var(--step--2);margin-top:var(--space-1);";
           nameError.id = "diag-name-error";
           nameError.setAttribute("role", "alert");
           nameError.textContent = "[ERR] Name is required.";
@@ -1277,7 +1327,8 @@ import '../styles/global.css';
           // Email field
           const emailWrap = el("div");
           const emailLabel = document.createElement("label");
-          emailLabel.className = "font-mono text-xs tracking-wider text-phosphor-dim mb-2 block";
+          emailLabel.className = "font-mono tracking-wider text-phosphor-dim block uppercase";
+          emailLabel.style.cssText = "font-size:var(--step--2);letter-spacing:0.08em;margin-bottom:var(--space-1);";
           emailLabel.htmlFor = "diag-email";
           emailLabel.textContent = "> EMAIL";
           emailWrap.appendChild(emailLabel);
@@ -1287,10 +1338,12 @@ import '../styles/global.css';
           emailInput.required = true;
           emailInput.setAttribute("aria-required", "true");
           emailInput.autocomplete = "email";
-          emailInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
+          emailInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-sans focus:border-primary focus:outline-none";
+          emailInput.style.cssText = "font-size:var(--step-0);line-height:1.4;padding:var(--space-3) var(--space-4);min-height:44px;";
           if (state.contactEmail) emailInput.value = state.contactEmail;
           emailWrap.appendChild(emailInput);
-          const emailError = el("span", "hidden font-mono text-xs text-error mt-1 block");
+          const emailError = el("span", "hidden font-mono text-error block");
+          emailError.style.cssText = "font-size:var(--step--2);margin-top:var(--space-1);";
           emailError.id = "diag-email-error";
           emailError.setAttribute("role", "alert");
           emailError.textContent = "[ERR] Valid email required.";
@@ -1300,7 +1353,8 @@ import '../styles/global.css';
           // Company field
           const companyWrap = el("div");
           const companyLabel = document.createElement("label");
-          companyLabel.className = "font-mono text-xs tracking-wider text-phosphor-dim mb-2 block";
+          companyLabel.className = "font-mono tracking-wider text-phosphor-dim block uppercase";
+          companyLabel.style.cssText = "font-size:var(--step--2);letter-spacing:0.08em;margin-bottom:var(--space-1);";
           companyLabel.htmlFor = "diag-company";
           companyLabel.textContent = "> COMPANY (optional)";
           companyWrap.appendChild(companyLabel);
@@ -1308,7 +1362,8 @@ import '../styles/global.css';
           companyInput.id = "diag-company";
           companyInput.type = "text";
           companyInput.autocomplete = "organization";
-          companyInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
+          companyInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-sans focus:border-primary focus:outline-none";
+          companyInput.style.cssText = "font-size:var(--step-0);line-height:1.4;padding:var(--space-3) var(--space-4);min-height:44px;";
           if (state.contactCompany) companyInput.value = state.contactCompany;
           companyWrap.appendChild(companyInput);
           form.appendChild(companyWrap);
@@ -1330,7 +1385,8 @@ import '../styles/global.css';
           form.appendChild(honeypot);
 
           // Submit button
-          const btnWrap = el("div", "mt-6");
+          const btnWrap = el("div");
+          btnWrap.style.cssText = "margin-top:var(--space-6);";
           const btn = primaryButton(screen.buttonLabel || "SEE MY RESULTS");
           btn.addEventListener("click", () => {
             nameError.classList.add("hidden");
@@ -1380,8 +1436,10 @@ import '../styles/global.css';
         }
 
         function renderLoading(_screen, _state, dispatch) {
-          const container = el("div", "text-center py-12");
-          const label = el("p", "font-mono text-lg text-primary mb-6");
+          const container = el("div", "text-center");
+          container.style.cssText = "padding-top:var(--space-16);padding-bottom:var(--space-16);";
+          const label = el("p", "font-mono text-primary");
+          label.style.cssText = "font-size:var(--step-1);margin-bottom:var(--space-6);";
           label.textContent = "// Analyzing your answers...";
           container.appendChild(label);
           const barBg = el("div", "h-2 w-full bg-base-300");
@@ -1396,34 +1454,41 @@ import '../styles/global.css';
           const { result, aiModifier, pathScore, tier } = getFullResults(state);
           const container = el("div");
 
-          const dimLabel = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-4");
+          const dimLabel = el("p", "font-mono tracking-wider text-phosphor-dim uppercase");
+          dimLabel.style.cssText = "font-size:var(--step--2);letter-spacing:0.08em;margin-bottom:var(--space-4);";
           dimLabel.textContent = "// DIAGNOSTIC COMPLETE";
           container.appendChild(dimLabel);
 
-          const headline = el("h2", "text-2xl sm:text-3xl font-bold mb-6");
+          const headline = el("h2", "font-sans font-bold");
+          headline.style.cssText = "font-size:var(--step-3);line-height:1.15;letter-spacing:-0.02em;margin-bottom:var(--space-6);";
           headline.textContent = result.headline;
           container.appendChild(headline);
 
-          const body = el("p", "text-base-content/80 leading-relaxed mb-8");
+          const body = el("p", "font-sans text-base-content/80");
+          body.style.cssText = "font-size:var(--step-0);line-height:1.6;margin-bottom:var(--space-10);max-width:65ch;";
           body.textContent = result.body;
           container.appendChild(body);
 
           // --- 30% STRENGTHS SECTION ---
-          const strengthSep = el("p", "font-mono text-xs text-base-content/30 mb-4");
+          const strengthSep = el("p", "font-mono text-base-content/30");
+          strengthSep.style.cssText = "font-size:var(--step--2);margin-bottom:var(--space-4);";
           strengthSep.textContent = "\u2500\u2500 WHAT\u2019S WORKING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
           container.appendChild(strengthSep);
 
-          const strengthBody = el("p", "text-base-content/80 leading-relaxed mb-6");
+          const strengthBody = el("p", "font-sans text-base-content/80");
+          strengthBody.style.cssText = "font-size:var(--step-0);line-height:1.6;margin-bottom:var(--space-8);max-width:65ch;";
           strengthBody.textContent = getStrengths(state);
           container.appendChild(strengthBody);
 
           // --- 50% SCORE BREAKDOWN ---
-          const scoreSep = el("p", "font-mono text-xs text-base-content/30 mb-4");
+          const scoreSep = el("p", "font-mono text-base-content/30");
+          scoreSep.style.cssText = "font-size:var(--step--2);margin-bottom:var(--space-4);";
           scoreSep.textContent = "\u2500\u2500 SCORE BREAKDOWN \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
           container.appendChild(scoreSep);
 
           const pathName = pathDisplayName(state.path);
-          const scoreLabel = el("p", "font-mono text-sm mb-2");
+          const scoreLabel = el("p", "font-mono");
+          scoreLabel.style.cssText = "font-size:var(--step--1);margin-bottom:var(--space-2);";
           scoreLabel.textContent = `${pathName}: ${pathScore.score} / ${pathScore.max}`;
           container.appendChild(scoreLabel);
 
@@ -1440,49 +1505,57 @@ import '../styles/global.css';
           container.appendChild(barBg);
 
           const badge = tierBadge(tier);
-          const tierLabel = el("p", `font-mono text-xs mt-2 ${badge.colorClass}`);
+          const tierLabel = el("p", `font-mono ${badge.colorClass}`);
+          tierLabel.style.cssText = "font-size:var(--step--2);margin-top:var(--space-2);";
           tierLabel.textContent = `${badge.text} ${tier.toUpperCase()}`;
           container.appendChild(tierLabel);
 
           // WS path: show dimension breakdown chart
           if (state.path === "WS") {
             const dimBreakdown = renderDimensionBreakdown(state);
-            dimBreakdown.className = "mt-6 mb-2 p-4 border border-base-content/10 bg-base-200/50";
+            dimBreakdown.style.cssText = "margin-top:var(--space-6);margin-bottom:var(--space-2);padding:var(--space-6);border:1px solid oklch(1 0 0 / 0.1);background:oklch(0 0 0 / 0.2);";
             container.appendChild(dimBreakdown);
           }
 
           // Build description
           if (result.buildDescription) {
-            const buildSep = el("p", "font-mono text-xs text-phosphor-dim mt-8 mb-2");
+            const buildSep = el("p", "font-mono text-phosphor-dim");
+            buildSep.style.cssText = "font-size:var(--step--2);margin-top:var(--space-10);margin-bottom:var(--space-3);";
             buildSep.textContent = "// WHAT WE\u2019D BUILD";
             container.appendChild(buildSep);
-            const buildBody = el("p", "text-base-content/80 leading-relaxed");
+            const buildBody = el("p", "font-sans text-base-content/80");
+            buildBody.style.cssText = "font-size:var(--step-0);line-height:1.6;max-width:65ch;";
             buildBody.textContent = result.buildDescription;
             container.appendChild(buildBody);
           }
 
           // AI modifier
           if (aiModifier) {
-            const aiSep = el("p", "font-mono text-xs text-base-content/30 mt-8 mb-4");
+            const aiSep = el("p", "font-mono text-base-content/30");
+            aiSep.style.cssText = "font-size:var(--step--2);margin-top:var(--space-10);margin-bottom:var(--space-4);";
             aiSep.textContent = "\u2500\u2500 AI READINESS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
             container.appendChild(aiSep);
-            const aiBody = el("p", "text-base-content/80 leading-relaxed");
+            const aiBody = el("p", "font-sans text-base-content/80");
+            aiBody.style.cssText = "font-size:var(--step-0);line-height:1.6;max-width:65ch;";
             aiBody.textContent = aiModifier;
             container.appendChild(aiBody);
           }
 
           // CTA
-          const ctaSep = el("p", "font-mono text-xs text-base-content/30 mt-8 mb-4");
+          const ctaSep = el("p", "font-mono text-base-content/30");
+          ctaSep.style.cssText = "font-size:var(--step--2);margin-top:var(--space-12);margin-bottom:var(--space-4);";
           ctaSep.textContent = "\u2500\u2500 NEXT STEP \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
           container.appendChild(ctaSep);
           const cta = primaryLink(result.ctaLabel, result.ctaHref);
           container.appendChild(cta);
-          const ctaHint = el("p", "font-mono text-sm text-phosphor-dim mt-3");
+          const ctaHint = el("p", "font-mono text-phosphor-dim");
+          ctaHint.style.cssText = "font-size:var(--step--1);margin-top:var(--space-3);";
           ctaHint.textContent = SECONDARY_CTA_TEXT;
           container.appendChild(ctaHint);
 
           // Secondary CTA
-          const secWrap = el("div", "mt-4");
+          const secWrap = el("div");
+          secWrap.style.cssText = "margin-top:var(--space-4);";
           const secLink = document.createElement("a");
           secLink.href = SECONDARY_CTA.href;
           secLink.className = "btn btn-ghost font-mono tracking-wider";
@@ -1493,24 +1566,7 @@ import '../styles/global.css';
           return container;
         }
 
-        function renderProgressBar(progress) {
-          const wrapper = el("div", "mb-8");
-          const pct = Math.round(progress * 100);
-          const barBg = el("div", "progress-bar-bg h-1 w-full bg-base-300 overflow-hidden");
-          barBg.setAttribute("role", "progressbar");
-          barBg.setAttribute("aria-valuenow", String(pct));
-          barBg.setAttribute("aria-valuemin", "0");
-          barBg.setAttribute("aria-valuemax", "100");
-          barBg.setAttribute("aria-label", `Diagnostic progress: ${pct}%`);
-          const barFill = el("div", "progress-bar-fill relative h-1 bg-primary transition-all duration-500");
-          barFill.style.width = pct + "%";
-          barBg.appendChild(barFill);
-          wrapper.appendChild(barBg);
-          const label = el("p", "font-mono text-xs text-phosphor-dim mt-1");
-          label.textContent = `// ${pct}% complete`;
-          wrapper.appendChild(label);
-          return wrapper;
-        }
+        // renderProgressBar removed — progress bar is now a fixed scaffold element in the HTML
 
         // ------------------------------------------------------------
         // 8. MAIN RENDER LOOP
@@ -1527,11 +1583,27 @@ import '../styles/global.css';
           const calcProg = calculateProgress(state);
           if (calcProg >= 0) currentProgress = Math.max(currentProgress, calcProg);
 
-          // Show progress bar on question screens (not opening, results, loading, or skip screens)
-          const showProgress = !new Set(["opening", "results", "loading", "score-preview"]).has(state.screen);
+          // --- Update fixed scaffold chrome ---
+          const chrome = document.getElementById("diagnostic-chrome");
+          const progressFill = document.getElementById("diag-progress-fill");
+          const progressBar = document.getElementById("diag-progress-bar");
+          const progressPct = document.getElementById("diag-progress-pct");
+          const phaseTitle = document.getElementById("diag-phase-title");
           const isSkip = isSkipScreen(state.screen);
-          if (showProgress && !isSkip) {
-            root.appendChild(renderProgressBar(currentProgress));
+          const hideChrome = new Set(["opening", "results", "loading"]);
+
+          if (hideChrome.has(state.screen) || isSkip) {
+            if (chrome) chrome.style.display = "none";
+          } else {
+            if (chrome) chrome.style.display = "block";
+            const pct = Math.round(currentProgress * 100);
+            if (progressFill) progressFill.style.width = pct + "%";
+            if (progressBar) {
+              progressBar.setAttribute("aria-valuenow", String(pct));
+              progressBar.setAttribute("aria-label", `Diagnostic progress: ${pct}%`);
+            }
+            if (progressPct) progressPct.textContent = `${pct}%`;
+            if (phaseTitle) phaseTitle.textContent = getPhaseTitle(state.screen);
           }
 
           // Render screen content
@@ -1569,10 +1641,12 @@ import '../styles/global.css';
           // Back button (not on results or loading)
           const noBackScreens = new Set(["results", "loading", "score-preview"]);
           if (state.history.length > 0 && !noBackScreens.has(screen.type)) {
-            const backWrap = el("div", "mt-8");
+            const backWrap = el("div");
+            backWrap.style.cssText = "margin-top:var(--space-8);";
             const backBtn = document.createElement("button");
             backBtn.type = "button";
-            backBtn.className = "btn btn-ghost font-mono text-xs text-base-content/40 hover:text-base-content/60 min-h-[44px]";
+            backBtn.className = "btn btn-ghost font-mono text-base-content/40 hover:text-base-content/60";
+            backBtn.style.cssText = "font-size:var(--step--2);letter-spacing:0.04em;min-height:44px;";
             backBtn.setAttribute("aria-label", "Go back to previous question");
             backBtn.textContent = "< BACK";
             backBtn.addEventListener("click", () => dispatch({ type: "BACK" }));
@@ -1581,6 +1655,9 @@ import '../styles/global.css';
           }
 
           root.style.opacity = "1";
+
+          // Scroll to top of diagnostic on screen changes (account for sticky header)
+          window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "instant" : "smooth" });
 
           // Auto-advance skip screens after brief display
           if (isSkip) {

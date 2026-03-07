@@ -4,14 +4,13 @@ interface Props {
 }
 const { class: className } = Astro.props;
 ---
-<span class:list={['cursor', className]} aria-hidden="true"></span>
+<span class:list={['cursor', className]} aria-hidden="true">_</span>
 
 <style>
   .cursor {
     display: inline-block;
-    width: 0.52em;
-    height: 1em;
-    background: var(--primary);
+    color: var(--primary);
+    font-weight: bold;
     vertical-align: text-bottom;
     animation: hw-blink var(--dur-cursor) step-end infinite;
   }
