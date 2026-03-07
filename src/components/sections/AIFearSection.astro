@@ -5,7 +5,7 @@ import Button from '../Button.astro';
 <div class="fear-divider" aria-hidden="true"></div>
 <SectionWrapper bg="base" id="ai-analysis" class="fear-section">
   <!-- Headline block -->
-  <p class="section-label">// AI FEAR ANALYSIS &mdash; RUNNING DIAGNOSTIC</p>
+  <p class="section-label">// AI FEAR ANALYSIS // RUNNING DIAGNOSTIC</p>
   <h2 class="fear-headline">
     <span>&gt; What&rsquo;s keeping you from using AI.</span>
     <span>&gt; And what the data actually says.</span>
@@ -39,7 +39,7 @@ import Button from '../Button.astro';
       </div>
       <div class="cell cell-fact">
         <span class="mobile-label">[FACT]</span>
-        82% of micro-business owners say this &mdash; then adopt AI within 6 months. The framing was wrong, not the fit.
+        82% of micro-business owners say this, then adopt AI within 6 months. The framing was wrong, not the fit.
       </div>
     </div>
 
@@ -82,63 +82,38 @@ import Button from '../Button.astro';
 
   <!-- Status line -->
   <p class="status-line">
-    STATUS: <span class="status-ok">[OK]</span> FEARS ARE DATA PROBLEMS &mdash; NOT BLOCKERS
+    STATUS: <span class="status-ok">[OK]</span> FEARS ARE DATA PROBLEMS. NOT BLOCKERS
   </p>
 
-  <!-- Bar chart section -->
-  <div class="chart-section">
-    <p class="chart-label">// WHAT AI ACTUALLY DOES FOR SMALL BUSINESSES:</p>
+  <!-- AI adoption stats -->
+  <div class="stats-section">
+    <p class="stats-label">// AI ADOPTION // THE NUMBERS</p>
 
-    <div class="sr-only" role="table" aria-label="AI use cases in small businesses">
-      <div role="row"><span role="columnheader">Use case</span><span role="columnheader">Adoption rate</span></div>
-      <div role="row"><span role="cell">Marketing and content</span><span role="cell">43%</span></div>
-      <div role="row"><span role="cell">Customer service</span><span role="cell">36%</span></div>
-      <div role="row"><span role="cell">Admin tasks</span><span role="cell">33%</span></div>
-      <div role="row"><span role="cell">Data processing</span><span role="cell">32%</span></div>
-    </div>
-
-    <div class="chart-rows">
-      <div class="chart-row">
-        <span class="chart-name">Marketing &amp; content</span>
-        <div class="bar-track">
-          <div class="bar-fill" style="--bar-width: 100%;" aria-label="43%"></div>
-        </div>
-        <span class="chart-pct">43%</span>
+    <div class="stats-grid">
+      <div class="stat-block">
+        <span class="stat-number">98%</span>
+        <span class="stat-desc">of small businesses plan to use AI tools this year</span>
+        <span class="stat-source">Goldman Sachs 10,000 Small Businesses 2025</span>
       </div>
 
-      <div class="chart-row">
-        <span class="chart-name">Customer service</span>
-        <div class="bar-track">
-          <div class="bar-fill" style="--bar-width: 83.7%;" aria-label="36%"></div>
-        </div>
-        <span class="chart-pct">36%</span>
+      <div class="stat-block">
+        <span class="stat-number">5.6 hrs</span>
+        <span class="stat-desc">saved per employee per week with targeted AI automation</span>
+        <span class="stat-source">QuickBooks SMB AI Survey 2025</span>
       </div>
 
-      <div class="chart-row">
-        <span class="chart-name">Admin tasks</span>
-        <div class="bar-track">
-          <div class="bar-fill" style="--bar-width: 76.7%;" aria-label="33%"></div>
-        </div>
-        <span class="chart-pct">33%</span>
-      </div>
-
-      <div class="chart-row">
-        <span class="chart-name">Data processing</span>
-        <div class="bar-track">
-          <div class="bar-fill" style="--bar-width: 74.4%;" aria-label="32%"></div>
-        </div>
-        <span class="chart-pct">32%</span>
+      <div class="stat-block">
+        <span class="stat-number">47%</span>
+        <span class="stat-desc">of owners say choosing the right AI tool is the hardest part</span>
+        <span class="stat-source">ICIC AI in Business 2025</span>
       </div>
     </div>
 
-    <p class="chart-source">Source: QuickBooks SMB AI Survey 2025 (n=2,200)</p>
+    <p class="stats-footnote">
+      // Goldman Sachs 10,000 Small Businesses 2025 &middot; ICIC AI in Business 2025<br />
+      // QuickBooks 2025 SMB AI Survey &middot; 2026 Small Business AI Outlook Report
+    </p>
   </div>
-
-  <!-- Data footnote -->
-  <p class="data-footnote">
-    // Goldman Sachs 10,000 Small Businesses 2025 &middot; ICIC AI in Business 2025<br />
-    // QuickBooks 2025 SMB AI Survey &middot; 2026 Small Business AI Outlook Report
-  </p>
 
   <!-- CTA -->
   <div class="fear-cta">
@@ -153,7 +128,7 @@ import Button from '../Button.astro';
     background: oklch(0.76 0.18 62 / 0.15);
   }
 
-  /* Section label — monospace comment format */
+  /* Section label - monospace comment format */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -163,7 +138,7 @@ import Button from '../Button.astro';
     margin-bottom: var(--space-4);
   }
 
-  /* Headline — > prefixed, pixel font */
+  /* Headline - > prefixed, pixel font */
   .fear-headline {
     font-family: var(--font-pixel);
     font-size: var(--step-3);
@@ -221,6 +196,12 @@ import Button from '../Button.astro';
     display: grid;
     grid-template-columns: 1fr 1fr;
     border-bottom: 1px solid oklch(0.76 0.18 62 / 0.1);
+    transition: background 100ms var(--ease-ui);
+    border-radius: var(--radius-sm);
+  }
+
+  .table-row:hover {
+    background: oklch(0.76 0.18 62 / 0.06);
   }
 
   .table-row:last-child {
@@ -247,7 +228,7 @@ import Button from '../Button.astro';
     color: oklch(0.82 0.04 85);
   }
 
-  /* Mobile labels — hidden on desktop */
+  /* Mobile labels - hidden on desktop */
   .mobile-label {
     display: none;
     font-family: var(--font-mono);
@@ -276,83 +257,66 @@ import Button from '../Button.astro';
     color: var(--success);
   }
 
-  /* ── Bar chart section ── */
-  .chart-section {
+  /* ── Stats section ── */
+  .stats-section {
     max-width: 1080px;
-    margin: 0 auto var(--space-8);
+    margin: 0 auto var(--space-12);
   }
 
-  .chart-label {
+  .stats-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
     color: var(--text-accent-dim);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-8);
   }
 
-  .chart-rows {
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .stat-block {
+    background: oklch(0.16 0.025 85);
+    border: 1px solid oklch(0.76 0.18 62 / 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
-  .chart-row {
-    display: grid;
-    grid-template-columns: 160px 1fr 48px;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  .chart-name {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--text-accent-dim);
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  .bar-track {
-    height: 20px;
-    background: oklch(0.76 0.18 62 / 0.08);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    width: var(--bar-width);
-    background: var(--primary);
-    border-radius: 2px;
-    opacity: 0.85;
-  }
-
-  .chart-pct {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    font-weight: 700;
+  .stat-number {
+    font-family: var(--font-pixel);
+    font-size: var(--step-3);
     color: var(--primary);
-    text-align: right;
-    font-feature-settings: 'tnum' 1;
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
-  .chart-source {
+  .stat-desc {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    color: oklch(0.88 0.06 62);
+  }
+
+  .stat-source {
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--text-accent-dim);
     letter-spacing: 0.04em;
-    margin-top: var(--space-4);
   }
 
-  /* ── Data footnote ── */
-  .data-footnote {
+  .stats-footnote {
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--text-accent-dim);
     letter-spacing: 0.04em;
     line-height: 1.6;
-    max-width: 1080px;
-    margin: 0 auto var(--space-12);
+    margin-top: var(--space-6);
   }
 
   /* ── CTA ── */
@@ -391,18 +355,10 @@ import Button from '../Button.astro';
       display: block;
     }
 
-    /* Chart adjustments */
-    .chart-row {
-      grid-template-columns: 120px 1fr 40px;
-      gap: var(--space-3);
-    }
-
-    .chart-name {
-      font-size: 12px;
-    }
-
-    .chart-pct {
-      font-size: 13px;
+    /* Stats grid stacks on tablet */
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
     }
   }
 
@@ -419,21 +375,8 @@ import Button from '../Button.astro';
       font-size: 14px;
     }
 
-    .chart-row {
-      grid-template-columns: 100px 1fr 36px;
-      gap: var(--space-2);
-    }
-
-    .chart-name {
-      font-size: 11px;
-    }
-
-    .bar-track {
-      height: 16px;
-    }
-
-    .chart-pct {
-      font-size: 12px;
+    .stat-number {
+      font-size: var(--step-2);
     }
   }
 </style>

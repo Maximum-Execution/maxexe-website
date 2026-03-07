@@ -13,7 +13,7 @@ import SectionWrapper from '../SectionWrapper.astro';
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title">Do you use WordPress, Webflow, or Squarespace?</div>
       <div class="collapse-content">
-        <p>No. Every site and app is custom code written from scratch. That means faster performance, tighter security, and a system designed around your business instead of a template platform&rsquo;s limitations. You&rsquo;re not renting a tool when we&rsquo;re done &mdash; you own the code.</p>
+        <p>No. Every site and app is custom code written from scratch. That means faster performance, tighter security, and a system designed around your business instead of a template platform&rsquo;s limitations. You&rsquo;re not renting a tool when we&rsquo;re done. You own the code.</p>
       </div>
     </div>
 
@@ -22,7 +22,7 @@ import SectionWrapper from '../SectionWrapper.astro';
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title">How long does a project take?</div>
       <div class="collapse-content">
-        <p>It depends entirely on scope. Simple websites can ship in less than a week. Larger sites or builds that include email automation typically run two to four weeks. App projects start at two weeks and expand based on what needs to be built. We tell you the timeline after the diagnostic, not before &mdash; because scope drives timeline, and scope follows diagnosis.</p>
+        <p>It depends entirely on scope. Simple websites can ship in less than a week. Larger sites or builds that include email automation typically run two to four weeks. App projects start at two weeks and expand based on what needs to be built. We tell you the timeline after the diagnostic, not before. Because scope drives timeline, and scope follows diagnosis.</p>
       </div>
     </div>
 
@@ -31,7 +31,7 @@ import SectionWrapper from '../SectionWrapper.astro';
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title">What does &ldquo;you own the code&rdquo; actually mean?</div>
       <div class="collapse-content">
-        <p>At launch you receive the full codebase, all documentation, hosting credentials, and a training session. You are not paying a monthly fee to keep your site running on our platform. You are not dependent on us to make basic changes. The code is yours, permanently, from the first day it goes live.</p>
+        <p>At launch you receive the full codebase, all documentation, hosting credentials, and a training session. You're not paying a monthly fee to keep your site running on our platform. You're not dependent on us to make basic changes. The code is yours, permanently, from the first day it goes live.</p>
       </div>
     </div>
 
@@ -40,7 +40,7 @@ import SectionWrapper from '../SectionWrapper.astro';
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title">What if I already have a website or app that partially works?</div>
       <div class="collapse-content">
-        <p>The diagnostic handles this. We map what exists, identify what&rsquo;s actually broken versus what just needs tuning, and scope the build accordingly. You don&rsquo;t have to throw everything out &mdash; just the parts that are costing you.</p>
+        <p>The diagnostic handles this. We map what exists, identify what&rsquo;s actually broken versus what just needs tuning, and scope the build accordingly. You don&rsquo;t have to throw everything out. Just the parts that are costing you.</p>
       </div>
     </div>
 
@@ -58,7 +58,7 @@ import SectionWrapper from '../SectionWrapper.astro';
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title">I&rsquo;m not technical. Will I understand what you&rsquo;re building?</div>
       <div class="collapse-content">
-        <p>Yes. The diagnostic produces a written problem statement in plain language. Every build follows a spec you can read and verify before work starts. The handoff document is written for your team, not for developers. If something is unclear at any stage, that&rsquo;s a communication failure on our end &mdash; not a comprehension problem on yours.</p>
+        <p>Yes. The diagnostic produces a written problem statement in plain language. Every build follows a spec you can read and verify before work starts. The handoff document is written for your team, not for developers. If something is unclear at any stage, that&rsquo;s a communication failure on our end, not a comprehension problem on yours.</p>
       </div>
     </div>
 
@@ -67,7 +67,16 @@ import SectionWrapper from '../SectionWrapper.astro';
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title">What does AI integration actually look like for a small business?</div>
       <div class="collapse-content">
-        <p>Narrow, specific, and practical. We don&rsquo;t build AI that tries to do everything. We identify one or two places where AI saves your team five to ten hours a week &mdash; answering FAQs, drafting follow-up emails, capturing intake &mdash; and build a focused system trained on your actual data. It sounds like you, serves your clients, and runs on information about your actual business. Nothing overbuilt. Nothing generic.</p>
+        <p>Narrow, specific, and practical. We don&rsquo;t build AI that tries to do everything. We identify one or two places where AI saves your team five to ten hours a week: answering FAQs, drafting follow-up emails, capturing intake. We build a focused system trained on your actual data. It sounds like you, serves your clients, and runs on information about your actual business. Nothing overbuilt. Nothing generic.</p>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="collapse collapse-plus faq-item">
+      <input type="radio" name="faq-accordion" />
+      <div class="collapse-title">What about hosting? Do I need to set that up myself?</div>
+      <div class="collapse-content">
+        <p>We handle all hosting as part of the build. Sites run on Cloudflare or Vercel, depending on what the project requires. We configure everything before handoff. You get credentials, documentation, and instructions for anything you might need to access later. Most projects cost under $20 a month for hosting, and many run free on the platforms we use.</p>
       </div>
     </div>
   </div>
@@ -80,7 +89,7 @@ import SectionWrapper from '../SectionWrapper.astro';
     background: oklch(0.76 0.18 62 / 0.15);
   }
 
-  /* Section label — monospace, small, amber at 35% */
+  /* Section label - monospace, small, amber at 35% */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -90,7 +99,7 @@ import SectionWrapper from '../SectionWrapper.astro';
     margin-bottom: var(--space-6);
   }
 
-  /* FAQ container — 840px max, centered */
+  /* FAQ container - 840px max, centered */
   .faq-container {
     max-width: 840px;
     margin: 0 auto;
@@ -108,7 +117,7 @@ import SectionWrapper from '../SectionWrapper.astro';
     border-bottom: none;
   }
 
-  /* Question title — Geist Pixel, amber, 44px min tap target */
+  /* Question title - Geist Pixel, amber, 44px min tap target */
   .faq-item .collapse-title {
     font-family: var(--font-pixel);
     font-size: 16px;
@@ -118,12 +127,12 @@ import SectionWrapper from '../SectionWrapper.astro';
     padding-right: var(--space-10);
   }
 
-  /* Plus/minus indicator — amber */
+  /* Plus/minus indicator - amber */
   .faq-item .collapse-title::after {
     color: var(--primary);
   }
 
-  /* Answer content — Geist Sans, warm off-white */
+  /* Answer content - Geist Sans, warm off-white */
   .faq-item .collapse-content {
     padding: 0 0 var(--space-6) 0;
   }

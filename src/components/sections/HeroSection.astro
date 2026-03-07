@@ -8,7 +8,7 @@ import Cursor from '../Cursor.astro';
   <div class="hero-inner">
     <!-- Left Column -->
     <div class="hero-content">
-      <p class="hero-logotype">MAXIMUM EXECUTION<Cursor /></p>
+      <p class="hero-intro">Web development studio // Richmond, Virginia</p>
 
       <h1 class="hero-headline">
         <span class="line-1">We don't design solutions.</span>
@@ -16,15 +16,15 @@ import Cursor from '../Cursor.astro';
       </h1>
 
       <p class="hero-subhead">
-        We build websites that convert, software that connects your
-        business, and AI tools trained on your data. Diagnosed first.
+        Your website should convert. Your tools should connect. Your AI
+        should know your business, not just the internet. Diagnosed first.
         Built to spec. Yours to own.
       </p>
 
       <p class="hero-tagline">// Clarity. Code. Results.</p>
 
       <div class="hero-ctas">
-        <Button variant="primary" href="#diagnostic">[RUN FREE DIAGNOSTIC &gt;]</Button>
+        <Button variant="primary" href="#diagnostic">[START DIAGNOSTIC &gt;]</Button>
         <Button variant="ghost" href="#process">[SEE HOW IT WORKS &gt;]</Button>
       </div>
 
@@ -58,7 +58,7 @@ import Cursor from '../Cursor.astro';
           <div class="status-line">
             <span class="status-badge ok">[OK]</span>
             <span class="status-text">Client intake:</span>
-            <span class="status-value">OPEN — 2 of 3 slots</span>
+            <span class="status-value">OPEN // 2 of 3 slots</span>
           </div>
           <div class="status-line">
             <span class="status-badge ok">[OK]</span>
@@ -116,18 +116,18 @@ import Cursor from '../Cursor.astro';
     display: block;
   }
 
-  .hero-logotype {
-    font-family: var(--font-pixel);
-    font-size: var(--step-1);
-    color: var(--primary);
-    letter-spacing: 0.08em;
+  .hero-intro {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-accent-dim);
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-6);
   }
 
   .hero-headline {
     font-family: var(--font-pixel);
-    font-size: var(--step-5);
+    font-size: var(--step-4);
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: var(--space-8);
@@ -277,7 +277,7 @@ import Cursor from '../Cursor.astro';
     }
 
     .hero-headline {
-      font-size: var(--step-4);
+      font-size: var(--step-3);
     }
 
     .status-line {
@@ -305,7 +305,7 @@ import Cursor from '../Cursor.astro';
 
   @media (max-width: 480px) {
     .hero-headline {
-      font-size: var(--step-3);
+      font-size: var(--step-2);
     }
   }
 </style>

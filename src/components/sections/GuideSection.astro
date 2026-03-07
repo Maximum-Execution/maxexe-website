@@ -1,10 +1,8 @@
 ---
 import SectionWrapper from '../SectionWrapper.astro';
-import GlassCard from '../GlassCard.astro';
-import Cursor from '../Cursor.astro';
 ---
 <div class="guide-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="about" class="guide-section">
+<SectionWrapper bg="base" id="about" overflow="visible" class="guide-section">
   <!-- Section label -->
   <p class="section-label">// 03 ABOUT</p>
 
@@ -31,101 +29,44 @@ import Cursor from '../Cursor.astro';
         </p>
 
         <p>
-          Maximum Execution is a diagnostic-first development practice based in
-          Richmond, Virginia. Every project starts the same way: map the systems,
-          identify the specific failure points, and write a problem statement you
-          can read, verify, and agree on before a single line of code gets touched.
-          One person does all of it — no handoffs, no committees, no account
-          managers between you and the work.
+          Every project starts the same way. Map the systems. Find what's broken.
+          Write a problem statement you can read and agree on before a line of
+          code gets touched. One person runs the entire build — no handoffs, no
+          account managers between you and the work. That's Maximum Execution,
+          based in Richmond, Virginia.
         </p>
       </div>
     </div>
 
-    <!-- RIGHT column: authority + testimonials -->
+    <!-- RIGHT column: testimonials -->
     <div class="proof-col">
-      <!-- Authority terminal -->
-      <GlassCard class="authority-card">
-        <div class="terminal-bar">
-          <span class="dot g"></span>
-          <span class="terminal-label">max.exe // authority log</span>
-        </div>
-        <div class="terminal-rule"></div>
-        <div class="status-list">
-          <div class="status-line">
-            <span class="status-badge ok">[OK]</span>
-            <span class="status-text">Projects shipped:</span>
-            <span class="status-value">12+</span>
-          </div>
-          <div class="status-line">
-            <span class="status-badge ok">[OK]</span>
-            <span class="status-text">Deadlines missed:</span>
-            <span class="status-value">0</span>
-          </div>
-          <div class="status-line">
-            <span class="status-badge ok">[OK]</span>
-            <span class="status-text">Code ownership at delivery:</span>
-            <span class="status-value">100%</span>
-          </div>
-          <div class="status-line">
-            <span class="status-badge ok">[OK]</span>
-            <span class="status-text">Avg response time:</span>
-            <span class="status-value">&lt; 24hr</span>
-          </div>
-          <div class="status-line">
-            <span class="status-badge ok">[OK]</span>
-            <span class="status-text">Problems diagnosed first:</span>
-            <span class="status-value">every single one</span>
-          </div>
-          <div class="status-line prompt-line">
-            <span class="prompt">&gt;_</span>
-            <span class="executing">[EXECUTING]</span>
-            <Cursor />
-          </div>
-        </div>
-      </GlassCard>
-
-      <!-- Testimonials -->
       <div class="testimonials">
-        <blockquote class="testimonial">
-          <p class="testimonial-quote">
-            "I'd paid two different agencies to rebuild our site over three years.
-            Both times I ended up with something that looked fine but still didn't
-            bring in clients. Spencer ran the diagnostic first, and it identified
-            exactly why — our message was buried and there was no follow-up system.
-            Six weeks later we had a site that generated 11 qualified leads in the
-            first month. That had never happened before."
+        <div class="testimonial">
+          <p class="testimonial-header">
+            <span class="log-meta">Marcus T. // Commercial Cleaning Co. // Richmond, VA</span>
           </p>
-          <footer class="testimonial-attr">
-            — Marcus T., Owner, Commercial Cleaning Co., Richmond VA
-          </footer>
-        </blockquote>
+          <p class="testimonial-body">
+            &gt; "I'd paid two different agencies to rebuild our site over three years. Both times I ended up with something that looked fine but still didn't bring in clients. Spencer ran the diagnostic first, and it identified exactly why. Our message was buried and there was no follow-up system. Six weeks later we had a site that generated 11 qualified leads in the first month. That had never happened before."
+          </p>
+        </div>
 
-        <blockquote class="testimonial">
-          <p class="testimonial-quote">
-            "I expected this to take two or three months. My site was live in eight
-            days. More importantly, I actually understood what was built and why —
-            I got documentation I could read, not a codebase I'd never open. We
-            booked three new clients in the first two weeks from form submissions
-            alone. I didn't even know the form was being used."
+        <div class="testimonial">
+          <p class="testimonial-header">
+            <span class="log-meta">Priya S. // HR Consulting Practice // Charlotte, NC</span>
           </p>
-          <footer class="testimonial-attr">
-            — Priya S., Founder, HR Consulting Practice, Charlotte NC
-          </footer>
-        </blockquote>
+          <p class="testimonial-body">
+            &gt; "I expected this to take two or three months. My site was live in eight days. More importantly, I actually understood what was built and why. I got documentation I could read, not a codebase I'd never open. We booked three new clients in the first two weeks from form submissions alone. I didn't even know the form was being used."
+          </p>
+        </div>
 
-        <blockquote class="testimonial">
-          <p class="testimonial-quote">
-            "I came to the diagnostic not knowing if I needed a new website, better
-            software, or something else entirely. The questions forced me to think
-            about my business differently — by the end I had a clearer picture of
-            where I was losing people than I'd had in two years of running it. We
-            ended up building a client intake app that replaced four separate tools.
-            My team hasn't complained about our software once since it launched."
+        <div class="testimonial">
+          <p class="testimonial-header">
+            <span class="log-meta">Daniel W. // Residential Property Mgmt // Raleigh, NC</span>
           </p>
-          <footer class="testimonial-attr">
-            — Daniel W., Managing Partner, Residential Property Mgmt, Raleigh NC
-          </footer>
-        </blockquote>
+          <p class="testimonial-body">
+            &gt; "I came to the diagnostic not knowing if I needed a new website, better software, or something else entirely. The questions forced me to think about my business differently. By the end I had a clearer picture of where I was losing people than I'd had in two years of running it. We ended up building a client intake app that replaced four separate tools. My team hasn't complained about our software once since it launched."
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -141,7 +82,7 @@ import Cursor from '../Cursor.astro';
     background: oklch(0.76 0.18 62 / 0.15);
   }
 
-  /* Section label — monospace, small, amber at 35% */
+  /* Section label - monospace, small, amber at 35% */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -188,86 +129,6 @@ import Cursor from '../Cursor.astro';
     gap: var(--space-8);
   }
 
-  /* Authority terminal card */
-  .terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-3);
-    border-bottom: 1px solid var(--border-muted);
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-  .dot.g {
-    background: var(--success);
-    box-shadow: 0 0 6px var(--success);
-  }
-
-  .terminal-label {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-  }
-
-  .terminal-rule {
-    height: 1px;
-    background: var(--border-muted);
-    margin-bottom: var(--space-4);
-  }
-
-  .status-list {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    font-feature-settings: 'tnum' 1;
-  }
-
-  .status-line {
-    display: flex;
-    gap: var(--space-2);
-    padding: var(--space-1) 0;
-    align-items: baseline;
-  }
-
-  .status-badge {
-    flex-shrink: 0;
-    font-weight: 600;
-  }
-  .status-badge.ok {
-    color: var(--success);
-    text-shadow: 0 0 4px oklch(0.70 0.18 160 / 0.9), 0 0 8px oklch(0.70 0.18 160 / 0.35);
-  }
-
-  .status-text {
-    color: var(--text-muted);
-    flex: 1;
-  }
-
-  .status-value {
-    color: var(--text);
-    text-align: right;
-  }
-
-  .prompt-line {
-    margin-top: var(--space-2);
-    padding-top: var(--space-2);
-    border-top: 1px solid var(--border-muted);
-  }
-
-  .prompt {
-    color: var(--primary);
-  }
-
-  .executing {
-    color: var(--primary);
-    text-shadow: 0 0 4px oklch(0.76 0.18 62 / 0.7);
-  }
-
   /* ── Testimonials ── */
   .testimonials {
     display: flex;
@@ -276,27 +137,32 @@ import Cursor from '../Cursor.astro';
   }
 
   .testimonial {
-    background: oklch(0.16 0.025 85);
-    border-left: 2px solid var(--primary);
-    padding: var(--space-6) var(--space-6) var(--space-6) var(--space-5);
-    border-radius: var(--radius-sm, 4px);
+    background: oklch(0.12 0.02 85);
+    border: 1px solid oklch(0.76 0.18 62 / 0.15);
+    border-radius: var(--radius-sm);
+    padding: var(--space-5) var(--space-6);
   }
 
-  .testimonial-quote {
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-style: italic;
-    line-height: 1.65;
-    color: oklch(0.88 0.06 62);
-    margin-bottom: var(--space-4);
-  }
-
-  .testimonial-attr {
+  .testimonial-header {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--text-accent-dim);
     letter-spacing: 0.04em;
-    line-height: 1.4;
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .log-meta {
+    color: var(--text-accent-dim);
+  }
+
+  .testimonial-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: oklch(0.88 0.06 62);
   }
 
   /* ── Section bottom rule ── */
@@ -305,6 +171,19 @@ import Cursor from '../Cursor.astro';
     background: oklch(0.76 0.18 62 / 0.20);
     margin-top: var(--space-20);
     max-width: 100%;
+  }
+
+  /* ── Desktop sticky scroll ── */
+  @media (min-width: 769px) {
+    .empathy-col {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 160px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-self: start;
+    }
   }
 
   /* ── Responsive ── */

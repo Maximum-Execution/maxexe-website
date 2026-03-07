@@ -3,15 +3,16 @@ interface Props {
   id?: string;
   bg?: 'dark' | 'base' | 'light';
   class?: string;
+  overflow?: 'hidden' | 'visible';
 }
-const { id, bg = 'dark', class: className } = Astro.props;
+const { id, bg = 'dark', class: className, overflow = 'hidden' } = Astro.props;
 const bgMap = {
   dark: 'var(--bg-dark)',
   base: 'var(--bg)',
   light: 'var(--bg-light)'
 };
 ---
-<section id={id} class:list={['section-wrap', 'reveal', className]} style={`background: ${bgMap[bg]};`}>
+<section id={id} class:list={['section-wrap', className]} style={`background: ${bgMap[bg]}; overflow: ${overflow};`}>
   <div class="section-inner">
     <slot />
   </div>
@@ -20,7 +21,6 @@ const bgMap = {
 <style>
   .section-wrap {
     padding: var(--space-20) var(--space-8);
-    overflow: hidden;
   }
   .section-inner {
     max-width: var(--container-xl);

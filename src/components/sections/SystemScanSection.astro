@@ -7,12 +7,14 @@ import Button from '../Button.astro';
   <!-- Section label -->
   <p class="section-label">// 06 YOUR SYSTEM, SCANNED</p>
 
+  <h2 class="scan-headline">
+    <span>This is your business under the hood.</span>
+    <span>And after we fix it.</span>
+  </h2>
+
   <!-- Bridge copy -->
   <p class="bridge-copy">
-    Most disconnected systems don&rsquo;t announce themselves. They hide in the
-    gap between your tools. This is what a diagnostic scan finds in a typical
-    10-person business &mdash; and what the same business looks like after the
-    problems are fixed.
+    Most disconnected systems don&rsquo;t announce themselves. They hide in the gap between your tools. This is what a diagnostic scan finds in a typical 10-person business. And what the same business looks like after the problems are fixed.
   </p>
 
   <!-- Terminal panels grid -->
@@ -28,7 +30,7 @@ import Button from '../Button.astro';
 
         <p class="panel-section-title">TOOLS DETECTED:</p>
 
-        <div class="scan-lines">
+        <div class="scan-lines" data-animate="typewriter">
           <p class="scan-line"><span class="badge-warn">[WARN]</span> CRM <span class="dots">.......................</span> not connected to website</p>
           <p class="scan-line"><span class="badge-err">[ERR]</span>&nbsp; Website forms <span class="dots">...........</span> not syncing to CRM</p>
           <p class="scan-line"><span class="badge-warn">[WARN]</span> Invoicing <span class="dots">...............</span> manual entry required</p>
@@ -89,7 +91,7 @@ import Button from '../Button.astro';
 
         <p class="panel-section-title">SYSTEM STATUS:</p>
 
-        <div class="scan-lines">
+        <div class="scan-lines" data-animate="typewriter">
           <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Website &harr; CRM <span class="dots">.............</span> real-time sync active</p>
           <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Lead forms <span class="dots">..............</span> automated pipeline</p>
           <p class="scan-line"><span class="badge-ok">[OK]</span>&nbsp; Inventory <span class="dots">...............</span> live on website</p>
@@ -132,13 +134,51 @@ import Button from '../Button.astro';
 
   <!-- CTA -->
   <div class="scan-cta">
-    <Button variant="primary" href="#diagnostic">RUN YOUR OWN SCAN &mdash; FREE DIAGNOSTIC &gt;</Button>
+    <Button variant="primary" href="#diagnostic">RUN YOUR OWN SCAN // FREE DIAGNOSTIC &gt;</Button>
     <p class="cta-support">// See where your stack breaks down</p>
   </div>
 
   <!-- Section bottom rule -->
   <div class="section-bottom-rule" aria-hidden="true"></div>
 </SectionWrapper>
+
+<script>
+  // Typewriter reveal for scan lines
+  const scanBlocks = document.querySelectorAll('.scan-lines[data-animate="typewriter"]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  scanBlocks.forEach(block => {
+    const lines = block.querySelectorAll('.scan-line');
+
+    if (prefersReduced) {
+      lines.forEach(line => line.classList.add('line-revealed'));
+      return;
+    }
+
+    // Hide lines initially
+    lines.forEach(line => {
+      line.style.clipPath = 'inset(0 100% 0 0)';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const blockLines = entry.target.querySelectorAll('.scan-line');
+          blockLines.forEach((line, i) => {
+            setTimeout(() => {
+              line.style.transition = 'clip-path 400ms steps(20, end)';
+              line.style.clipPath = 'inset(0 0% 0 0)';
+              line.classList.add('line-revealed');
+            }, i * 80);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(block);
+  });
+</script>
 
 <style>
   /* Amber divider rule at top */
@@ -155,6 +195,24 @@ import Button from '../Button.astro';
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: var(--space-6);
+  }
+
+  /* Scan headline */
+  .scan-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    margin-bottom: var(--space-8);
+  }
+
+  .scan-headline span {
+    display: block;
+  }
+
+  .scan-headline span:last-child {
+    color: var(--text-accent-muted);
   }
 
   /* Bridge copy */
@@ -193,13 +251,13 @@ import Button from '../Button.astro';
     padding: var(--space-6);
   }
 
-  /* Before panel — muted border */
+  /* Before panel - muted border */
   .panel-before {
     border-color: oklch(0.76 0.18 62 / 0.2);
     justify-self: end;
   }
 
-  /* After panel — full amber border + glow */
+  /* After panel - full amber border + glow */
   .panel-after {
     border-color: oklch(0.76 0.18 62 / 1);
     box-shadow: 0 0 32px oklch(0.75 0.18 85 / 0.12);
@@ -376,6 +434,15 @@ import Button from '../Button.astro';
     max-width: 100%;
   }
 
+  /* Typewriter animation for scan lines */
+  .scan-line {
+    will-change: clip-path;
+  }
+
+  .scan-line.line-revealed {
+    clip-path: inset(0 0% 0 0) !important;
+  }
+
   /* ── Responsive: tablet ── */
   @media (max-width: 1024px) {
     .scan-grid {
@@ -407,6 +474,10 @@ import Button from '../Button.astro';
 
   /* ── Responsive: mobile small ── */
   @media (max-width: 640px) {
+    .scan-headline {
+      font-size: var(--step-3);
+    }
+
     .bridge-copy {
       font-size: 17px;
     }
@@ -425,6 +496,10 @@ import Button from '../Button.astro';
   }
 
   @media (max-width: 480px) {
+    .scan-headline {
+      font-size: var(--step-2);
+    }
+
     .bridge-copy {
       font-size: 16px;
     }

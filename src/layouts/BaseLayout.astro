@@ -7,7 +7,7 @@ interface Props {
   description?: string;
 }
 const {
-  title = 'MAX.EXE — We Debug the Problem',
+  title = 'MAX.EXE | We Debug the Problem',
   description = 'Maximum Execution builds websites, apps, and AI tools for small businesses. One person. Full stack. No handoffs.'
 } = Astro.props;
 ---
@@ -29,12 +29,12 @@ const {
     </main>
 
     <script>
-      // Scroll reveal — IntersectionObserver
-      const reveals = document.querySelectorAll('.reveal');
+      // Targeted animation observer // only elements with data-animate opt in
+      const animateEls = document.querySelectorAll('[data-animate]');
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (prefersReduced) {
-        reveals.forEach(el => el.classList.add('revealed'));
+        animateEls.forEach(el => el.classList.add('revealed'));
       } else {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -45,7 +45,7 @@ const {
           });
         }, { threshold: 0.2 });
 
-        reveals.forEach(el => observer.observe(el));
+        animateEls.forEach(el => observer.observe(el));
       }
 
       // Smooth scroll for anchor links
