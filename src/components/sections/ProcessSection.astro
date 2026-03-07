@@ -14,13 +14,13 @@ import Button from '../Button.astro';
   </h2>
 
   <!-- Pipeline -->
-  <div class="pipeline" data-animate>
+  <ol class="pipeline" data-animate>
     <!-- Pipeline connecting line (desktop: horizontal, mobile: vertical) -->
     <div class="pipeline-line" aria-hidden="true"></div>
 
     <!-- Step 01 -->
-    <div class="step">
-      <div class="step-node-area">
+    <li class="step">
+      <div class="step-node-area" aria-hidden="true">
         <span class="step-num-label">Step 01</span>
         <div class="step-node">01</div>
       </div>
@@ -35,11 +35,11 @@ import Button from '../Button.astro';
         </p>
         <p class="step-outcome">&gt; OUTCOME: A written problem statement you can read and verify.</p>
       </div>
-    </div>
+    </li>
 
     <!-- Step 02 -->
-    <div class="step">
-      <div class="step-node-area">
+    <li class="step">
+      <div class="step-node-area" aria-hidden="true">
         <span class="step-num-label">Step 02</span>
         <div class="step-node">02</div>
       </div>
@@ -53,11 +53,11 @@ import Button from '../Button.astro';
         </p>
         <p class="step-outcome">&gt; OUTCOME: Production-ready code. Documented. Tested. Deployed.</p>
       </div>
-    </div>
+    </li>
 
     <!-- Step 03 -->
-    <div class="step">
-      <div class="step-node-area">
+    <li class="step">
+      <div class="step-node-area" aria-hidden="true">
         <span class="step-num-label">Step 03</span>
         <div class="step-node">03</div>
       </div>
@@ -72,8 +72,8 @@ import Button from '../Button.astro';
         </p>
         <p class="step-outcome">&gt; OUTCOME: Your code. Your system. Complete ownership.</p>
       </div>
-    </div>
-  </div>
+    </li>
+  </ol>
 
   <!-- Bridge -->
   <div class="bridge">
@@ -136,6 +136,9 @@ import Button from '../Button.astro';
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-10);
     margin-bottom: var(--space-16);
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
   }
 
   /* Horizontal connecting line (desktop) */

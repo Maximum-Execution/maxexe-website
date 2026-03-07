@@ -36,19 +36,69 @@ import Cursor from './Cursor.astro';
   const hamburger = document.querySelector('.hamburger');
   const mobileNav = document.getElementById('mobile-nav');
 
+  function openMenu() {
+    mobileNav?.classList.add('open');
+    hamburger?.setAttribute('aria-expanded', 'true');
+    mobileNav?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // Focus first link in mobile nav
+    const firstLink = mobileNav?.querySelector('a');
+    firstLink?.focus();
+  }
+
+  function closeMenu() {
+    mobileNav?.classList.remove('open');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    mobileNav?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    hamburger?.focus();
+  }
+
   hamburger?.addEventListener('click', () => {
-    const isOpen = mobileNav?.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    mobileNav?.setAttribute('aria-hidden', String(!isOpen));
+    const isOpen = mobileNav?.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
   // Close mobile nav on link click
   mobileNav?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      hamburger?.setAttribute('aria-expanded', 'false');
-      mobileNav.setAttribute('aria-hidden', 'true');
-    });
+    link.addEventListener('click', () => closeMenu());
+  });
+
+  // Focus trap within mobile nav
+  mobileNav?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMenu();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+
+    const focusable = mobileNav.querySelectorAll('a');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      hamburger?.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      hamburger?.focus();
+    }
+  });
+
+  // Escape from hamburger button closes menu
+  hamburger?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav?.classList.contains('open')) {
+      closeMenu();
+    }
+    // Tab from hamburger into open menu
+    if (e.key === 'Tab' && !e.shiftKey && mobileNav?.classList.contains('open')) {
+      e.preventDefault();
+      mobileNav?.querySelector('a')?.focus();
+    }
   });
 
   // Logo scroll animation

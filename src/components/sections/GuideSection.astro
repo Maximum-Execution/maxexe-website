@@ -41,32 +41,32 @@ import SectionWrapper from '../SectionWrapper.astro';
     <!-- RIGHT column: testimonials -->
     <div class="proof-col">
       <div class="testimonials">
-        <div class="testimonial">
+        <blockquote class="testimonial">
           <p class="testimonial-header">
-            <span class="log-meta">Marcus T. // Commercial Cleaning Co. // Richmond, VA</span>
+            <cite class="log-meta">Marcus T. // Commercial Cleaning Co. // Richmond, VA</cite>
           </p>
           <p class="testimonial-body">
-            &gt; "I'd paid two different agencies to rebuild our site over three years. Both times I ended up with something that looked fine but still didn't bring in clients. Spencer ran the diagnostic first, and it identified exactly why. Our message was buried and there was no follow-up system. Six weeks later we had a site that generated 11 qualified leads in the first month. That had never happened before."
+            "I'd paid two different agencies to rebuild our site over three years. Both times I ended up with something that looked fine but still didn't bring in clients. Spencer ran the diagnostic first, and it identified exactly why. Our message was buried and there was no follow-up system. Six weeks later we had a site that generated 11 qualified leads in the first month. That had never happened before."
           </p>
-        </div>
+        </blockquote>
 
-        <div class="testimonial">
+        <blockquote class="testimonial">
           <p class="testimonial-header">
-            <span class="log-meta">Priya S. // HR Consulting Practice // Charlotte, NC</span>
+            <cite class="log-meta">Priya S. // HR Consulting Practice // Charlotte, NC</cite>
           </p>
           <p class="testimonial-body">
-            &gt; "I expected this to take two or three months. My site was live in eight days. More importantly, I actually understood what was built and why. I got documentation I could read, not a codebase I'd never open. We booked three new clients in the first two weeks from form submissions alone. I didn't even know the form was being used."
+            "I expected this to take two or three months. My site was live in eight days. More importantly, I actually understood what was built and why. I got documentation I could read, not a codebase I'd never open. We booked three new clients in the first two weeks from form submissions alone. I didn't even know the form was being used."
           </p>
-        </div>
+        </blockquote>
 
-        <div class="testimonial">
+        <blockquote class="testimonial">
           <p class="testimonial-header">
-            <span class="log-meta">Daniel W. // Residential Property Mgmt // Raleigh, NC</span>
+            <cite class="log-meta">Daniel W. // Residential Property Mgmt // Raleigh, NC</cite>
           </p>
           <p class="testimonial-body">
-            &gt; "I came to the diagnostic not knowing if I needed a new website, better software, or something else entirely. The questions forced me to think about my business differently. By the end I had a clearer picture of where I was losing people than I'd had in two years of running it. We ended up building a client intake app that replaced four separate tools. My team hasn't complained about our software once since it launched."
+            "I came to the diagnostic not knowing if I needed a new website, better software, or something else entirely. The questions forced me to think about my business differently. By the end I had a clearer picture of where I was losing people than I'd had in two years of running it. We ended up building a client intake app that replaced four separate tools. My team hasn't complained about our software once since it launched."
           </p>
-        </div>
+        </blockquote>
       </div>
     </div>
   </div>
@@ -141,6 +141,7 @@ import SectionWrapper from '../SectionWrapper.astro';
     border: 1px solid oklch(0.76 0.18 62 / 0.15);
     border-radius: var(--radius-sm);
     padding: var(--space-5) var(--space-6);
+    margin: 0;
   }
 
   .testimonial-header {
@@ -156,6 +157,7 @@ import SectionWrapper from '../SectionWrapper.astro';
 
   .log-meta {
     color: var(--text-accent-dim);
+    font-style: normal;
   }
 
   .testimonial-body {
