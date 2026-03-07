@@ -1,0 +1,1402 @@
+---
+import '../styles/global.css';
+---
+<html lang="en" data-theme="phosphor-dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Business Diagnostic | MAXIMUM EXECUTION</title>
+    <meta name="description" content="Free diagnostic tool. 5 minutes. Find out where your business is losing ground and what to build first." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://maximumexecution.com/diagnostic/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#1a110a" />
+    <link rel="preload" href="/fonts/GeistSans.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://maximumexecution.com/diagnostic/" />
+    <meta property="og:title" content="Business Diagnostic | MAXIMUM EXECUTION" />
+    <meta property="og:description" content="Free diagnostic tool. 5 minutes. Find out where your business is losing ground and what to build first." />
+    <meta property="og:image" content="https://maximumexecution.com/og-image.png" />
+    <meta property="og:site_name" content="MAXIMUM EXECUTION" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Business Diagnostic | MAXIMUM EXECUTION" />
+    <meta name="twitter:description" content="Free diagnostic tool. 5 minutes. Find out where your business is losing ground and what to build first." />
+    <meta name="twitter:image" content="https://maximumexecution.com/og-image.png" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "MAXIMUM EXECUTION",
+      "url": "https://maximumexecution.com/",
+      "description": "Free diagnostic tool. 5 minutes. Find out where your business is losing ground and what to build first.",
+      "founder": { "@type": "Person", "name": "Spencer Bennett", "jobTitle": "Creative Technologist" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Richmond", "addressRegion": "VA", "addressCountry": "US" },
+      "areaServed": "US",
+      "serviceType": ["Web Design", "Web Development", "Custom Software Development"]
+    })} />
+  </head>
+  <body class="min-h-screen bg-base-100 text-base-content">
+    <main id="main-content">
+      <div class="mx-auto max-w-4xl px-4 pt-4 sm:px-6 lg:px-8">
+        <a href="/" class="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-base-content/60 transition-colors duration-200 hover:text-primary">
+          <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to home
+        </a>
+      </div>
+      <section class="diagnostic-section relative min-h-dvh">
+        <div class="pointer-events-none absolute inset-0 z-10" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, oklch(0 0 0 / 0.03) 2px, oklch(0 0 0 / 0.03) 4px);" aria-hidden="true"></div>
+        <div class="relative z-20 flex min-h-dvh items-center justify-center px-4 py-16">
+          <div id="diagnostic-root" class="w-full max-w-2xl transition-opacity duration-150" role="region" aria-label="Business diagnostic assessment" aria-live="polite">
+            <p class="font-mono text-sm text-phosphor-dim">[DIAGNOSTIC TOOL]</p>
+            <p class="mt-2 text-base-content/60">Interactive assessment // loading...</p>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        // ============================================================
+        // MAX.EXE Business Diagnostic Tool
+        // State-machine driven assessment with branching paths
+        // ============================================================
+
+        // ------------------------------------------------------------
+        // 1. QUESTION DEFINITIONS (scored questions only)
+        // ------------------------------------------------------------
+        const QUESTIONS = {
+          W1: {
+            dimension: "ONLINE PRESENCE",
+            skipScore: 1,
+            question: "A stranger lands on your homepage for the first time. In five seconds, can they tell exactly what you do, who it\u2019s for, and what to do next?",
+            options: [
+              { label: "Yes. People tell me the site is clear and they understood it immediately.", value: "A", score: 3 },
+              { label: "Probably the general idea, but I\u2019m not sure they\u2019d know what to do next.", value: "B", score: 2 },
+              { label: "Honestly, no. My homepage is more about who we are than what we do for the client.", value: "C", score: 1 },
+            ],
+          },
+          W2: {
+            dimension: "ONLINE PRESENCE",
+            skipScore: 1,
+            question: "In the last 90 days, how many real leads came from your website without you personally chasing them?",
+            options: [
+              { label: "Consistent inbound. My site generates qualified interest on its own.", value: "A", score: 3 },
+              { label: "A few, but most business still comes from referrals or me reaching out personally.", value: "B", score: 2 },
+              { label: "None I can point to. The site exists but doesn\u2019t bring in work.", value: "C", score: 1 },
+            ],
+          },
+          W3: {
+            dimension: "ONLINE PRESENCE",
+            skipScore: 2,
+            question: "When someone shows interest in your business, what happens next on your end?",
+            options: [
+              { label: "A documented system handles it. Automated follow-up, a lead magnet, a sequence. It runs without me.", value: "A", score: 3 },
+              { label: "I follow up personally when I remember or when it feels urgent.", value: "B", score: 2 },
+              { label: "Nothing formal. If they want to work with me, they\u2019ll reach out.", value: "C", score: 1 },
+            ],
+          },
+          W4: {
+            dimension: "ONLINE PRESENCE",
+            skipScore: 2,
+            question: "If you had to explain what your business does to a complete stranger in one sentence, how confident are you that they\u2019d immediately get it?",
+            options: [
+              { label: "Very confident. I have a clear, practiced one-liner that lands every time.", value: "A", score: 3 },
+              { label: "I can explain it, but I usually ramble or get different reactions from different people.", value: "B", score: 2 },
+              { label: "I struggle with this. It\u2019s hard to explain what makes us different.", value: "C", score: 1 },
+            ],
+          },
+          S1a: {
+            dimension: "OPERATIONS",
+            skipScore: 1,
+            question: "How much of the work you do every week is truly custom, and how much is the same pattern repeated?",
+            options: [
+              { label: "Almost everything we do follows a repeatable process. The exceptions are rare.", value: "A", score: 3 },
+              { label: "There are patterns, but we still handle a lot of things manually or inconsistently.", value: "B", score: 2 },
+              { label: "Every project feels different. There\u2019s no standard process.", value: "C", score: 1 },
+            ],
+          },
+          S2a: {
+            dimension: "OPERATIONS",
+            skipScore: 1,
+            question: "If you disappeared for two weeks, would the business keep running at the same quality?",
+            options: [
+              { label: "Yes. The systems and documentation are strong enough that my team or a substitute could manage.", value: "A", score: 3 },
+              { label: "It would keep going, but quality would drop. Too many things depend on my judgment.", value: "B", score: 2 },
+              { label: "It would stall or fail. I am the business.", value: "C", score: 1 },
+            ],
+          },
+          S1b: {
+            dimension: "OPERATIONS",
+            skipScore: 1,
+            question: "When a customer interacts with your business, how much of that experience is consistent and intentional?",
+            options: [
+              { label: "Very consistent. We\u2019ve mapped the customer journey and most touchpoints are designed.", value: "A", score: 3 },
+              { label: "Somewhat consistent, but quality varies depending on who handles it or how busy we are.", value: "B", score: 2 },
+              { label: "Not very. Every customer gets a slightly different experience.", value: "C", score: 1 },
+            ],
+          },
+          S2b: {
+            dimension: "OPERATIONS",
+            skipScore: 1,
+            question: "How do you currently handle customer requests, appointments, or service inquiries?",
+            options: [
+              { label: "Through a centralized system. Scheduling, intake, and communication flow through one tool.", value: "A", score: 3 },
+              { label: "Through a mix of tools, emails, and phone calls. It works, but it\u2019s fragmented.", value: "B", score: 2 },
+              { label: "Manually. People call or email and we handle it as it comes.", value: "C", score: 1 },
+            ],
+          },
+          S1c: {
+            dimension: "OPERATIONS",
+            skipScore: 2,
+            question: "When you need to know how the business is performing, how quickly can you get the answer?",
+            options: [
+              { label: "Instantly. We have dashboards or reports that show key metrics in real time.", value: "A", score: 3 },
+              { label: "Within a day or two. I can pull the numbers but it takes some digging.", value: "B", score: 2 },
+              { label: "I mostly go on gut feeling. The data isn\u2019t organized or easily accessible.", value: "C", score: 1 },
+            ],
+          },
+          S2c: {
+            dimension: "OPERATIONS",
+            skipScore: 2,
+            question: "How confident are you in the accuracy of the data you use to make business decisions?",
+            options: [
+              { label: "Very confident. Our data is clean, current, and comes from reliable sources.", value: "A", score: 3 },
+              { label: "Somewhat confident, but I know there are gaps or things that aren\u2019t tracked well.", value: "B", score: 2 },
+              { label: "Not confident. I\u2019m often guessing or working from outdated information.", value: "C", score: 1 },
+            ],
+          },
+          S3: {
+            dimension: "OPERATIONS",
+            skipScore: 2,
+            question: "What\u2019s your biggest frustration with how your business runs day-to-day?",
+            options: [
+              { label: "Honestly, things run pretty well. I\u2019m looking to optimize, not fix.", value: "A", score: 3 },
+              { label: "There are a few bottlenecks that slow us down, but we manage.", value: "B", score: 2 },
+              { label: "It\u2019s chaotic. Too many things depend on me remembering or following up.", value: "C", score: 1 },
+            ],
+          },
+          WS1: {
+            dimension: "COMBINED",
+            skipScore: 2,
+            question: "When you think about what\u2019s holding your business back the most right now, where does the pain sit?",
+            options: [
+              { label: "Getting found and attracting new business. The work is great \u2014 people just don\u2019t know we exist.", value: "A", score: 3 },
+              { label: "Running the business efficiently. We\u2019re growing but the backend can\u2019t keep up.", value: "B", score: 2 },
+              { label: "Both equally. We need to be visible AND organized.", value: "C", score: 1 },
+            ],
+          },
+          AI2: {
+            dimension: "AI READINESS",
+            skipScore: 1,
+            question: "How comfortable is your team with adopting new technology?",
+            options: [
+              { label: "Very comfortable. We try new tools regularly and adapt quickly.", value: "A", score: 3 },
+              { label: "Somewhat comfortable, but we need guidance and time to adopt new systems.", value: "B", score: 2 },
+              { label: "Resistant or hesitant. Change is hard for us.", value: "C", score: 1 },
+            ],
+          },
+        };
+
+        // Helper: route to AI module or Q1 based on AI interest
+        function routeToAIOrQ1(state) {
+          return state.aiInterest === "yes" || state.aiInterest === "maybe" ? "AI1" : "Q1";
+        }
+
+        // ------------------------------------------------------------
+        // 2. SCREEN DEFINITIONS (routing logic)
+        // ------------------------------------------------------------
+        const SCREENS = {
+          // --- Opening ---
+          opening: {
+            id: "opening",
+            type: "splash",
+            body: "Five minutes. A handful of honest answers. A clear picture of where your business stands and what to build first.",
+            buttonLabel: "RUN THE DIAGNOSTIC",
+            getNextScreen: () => "G1",
+          },
+
+          // --- Gateway ---
+          G1: {
+            id: "G1",
+            type: "gateway",
+            question: "What\u2019s the main focus of what you need?",
+            options: [
+              { label: "A website that actually brings in business.", value: "W" },
+              { label: "Software or a system to run my business better.", value: "S" },
+              { label: "Both. I need the online presence and the backend.", value: "WS" },
+            ],
+            getNextScreen: () => "G2",
+          },
+          G2: {
+            id: "G2",
+            type: "gateway",
+            question: "Is AI or automation something you\u2019re interested in for your business?",
+            options: [
+              { label: "Yes. I want to use AI to save time or serve customers better.", value: "yes" },
+              { label: "Maybe. I\u2019m curious but not sure where it fits.", value: "maybe" },
+              { label: "Not right now. I just need the basics done well.", value: "no" },
+            ],
+            getNextScreen: (state) => {
+              if (state.path === "W") return "W0";
+              if (state.path === "S") return "S0";
+              return "WS0";
+            },
+          },
+
+          // --- Path W (Website) ---
+          W0: {
+            id: "W0",
+            type: "routing",
+            question: "Do you currently have a website for your business?",
+            dimension: "ONLINE PRESENCE",
+            options: [
+              { label: "Yes, I have a website.", value: "A" },
+              { label: "No, not yet.", value: "B" },
+            ],
+            getNextScreen: (_state, value) => (value === "B" ? "W0-skip" : "W1"),
+          },
+          "W0-skip": {
+            id: "W0-skip",
+            type: "routing",
+            question: "// We\u2019ll score this section as if you\u2019re starting from scratch.",
+            getNextScreen: () => "W4",
+          },
+          W1: { id: "W1", ...QUESTIONS.W1, type: "scored", getNextScreen: () => "W2" },
+          W2: { id: "W2", ...QUESTIONS.W2, type: "scored", getNextScreen: () => "W3" },
+          W3: { id: "W3", ...QUESTIONS.W3, type: "scored", getNextScreen: () => "W4" },
+          W4: { id: "W4", ...QUESTIONS.W4, type: "scored", getNextScreen: (state) => routeToAIOrQ1(state) },
+
+          // --- Path S (Software) ---
+          S0: {
+            id: "S0",
+            type: "routing",
+            question: "Which of these sounds most like your situation?",
+            dimension: "OPERATIONS",
+            options: [
+              { label: "I need to streamline or automate internal processes.", value: "A" },
+              { label: "I need a better system for managing customers or clients.", value: "B" },
+              { label: "I need better data, reporting, or decision-making tools.", value: "C" },
+            ],
+            getNextScreen: (_state, value) => {
+              if (value === "A") return "S1a";
+              if (value === "B") return "S1b";
+              return "S1c";
+            },
+          },
+          S1a: { id: "S1a", ...QUESTIONS.S1a, type: "scored", getNextScreen: () => "S2a" },
+          S2a: { id: "S2a", ...QUESTIONS.S2a, type: "scored", getNextScreen: () => "S3" },
+          S1b: { id: "S1b", ...QUESTIONS.S1b, type: "scored", getNextScreen: () => "S2b" },
+          S2b: { id: "S2b", ...QUESTIONS.S2b, type: "scored", getNextScreen: () => "S3" },
+          S1c: { id: "S1c", ...QUESTIONS.S1c, type: "scored", getNextScreen: () => "S2c" },
+          S2c: { id: "S2c", ...QUESTIONS.S2c, type: "scored", getNextScreen: () => "S3" },
+          S3: { id: "S3", ...QUESTIONS.S3, type: "scored", getNextScreen: (state) => routeToAIOrQ1(state) },
+
+          // --- Path WS (Both) ---
+          WS0: {
+            id: "WS0",
+            type: "routing",
+            question: "If you had to pick one to fix first, which would it be?",
+            dimension: "COMBINED",
+            options: [
+              { label: "The website. I need to be found first.", value: "A" },
+              { label: "The operations. Internal chaos is the bigger problem.", value: "B" },
+              { label: "They\u2019re equally urgent. I need both.", value: "C" },
+            ],
+            getNextScreen: (_state, value) => {
+              if (value === "A") return "WS-rA-W0";
+              if (value === "B") return "WS-rB-S0";
+              return "WS-rC-W0";
+            },
+          },
+
+          // --- WS Route A: Website first, then Software ---
+          "WS-rA-W0": {
+            id: "WS-rA-W0",
+            type: "routing",
+            question: "Do you currently have a website for your business?",
+            dimension: "ONLINE PRESENCE",
+            options: [
+              { label: "Yes, I have a website.", value: "A" },
+              { label: "No, not yet.", value: "B" },
+            ],
+            getNextScreen: (_state, value) => (value === "B" ? "WS-rA-W0-skip" : "WS-rA-W1"),
+          },
+          "WS-rA-W0-skip": {
+            id: "WS-rA-W0-skip",
+            type: "routing",
+            question: "// We\u2019ll score the website section as if you\u2019re starting from scratch.",
+            getNextScreen: () => "WS-rA-W4",
+          },
+          "WS-rA-W1": { id: "WS-rA-W1", ...QUESTIONS.W1, type: "scored", getNextScreen: () => "WS-rA-W2" },
+          "WS-rA-W2": { id: "WS-rA-W2", ...QUESTIONS.W2, type: "scored", getNextScreen: () => "WS-rA-W3" },
+          "WS-rA-W3": { id: "WS-rA-W3", ...QUESTIONS.W3, type: "scored", getNextScreen: () => "WS-rA-W4" },
+          "WS-rA-W4": { id: "WS-rA-W4", ...QUESTIONS.W4, type: "scored", getNextScreen: () => "WS-rA-S0" },
+          "WS-rA-S0": {
+            id: "WS-rA-S0",
+            type: "routing",
+            question: "Which of these sounds most like your situation?",
+            dimension: "OPERATIONS",
+            options: [
+              { label: "I need to streamline or automate internal processes.", value: "A" },
+              { label: "I need a better system for managing customers or clients.", value: "B" },
+              { label: "I need better data, reporting, or decision-making tools.", value: "C" },
+            ],
+            getNextScreen: (_state, value) => {
+              if (value === "A") return "WS-rA-S1a";
+              if (value === "B") return "WS-rA-S1b";
+              return "WS-rA-S1c";
+            },
+          },
+          "WS-rA-S1a": { id: "WS-rA-S1a", ...QUESTIONS.S1a, type: "scored", getNextScreen: () => "WS-rA-S2a" },
+          "WS-rA-S2a": { id: "WS-rA-S2a", ...QUESTIONS.S2a, type: "scored", getNextScreen: () => "WS-rA-S3" },
+          "WS-rA-S1b": { id: "WS-rA-S1b", ...QUESTIONS.S1b, type: "scored", getNextScreen: () => "WS-rA-S2b" },
+          "WS-rA-S2b": { id: "WS-rA-S2b", ...QUESTIONS.S2b, type: "scored", getNextScreen: () => "WS-rA-S3" },
+          "WS-rA-S1c": { id: "WS-rA-S1c", ...QUESTIONS.S1c, type: "scored", getNextScreen: () => "WS-rA-S2c" },
+          "WS-rA-S2c": { id: "WS-rA-S2c", ...QUESTIONS.S2c, type: "scored", getNextScreen: () => "WS-rA-S3" },
+          "WS-rA-S3": { id: "WS-rA-S3", ...QUESTIONS.S3, type: "scored", getNextScreen: () => "WS1" },
+
+          // --- WS Route B: Software first, then Website ---
+          "WS-rB-S0": {
+            id: "WS-rB-S0",
+            type: "routing",
+            question: "Which of these sounds most like your situation?",
+            dimension: "OPERATIONS",
+            options: [
+              { label: "I need to streamline or automate internal processes.", value: "A" },
+              { label: "I need a better system for managing customers or clients.", value: "B" },
+              { label: "I need better data, reporting, or decision-making tools.", value: "C" },
+            ],
+            getNextScreen: (_state, value) => {
+              if (value === "A") return "WS-rB-S1a";
+              if (value === "B") return "WS-rB-S1b";
+              return "WS-rB-S1c";
+            },
+          },
+          "WS-rB-S1a": { id: "WS-rB-S1a", ...QUESTIONS.S1a, type: "scored", getNextScreen: () => "WS-rB-S2a" },
+          "WS-rB-S2a": { id: "WS-rB-S2a", ...QUESTIONS.S2a, type: "scored", getNextScreen: () => "WS-rB-S3" },
+          "WS-rB-S1b": { id: "WS-rB-S1b", ...QUESTIONS.S1b, type: "scored", getNextScreen: () => "WS-rB-S2b" },
+          "WS-rB-S2b": { id: "WS-rB-S2b", ...QUESTIONS.S2b, type: "scored", getNextScreen: () => "WS-rB-S3" },
+          "WS-rB-S1c": { id: "WS-rB-S1c", ...QUESTIONS.S1c, type: "scored", getNextScreen: () => "WS-rB-S2c" },
+          "WS-rB-S2c": { id: "WS-rB-S2c", ...QUESTIONS.S2c, type: "scored", getNextScreen: () => "WS-rB-S3" },
+          "WS-rB-S3": { id: "WS-rB-S3", ...QUESTIONS.S3, type: "scored", getNextScreen: () => "WS-rB-W0" },
+          "WS-rB-W0": {
+            id: "WS-rB-W0",
+            type: "routing",
+            question: "Do you currently have a website for your business?",
+            dimension: "ONLINE PRESENCE",
+            options: [
+              { label: "Yes, I have a website.", value: "A" },
+              { label: "No, not yet.", value: "B" },
+            ],
+            getNextScreen: (_state, value) => (value === "B" ? "WS-rB-W0-skip" : "WS-rB-W1"),
+          },
+          "WS-rB-W0-skip": {
+            id: "WS-rB-W0-skip",
+            type: "routing",
+            question: "// We\u2019ll score the website section as if you\u2019re starting from scratch.",
+            getNextScreen: () => "WS-rB-W4",
+          },
+          "WS-rB-W1": { id: "WS-rB-W1", ...QUESTIONS.W1, type: "scored", getNextScreen: () => "WS-rB-W2" },
+          "WS-rB-W2": { id: "WS-rB-W2", ...QUESTIONS.W2, type: "scored", getNextScreen: () => "WS-rB-W3" },
+          "WS-rB-W3": { id: "WS-rB-W3", ...QUESTIONS.W3, type: "scored", getNextScreen: () => "WS-rB-W4" },
+          "WS-rB-W4": { id: "WS-rB-W4", ...QUESTIONS.W4, type: "scored", getNextScreen: () => "WS1" },
+
+          // --- WS Route C: Equal priority (website then software) ---
+          "WS-rC-W0": {
+            id: "WS-rC-W0",
+            type: "routing",
+            question: "Do you currently have a website for your business?",
+            dimension: "ONLINE PRESENCE",
+            options: [
+              { label: "Yes, I have a website.", value: "A" },
+              { label: "No, not yet.", value: "B" },
+            ],
+            getNextScreen: (_state, value) => (value === "B" ? "WS-rC-W0-skip" : "WS-rC-W1"),
+          },
+          "WS-rC-W0-skip": {
+            id: "WS-rC-W0-skip",
+            type: "routing",
+            question: "// We\u2019ll score the website section as if you\u2019re starting from scratch.",
+            getNextScreen: () => "WS-rC-W4",
+          },
+          "WS-rC-W1": { id: "WS-rC-W1", ...QUESTIONS.W1, type: "scored", getNextScreen: () => "WS-rC-W2" },
+          "WS-rC-W2": { id: "WS-rC-W2", ...QUESTIONS.W2, type: "scored", getNextScreen: () => "WS-rC-W3" },
+          "WS-rC-W3": { id: "WS-rC-W3", ...QUESTIONS.W3, type: "scored", getNextScreen: () => "WS-rC-W4" },
+          "WS-rC-W4": { id: "WS-rC-W4", ...QUESTIONS.W4, type: "scored", getNextScreen: () => "WS-rC-S0" },
+          "WS-rC-S0": {
+            id: "WS-rC-S0",
+            type: "routing",
+            question: "Which of these sounds most like your situation?",
+            dimension: "OPERATIONS",
+            options: [
+              { label: "I need to streamline or automate internal processes.", value: "A" },
+              { label: "I need a better system for managing customers or clients.", value: "B" },
+              { label: "I need better data, reporting, or decision-making tools.", value: "C" },
+            ],
+            getNextScreen: (_state, value) => {
+              if (value === "A") return "WS-rC-S1a";
+              if (value === "B") return "WS-rC-S1b";
+              return "WS-rC-S1c";
+            },
+          },
+          "WS-rC-S1a": { id: "WS-rC-S1a", ...QUESTIONS.S1a, type: "scored", getNextScreen: () => "WS-rC-S2a" },
+          "WS-rC-S2a": { id: "WS-rC-S2a", ...QUESTIONS.S2a, type: "scored", getNextScreen: () => "WS-rC-S3" },
+          "WS-rC-S1b": { id: "WS-rC-S1b", ...QUESTIONS.S1b, type: "scored", getNextScreen: () => "WS-rC-S2b" },
+          "WS-rC-S2b": { id: "WS-rC-S2b", ...QUESTIONS.S2b, type: "scored", getNextScreen: () => "WS-rC-S3" },
+          "WS-rC-S1c": { id: "WS-rC-S1c", ...QUESTIONS.S1c, type: "scored", getNextScreen: () => "WS-rC-S2c" },
+          "WS-rC-S2c": { id: "WS-rC-S2c", ...QUESTIONS.S2c, type: "scored", getNextScreen: () => "WS-rC-S3" },
+          "WS-rC-S3": { id: "WS-rC-S3", ...QUESTIONS.S3, type: "scored", getNextScreen: () => "WS1" },
+
+          // --- WS Final ---
+          WS1: { id: "WS1", ...QUESTIONS.WS1, type: "scored", getNextScreen: (state) => routeToAIOrQ1(state) },
+
+          // --- AI Module ---
+          AI1: {
+            id: "AI1",
+            type: "gateway",
+            question: "What interests you most about AI for your business?",
+            dimension: "AI READINESS",
+            options: [
+              { label: "Automating tasks that take too much of my time.", value: "A" },
+              { label: "Giving customers a better, faster experience.", value: "B" },
+              { label: "Getting insights from data I\u2019m not using.", value: "C" },
+            ],
+            getNextScreen: () => "AI2",
+          },
+          AI2: { id: "AI2", ...QUESTIONS.AI2, type: "scored", getNextScreen: () => "Q1" },
+
+          // --- Qualification Layer ---
+          Q1: {
+            id: "Q1",
+            type: "text-input",
+            question: "Tell us about your business in a few sentences.",
+            placeholder: "What do you do, who do you serve, and what makes you different?",
+            buttonLabel: "CONTINUE",
+            getNextScreen: () => "Q1-type",
+          },
+          "Q1-type": {
+            id: "Q1-type",
+            type: "gateway",
+            question: "Which best describes your business?",
+            dimension: "CONTEXT",
+            options: [
+              { label: "Brick-and-mortar / local service", value: "A" },
+              { label: "Online business / e-commerce", value: "B" },
+              { label: "Professional services / consulting", value: "C" },
+              { label: "Nonprofit / community organization", value: "D" },
+            ],
+            getNextScreen: () => "Q2",
+          },
+          Q2: {
+            id: "Q2",
+            type: "gateway",
+            question: "How soon do you need this built?",
+            dimension: "TIMELINE",
+            options: [
+              { label: "Immediately. This is holding us back right now.", value: "A" },
+              { label: "Within the next 1\u20133 months.", value: "B" },
+              { label: "No rush. I\u2019m planning ahead.", value: "C" },
+            ],
+            getNextScreen: () => "Q3",
+          },
+          Q3: {
+            id: "Q3",
+            type: "gateway",
+            question: "Where are you in the decision process?",
+            dimension: "DECISION STAGE",
+            options: [
+              { label: "Ready to move. I just need the right partner.", value: "A" },
+              { label: "Comparing options. I\u2019m talking to a few people.", value: "B" },
+              { label: "Just exploring. I want to understand what\u2019s possible.", value: "C" },
+            ],
+            getNextScreen: () => "Q4",
+          },
+          Q4: {
+            id: "Q4",
+            type: "text-input",
+            question: "If time and money were not an issue, what would be the ultimate outcome for this project?",
+            placeholder: "No limits. No budget. No timeline. What does the dream version look like?",
+            buttonLabel: "SEE MY RESULTS",
+            getNextScreen: () => "email-gate",
+          },
+
+          // --- Email Gate ---
+          "email-gate": {
+            id: "email-gate",
+            type: "email-gate",
+            buttonLabel: "SEE MY RESULTS",
+            getNextScreen: () => "loading",
+          },
+
+          // --- Loading ---
+          loading: {
+            id: "loading",
+            type: "loading",
+            getNextScreen: () => "results",
+          },
+
+          // --- Results ---
+          results: {
+            id: "results",
+            type: "results",
+          },
+        };
+
+        // ------------------------------------------------------------
+        // 3. SCORE TIERS & RESULTS COPY
+        // ------------------------------------------------------------
+        const W_TIERS = { 10: "high", 11: "high", 12: "high", 7: "mid", 8: "mid", 9: "mid", 4: "low", 5: "low", 6: "low", 0: "critical", 1: "critical", 2: "critical", 3: "critical" };
+        const S_TIERS = { 8: "high", 9: "high", 5: "mid", 6: "mid", 7: "mid", 0: "low", 1: "low", 2: "low", 3: "low", 4: "low" };
+        const W_MAX_SCORE = 12;
+        const S_MAX_SCORE = 9;
+
+        const RESULTS_COPY = {
+          W: {
+            low: {
+              headline: "Your website is costing you business.",
+              body: "Based on your answers, your online presence has significant gaps in clarity, lead generation, and follow-up systems. Visitors are landing on your site and leaving without taking action. The good news: these are fixable problems with a clear, proven approach.",
+              buildDescription: "A conversion-focused website built on the StoryBrand framework. Clear messaging, a lead generation system, and automated follow-up sequences that turn visitors into customers.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+            mid: {
+              headline: "Your website is working, but leaving money on the table.",
+              body: "You have a foundation, but your site isn\u2019t converting at its potential. There are specific, identifiable gaps in messaging clarity or lead capture that are costing you qualified leads every week.",
+              buildDescription: "A strategic overhaul of your website\u2019s messaging and conversion architecture. Tighten the narrative, add lead capture systems, and build follow-up automation.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+            high: {
+              headline: "Your online presence is strong.",
+              body: "Your website is clear, generates leads, and has systems in place. You\u2019re in a strong position. The next step is optimization \u2014 refining what works and scaling what converts.",
+              buildDescription: "Advanced optimization: A/B testing, conversion rate improvements, expanded automation, and analytics-driven refinement.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+            critical: {
+              headline: "You\u2019re invisible online. That\u2019s the first problem to fix.",
+              body: "Without a website or with a site that isn\u2019t doing any work for you, you\u2019re relying entirely on word-of-mouth and personal outreach. That\u2019s a ceiling on your growth. A clear, well-built online presence is the foundation everything else builds on.",
+              buildDescription: "A complete website build from the ground up. Brand messaging, a site that communicates your value in five seconds, and lead capture that works while you sleep.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+          },
+          S: {
+            low: {
+              headline: "Your operations need serious attention.",
+              body: "The way your business runs day-to-day is creating friction, inconsistency, and missed opportunities. The problems you described aren\u2019t just annoyances \u2014 they\u2019re costing you real money and limiting your ability to grow.",
+              buildDescription: "Custom business software built around your actual workflow. We map your processes, identify what should be automated, and build a system that reduces manual work and eliminates bottlenecks.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+            mid: {
+              headline: "Your operations work, but they\u2019re holding you back.",
+              body: "You have systems in place, but they\u2019re fragmented or manual in key areas. The bottlenecks you\u2019re experiencing are solvable with the right tools and architecture.",
+              buildDescription: "Targeted software solutions for your biggest operational gaps. Centralized dashboards, automated workflows, or customer management systems tailored to how you actually work.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+            high: {
+              headline: "Your operations are solid.",
+              body: "Your business runs well. Systems are in place and things are mostly consistent. You\u2019re in a position to optimize and scale rather than fix foundational issues.",
+              buildDescription: "Advanced tooling: real-time dashboards, predictive analytics, deeper automation, and integrations that connect your existing systems.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+          },
+          WS: {
+            default: {
+              headline: "Your business has gaps on both fronts.",
+              body: "Your online presence and internal operations both need work. The biggest gap is in your {primaryGap} \u2014 that\u2019s where we\u2019d start. But the full picture requires addressing both sides to build a business that attracts customers and serves them well.",
+              buildDescription: "A phased approach: fix the most urgent gap first, then build out the other side. Website + operations, designed to work together from day one.",
+              ctaLabel: "EMAIL US TO GET STARTED",
+              ctaHref: "mailto:contact@maximumexecution.com",
+            },
+          },
+        };
+
+        const AI_MODIFIERS = {
+          "customer-facing": "You\u2019re interested in using AI to improve the customer experience. That\u2019s a high-impact area. We can build AI-powered tools that help your customers get faster answers, better recommendations, and a more personalized experience.",
+          internal: "You\u2019re looking at AI to streamline internal operations. Smart move. We can build AI systems that automate repetitive tasks, surface insights from your data, and free up your time for higher-value work.",
+          discovery: "You\u2019re curious about AI but not sure where it fits. That\u2019s exactly the right starting point. We\u2019ll identify the highest-impact AI opportunity based on your specific business and build a focused proof of concept.",
+          "low-readiness": "You\u2019re interested in AI, but your team may need support adopting new technology. We design AI integrations that are intuitive and require minimal behavior change, so adoption happens naturally.",
+        };
+
+        const SECONDARY_CTA_TEXT = "// We respond within 24 hours.";
+        const SECONDARY_CTA = { label: "[ VIEW ALL SERVICES > ]", href: "/#services" };
+
+        // ------------------------------------------------------------
+        // 4. STATE MANAGEMENT
+        // ------------------------------------------------------------
+        function createState() {
+          return {
+            screen: "opening",
+            path: null,
+            subPath: null,
+            aiInterest: null,
+            wsPriority: null,
+            answers: {},
+            history: [],
+            skipCount: 0,
+            businessDescription: "",
+            businessType: null,
+            ultimateOutcome: "",
+            contactName: "",
+            contactEmail: "",
+            contactCompany: "",
+          };
+        }
+
+        // Routing helpers
+        function pathFromG1(value) {
+          return { W: "W", S: "S", WS: "WS" }[value] || null;
+        }
+        function aiFromG2(value) {
+          return { yes: "yes", maybe: "maybe", no: "no" }[value] || null;
+        }
+        function subPathFromS0(value) {
+          return { A: "a", B: "b", C: "c" }[value] || null;
+        }
+        function priorityFromWS0(value) {
+          return { A: "A", B: "B", C: "C" }[value] || null;
+        }
+        function typeFromQ1Type(value) {
+          return { A: "local-service", B: "ecommerce", C: "professional-services", D: "nonprofit" }[value] || "other";
+        }
+
+        // Check if screen ID is a "skip" screen that auto-advances
+        function isSkipScreen(screenId) {
+          return screenId === "W0-skip" || screenId.endsWith("-W0-skip");
+        }
+
+        // State machine reducer
+        function reducer(state, action) {
+          switch (action.type) {
+            case "ANSWER": {
+              const next = { ...state };
+              next.answers = { ...next.answers, [action.screenId]: { value: action.value, score: action.score } };
+              if (action.screenId === "G1") next.path = pathFromG1(action.value);
+              if (action.screenId === "G2") next.aiInterest = aiFromG2(action.value);
+              if (action.screenId === "S0" || action.screenId.endsWith("-S0")) next.subPath = subPathFromS0(action.value);
+              if (action.screenId === "WS0") next.wsPriority = priorityFromWS0(action.value);
+              if (action.screenId === "Q1-type") next.businessType = typeFromQ1Type(action.value);
+              const screen = SCREENS[action.screenId];
+              if (screen?.getNextScreen) next.screen = screen.getNextScreen(next, action.value);
+              next.history = [...next.history, state.screen];
+              return next;
+            }
+            case "SKIP": {
+              const next = { ...state };
+              next.answers = { ...next.answers, [action.screenId]: { value: "skip", score: action.skipScore } };
+              next.skipCount = next.skipCount + 1;
+              const screen = SCREENS[action.screenId];
+              if (screen?.getNextScreen) next.screen = screen.getNextScreen(next);
+              next.history = [...next.history, state.screen];
+              return next;
+            }
+            case "TEXT_INPUT": {
+              const next = { ...state };
+              next.answers = { ...next.answers, [action.screenId]: { value: action.value } };
+              if (action.screenId === "Q1") next.businessDescription = action.value;
+              if (action.screenId === "Q4") next.ultimateOutcome = action.value;
+              const screen = SCREENS[action.screenId];
+              if (screen?.getNextScreen) next.screen = screen.getNextScreen(next);
+              next.history = [...next.history, state.screen];
+              return next;
+            }
+            case "EMAIL_SUBMIT": {
+              const next = { ...state };
+              next.contactName = action.name;
+              next.contactEmail = action.email;
+              if (action.company) next.contactCompany = action.company;
+              const screen = SCREENS["email-gate"];
+              if (screen?.getNextScreen) next.screen = screen.getNextScreen(next);
+              next.history = [...next.history, state.screen];
+              return next;
+            }
+            case "ADVANCE": {
+              const next = { ...state };
+              // W0-skip and WS variants: auto-score W1/W2/W3
+              if (isSkipScreen(action.screenId)) {
+                next.answers = {
+                  ...next.answers,
+                  W1: { value: "skip", score: 1 },
+                  W2: { value: "skip", score: 1 },
+                  W3: { value: "skip", score: 1 },
+                };
+                next.skipCount = next.skipCount + 3;
+              }
+              const screen = SCREENS[action.screenId];
+              if (screen?.getNextScreen) next.screen = screen.getNextScreen(next);
+              next.history = [...next.history, state.screen];
+              return next;
+            }
+            case "BACK": {
+              if (state.history.length === 0) return state;
+              const next = { ...state };
+              const prevScreen = next.history[next.history.length - 1];
+              next.history = next.history.slice(0, -1);
+              next.screen = prevScreen;
+              return next;
+            }
+            default:
+              return state;
+          }
+        }
+
+        // ------------------------------------------------------------
+        // 5. SCORING & ROUTING
+        // ------------------------------------------------------------
+        function calculatePathScore(state) {
+          const wKeys = ["W1", "W2", "W3", "W4"];
+          const sKeys = ["S1a", "S2a", "S1b", "S2b", "S1c", "S2c", "S3"];
+          let score = 0;
+          let max = 0;
+          const keys = state.path === "W" ? wKeys : state.path === "S" ? sKeys : [...wKeys, ...sKeys];
+          for (const key of keys) {
+            const answer = state.answers[key];
+            if (answer?.score != null) {
+              score += answer.score;
+              max += 3;
+            }
+          }
+          return { score, max: max || (state.path === "W" ? W_MAX_SCORE : state.path === "S" ? S_MAX_SCORE : W_MAX_SCORE + S_MAX_SCORE) };
+        }
+
+        function splitWSScore(state) {
+          let wScore = 0, wMax = 0, sScore = 0, sMax = 0;
+          for (const key of ["W1", "W2", "W3", "W4"]) {
+            const a = state.answers[key];
+            if (a?.score != null) { wScore += a.score; wMax += 3; }
+          }
+          for (const key of ["S1a", "S2a", "S1b", "S2b", "S1c", "S2c", "S3"]) {
+            const a = state.answers[key];
+            if (a?.score != null) { sScore += a.score; sMax += 3; }
+          }
+          return { w: { score: wScore, max: wMax || W_MAX_SCORE }, s: { score: sScore, max: sMax || S_MAX_SCORE } };
+        }
+
+        function getTier(state) {
+          const { score } = calculatePathScore(state);
+          if (state.path === "W") return W_TIERS[score] || "low";
+          if (state.path === "S") return S_TIERS[score] || "low";
+          // WS: use combined score mapped to W tiers
+          const combined = splitWSScore(state);
+          const wTier = W_TIERS[combined.w.score] || "low";
+          const sTier = S_TIERS[combined.s.score] || "low";
+          const tierOrder = { critical: 0, low: 1, mid: 2, high: 3 };
+          return tierOrder[wTier] < tierOrder[sTier] ? wTier : sTier;
+        }
+
+        function getFullResults(state) {
+          const pathScore = calculatePathScore(state);
+          const tier = getTier(state);
+          let result;
+          if (state.path === "W") {
+            result = RESULTS_COPY.W[tier] || RESULTS_COPY.W.low;
+          } else if (state.path === "S") {
+            result = RESULTS_COPY.S[tier] || RESULTS_COPY.S.low;
+          } else {
+            result = { ...RESULTS_COPY.WS.default };
+            const ws = splitWSScore(state);
+            const primaryGap = ws.w.score <= ws.s.score ? "online presence" : "operations";
+            result.body = result.body.replace("{primaryGap}", primaryGap);
+          }
+
+          // AI modifier
+          let aiModifier = null;
+          if (state.aiInterest === "yes" || state.aiInterest === "maybe") {
+            const ai1 = state.answers.AI1?.value;
+            const ai2 = state.answers.AI2?.value;
+            if (ai2 === "C") {
+              aiModifier = AI_MODIFIERS["low-readiness"];
+            } else if (ai1 === "A") {
+              aiModifier = AI_MODIFIERS.internal;
+            } else if (ai1 === "B") {
+              aiModifier = AI_MODIFIERS["customer-facing"];
+            } else {
+              aiModifier = AI_MODIFIERS.discovery;
+            }
+          }
+
+          return { result, aiModifier, pathScore, tier };
+        }
+
+        function getRoutingOutcome(state) {
+          const q2 = state.answers.Q2?.value;
+          const q3 = state.answers.Q3?.value;
+          if (q3 === "A" && (q2 === "A" || q2 === "B")) return "personal-outreach";
+          if (q3 === "C" || q2 === "C") return "long-nurture";
+          return "standard-nurture";
+        }
+
+        function calculateProgress(state) {
+          const totalEstimate = state.path === "WS" ? 18 : 12;
+          return Math.min(0.1 + (state.history.length / totalEstimate) * 0.9, 1);
+        }
+
+        // ------------------------------------------------------------
+        // 6. DOM HELPERS
+        // ------------------------------------------------------------
+        let currentProgress = 0.1;
+
+        function el(tag, className) {
+          const element = document.createElement(tag);
+          if (className) element.className = className;
+          return element;
+        }
+
+        function primaryButton(label) {
+          const btn = document.createElement("button");
+          btn.className = "btn btn-primary font-mono font-bold tracking-wider uppercase border-2 border-primary hover:border-accent hover:bg-accent hover:text-accent-content text-base px-8 py-3";
+          btn.type = "button";
+          btn.textContent = `[ ${label} > ]`;
+          return btn;
+        }
+
+        function primaryLink(label, href) {
+          const link = document.createElement("a");
+          link.className = "btn btn-primary font-mono font-bold tracking-wider uppercase border-2 border-primary hover:border-accent hover:bg-accent hover:text-accent-content text-base px-8 py-3";
+          link.href = href;
+          link.textContent = `[ ${label} > ]`;
+          return link;
+        }
+
+        function letterLabel(index) {
+          return String.fromCharCode(65 + index);
+        }
+
+        function prefersReducedMotion() {
+          return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        }
+
+        function delay(ms) {
+          return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        function pathDisplayName(path) {
+          return path === "W" ? "ONLINE PRESENCE" : path === "S" ? "OPERATIONS" : "COMBINED";
+        }
+
+        function tierBadge(tier) {
+          if (tier === "high") return { text: "[OK]", colorClass: "text-success" };
+          if (tier === "mid") return { text: "[WARN]", colorClass: "text-warning" };
+          return { text: "[ERR]", colorClass: "text-error" };
+        }
+
+        // ------------------------------------------------------------
+        // 7. RENDERERS
+        // ------------------------------------------------------------
+        function renderSplash(screen, _state, dispatch) {
+          const container = el("div");
+          const heading = el("h2", "font-pixel text-3xl sm:text-4xl text-primary mb-6");
+          heading.textContent = "BUSINESS DIAGNOSTIC_";
+          container.appendChild(heading);
+          if (screen.body) {
+            const body = el("p", "text-base-content/80 leading-relaxed mb-8");
+            body.textContent = screen.body;
+            container.appendChild(body);
+          }
+          const btn = primaryButton(screen.buttonLabel || "BEGIN DIAGNOSTIC");
+          btn.addEventListener("click", () => dispatch({ type: "ADVANCE", screenId: screen.id }));
+          container.appendChild(btn);
+          return container;
+        }
+
+        function renderQuestion(screen, state, dispatch) {
+          const container = el("div");
+          if (screen.dimension) {
+            const dim = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-2");
+            dim.textContent = `// ${screen.dimension}`;
+            container.appendChild(dim);
+          }
+          if (screen.question) {
+            const q = el("h2", "text-xl sm:text-2xl font-bold leading-snug mb-8");
+            q.textContent = screen.question;
+            container.appendChild(q);
+          }
+          if (screen.options && screen.options.length > 0) {
+            const group = el("div", "space-y-3");
+            group.setAttribute("role", "radiogroup");
+            if (screen.question) group.setAttribute("aria-label", screen.question);
+            screen.options.forEach((opt, i) => {
+              const btn = document.createElement("button");
+              const isSelected = state.answers[screen.id]?.value === opt.value;
+              btn.className = [
+                "w-full text-left border-2 bg-base-200 p-4 font-mono text-sm leading-relaxed transition-colors duration-200 cursor-pointer",
+                isSelected ? "border-primary" : "border-base-300",
+                "hover:border-primary",
+              ].join(" ");
+              btn.type = "button";
+              btn.setAttribute("role", "radio");
+              btn.setAttribute("aria-checked", isSelected ? "true" : "false");
+              btn.textContent = `${letterLabel(i)}) ${opt.label}`;
+              btn.addEventListener("click", () => {
+                group.querySelectorAll("button").forEach((b) => {
+                  b.classList.remove("border-primary");
+                  b.classList.add("border-base-300");
+                });
+                btn.classList.remove("border-base-300");
+                btn.classList.add("border-primary");
+                setTimeout(() => {
+                  dispatch({ type: "ANSWER", screenId: screen.id, value: opt.value, score: opt.score });
+                }, 300);
+              });
+              group.appendChild(btn);
+            });
+            container.appendChild(group);
+          }
+          if (screen.type === "scored" && screen.skipScore != null) {
+            const skipWrap = el("div", "mt-6");
+            const skipBtn = document.createElement("button");
+            skipBtn.type = "button";
+            skipBtn.className = "btn btn-ghost font-mono text-xs tracking-wider text-base-content/40 hover:text-base-content/60";
+            skipBtn.textContent = "THIS DOESN\u2019T APPLY TO ME >";
+            skipBtn.addEventListener("click", () => {
+              skipBtn.textContent = "// Noted. Moving on.";
+              setTimeout(() => dispatch({ type: "SKIP", screenId: screen.id, skipScore: screen.skipScore }), 600);
+            });
+            skipWrap.appendChild(skipBtn);
+            container.appendChild(skipWrap);
+          }
+          return container;
+        }
+
+        function renderTextInput(screen, state, dispatch) {
+          const container = el("div");
+          if (screen.dimension) {
+            const dim = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-2");
+            dim.textContent = `// ${screen.dimension}`;
+            container.appendChild(dim);
+          }
+          if (screen.question) {
+            const q = el("h2", "text-xl sm:text-2xl font-bold leading-snug mb-8");
+            q.textContent = screen.question;
+            container.appendChild(q);
+          }
+          const textarea = document.createElement("textarea");
+          textarea.className = "textarea textarea-bordered w-full border-2 border-base-300 bg-base-200 font-mono text-sm focus:border-primary focus:outline-none";
+          textarea.rows = 4;
+          if (screen.question) textarea.setAttribute("aria-label", screen.question);
+          if (screen.placeholder) textarea.placeholder = screen.placeholder;
+          const existing = state.answers[screen.id]?.value;
+          if (existing) textarea.value = existing;
+          container.appendChild(textarea);
+          const btnWrap = el("div", "mt-6");
+          const btn = primaryButton(screen.buttonLabel || "CONTINUE");
+          btn.addEventListener("click", () => dispatch({ type: "TEXT_INPUT", screenId: screen.id, value: textarea.value }));
+          btnWrap.appendChild(btn);
+          container.appendChild(btnWrap);
+          return container;
+        }
+
+        function renderEmailGate(screen, state, dispatch) {
+          const container = el("div");
+          const heading = el("h2", "text-xl sm:text-2xl font-bold leading-snug mb-4");
+          heading.textContent = "Enter your email to see your full results.";
+          container.appendChild(heading);
+          const hint = el("p", "font-mono text-sm text-phosphor-dim mb-8");
+          hint.textContent = "// We don\u2019t send noise. One follow-up based on your score.";
+          container.appendChild(hint);
+
+          const form = el("div", "space-y-4");
+
+          // Name field
+          const nameWrap = el("div");
+          const nameLabel = document.createElement("label");
+          nameLabel.className = "font-mono text-xs tracking-wider text-phosphor-dim mb-2 block";
+          nameLabel.htmlFor = "diag-name";
+          nameLabel.textContent = "> NAME";
+          nameWrap.appendChild(nameLabel);
+          const nameInput = document.createElement("input");
+          nameInput.id = "diag-name";
+          nameInput.type = "text";
+          nameInput.required = true;
+          nameInput.autocomplete = "name";
+          nameInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
+          if (state.contactName) nameInput.value = state.contactName;
+          nameWrap.appendChild(nameInput);
+          const nameError = el("span", "hidden font-mono text-xs text-error mt-1 block");
+          nameError.id = "diag-name-error";
+          nameError.setAttribute("role", "alert");
+          nameError.textContent = "[ERR] Name is required.";
+          nameWrap.appendChild(nameError);
+          form.appendChild(nameWrap);
+
+          // Email field
+          const emailWrap = el("div");
+          const emailLabel = document.createElement("label");
+          emailLabel.className = "font-mono text-xs tracking-wider text-phosphor-dim mb-2 block";
+          emailLabel.htmlFor = "diag-email";
+          emailLabel.textContent = "> EMAIL";
+          emailWrap.appendChild(emailLabel);
+          const emailInput = document.createElement("input");
+          emailInput.id = "diag-email";
+          emailInput.type = "email";
+          emailInput.required = true;
+          emailInput.autocomplete = "email";
+          emailInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
+          if (state.contactEmail) emailInput.value = state.contactEmail;
+          emailWrap.appendChild(emailInput);
+          const emailError = el("span", "hidden font-mono text-xs text-error mt-1 block");
+          emailError.id = "diag-email-error";
+          emailError.setAttribute("role", "alert");
+          emailError.textContent = "[ERR] Valid email required.";
+          emailWrap.appendChild(emailError);
+          form.appendChild(emailWrap);
+
+          // Company field
+          const companyWrap = el("div");
+          const companyLabel = document.createElement("label");
+          companyLabel.className = "font-mono text-xs tracking-wider text-phosphor-dim mb-2 block";
+          companyLabel.htmlFor = "diag-company";
+          companyLabel.textContent = "> COMPANY (optional)";
+          companyWrap.appendChild(companyLabel);
+          const companyInput = document.createElement("input");
+          companyInput.id = "diag-company";
+          companyInput.type = "text";
+          companyInput.autocomplete = "organization";
+          companyInput.className = "input input-bordered w-full border-2 border-base-300 bg-base-200 font-mono focus:border-primary focus:outline-none";
+          if (state.contactCompany) companyInput.value = state.contactCompany;
+          companyWrap.appendChild(companyInput);
+          form.appendChild(companyWrap);
+
+          // Honeypot
+          const honeypot = el("div");
+          honeypot.style.position = "absolute";
+          honeypot.style.left = "-9999px";
+          honeypot.style.opacity = "0";
+          honeypot.style.height = "0";
+          honeypot.style.overflow = "hidden";
+          honeypot.setAttribute("aria-hidden", "true");
+          const honeypotInput = document.createElement("input");
+          honeypotInput.type = "text";
+          honeypotInput.name = "website";
+          honeypotInput.tabIndex = -1;
+          honeypotInput.autocomplete = "off";
+          honeypot.appendChild(honeypotInput);
+          form.appendChild(honeypot);
+
+          // Submit button
+          const btnWrap = el("div", "mt-6");
+          const btn = primaryButton(screen.buttonLabel || "SEE MY RESULTS");
+          btn.addEventListener("click", () => {
+            nameError.classList.add("hidden");
+            emailError.classList.add("hidden");
+            nameInput.removeAttribute("aria-invalid");
+            nameInput.removeAttribute("aria-describedby");
+            emailInput.removeAttribute("aria-invalid");
+            emailInput.removeAttribute("aria-describedby");
+
+            let hasError = false;
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const company = companyInput.value.trim();
+
+            if (!name) {
+              nameError.classList.remove("hidden");
+              nameInput.setAttribute("aria-invalid", "true");
+              nameInput.setAttribute("aria-describedby", "diag-name-error");
+              hasError = true;
+            }
+            if (!email || !email.includes("@")) {
+              emailError.classList.remove("hidden");
+              emailInput.setAttribute("aria-invalid", "true");
+              emailInput.setAttribute("aria-describedby", "diag-email-error");
+              hasError = true;
+            }
+            if (!hasError) {
+              dispatch({
+                type: "EMAIL_SUBMIT",
+                name,
+                email,
+                company: company || undefined,
+              });
+            }
+          });
+          btnWrap.appendChild(btn);
+          form.appendChild(btnWrap);
+          container.appendChild(form);
+          return container;
+        }
+
+        function renderLoading(_screen, _state, dispatch) {
+          const container = el("div", "text-center py-12");
+          const label = el("p", "font-mono text-lg text-primary mb-6");
+          label.textContent = "// Analyzing your answers...";
+          container.appendChild(label);
+          const barBg = el("div", "h-2 w-full bg-base-300");
+          const barFill = el("div", "h-2 bg-primary animate-loading-fill");
+          barBg.appendChild(barFill);
+          container.appendChild(barBg);
+          setTimeout(() => dispatch({ type: "ADVANCE", screenId: "loading" }), 1500);
+          return container;
+        }
+
+        function renderResults(_screen, state) {
+          const { result, aiModifier, pathScore, tier } = getFullResults(state);
+          const container = el("div");
+
+          const dimLabel = el("p", "font-mono text-xs tracking-wider text-phosphor-dim mb-4");
+          dimLabel.textContent = "// DIAGNOSTIC COMPLETE";
+          container.appendChild(dimLabel);
+
+          const headline = el("h2", "text-2xl sm:text-3xl font-bold mb-6");
+          headline.textContent = result.headline;
+          container.appendChild(headline);
+
+          const body = el("p", "text-base-content/80 leading-relaxed mb-8");
+          body.textContent = result.body;
+          container.appendChild(body);
+
+          // Score breakdown
+          const scoreSep = el("p", "font-mono text-xs text-base-content/30 mb-4");
+          scoreSep.textContent = "\u2500\u2500 SCORE BREAKDOWN \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
+          container.appendChild(scoreSep);
+
+          const pathName = pathDisplayName(state.path);
+          const scoreLabel = el("p", "font-mono text-sm mb-2");
+          scoreLabel.textContent = `${pathName}: ${pathScore.score} / ${pathScore.max}`;
+          container.appendChild(scoreLabel);
+
+          const barBg = el("div", "h-2 w-full bg-base-300");
+          barBg.setAttribute("role", "meter");
+          barBg.setAttribute("aria-valuenow", String(pathScore.score));
+          barBg.setAttribute("aria-valuemin", "0");
+          barBg.setAttribute("aria-valuemax", String(pathScore.max));
+          barBg.setAttribute("aria-label", `${pathName} score: ${pathScore.score} out of ${pathScore.max}`);
+          const barFill = el("div", "h-2 bg-primary transition-all duration-1000");
+          const pct = pathScore.max > 0 ? (pathScore.score / pathScore.max) * 100 : 0;
+          barFill.style.width = pct + "%";
+          barBg.appendChild(barFill);
+          container.appendChild(barBg);
+
+          const badge = tierBadge(tier);
+          const tierLabel = el("p", `font-mono text-xs mt-2 ${badge.colorClass}`);
+          tierLabel.textContent = `${badge.text} ${tier.toUpperCase()}`;
+          container.appendChild(tierLabel);
+
+          // Build description
+          if (result.buildDescription) {
+            const buildSep = el("p", "font-mono text-xs text-phosphor-dim mt-8 mb-2");
+            buildSep.textContent = "// WHAT WE\u2019D BUILD";
+            container.appendChild(buildSep);
+            const buildBody = el("p", "text-base-content/80 leading-relaxed");
+            buildBody.textContent = result.buildDescription;
+            container.appendChild(buildBody);
+          }
+
+          // AI modifier
+          if (aiModifier) {
+            const aiSep = el("p", "font-mono text-xs text-base-content/30 mt-8 mb-4");
+            aiSep.textContent = "\u2500\u2500 AI READINESS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
+            container.appendChild(aiSep);
+            const aiBody = el("p", "text-base-content/80 leading-relaxed");
+            aiBody.textContent = aiModifier;
+            container.appendChild(aiBody);
+          }
+
+          // CTA
+          const ctaSep = el("p", "font-mono text-xs text-base-content/30 mt-8 mb-4");
+          ctaSep.textContent = "\u2500\u2500 NEXT STEP \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
+          container.appendChild(ctaSep);
+          const cta = primaryLink(result.ctaLabel, result.ctaHref);
+          container.appendChild(cta);
+          const ctaHint = el("p", "font-mono text-sm text-phosphor-dim mt-3");
+          ctaHint.textContent = SECONDARY_CTA_TEXT;
+          container.appendChild(ctaHint);
+
+          // Secondary CTA
+          const secWrap = el("div", "mt-4");
+          const secLink = document.createElement("a");
+          secLink.href = SECONDARY_CTA.href;
+          secLink.className = "btn btn-ghost font-mono tracking-wider";
+          secLink.textContent = SECONDARY_CTA.label;
+          secWrap.appendChild(secLink);
+          container.appendChild(secWrap);
+
+          return container;
+        }
+
+        function renderProgressBar(progress) {
+          const wrapper = el("div", "mb-8");
+          const pct = Math.round(progress * 100);
+          const barBg = el("div", "h-1 w-full bg-base-300");
+          barBg.setAttribute("role", "progressbar");
+          barBg.setAttribute("aria-valuenow", String(pct));
+          barBg.setAttribute("aria-valuemin", "0");
+          barBg.setAttribute("aria-valuemax", "100");
+          barBg.setAttribute("aria-label", `Diagnostic progress: ${pct}%`);
+          const barFill = el("div", "h-1 bg-primary transition-all duration-500");
+          barFill.style.width = pct + "%";
+          barBg.appendChild(barFill);
+          wrapper.appendChild(barBg);
+          const label = el("p", "font-mono text-xs text-phosphor-dim mt-1");
+          label.textContent = `// ${pct}% complete`;
+          wrapper.appendChild(label);
+          return wrapper;
+        }
+
+        // ------------------------------------------------------------
+        // 8. MAIN RENDER LOOP
+        // ------------------------------------------------------------
+        async function renderScreen(root, state, dispatch) {
+          const screen = SCREENS[state.screen];
+          if (!screen) return;
+
+          const transitionMs = prefersReducedMotion() ? 0 : 150;
+          root.style.opacity = "0";
+          await delay(transitionMs);
+          root.replaceChildren();
+
+          currentProgress = Math.max(currentProgress, calculateProgress(state));
+
+          // Show progress bar on question screens (not opening, results, loading, or skip screens)
+          const showProgress = !new Set(["opening", "results", "loading"]).has(state.screen);
+          const isSkip = isSkipScreen(state.screen);
+          if (showProgress && !isSkip) {
+            root.appendChild(renderProgressBar(currentProgress));
+          }
+
+          // Render screen content
+          let content;
+          switch (screen.type) {
+            case "splash":
+              content = renderSplash(screen, state, dispatch);
+              break;
+            case "gateway":
+            case "routing":
+            case "scored":
+              content = renderQuestion(screen, state, dispatch);
+              break;
+            case "text-input":
+              content = renderTextInput(screen, state, dispatch);
+              break;
+            case "email-gate":
+              content = renderEmailGate(screen, state, dispatch);
+              break;
+            case "loading":
+              content = renderLoading(screen, state, dispatch);
+              break;
+            case "results":
+              content = renderResults(screen, state);
+              break;
+            default:
+              content = el("div");
+              break;
+          }
+          root.appendChild(content);
+
+          // Back button (not on results or loading)
+          const noBackScreens = new Set(["results", "loading"]);
+          if (state.history.length > 0 && !noBackScreens.has(screen.type)) {
+            const backWrap = el("div", "mt-8");
+            const backBtn = document.createElement("button");
+            backBtn.type = "button";
+            backBtn.className = "btn btn-ghost font-mono text-xs text-base-content/40 hover:text-base-content/60";
+            backBtn.textContent = "< BACK";
+            backBtn.addEventListener("click", () => dispatch({ type: "BACK" }));
+            backWrap.appendChild(backBtn);
+            root.appendChild(backWrap);
+          }
+
+          root.style.opacity = "1";
+
+          // Auto-advance skip screens after brief display
+          if (isSkip) {
+            await delay(prefersReducedMotion() ? 0 : 600);
+            dispatch({ type: "ADVANCE", screenId: state.screen });
+            return;
+          }
+
+          // Focus first interactive element
+          const focusTarget = root.querySelector("button, input, textarea");
+          if (focusTarget) focusTarget.focus({ preventScroll: true });
+        }
+
+        // ------------------------------------------------------------
+        // 9. INITIALIZATION
+        // ------------------------------------------------------------
+        function init() {
+          const root = document.getElementById("diagnostic-root");
+          if (!root) return;
+
+          let state = createState();
+          function dispatch(action) {
+            state = reducer(state, action);
+            renderScreen(root, state, dispatch);
+          }
+
+          renderScreen(root, state, dispatch);
+
+          // Keyboard shortcuts
+          document.addEventListener("keydown", (e) => {
+            if (state.screen === "results" || state.screen === "loading") return;
+            const screen = SCREENS[state.screen];
+            if (!screen) return;
+
+            // Number/letter keys select options
+            if (screen.options && ["1", "2", "3", "4", "a", "b", "c", "d"].includes(e.key.toLowerCase())) {
+              const keyMap = { 1: 0, a: 0, 2: 1, b: 1, 3: 2, c: 2, 4: 3, d: 3 };
+              const idx = keyMap[e.key.toLowerCase()] ?? -1;
+              const opt = screen.options[idx];
+              if (opt) dispatch({ type: "ANSWER", screenId: screen.id, value: opt.value, score: opt.score });
+            }
+
+            // Backspace goes back
+            if (e.key === "Backspace" && state.history.length > 0) {
+              e.preventDefault();
+              dispatch({ type: "BACK" });
+            }
+
+            // S key skips scored questions
+            if (
+              e.key.toLowerCase() === "s" &&
+              screen.type === "scored" &&
+              screen.skipScore != null &&
+              document.activeElement?.tagName !== "INPUT" &&
+              document.activeElement?.tagName !== "TEXTAREA"
+            ) {
+              dispatch({ type: "SKIP", screenId: screen.id, skipScore: screen.skipScore });
+            }
+          });
+        }
+
+        init();
+        document.addEventListener("astro:after-swap", init);
+      </script>
+
+      <script>
+        // Scroll reveal (same as BaseLayout)
+        function initReveal() {
+          const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          document.querySelectorAll(".reveal").forEach((el) => {
+            if (prefersReduced) { el.classList.add("revealed"); return; }
+          });
+          if (prefersReduced) return;
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) { entry.target.classList.add("revealed"); observer.unobserve(entry.target); }
+            });
+          }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+          document.querySelectorAll(".reveal:not(.revealed)").forEach((el) => observer.observe(el));
+        }
+        initReveal();
+        document.addEventListener("astro:after-swap", initReveal);
+      </script>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  @keyframes loading-fill {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  .animate-loading-fill {
+    animation: loading-fill 1.5s ease-out forwards;
+  }
+</style>

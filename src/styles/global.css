@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 /* ============================================
-   FONTS — Geist family only
+   FONTS - Geist family only
    ============================================ */
 
 @font-face {
@@ -27,7 +27,7 @@
 }
 
 /* ============================================
-   TOKENS — from MAXEXE_dashboard.html :root
+   TOKENS - from MAXEXE_dashboard.html :root
    ============================================ */
 
 :root {
@@ -48,9 +48,9 @@
   --crt-floor:    oklch(0.08 0.02 62);
 
   /* Contrast-safe text scale (all pass WCAG AA on dark backgrounds) */
-  --text-accent:       oklch(0.76 0.18 62);           /* full opacity — headings, labels */
-  --text-accent-muted: oklch(0.76 0.18 62 / 0.85);   /* secondary text — passes AA */
-  --text-accent-dim:   oklch(0.76 0.18 62 / 0.75);   /* tertiary text — passes AA */
+  --text-accent:       oklch(0.76 0.18 62);           /* full opacity // headings, labels */
+  --text-accent-muted: oklch(0.76 0.18 62 / 0.85);   /* secondary text // passes AA */
+  --text-accent-dim:   oklch(0.76 0.18 62 / 0.75);   /* tertiary text // passes AA */
 
   /* Semantic */
   --secondary:    oklch(0.76 0.18 242);
@@ -103,17 +103,55 @@
    TAILWIND THEME MAPPING
    ============================================ */
 
+@plugin "daisyui/theme" {
+  name: "phosphor-dark";
+  default: false;
+  prefersdark: false;
+  color-scheme: dark;
+  --color-base-100: oklch(15% .09 62);
+  --color-base-200: oklch(12% .07 62);
+  --color-base-300: oklch(10% .05 62);
+  --color-base-content: oklch(92% .1 62);
+  --color-primary: oklch(76% .18 62);
+  --color-primary-content: oklch(12% .07 62);
+  --color-secondary: oklch(76% .18 242);
+  --color-secondary-content: oklch(98% .01 242);
+  --color-accent: oklch(87% .16 86);
+  --color-accent-content: oklch(12% .07 62);
+  --color-neutral: oklch(20% .06 62);
+  --color-neutral-content: oklch(76% .12 62);
+  --color-info: oklch(76% .18 242);
+  --color-info-content: oklch(98% .01 242);
+  --color-success: oklch(72% .2 142);
+  --color-success-content: oklch(12% .05 142);
+  --color-warning: oklch(87% .16 86);
+  --color-warning-content: oklch(15% .09 62);
+  --color-error: oklch(65% .3 30);
+  --color-error-content: oklch(98% .01 30);
+  --radius-selector: 0;
+  --radius-field: 0;
+  --radius-box: 0;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 2px;
+  --depth: 0;
+  --noise: 0;
+}
+
 @theme inline {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-pixel: 'Geist Pixel', 'Geist Mono', monospace;
+  --color-phosphor-dim: oklch(68% .12 54);
+  --color-phosphor-muted: oklch(76% .12 62);
 }
 
 /* ============================================
-   BASE STYLES — from dashboard body rules
+   BASE STYLES - from dashboard body rules
    ============================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg-dark);
@@ -162,7 +200,7 @@ body::after {
 }
 
 /* ============================================
-   KEYFRAMES — from dashboard
+   KEYFRAMES - from dashboard
    ============================================ */
 
 @keyframes hw-blink {
@@ -212,7 +250,7 @@ body::after {
    ACCESSIBILITY UTILITIES
    ============================================ */
 
-/* Screen reader only — visually hidden, accessible to AT */
+/* Screen reader only - visually hidden, accessible to AT */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -225,7 +263,7 @@ body::after {
   border-width: 0;
 }
 
-/* Skip-to-content link — visible only on focus */
+/* Skip-to-content link - visible only on focus */
 .skip-link {
   position: absolute;
   left: -9999px;
