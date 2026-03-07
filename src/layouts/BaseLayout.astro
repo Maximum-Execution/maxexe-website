@@ -5,21 +5,88 @@ import Topbar from '../components/Topbar.astro';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  canonical?: string;
+  noindex?: boolean;
 }
+
 const {
   title = 'MAX.EXE | We Debug the Problem',
-  description = 'Maximum Execution builds websites, apps, and AI tools for small businesses. One person. Full stack. No handoffs.'
+  description = 'Maximum Execution builds websites, apps, and AI tools for small businesses. One person. Full stack. No handoffs.',
+  ogImage = '/og-image.png',
+  canonical,
+  noindex = false,
 } = Astro.props;
+
+const siteUrl = 'https://maximumexecution.com';
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="preload" href="/fonts/GeistSans.woff2" as="font" type="font/woff2" crossorigin />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Maximum Execution" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#c8841d" />
+
+    <!-- Fonts -->
+    <link rel="preload" href="/fonts/GeistSans.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Maximum Execution",
+          "url": siteUrl,
+          "logo": `${siteUrl}/favicon.svg`,
+          "description": "Web design, custom apps, and AI tools for small businesses. Based in Richmond, Virginia.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Richmond",
+            "addressRegion": "VA",
+            "addressCountry": "US"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "United States"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "name": "Maximum Execution",
+          "url": siteUrl,
+          "description": description
+        }
+      ]
+    })} />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
