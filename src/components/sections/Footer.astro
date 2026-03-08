@@ -5,29 +5,42 @@ import Cursor from '../Cursor.astro';
 <div class="footer-rule" aria-hidden="true"></div>
 <footer class="site-footer">
   <div class="footer-inner">
-    <!-- Three-column grid on desktop -->
-    <div class="footer-grid">
-      <!-- Left column: brand + tagline -->
-      <div class="footer-col footer-brand">
+    <!-- Top area: brand + CTAs -->
+    <div class="footer-top">
+      <!-- Brand -->
+      <div class="footer-brand">
         <p class="brand-name">MAXIMUM EXECUTION<Cursor class="footer-cursor" /></p>
         <p class="brand-tagline">// Clarity. Code. Results.</p>
       </div>
 
-      <!-- Center column: CTA -->
-      <div class="footer-col footer-action">
-        <Button variant="primary" href="#diagnostic" class="footer-btn">[START DIAGNOSTIC &gt;]</Button>
+      <!-- CTAs -->
+      <div class="footer-ctas">
+        <Button variant="primary" href="#diagnostic" class="footer-btn">[START YOUR PROJECT &gt;]</Button>
+        <Button variant="ghost" href="/diagnostic" class="footer-btn">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
       </div>
+    </div>
 
-      <!-- Right column: contact + legal -->
-      <div class="footer-col footer-contact">
+    <!-- Middle: contact + nav -->
+    <div class="footer-mid">
+      <!-- Contact -->
+      <div class="footer-contact">
         <p class="contact-line">Richmond, VA</p>
         <a href="mailto:contact@maximumexecution.com" class="contact-link">contact@maximumexecution.com</a>
-        <p class="copyright">&copy; 2026 Maximum Execution</p>
       </div>
+
+      <!-- Nav links -->
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="/privacy" class="nav-link">Privacy Policy</a>
+      </nav>
     </div>
 
     <!-- Bottom sign-off -->
     <div class="footer-signoff">
+      <p class="copyright">&copy; 2026 Maximum Execution</p>
       <p class="signoff-comment">// Compiled. Deployed. Executing.</p>
       <p class="signoff-eof">EOF</p>
     </div>
@@ -35,15 +48,15 @@ import Cursor from '../Cursor.astro';
 </footer>
 
 <style>
-  /* 1px amber rule separating from contact section */
+  /* 1px amber rule separating from previous section */
   .footer-rule {
     height: 1px;
-    background: oklch(0.76 0.18 62 / 0.15);
+    background: var(--border);
   }
 
-  /* Footer background - slightly lighter than base dark */
+  /* Footer background - darkest value in system */
   .site-footer {
-    background: oklch(0.14 0.022 85);
+    background: var(--crt-black);
     padding: var(--space-16) var(--space-8);
     overflow: hidden;
   }
@@ -54,27 +67,18 @@ import Cursor from '../Cursor.astro';
     margin: 0 auto;
   }
 
-  /* Three-column grid */
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: start;
+  /* Top area: brand + CTAs */
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: var(--space-10);
     margin-bottom: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid oklch(0.76 0.18 62 / 0.1);
   }
 
-  /* Column base styles */
-  .footer-col {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  /* ── Left: Brand ── */
-  .footer-brand {
-    text-align: left;
-  }
-
+  /* Brand */
   .brand-name {
     font-family: var(--font-pixel);
     font-size: 18px;
@@ -96,11 +100,11 @@ import Cursor from '../Cursor.astro';
     letter-spacing: 0.04em;
   }
 
-  /* ── Center: CTA ── */
-  .footer-action {
+  /* CTAs */
+  .footer-ctas {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
   }
 
   :global(.footer-btn) {
@@ -108,21 +112,31 @@ import Cursor from '../Cursor.astro';
     padding: var(--space-2) var(--space-5) !important;
   }
 
-  /* ── Right: Contact ── */
+  /* Middle: contact + nav */
+  .footer-mid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-10);
+    margin-bottom: var(--space-12);
+  }
+
+  /* Contact */
   .footer-contact {
-    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
   }
 
   .contact-line {
-    color: var(--text-accent-dim);
+    color: var(--amber-2);
     margin-bottom: var(--space-1);
   }
 
   .contact-link {
     display: block;
-    color: var(--text-accent-dim);
+    color: var(--amber-2);
     text-decoration: none;
-    margin-bottom: var(--space-3);
     transition: color var(--dur-micro) var(--ease-ui);
   }
 
@@ -130,22 +144,44 @@ import Cursor from '../Cursor.astro';
     color: var(--primary);
   }
 
-  .copyright {
-    color: var(--text-accent-dim);
-    font-size: 12px;
+  /* Nav links */
+  .footer-nav {
+    display: flex;
+    gap: var(--space-6);
+    flex-wrap: wrap;
   }
 
-  /* ── Bottom sign-off ── */
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--amber-2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color var(--dur-micro) var(--ease-ui);
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  /* Bottom sign-off */
   .footer-signoff {
     border-top: 1px solid oklch(0.76 0.18 62 / 0.1);
     padding-top: var(--space-6);
     text-align: center;
   }
 
+  .copyright {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--amber-2);
+    margin-bottom: var(--space-4);
+  }
+
   .signoff-comment {
     font-family: var(--font-mono);
     font-size: 13px;
-    color: var(--text-accent-dim);
+    color: var(--amber-1);
     letter-spacing: 0.04em;
     margin-bottom: var(--space-4);
   }
@@ -154,25 +190,30 @@ import Cursor from '../Cursor.astro';
     font-family: var(--font-mono);
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-accent-dim);
+    color: var(--amber-1);
     letter-spacing: 0.2em;
   }
 
-  /* ── Responsive - single column on mobile ── */
+  /* Responsive - single column on mobile */
   @media (max-width: 768px) {
     .site-footer {
       padding: var(--space-12) var(--space-6);
     }
 
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-8);
-      text-align: center;
+    .footer-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-6);
     }
 
-    .footer-brand,
-    .footer-contact {
-      text-align: center;
+    .footer-mid {
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .footer-nav {
+      flex-direction: column;
+      gap: var(--space-3);
     }
 
     .brand-name {

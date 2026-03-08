@@ -4,95 +4,71 @@ import Button from '../Button.astro';
 ---
 <div class="diagnostic-divider" aria-hidden="true"></div>
 <SectionWrapper bg="light" id="diagnostic" class="diagnostic-section">
-  <div class="diagnostic-inner">
-    <!-- Section label -->
-    <p class="section-label">// 07 THE MAX.EXE DIAGNOSTIC</p>
+  <div class="diagnostic-frame">
+    <div class="diagnostic-inner">
+      <!-- Section label -->
+      <p class="section-label">// 08 THE FREE DIAGNOSTIC</p>
 
-    <!-- Headline -->
-    <h2 class="diagnostic-headline">
-      <span>84% of technology projects fail.</span>
-      <span>Yours doesn&rsquo;t have to.</span>
-    </h2>
+      <!-- Headline -->
+      <h2 class="diagnostic-headline">
+        <span>Find out what's broken.</span>
+        <span>It takes five minutes and costs nothing.</span>
+      </h2>
 
-    <!-- Subhead -->
-    <p class="diagnostic-subhead">
-      Find out what's actually broken. Before you spend a dollar trying to fix it.
-    </p>
+      <!-- Body -->
+      <div class="diagnostic-body">
+        <p>
+          The diagnostic isn't a contact form. It's a branching set of questions
+          that adjusts to your situation. At the end, you get a plain-language
+          readout of what's likely broken and what type of project fits your
+          situation. You see the results before we ask for your email.
+        </p>
+      </div>
 
-    <!-- Body -->
-    <div class="diagnostic-body">
-      <p>
-        The MAX.EXE Business Diagnostic is a branching decision tree. You only
-        answer questions that apply to your situation. Tell it you need a website and it
-        asks about your website. Tell it you need software and it digs into your workflow.
-        Add AI and it explores where AI actually fits your business.
-      </p>
-      <p>
-        Takes about five minutes. You see your full results before we ask for
-        anything. Because a diagnosis you haven't read yet isn't worth your email.
-      </p>
-      <p>
-        At the end: an AI-generated analysis of your specific answers, a gap assessment
-        tied to the outcome you described, and a clear recommendation for what to build
-        first. Not a score bucket. Not a generic PDF. A diagnosis that reads like it was
-        written for your business. Because it was.
-      </p>
-    </div>
+      <!-- Preview rows -->
+      <div class="preview-rows">
+        <div class="preview-row">
+          <div class="preview-num">&gt; [01]</div>
+          <div class="preview-content">
+            <h3 class="preview-title">TELL US WHAT YOU NEED</h3>
+          </div>
+        </div>
 
-    <!-- Preview rows -->
-    <div class="preview-rows">
-      <div class="preview-row">
-        <div class="preview-num">&gt; [01]</div>
-        <div class="preview-content">
-          <h3 class="preview-title">TELL US WHAT YOU NEED</h3>
-          <p class="preview-desc">
-            Website, software, or both. The diagnostic only asks
-            questions that apply to your situation.
-          </p>
+        <div class="preview-row">
+          <div class="preview-num">&gt; [02]</div>
+          <div class="preview-content">
+            <h3 class="preview-title">ANSWER WHAT APPLIES TO YOUR SITUATION</h3>
+          </div>
+        </div>
+
+        <div class="preview-row">
+          <div class="preview-num">&gt; [03]</div>
+          <div class="preview-content">
+            <h3 class="preview-title">GET YOUR DIAGNOSIS. NO EMAIL REQUIRED TO SEE RESULTS.</h3>
+          </div>
         </div>
       </div>
 
-      <div class="preview-row">
-        <div class="preview-num">&gt; [02]</div>
-        <div class="preview-content">
-          <h3 class="preview-title">ANSWER WHAT APPLIES</h3>
-          <p class="preview-desc">
-            No generic quiz. Questions adapt to your path.
-            Takes about five minutes.
-          </p>
-        </div>
+      <!-- CTA -->
+      <div class="diagnostic-cta">
+        <Button variant="primary" href="/diagnostic">[START FREE DIAGNOSTIC &gt;]</Button>
+        <p class="cta-reassurance">// Five minutes. Free. Results before we ask for anything.</p>
       </div>
-
-      <div class="preview-row">
-        <div class="preview-num">&gt; [03]</div>
-        <div class="preview-content">
-          <h3 class="preview-title">GET YOUR DIAGNOSIS</h3>
-          <p class="preview-desc">
-            See your AI-generated gap analysis immediately after
-            completing the diagnostic. No email required to see
-            your results.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="diagnostic-cta">
-      <p class="cta-heading">Ready to execute?</p>
-      <Button variant="primary" href="/diagnostic">[START DIAGNOSTIC &gt;]</Button>
-      <p class="cta-reassurance">// Free. Five minutes. No email required to see your results.</p>
     </div>
   </div>
-
-  <!-- Section bottom rule -->
-  <div class="section-bottom-rule" aria-hidden="true"></div>
 </SectionWrapper>
 
 <style>
   /* Amber divider rule at top */
   .diagnostic-divider {
     height: 1px;
-    background: oklch(0.76 0.18 62 / 0.15);
+    background: var(--border);
+  }
+
+  /* Amber border frame around the section content */
+  .diagnostic-frame {
+    border: 1px solid var(--border);
+    padding: var(--space-12) var(--space-10);
   }
 
   /* Inner container - 860px max */
@@ -101,7 +77,7 @@ import Button from '../Button.astro';
     margin: 0 auto;
   }
 
-  /* Section label - monospace, small, amber at 35% */
+  /* Section label */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -111,7 +87,7 @@ import Button from '../Button.astro';
     margin-bottom: var(--space-6);
   }
 
-  /* Headline - Geist Pixel, two lines */
+  /* Headline */
   .diagnostic-headline {
     font-family: var(--font-pixel);
     font-size: var(--step-4);
@@ -130,19 +106,10 @@ import Button from '../Button.astro';
   }
 
   .diagnostic-headline span:last-child {
-    color: var(--text-accent-muted);
+    color: oklch(0.76 0.18 62 / 0.7);
   }
 
-  /* Subhead - Geist Mono, amber 60% */
-  .diagnostic-subhead {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--text-accent-dim);
-    line-height: 1.6;
-    margin-bottom: var(--space-10);
-  }
-
-  /* Body - Geist Sans, 17px, warm off-white */
+  /* Body */
   .diagnostic-body {
     margin-bottom: var(--space-12);
   }
@@ -152,62 +119,42 @@ import Button from '../Button.astro';
     font-size: 17px;
     line-height: 1.65;
     color: oklch(0.88 0.06 62);
-    margin-bottom: var(--space-6);
   }
 
-  .diagnostic-body p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* ── Preview rows ── */
+  /* Preview rows - terminal style */
   .preview-rows {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
-    margin-bottom: var(--space-16);
+    gap: var(--space-5);
+    margin-bottom: var(--space-12);
     padding-top: var(--space-8);
     border-top: 1px solid var(--border-muted);
   }
 
   .preview-row {
     display: flex;
-    gap: var(--space-5);
-    align-items: flex-start;
+    gap: var(--space-4);
+    align-items: baseline;
   }
 
   .preview-num {
     font-family: var(--font-mono);
     font-size: 14px;
     font-feature-settings: 'tnum' 1;
-    color: var(--primary);
+    color: var(--amber-2);
     flex-shrink: 0;
-    line-height: 1.5;
-    padding-top: 1px;
-  }
-
-  .preview-content {
-    flex: 1;
   }
 
   .preview-title {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
     color: var(--text);
-    line-height: 1.4;
-    margin-bottom: var(--space-1);
-    text-transform: uppercase;
+    line-height: 1.5;
     letter-spacing: 0.02em;
   }
 
-  .preview-desc {
-    font-family: var(--font-sans);
-    font-size: 15px;
-    line-height: 1.6;
-    color: oklch(0.88 0.06 62 / 0.8);
-  }
-
-  /* ── CTA ── */
+  /* CTA */
   .diagnostic-cta {
     display: flex;
     flex-direction: column;
@@ -215,11 +162,17 @@ import Button from '../Button.astro';
     gap: var(--space-4);
   }
 
-  .cta-heading {
-    font-family: var(--font-pixel);
-    font-size: var(--step-1);
-    color: var(--text);
-    margin-bottom: var(--space-4);
+  /* CTA button override - brightest element */
+  .diagnostic-cta :global(.btn-primary) {
+    background: var(--amber-4);
+    color: var(--bg-dark);
+    border-color: var(--amber-4);
+    font-weight: 700;
+  }
+
+  .diagnostic-cta :global(.btn-primary:hover) {
+    background: oklch(0.92 0.14 86);
+    border-color: oklch(0.92 0.14 86);
   }
 
   .cta-reassurance {
@@ -230,30 +183,24 @@ import Button from '../Button.astro';
     line-height: 1.5;
   }
 
-  /* ── Section bottom rule ── */
-  .section-bottom-rule {
-    height: 1px;
-    background: oklch(0.76 0.18 62 / 0.20);
-    margin-top: var(--space-20);
-    max-width: 100%;
-  }
-
-  /* ── Responsive ── */
+  /* Responsive */
   @media (max-width: 768px) {
+    .diagnostic-frame {
+      padding: var(--space-8) var(--space-6);
+    }
+
     .diagnostic-headline {
       font-size: var(--step-3);
     }
-
   }
 
   @media (max-width: 480px) {
-    .diagnostic-headline {
-      font-size: var(--step-2);
+    .diagnostic-frame {
+      padding: var(--space-6) var(--space-4);
     }
 
-    .preview-row {
-      flex-direction: column;
-      gap: var(--space-2);
+    .diagnostic-headline {
+      font-size: var(--step-2);
     }
   }
 </style>

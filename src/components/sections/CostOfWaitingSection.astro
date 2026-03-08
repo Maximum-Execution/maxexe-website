@@ -1,0 +1,248 @@
+---
+import Button from '../Button.astro';
+---
+<div class="cost-divider" aria-hidden="true"></div>
+<section class="cost-section" id="cost">
+  <div class="cost-inner">
+    <!-- Section label -->
+    <p class="section-label">// 09 COST OF WAITING</p>
+
+    <!-- Content wrapper - 640px -->
+    <div class="cost-content">
+      <!-- Headline -->
+      <h2 class="cost-headline">
+        <span>You're already paying for this.</span>
+        <span>You just don't have an invoice for it yet.</span>
+      </h2>
+
+      <!-- Body copy -->
+      <div class="cost-body">
+        <p>
+          That slow month. That competitor who keeps winning work you know you
+          could do better. That referral who visited your site and never called
+          back. There's no line item for any of it. But the cost is real and
+          it's compounding.
+        </p>
+
+        <p>
+          Every day you're copying and pasting between tools that weren't
+          designed to work together, re-answering the same intake questions,
+          rebuilding the same follow-up from scratch. That time is already gone.
+        </p>
+
+        <p>
+          Word-of-mouth works until it stops. When it does, there's nothing
+          underneath it.
+        </p>
+      </div>
+
+      <!-- Terminal stat block -->
+      <div class="cost-stats">
+        <div class="stat-line">
+          <span class="stat-label stat-danger">&gt; DAILY TIME LOST TO WASTED ADMIN (per owner):</span>
+          <span class="stat-value stat-danger">~1.5 hrs</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label stat-danger">&gt; THAT'S PER WEEK:</span>
+          <span class="stat-value stat-danger">~7.5 hrs</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label stat-danger">&gt; THAT'S PER YEAR:</span>
+          <span class="stat-value stat-danger">~1 full work month</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label stat-danger">&gt; SOLOPRENEURS WHO'VE LOST A MONTH OF INCOME:</span>
+          <span class="stat-value stat-danger">42%</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label stat-danger">&gt; SMALL BIZ OWNERS CONFIDENT THEIR MARKETING WORKS:</span>
+          <span class="stat-value stat-danger">1 in 5</span>
+        </div>
+        <div class="stat-line stat-line-positive">
+          <span class="stat-label stat-success">&gt; COST TO DIAGNOSE:</span>
+          <span class="stat-value stat-success">$0.00</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label stat-compounding">&gt; COST TO DO NOTHING:</span>
+          <span class="stat-value stat-compounding">compounding</span>
+        </div>
+        <p class="stat-source">// Slack / Salesforce, 2024 · Simply Business, 2025, n=1,023 · Constant Contact / Ascend2, 2025</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="cost-cta">
+        <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
+        <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Amber divider rule at top */
+  .cost-divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Red-shifted dark background */
+  .cost-section {
+    background: var(--bg-cost-waiting);
+    color: var(--text);
+    padding: var(--space-24) var(--space-8);
+  }
+
+  .cost-inner {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--text-accent-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Content wrapper - 640px */
+  .cost-content {
+    max-width: 640px;
+  }
+
+  /* Headline */
+  .cost-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-10);
+  }
+
+  .cost-headline span {
+    display: block;
+  }
+
+  .cost-headline span:first-child {
+    color: var(--primary);
+  }
+
+  .cost-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  /* Body copy */
+  .cost-body {
+    margin-bottom: var(--space-12);
+  }
+
+  .cost-body p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: oklch(0.88 0.06 62);
+    margin-bottom: var(--space-6);
+  }
+
+  .cost-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Terminal stat block */
+  .cost-stats {
+    background: var(--crt-black);
+    border: 1px solid var(--border-muted);
+    padding: var(--space-6);
+    font-family: var(--font-mono);
+    font-feature-settings: 'tnum' 1;
+    margin-bottom: var(--space-12);
+  }
+
+  .stat-line {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-1) 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-line-positive {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-muted);
+  }
+
+  .stat-label {
+    font-size: var(--step--2);
+    white-space: nowrap;
+  }
+
+  .stat-value {
+    font-size: var(--step--2);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .stat-danger {
+    color: var(--danger);
+  }
+
+  .stat-success {
+    color: var(--success);
+  }
+
+  .stat-compounding {
+    color: var(--amber-4);
+  }
+
+  .stat-source {
+    font-size: 11px;
+    color: var(--text-accent-dim);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-muted);
+    line-height: 1.5;
+  }
+
+  /* CTA area */
+  .cost-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cost-section {
+      padding: var(--space-16) var(--space-6);
+    }
+
+    .cost-headline {
+      font-size: var(--step-3);
+    }
+
+    .stat-line {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .stat-value {
+      text-align: left;
+    }
+
+    .cost-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cost-headline {
+      font-size: var(--step-2);
+    }
+  }
+</style>

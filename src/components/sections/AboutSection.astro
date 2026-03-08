@@ -1,0 +1,175 @@
+---
+import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
+---
+<div class="about-divider" aria-hidden="true"></div>
+<SectionWrapper bg="base" id="about" class="about-section">
+  <!-- Section label -->
+  <p class="section-label">// 07 ABOUT</p>
+
+  <!-- Content wrapper - 640px centered -->
+  <div class="about-content">
+    <!-- Headline -->
+    <h2 class="about-headline">
+      <span>Small businesses do great work</span>
+      <span>that no one can find or understand.</span>
+      <span>We fix that.</span>
+    </h2>
+
+    <!-- Body copy -->
+    <div class="about-body">
+      <p>
+        MAX.EXE is a web design and development practice in Richmond, Virginia.
+        Our clients trust the work. The people who already know them trust it too.
+        But strangers can't figure out what they offer in five seconds. Their
+        website was built once and forgotten. Their tools were added under
+        pressure. They became the glue between everything.
+      </p>
+
+      <p>
+        We close that gap. Websites that convert. Software that fits your
+        workflow. AI tools trained on your data, in your voice.
+      </p>
+
+      <p>
+        Every project ships with a Handoff Package. You own the code permanently.
+      </p>
+    </div>
+
+    <!-- Delta equation block -->
+    <div class="delta-block">
+      <p class="delta-equation">&gt; delta(value) = deployed - theoretical</p>
+      <p class="delta-comment">// execution is the only metric that matters.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="about-cta">
+      <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
+      <p class="cta-comment">// see what's broken before you spend anything</p>
+    </div>
+  </div>
+</SectionWrapper>
+
+<style>
+  /* Amber divider rule at top */
+  .about-divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--text-accent-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Content wrapper - centered 640px */
+  .about-content {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Headline - three lines */
+  .about-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-12);
+  }
+
+  .about-headline span {
+    display: block;
+  }
+
+  .about-headline span:first-child {
+    color: var(--primary);
+  }
+
+  .about-headline span:nth-child(2) {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
+  .about-headline span:last-child {
+    color: var(--primary);
+  }
+
+  /* Body copy - softer reading register */
+  .about-body {
+    margin-bottom: var(--space-12);
+  }
+
+  .about-body p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: oklch(0.76 0.12 62);
+    margin-bottom: var(--space-6);
+  }
+
+  .about-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Delta equation block */
+  .delta-block {
+    background: var(--crt-black);
+    border: 1px solid var(--border-muted);
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-12);
+  }
+
+  .delta-equation {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-feature-settings: 'tnum' 1;
+    color: var(--amber-4);
+    line-height: 1.5;
+    margin-bottom: var(--space-2);
+  }
+
+  .delta-comment {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--amber-2);
+    line-height: 1.5;
+  }
+
+  /* CTA area */
+  .about-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .cta-comment {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--text-accent-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-headline {
+      font-size: var(--step-3);
+    }
+
+    .about-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-headline {
+      font-size: var(--step-2);
+    }
+  }
+</style>
