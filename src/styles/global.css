@@ -59,6 +59,28 @@
   --success:      oklch(0.70 0.18 160);
   --info:         oklch(0.70 0.18 260);
 
+  /* Amber scale (Brand Book v1.0) */
+  --amber-1:      oklch(0.32 0.10 46);   /* #5C2800 — disabled, faint glow */
+  --amber-2:      oklch(0.57 0.15 54);   /* #B36000 — dim text, borders */
+  --amber-3:      oklch(0.66 0.17 57);   /* #DE7400 — body text, eyebrow */
+  --amber-4:      oklch(0.87 0.16 86);   /* #FFCC4A — headings, bright moments */
+
+  /* CRT Black (deepest background) */
+  --crt-black:    oklch(0.10 0.03 58);   /* #110A02 */
+
+  /* Light mode inversion (Success Vision only) */
+  --light-bg:     oklch(0.90 0.05 62);   /* #F5E8CC — warm amber paper */
+  --light-text:   oklch(0.25 0.12 62);   /* #3D1A00 — dark amber */
+  --light-h2:     oklch(0.20 0.14 62);   /* darkest amber in light mode */
+  --light-badge-bg: oklch(0.85 0.04 62); /* slightly darker than light-bg */
+  --light-border: oklch(0.72 0.10 62);   /* subtle amber border on light */
+
+  /* Section-specific backgrounds */
+  --bg-stakes-err:    oklch(0.12 0.05 30);   /* [ERR] card bg — dark red-orange */
+  --bg-stakes-border: oklch(0.28 0.12 30);   /* [ERR] card border — dim red */
+  --bg-cost-waiting:  oklch(0.11 0.05 30);   /* Cost of Waiting — red-shifted */
+  --bg-plan-end:      oklch(0.18 0.10 62);   /* Plan gradient bottom — warmer */
+
   /* Borders */
   --border:       oklch(0.40 0.18 62);
   --border-muted: oklch(0.30 0.18 62);
@@ -144,6 +166,17 @@
   --font-pixel: 'Geist Pixel', 'Geist Mono', monospace;
   --color-phosphor-dim: oklch(68% .12 54);
   --color-phosphor-muted: oklch(76% .12 62);
+  --color-amber-1: oklch(32% .10 46);
+  --color-amber-2: oklch(57% .15 54);
+  --color-amber-3: oklch(66% .17 57);
+  --color-amber-4: oklch(87% .16 86);
+  --color-crt-black: oklch(10% .03 58);
+  --color-light-bg: oklch(90% .05 62);
+  --color-light-text: oklch(25% .12 62);
+  --color-light-h2: oklch(20% .14 62);
+  --color-stakes-err: oklch(12% .05 30);
+  --color-stakes-border: oklch(28% .12 30);
+  --color-cost-waiting: oklch(11% .05 30);
 }
 
 /* ============================================
