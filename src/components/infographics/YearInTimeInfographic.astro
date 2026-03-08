@@ -1,0 +1,316 @@
+---
+const months = [
+  { label: "J", name: "Jan" },
+  { label: "F", name: "Feb" },
+  { label: "M", name: "Mar" },
+  { label: "A", name: "Apr" },
+  { label: "M", name: "May" },
+  { label: "J", name: "Jun" },
+  { label: "J", name: "Jul" },
+  { label: "A", name: "Aug" },
+  { label: "S", name: "Sep" },
+  { label: "OCT", name: "Oct", danger: true },
+  { label: "N", name: "Nov" },
+  { label: "D", name: "Dec" },
+];
+---
+
+<div class="year-infographic" data-infographic>
+  <div class="calendar-strip">
+    {months.map((month, i) => (
+      <div
+        class:list={["month-box", { "month-danger": month.danger }]}
+        style={`--delay: ${month.danger ? "750ms" : `${i * 50}ms`}`}
+        aria-label={month.name}
+      >
+        <span class="month-label">{month.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="connector-line" aria-hidden="true"></div>
+
+  <div class="hero-stat">
+    <p class="hero-number">1 FULL MONTH</p>
+    <p class="hero-desc">
+      lost to admin, tool switching,<br />and tasks your website should handle.
+    </p>
+  </div>
+
+  <div class="year-sources">
+    <p>// Slack / Salesforce, 2024 &middot; n=2,000</p>
+    <p>// 1.5 hrs/day &times; 5 days/week &times; 50 weeks</p>
+  </div>
+
+  <p class="year-caption">&ldquo;You&rsquo;re not disorganized. Your tools are.&rdquo;</p>
+</div>
+
+<script>
+  function initInfographic() {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const infographics = document.querySelectorAll<HTMLElement>(
+      "[data-infographic]"
+    );
+
+    infographics.forEach((el) => {
+      if (prefersReducedMotion) {
+        el.classList.add("revealed");
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              el.classList.add("revealed");
+              observer.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      observer.observe(el);
+    });
+  }
+
+  /* Run on initial load and on Astro client-side nav */
+  initInfographic();
+  document.addEventListener("astro:after-swap", initInfographic);
+</script>
+
+<style>
+  /* ── Container ── */
+  .year-infographic {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 2rem 1rem;
+  }
+
+  /* ── Calendar strip ── */
+  .calendar-strip {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  /* ── Month boxes ── */
+  .month-box {
+    flex: 1 1 0;
+    min-width: 0;
+    aspect-ratio: 1 / 1.15;
+    max-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-muted);
+    border-radius: 3px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 200ms ease-out var(--delay, 0ms),
+      transform 200ms ease-out var(--delay, 0ms);
+  }
+
+  .month-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--amber-2);
+    user-select: none;
+  }
+
+  /* Danger month (October) */
+  .month-danger {
+    background: oklch(0.25 0.1 30);
+    border-color: oklch(0.35 0.12 30);
+  }
+
+  .month-danger .month-label {
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Revealed state ── */
+  .revealed .month-box {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Connector line ── */
+  .connector-line {
+    width: 2px;
+    height: 28px;
+    background: var(--danger);
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition:
+      opacity 150ms ease-out 950ms,
+      transform 200ms ease-out 950ms;
+    margin-top: 0;
+  }
+
+  .revealed .connector-line {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  /* ── Hero stat ── */
+  .hero-stat {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 300ms ease-out 1050ms,
+      transform 300ms ease-out 1050ms;
+    margin-top: 0.25rem;
+  }
+
+  .revealed .hero-stat {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-number {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    color: var(--amber-4);
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-desc {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-accent-dim);
+    line-height: 1.55;
+    margin: 0.5rem 0 0;
+  }
+
+  /* ── Sources ── */
+  .year-sources {
+    text-align: center;
+    margin-top: 1.25rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 250ms ease-out 1200ms,
+      transform 250ms ease-out 1200ms;
+  }
+
+  .revealed .year-sources {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .year-sources p {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-accent-dim);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── Caption ── */
+  .year-caption {
+    font-family: var(--font-mono);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--amber-2);
+    text-align: center;
+    margin: 1.5rem 0 0;
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 250ms ease-out 1350ms,
+      transform 250ms ease-out 1350ms;
+  }
+
+  .revealed .year-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .month-box,
+    .connector-line,
+    .hero-stat,
+    .year-sources,
+    .year-caption {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* ── Responsive: tablet and below ── */
+  @media (max-width: 768px) {
+    .month-box {
+      max-width: 36px;
+      aspect-ratio: 1 / 1.1;
+    }
+
+    .month-label {
+      font-size: 0.6rem;
+    }
+
+    .month-danger .month-label {
+      font-size: 0.52rem;
+    }
+
+    .hero-number {
+      font-size: var(--step-3, 1.75rem);
+    }
+
+    .hero-desc {
+      font-size: 0.78rem;
+    }
+
+    .year-sources p {
+      font-size: 10px;
+    }
+  }
+
+  /* ── Responsive: small phones ── */
+  @media (max-width: 480px) {
+    .calendar-strip {
+      flex-wrap: wrap;
+      max-width: 280px;
+      gap: 3px;
+    }
+
+    .month-box {
+      flex: 0 0 calc((100% - 15px) / 6);
+      max-width: none;
+      aspect-ratio: 1 / 1;
+    }
+
+    .hero-number {
+      font-size: var(--step-2, 1.4rem);
+    }
+
+    .hero-desc {
+      font-size: 0.72rem;
+    }
+
+    .connector-line {
+      height: 20px;
+    }
+  }
+</style>

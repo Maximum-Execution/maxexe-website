@@ -1,6 +1,9 @@
 ---
 import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
+import YearInTimeInfographic from '../infographics/YearInTimeInfographic.astro';
+import EighteenMonthTrapInfographic from '../infographics/EighteenMonthTrapInfographic.astro';
+import AIUseCaseInfographic from '../infographics/AIUseCaseInfographic.astro';
 ---
 <div class="value-divider" aria-hidden="true"></div>
 <SectionWrapper bg="light" id="services" class="value-section">
@@ -67,8 +70,8 @@ import Button from '../Button.astro';
         <p class="stat-source">// Slack / Salesforce Small Business Productivity Survey, 2024 · n=2,000</p>
         <p class="stat-note">// App projects start at two weeks.</p>
       </div>
-      <!-- INFOGRAPHIC 02: YOUR YEAR IN TIME goes here -- see Part 4.4 -->
-      <!-- INFOGRAPHIC 03: THE 18-MONTH TRAP goes here -- see Part 4.5 -->
+      <YearInTimeInfographic />
+      <EighteenMonthTrapInfographic />
     </div>
 
     <!-- Symptom 03: AI PROBLEM -->
@@ -96,7 +99,7 @@ import Button from '../Button.astro';
         <p class="stat-source">// QuickBooks, 2025 · Google, 2025 · U.S. Chamber of Commerce, 2023</p>
         <p class="stat-note">// You approve every output before it goes live.</p>
       </div>
-      <!-- INFOGRAPHIC 05: AI USE CASE READOUT goes here -- see Part 4.7 -->
+      <AIUseCaseInfographic />
     </div>
 
   </div>

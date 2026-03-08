@@ -1,0 +1,569 @@
+---
+// BeforeAfterNetworkInfographic.astro
+// Before/After network diagram: fragmented tools vs. connected system.
+// CSS-only layout with positioned divs. Intersection Observer triggers animations.
+// Embedded in the Success Vision section (LIGHT MODE parent).
+---
+
+<div class="network-infographic" data-infographic>
+  <div class="network-panels">
+
+    <!-- ── BEFORE panel ── -->
+    <div class="panel panel-before">
+      <p class="panel-label"><span class="badge-err">[ERR]</span> BEFORE</p>
+      <div class="panel-diagram" aria-label="Diagram showing 5 disconnected tools with you as the glue in the center">
+        <!-- Center: YOU -->
+        <div class="node node-you-before">YOU</div>
+
+        <!-- 5 isolated tool nodes -->
+        <div class="node node-before" style="--nx: 15%; --ny: 12%;">Website</div>
+        <div class="node node-before" style="--nx: 72%; --ny: 8%;">CRM</div>
+        <div class="node node-before" style="--nx: 8%; --ny: 68%;">Email</div>
+        <div class="node node-before" style="--nx: 68%; --ny: 62%;">Booking</div>
+        <div class="node node-before" style="--nx: 48%; --ny: 78%;">AI</div>
+
+        <!-- Dashed arrows from each node to YOU (center) -->
+        <!-- Each arrow is a thin rotated div with dashed border -->
+        <div class="arrow arrow-0" aria-hidden="true"></div>
+        <div class="arrow arrow-1" aria-hidden="true"></div>
+        <div class="arrow arrow-2" aria-hidden="true"></div>
+        <div class="arrow arrow-3" aria-hidden="true"></div>
+        <div class="arrow arrow-4" aria-hidden="true"></div>
+      </div>
+      <p class="panel-caption panel-caption-before">you are the system</p>
+    </div>
+
+    <!-- ── AFTER panel ── -->
+    <div class="panel panel-after">
+      <p class="panel-label"><span class="badge-ok">[OK]</span> AFTER</p>
+      <div class="panel-diagram" aria-label="Diagram showing 5 tools connected to a central website hub, with you free outside">
+        <!-- Central hub -->
+        <div class="hub">YOUR SITE</div>
+
+        <!-- 5 spoke nodes positioned around the hub -->
+        <div class="node node-after" style="--nx: 50%; --ny: 2%;">Website</div>
+        <div class="node node-after" style="--nx: 88%; --ny: 28%;">CRM</div>
+        <div class="node node-after" style="--nx: 78%; --ny: 72%;">Booking</div>
+        <div class="node node-after" style="--nx: 22%; --ny: 72%;">Email</div>
+        <div class="node node-after" style="--nx: 12%; --ny: 28%;">AI</div>
+
+        <!-- Spoke lines from hub to each node -->
+        <div class="spoke spoke-0" aria-hidden="true"></div>
+        <div class="spoke spoke-1" aria-hidden="true"></div>
+        <div class="spoke spoke-2" aria-hidden="true"></div>
+        <div class="spoke spoke-3" aria-hidden="true"></div>
+        <div class="spoke spoke-4" aria-hidden="true"></div>
+
+        <!-- YOU — outside the cluster -->
+        <div class="node node-you-after">YOU</div>
+      </div>
+      <p class="panel-caption panel-caption-after">your website is the system</p>
+    </div>
+
+  </div>
+
+  <p class="network-caption">&ldquo;Your website shouldn&rsquo;t be a brochure. It should be the center of your business system.&rdquo;</p>
+</div>
+
+<script>
+  function initNetworkInfographic() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const infographic = document.querySelector<HTMLElement>('.network-infographic[data-infographic]');
+    if (!infographic) return;
+
+    if (prefersReducedMotion) {
+      infographic.classList.add('revealed');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            infographic.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(infographic);
+  }
+
+  initNetworkInfographic();
+  document.addEventListener('astro:after-swap', initNetworkInfographic);
+</script>
+
+<style>
+  /* ============================================
+     CONTAINER
+     ============================================ */
+  .network-infographic {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    font-family: var(--font-mono);
+  }
+
+  /* ── Two-panel grid ── */
+  .network-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  /* ============================================
+     SHARED PANEL STYLES
+     ============================================ */
+  .panel {
+    border-radius: var(--radius-sm);
+    padding: var(--space-4);
+    position: relative;
+  }
+
+  .panel-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    letter-spacing: 0.02em;
+  }
+
+  .panel-diagram {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 7 / 5;
+    overflow: visible;
+  }
+
+  .panel-caption {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    margin-top: var(--space-3);
+    text-align: center;
+  }
+
+  /* ============================================
+     BEFORE PANEL
+     ============================================ */
+  .panel-before {
+    background: oklch(0.12 0.05 30);
+    border: 1px solid oklch(0.70 0.18 30 / 0.20);
+  }
+
+  .badge-err {
+    color: var(--danger);
+  }
+
+  .panel-caption-before {
+    color: var(--danger);
+  }
+
+  /* ── Before: tool nodes ── */
+  .node-before {
+    position: absolute;
+    left: var(--nx);
+    top: var(--ny);
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: oklch(0.18 0.04 30);
+    border: 2px solid var(--danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.1;
+    z-index: 2;
+    opacity: 0;
+  }
+
+  /* ── Before: YOU node ── */
+  .node-you-before {
+    position: absolute;
+    left: 45%;
+    top: 44%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: oklch(0.20 0.08 30);
+    border: 2px solid var(--danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--danger);
+    z-index: 3;
+    opacity: 0;
+  }
+
+  /* ── Before: dashed arrows ──
+     Each arrow is a thin div with a dashed top border,
+     positioned/rotated to point from a node toward YOU.
+     Origin is at the center of the diagram (where YOU is). */
+  .arrow {
+    position: absolute;
+    height: 0;
+    border-top: 1px dashed var(--danger);
+    transform-origin: 0% 50%;
+    z-index: 1;
+    opacity: 0;
+  }
+
+  /* Arrow geometry: from each node toward YOU at ~(45%, 44%)
+     These are approximations — visually connecting each node's
+     position to the center YOU element. */
+
+  /* Website (15%, 12%) → YOU (45%, 44%) */
+  .arrow-0 {
+    left: 15%;
+    top: 12%;
+    width: 40%;
+    transform: rotate(47deg);
+  }
+
+  /* CRM (72%, 8%) → YOU (45%, 44%) */
+  .arrow-1 {
+    left: 72%;
+    top: 8%;
+    width: 44%;
+    transform: rotate(143deg);
+  }
+
+  /* Email (8%, 68%) → YOU (45%, 44%) */
+  .arrow-2 {
+    left: 8%;
+    top: 68%;
+    width: 44%;
+    transform: rotate(-33deg);
+  }
+
+  /* Booking (68%, 62%) → YOU (45%, 44%) */
+  .arrow-3 {
+    left: 68%;
+    top: 62%;
+    width: 28%;
+    transform: rotate(218deg);
+  }
+
+  /* AI (48%, 78%) → YOU (45%, 44%) */
+  .arrow-4 {
+    left: 48%;
+    top: 78%;
+    width: 36%;
+    transform: rotate(-80deg);
+  }
+
+  /* ============================================
+     AFTER PANEL
+     ============================================ */
+  .panel-after {
+    background:
+      radial-gradient(circle at 50% 50%, oklch(0.87 0.16 86 / 0.08) 0%, transparent 60%),
+      var(--bg-light);
+    border: 1px solid oklch(0.70 0.18 160 / 0.30);
+  }
+
+  .badge-ok {
+    color: var(--success);
+  }
+
+  .panel-caption-after {
+    color: var(--success);
+  }
+
+  /* ── After: central hub ── */
+  .hub {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--amber-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 700;
+    color: oklch(0.15 0.09 62);
+    text-align: center;
+    line-height: 1.2;
+    z-index: 3;
+    opacity: 0;
+  }
+
+  /* ── After: spoke nodes ── */
+  .node-after {
+    position: absolute;
+    left: var(--nx);
+    top: var(--ny);
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    border: 2px solid var(--success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    color: oklch(0.90 0.16 62);
+    text-align: center;
+    line-height: 1.1;
+    z-index: 2;
+    opacity: 0;
+  }
+
+  /* ── After: YOU outside the cluster ── */
+  .node-you-after {
+    position: absolute;
+    right: -4px;
+    bottom: -2px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: oklch(0.20 0.06 160);
+    border: 2px solid var(--success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--success);
+    z-index: 4;
+    opacity: 0;
+  }
+
+  /* ── After: spoke lines ──
+     Lines from hub center (50%, 48%) to each node.
+     Same approach as arrows — thin divs with solid border. */
+  .spoke {
+    position: absolute;
+    height: 0;
+    border-top: 2px solid var(--success);
+    transform-origin: 0% 50%;
+    z-index: 1;
+    opacity: 0;
+  }
+
+  /* Website (50%, 2%) ← hub (50%, 48%) */
+  .spoke-0 {
+    left: 50%;
+    top: 48%;
+    width: 46%;
+    transform: rotate(-90deg);
+  }
+
+  /* CRM (88%, 28%) ← hub (50%, 48%) */
+  .spoke-1 {
+    left: 50%;
+    top: 48%;
+    width: 44%;
+    transform: rotate(-28deg);
+  }
+
+  /* Booking (78%, 72%) ← hub (50%, 48%) */
+  .spoke-2 {
+    left: 50%;
+    top: 48%;
+    width: 38%;
+    transform: rotate(39deg);
+  }
+
+  /* Email (22%, 72%) ← hub (50%, 48%) */
+  .spoke-3 {
+    left: 50%;
+    top: 48%;
+    width: 38%;
+    transform: rotate(140deg);
+  }
+
+  /* AI (12%, 28%) ← hub (50%, 48%) */
+  .spoke-4 {
+    left: 50%;
+    top: 48%;
+    width: 44%;
+    transform: rotate(208deg);
+  }
+
+  /* ============================================
+     OVERALL CAPTION (on LIGHT background)
+     ============================================ */
+  .network-caption {
+    color: oklch(0.35 0.10 62);
+    font-family: var(--font-mono);
+    font-style: italic;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    margin-top: var(--space-6);
+    text-align: center;
+  }
+
+  /* ============================================
+     ANIMATION — BEFORE PANEL
+     Sequence: nodes fade in → YOU appears → arrows draw in
+     ============================================ */
+
+  /* Before nodes: fade in at 0ms, staggered 100ms each */
+  .network-infographic.revealed .node-before {
+    animation: fade-in 300ms linear forwards;
+  }
+  .network-infographic.revealed .panel-before .node-before:nth-child(2) { animation-delay: 0ms; }
+  .network-infographic.revealed .panel-before .node-before:nth-child(3) { animation-delay: 100ms; }
+  .network-infographic.revealed .panel-before .node-before:nth-child(4) { animation-delay: 200ms; }
+  .network-infographic.revealed .panel-before .node-before:nth-child(5) { animation-delay: 300ms; }
+  .network-infographic.revealed .panel-before .node-before:nth-child(6) { animation-delay: 400ms; }
+
+  /* YOU appears after nodes — 600ms */
+  .network-infographic.revealed .node-you-before {
+    animation: fade-in 300ms linear 600ms forwards;
+  }
+
+  /* Arrows draw in after YOU — start at 900ms, stagger 80ms */
+  .network-infographic.revealed .arrow {
+    animation: draw-line 400ms linear forwards;
+  }
+  .network-infographic.revealed .arrow-0 { animation-delay: 900ms; }
+  .network-infographic.revealed .arrow-1 { animation-delay: 980ms; }
+  .network-infographic.revealed .arrow-2 { animation-delay: 1060ms; }
+  .network-infographic.revealed .arrow-3 { animation-delay: 1140ms; }
+  .network-infographic.revealed .arrow-4 { animation-delay: 1220ms; }
+
+  /* ============================================
+     ANIMATION — AFTER PANEL
+     Sequence: hub appears → spokes draw out → nodes appear → YOU fades in
+     ============================================ */
+
+  /* Hub appears first — 200ms */
+  .network-infographic.revealed .hub {
+    animation: fade-in 300ms linear 200ms forwards;
+  }
+
+  /* Spokes draw out — start at 600ms, 100ms stagger, 200ms each */
+  .network-infographic.revealed .spoke {
+    animation: draw-line 200ms linear forwards;
+  }
+  .network-infographic.revealed .spoke-0 { animation-delay: 600ms; }
+  .network-infographic.revealed .spoke-1 { animation-delay: 700ms; }
+  .network-infographic.revealed .spoke-2 { animation-delay: 800ms; }
+  .network-infographic.revealed .spoke-3 { animation-delay: 900ms; }
+  .network-infographic.revealed .spoke-4 { animation-delay: 1000ms; }
+
+  /* After nodes appear at spoke endpoints — start at 800ms, 100ms stagger */
+  .network-infographic.revealed .node-after {
+    animation: fade-in 250ms linear forwards;
+  }
+  .network-infographic.revealed .panel-after .node-after:nth-child(2) { animation-delay: 800ms; }
+  .network-infographic.revealed .panel-after .node-after:nth-child(3) { animation-delay: 900ms; }
+  .network-infographic.revealed .panel-after .node-after:nth-child(4) { animation-delay: 1000ms; }
+  .network-infographic.revealed .panel-after .node-after:nth-child(5) { animation-delay: 1100ms; }
+  .network-infographic.revealed .panel-after .node-after:nth-child(6) { animation-delay: 1200ms; }
+
+  /* YOU outside the cluster — last, at 1400ms */
+  .network-infographic.revealed .node-you-after {
+    animation: fade-in 400ms linear 1400ms forwards;
+  }
+
+  /* ============================================
+     KEYFRAMES
+     ============================================ */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes draw-line {
+    from {
+      opacity: 1;
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  /* ============================================
+     REDUCED MOTION — show everything immediately
+     ============================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .node-before,
+    .node-you-before,
+    .arrow,
+    .hub,
+    .spoke,
+    .node-after,
+    .node-you-after {
+      opacity: 1;
+      animation: none !important;
+      clip-path: none;
+    }
+  }
+
+  /* ============================================
+     RESPONSIVE — stack panels on mobile
+     ============================================ */
+  @media (max-width: 767px) {
+    .network-panels {
+      grid-template-columns: 1fr;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      padding: var(--space-3);
+    }
+
+    .panel-label {
+      font-size: 12px;
+    }
+
+    .panel-caption {
+      font-size: 11px;
+    }
+
+    .node-before,
+    .node-after {
+      width: 42px;
+      height: 42px;
+      font-size: 7px;
+    }
+
+    .node-you-before {
+      width: 36px;
+      height: 36px;
+      font-size: 9px;
+    }
+
+    .hub {
+      width: 56px;
+      height: 56px;
+      font-size: 6.5px;
+    }
+
+    .node-you-after {
+      width: 32px;
+      height: 32px;
+      font-size: 8px;
+    }
+
+    .network-caption {
+      font-size: 0.75rem;
+    }
+  }
+</style>
