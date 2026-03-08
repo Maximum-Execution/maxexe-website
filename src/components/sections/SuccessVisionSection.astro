@@ -3,78 +3,91 @@ import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
 ---
 <div class="success-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="success" class="success-section">
+<section class="success-section" id="success">
   <!-- Section label -->
-  <p class="section-label">// <span class="label-ok">[OK]</span> WHAT SHIPPED LOOKS LIKE</p>
+  <p class="section-label">// 06 SUCCESS VISION</p>
 
   <!-- Content wrapper - 640px centered -->
   <div class="success-content">
     <!-- Headline -->
     <h2 class="success-headline">
-      <span>Your business, running the way</span>
-      <span>it was supposed to from the start.</span>
+      <span>Your business, finally as clear on the outside</span>
+      <span>as it is on the inside.</span>
     </h2>
+
+    <!-- Body paragraph -->
+    <div class="success-body">
+      <p>
+        Clients land on your site and understand exactly what you do. They reach
+        out without friction. Leads come in from people who found you, not just
+        people who already knew you. Your tools connect to each other. Your
+        workflow runs without you holding the pieces together. You spend your time
+        doing the work, not explaining it.
+      </p>
+    </div>
 
     <!-- Confirmation stack -->
     <div class="confirmation-stack">
       <div class="confirm-line">
         <span class="confirm-badge">[OK]</span>
-        <span class="confirm-text">Website brings in qualified leads while you&rsquo;re running the business.</span>
+        <span class="confirm-text">Clients find you, understand you, and reach out. Without friction.</span>
       </div>
       <div class="confirm-line">
         <span class="confirm-badge">[OK]</span>
-        <span class="confirm-text">Your team uses tools built for how they actually work, not around them.</span>
+        <span class="confirm-text">Tools connect to each other. Not a pile of apps. A system.</span>
       </div>
       <div class="confirm-line">
         <span class="confirm-badge">[OK]</span>
-        <span class="confirm-text">AI handles intake, FAQs, and follow-ups. In your voice. On your data.</span>
+        <span class="confirm-text">AI handles intake, FAQs, and follow-ups in your voice, on your data.</span>
       </div>
       <div class="confirm-line">
         <span class="confirm-badge">[OK]</span>
-        <span class="confirm-text">You own every line of code. No subscriptions. No lock-in. No rental fees.</span>
+        <span class="confirm-text">You own every line of code. No subscriptions. No lock-in. No fees owed to us.</span>
       </div>
       <div class="confirm-line">
         <span class="confirm-badge">[OK]</span>
-        <span class="confirm-text">One person knows your entire system. Responds in under 24 hours.</span>
+        <span class="confirm-text">One person knows your full system and responds in under 24 hours.</span>
       </div>
       <div class="confirm-line">
         <span class="confirm-badge">[OK]</span>
-        <span class="confirm-text">Your stack isn&rsquo;t a collection of tools. It&rsquo;s a system.</span>
+        <span class="confirm-text">Your site, tools, and automations sound and feel like the same business.</span>
       </div>
     </div>
 
-    <!-- Terminal equation -->
-    <div class="terminal-equation">
-      <p class="equation-line">&gt; delta(value) = deployed &minus; theoretical</p>
-      <p class="equation-comment">// execution is the only metric that matters.</p>
-    </div>
+    <!-- INFOGRAPHIC 04: BEFORE / AFTER NETWORK goes here -- see Part 4.6 -->
 
     <!-- CTA -->
     <div class="success-cta">
-      <Button variant="primary" href="#diagnostic">[START DIAGNOSTIC &gt;]</Button>
+      <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
     </div>
   </div>
-</SectionWrapper>
+</section>
 
 <style>
-  /* Amber divider rule at top */
+  /* Amber divider rule at top — uses light-mode border */
   .success-divider {
     height: 1px;
-    background: oklch(0.76 0.18 62 / 0.15);
+    background: var(--light-border);
   }
 
-  /* Section label - monospace, small, amber at 35% */
+  /* ── Full Light Mode Inversion ── */
+  .success-section {
+    background: var(--light-bg);
+    color: var(--light-text);
+    padding: var(--space-24) var(--space-8);
+  }
+
+  /* Section label */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: var(--text-accent-dim);
+    color: oklch(0.50 0.10 62);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: var(--space-6);
-  }
-
-  .label-ok {
-    color: var(--success);
+    max-width: var(--container-xl);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Content wrapper - centered 640px */
@@ -83,14 +96,14 @@ import Button from '../Button.astro';
     margin: 0 auto;
   }
 
-  /* Headline - Geist Pixel, step-4 */
+  /* Headline - darkest amber for light mode */
   .success-headline {
     font-family: var(--font-pixel);
     font-size: var(--step-4);
     line-height: 1.15;
     letter-spacing: -0.02em;
-    color: var(--primary);
-    margin-bottom: var(--space-12);
+    color: var(--light-h2);
+    margin-bottom: var(--space-10);
   }
 
   .success-headline span {
@@ -98,14 +111,26 @@ import Button from '../Button.astro';
   }
 
   .success-headline span:last-child {
-    color: var(--text-accent-muted);
+    color: oklch(0.35 0.12 62);
+  }
+
+  /* Body copy */
+  .success-body {
+    margin-bottom: var(--space-12);
+  }
+
+  .success-body p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: oklch(0.35 0.10 62);
   }
 
   /* ── Confirmation stack ── */
   .confirmation-stack {
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    gap: var(--space-4);
     margin-bottom: var(--space-12);
   }
 
@@ -114,43 +139,21 @@ import Button from '../Button.astro';
     align-items: baseline;
     gap: var(--space-3);
     font-family: var(--font-mono);
-    font-size: 16px;
-    line-height: 1.45;
+    font-size: 15px;
+    line-height: 1.5;
+    background: var(--light-badge-bg);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--light-border);
   }
 
   .confirm-badge {
     flex-shrink: 0;
     font-weight: 600;
-    color: var(--success);
-    text-shadow: 0 0 4px oklch(0.70 0.18 160 / 0.9), 0 0 8px oklch(0.70 0.18 160 / 0.35);
+    color: oklch(0.40 0.16 160);
   }
 
   .confirm-text {
-    color: oklch(0.88 0.06 62);
-  }
-
-  /* ── Terminal equation ── */
-  .terminal-equation {
-    margin-bottom: var(--space-12);
-    padding: var(--space-5) 0;
-    border-top: 1px solid var(--border-muted);
-    border-bottom: 1px solid var(--border-muted);
-  }
-
-  .equation-line {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--text-accent-dim);
-    letter-spacing: 0.02em;
-    margin-bottom: var(--space-2);
-  }
-
-  .equation-comment {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    font-style: italic;
-    color: var(--text-accent-dim);
-    letter-spacing: 0.02em;
+    color: var(--light-text);
   }
 
   /* ── CTA ── */
@@ -159,14 +162,30 @@ import Button from '../Button.astro';
     justify-content: center;
   }
 
+  /* Override button colors for light mode */
+  .success-cta :global(.btn-primary) {
+    background: var(--light-h2);
+    color: var(--light-bg);
+    border-color: var(--light-h2);
+  }
+
+  .success-cta :global(.btn-primary:hover) {
+    background: oklch(0.30 0.14 62);
+    border-color: oklch(0.30 0.14 62);
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
+    .success-section {
+      padding: var(--space-16) var(--space-6);
+    }
+
     .success-headline {
       font-size: var(--step-3);
     }
 
     .confirm-line {
-      font-size: 15px;
+      font-size: 14px;
     }
   }
 
@@ -176,7 +195,7 @@ import Button from '../Button.astro';
     }
 
     .confirm-line {
-      font-size: 14px;
+      font-size: 13px;
       gap: var(--space-2);
     }
   }

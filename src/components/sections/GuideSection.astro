@@ -1,39 +1,51 @@
 ---
 import SectionWrapper from '../SectionWrapper.astro';
+import Button from '../Button.astro';
 ---
 <div class="guide-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="about" overflow="visible" class="guide-section">
+<SectionWrapper bg="base" id="guide" class="guide-section">
   <!-- Section label -->
-  <p class="section-label">// 03 ABOUT</p>
+  <p class="section-label">// 04 THE GUIDE</p>
+
+  <!-- Headline -->
+  <h2 class="guide-headline">
+    <span>You get a written diagnosis</span>
+    <span>before we touch a single line of code.</span>
+  </h2>
 
   <!-- Two-column layout -->
   <div class="guide-grid">
-    <!-- LEFT column: empathy copy -->
-    <div class="empathy-col">
-      <p class="empathy-opener">
-        You've already tried the obvious answers.
-      </p>
-
-      <div class="empathy-body">
+    <!-- LEFT column: guide copy -->
+    <div class="guide-copy">
+      <div class="guide-body">
         <p>
-          The template site from the platform everyone recommended. The freelancer
-          who promised a two-week redesign. The agency that showed you a beautiful
-          deck and disappeared after launch. The app that was going to sync
-          everything. The AI tool you signed up for, used twice, and now pay for
-          every month anyway.
+          Every failed project we've ever seen had the same root cause: the answer
+          was sold before the question was asked. The designer built the design.
+          The developer wrote the code. Nobody stopped to ask whether the message
+          made sense to a stranger.
         </p>
 
         <p>
-          None of it worked because none of it started with a diagnosis. Someone
-          sold you a solution before asking what was actually broken.
+          We start differently. Before any code is written, we produce a Problem
+          Statement. It's a plain-language document that defines exactly what's
+          broken and what the fix looks like. You read it. You verify it. You sign
+          off on it. Then we build.
         </p>
 
         <p>
-          Every project starts the same way. Map the systems. Find what's broken.
-          Write a problem statement you can read and agree on before a line of
-          code gets touched. One person runs the entire build — no handoffs, no
-          account managers between you and the work. That's Maximum Execution,
-          based in Richmond, Virginia.
+          One person handles your project from discovery to launch. No handoffs.
+          No "the other person had that file." No explaining your business twice.
+          When it ships, it comes with a Handoff Package: your code, your
+          credentials, your documentation. Everything you need to run it without us.
+        </p>
+
+        <p>
+          If you never call us again after launch, that's a win. That's what the
+          Handoff Package is for.
+        </p>
+
+        <p class="guide-closing">
+          That's Maximum Execution, based in Richmond, Virginia.
         </p>
       </div>
     </div>
@@ -42,47 +54,52 @@ import SectionWrapper from '../SectionWrapper.astro';
     <div class="proof-col">
       <div class="testimonials">
         <blockquote class="testimonial">
-          <p class="testimonial-header">
-            <cite class="log-meta">Marcus T. // Commercial Cleaning Co. // Richmond, VA</cite>
-          </p>
           <p class="testimonial-body">
-            "I'd paid two different agencies to rebuild our site over three years. Both times I ended up with something that looked fine but still didn't bring in clients. Spencer ran the diagnostic first, and it identified exactly why. Our message was buried and there was no follow-up system. Six weeks later we had a site that generated 11 qualified leads in the first month. That had never happened before."
+            "They understood the problem before they started building. That had
+            never happened with any agency we'd worked with before."
+          </p>
+          <p class="testimonial-header">
+            <cite class="log-meta">Client testimonial coming soon</cite>
           </p>
         </blockquote>
 
         <blockquote class="testimonial">
-          <p class="testimonial-header">
-            <cite class="log-meta">Priya S. // HR Consulting Practice // Charlotte, NC</cite>
-          </p>
           <p class="testimonial-body">
-            "I expected this to take two or three months. My site was live in eight days. More importantly, I actually understood what was built and why. I got documentation I could read, not a codebase I'd never open. We booked three new clients in the first two weeks from form submissions alone. I didn't even know the form was being used."
+            "I actually understand what I own now. The handoff documentation was
+            better than anything I've received from a team twice the size."
+          </p>
+          <p class="testimonial-header">
+            <cite class="log-meta">Client testimonial coming soon</cite>
           </p>
         </blockquote>
 
         <blockquote class="testimonial">
-          <p class="testimonial-header">
-            <cite class="log-meta">Daniel W. // Residential Property Mgmt // Raleigh, NC</cite>
-          </p>
           <p class="testimonial-body">
-            "I came to the diagnostic not knowing if I needed a new website, better software, or something else entirely. The questions forced me to think about my business differently. By the end I had a clearer picture of where I was losing people than I'd had in two years of running it. We ended up building a client intake app that replaced four separate tools. My team hasn't complained about our software once since it launched."
+            "The diagnostic found two problems I didn't know I had. We fixed both
+            in the same build. Our lead flow doubled in the first month."
+          </p>
+          <p class="testimonial-header">
+            <cite class="log-meta">Client testimonial coming soon</cite>
           </p>
         </blockquote>
       </div>
     </div>
   </div>
 
-  <!-- Section bottom rule -->
-  <div class="section-bottom-rule" aria-hidden="true"></div>
+  <!-- CTA -->
+  <div class="guide-cta">
+    <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
+  </div>
 </SectionWrapper>
 
 <style>
   /* Amber divider rule at top */
   .guide-divider {
     height: 1px;
-    background: oklch(0.76 0.18 62 / 0.15);
+    background: var(--border);
   }
 
-  /* Section label - monospace, small, amber at 35% */
+  /* Section label */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -92,25 +109,39 @@ import SectionWrapper from '../SectionWrapper.astro';
     margin-bottom: var(--space-6);
   }
 
+  /* Headline - Geist Pixel, two lines */
+  .guide-headline {
+    font-family: var(--font-pixel);
+    font-size: var(--step-4);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-12);
+  }
+
+  .guide-headline span {
+    display: block;
+  }
+
+  .guide-headline span:first-child {
+    color: var(--primary);
+  }
+
+  .guide-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
+  }
+
   /* Two-column grid */
   .guide-grid {
     display: grid;
     grid-template-columns: 5fr 4fr;
     gap: var(--space-16);
     align-items: start;
+    margin-bottom: var(--space-12);
   }
 
-  /* ── Empathy column ── */
-  .empathy-opener {
-    font-family: var(--font-sans);
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.4;
-    margin-bottom: var(--space-8);
-  }
-
-  .empathy-body p {
+  /* ── Guide copy column ── */
+  .guide-body p {
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.65;
@@ -118,8 +149,13 @@ import SectionWrapper from '../SectionWrapper.astro';
     margin-bottom: var(--space-6);
   }
 
-  .empathy-body p:last-child {
+  .guide-body p:last-child {
     margin-bottom: 0;
+  }
+
+  .guide-closing {
+    font-weight: 600;
+    color: var(--text) !important;
   }
 
   /* ── Proof column ── */
@@ -129,7 +165,7 @@ import SectionWrapper from '../SectionWrapper.astro';
     gap: var(--space-8);
   }
 
-  /* ── Testimonials ── */
+  /* ── Testimonials — frosted glass ── */
   .testimonials {
     display: flex;
     flex-direction: column;
@@ -137,27 +173,11 @@ import SectionWrapper from '../SectionWrapper.astro';
   }
 
   .testimonial {
-    background: oklch(0.12 0.02 85);
-    border: 1px solid oklch(0.76 0.18 62 / 0.15);
-    border-radius: var(--radius-sm);
+    background: oklch(0.20 0.09 62 / 0.8);
+    border: 1px solid var(--border-muted);
+    border-left: 4px solid var(--border);
     padding: var(--space-5) var(--space-6);
     margin: 0;
-  }
-
-  .testimonial-header {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    margin-bottom: var(--space-3);
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    flex-wrap: wrap;
-  }
-
-  .log-meta {
-    color: var(--text-accent-dim);
-    font-style: normal;
   }
 
   .testimonial-body {
@@ -165,43 +185,51 @@ import SectionWrapper from '../SectionWrapper.astro';
     font-size: 15px;
     line-height: 1.65;
     color: oklch(0.88 0.06 62);
+    margin-bottom: var(--space-3);
   }
 
-  /* ── Section bottom rule ── */
-  .section-bottom-rule {
-    height: 1px;
-    background: oklch(0.76 0.18 62 / 0.20);
-    margin-top: var(--space-20);
-    max-width: 100%;
+  .testimonial-header {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
   }
 
-  /* ── Desktop sticky scroll ── */
+  .log-meta {
+    color: var(--amber-2);
+    font-style: normal;
+  }
+
+  /* ── CTA ── */
+  .guide-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  /* ── Desktop sticky scroll for copy ── */
   @media (min-width: 769px) {
-    .empathy-col {
+    .guide-copy {
       position: sticky;
       top: 80px;
-      height: calc(100vh - 160px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-self: start;
     }
   }
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
+    .guide-headline {
+      font-size: var(--step-3);
+    }
+
     .guide-grid {
       grid-template-columns: 1fr;
       gap: var(--space-10);
     }
+  }
 
-    /* Reorder: proof column first, empathy last */
-    .proof-col {
-      order: -1;
-    }
-
-    .empathy-col {
-      order: 1;
+  @media (max-width: 480px) {
+    .guide-headline {
+      font-size: var(--step-2);
     }
   }
 </style>

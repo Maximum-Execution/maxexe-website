@@ -3,14 +3,14 @@ import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
 ---
 <div class="process-divider" aria-hidden="true"></div>
-<SectionWrapper bg="dark" id="process" class="process-section">
+<SectionWrapper bg="base" id="process" class="process-section">
   <!-- Section label -->
-  <p class="section-label">// 04 THE PROCESS</p>
+  <p class="section-label">// 05 THE PLAN</p>
 
   <!-- Intro headline -->
   <h2 class="process-headline">
     <span>Clarity. Code. Results.</span>
-    <span>Three steps. No fog. No surprises.</span>
+    <span>In that order, every time.</span>
   </h2>
 
   <!-- Pipeline -->
@@ -18,83 +18,84 @@ import Button from '../Button.astro';
     <!-- Pipeline connecting line (desktop: horizontal, mobile: vertical) -->
     <div class="pipeline-line" aria-hidden="true"></div>
 
-    <!-- Step 01 -->
+    <!-- Step 01: CLARITY -->
     <li class="step">
       <div class="step-node-area" aria-hidden="true">
         <span class="step-num-label">Step 01</span>
         <div class="step-node">01</div>
       </div>
       <div class="step-content">
-        <h3 class="step-title">We diagnose the problem.</h3>
+        <h3 class="step-title">CLARITY</h3>
         <p class="step-body">
-          The diagnostic asks only the questions that apply to your situation.
-          Website, software, or both. Before anything gets built, we
-          identify what's actually broken. Most businesses have at least two
-          failure points. The diagnostic tells you exactly which ones and why,
-          in plain language, not a generic PDF.
+          The diagnostic is free. We map what's broken. Then we write the Problem
+          Statement in plain language. No jargon. No assumptions. You read it. If
+          it's not right, we fix it. No code gets written until you sign off.
         </p>
-        <p class="step-outcome">&gt; OUTCOME: A written problem statement you can read and verify.</p>
+        <div class="step-outcome-block">
+          <p class="step-outcome">&gt; OUTCOME: The Problem Statement. A written diagnosis you read and verify before anything is built.</p>
+          <p class="step-comment">// Diagnostic is free. Takes five minutes.</p>
+        </div>
       </div>
     </li>
 
-    <!-- Step 02 -->
+    <!-- Step 02: CODE -->
     <li class="step">
       <div class="step-node-area" aria-hidden="true">
         <span class="step-num-label">Step 02</span>
         <div class="step-node">02</div>
       </div>
       <div class="step-content">
-        <h3 class="step-title">We build what the diagnosis calls for.</h3>
+        <h3 class="step-title">CODE</h3>
         <p class="step-body">
-          Not a template. Not a guess. One person writes every line of code and
-          holds the full system in working memory from start to finish. Every
-          build ships with documentation so your team can make basic changes
-          without calling us. The diagnosis drives the scope. Nothing more, nothing less.
+          One person builds your project from start to finish. No templates. No
+          agency layers. No handoffs to someone who wasn't in the room when the
+          problem was defined. Ships with full documentation so your team can run it.
         </p>
-        <p class="step-outcome">&gt; OUTCOME: Production-ready code. Documented. Tested. Deployed.</p>
+        <div class="step-outcome-block">
+          <p class="step-outcome">&gt; OUTCOME: Production-ready. Documented. Tested. Deployed.</p>
+          <p class="step-comment">// Simple sites ship in under a week. Apps start at two weeks.</p>
+        </div>
       </div>
     </li>
 
-    <!-- Step 03 -->
+    <!-- Step 03: RESULTS -->
     <li class="step">
       <div class="step-node-area" aria-hidden="true">
         <span class="step-num-label">Step 03</span>
         <div class="step-node">03</div>
       </div>
       <div class="step-content">
-        <h3 class="step-title">You launch with a system you own.</h3>
+        <h3 class="step-title">RESULTS</h3>
         <p class="step-body">
-          Thirty days of post-launch support. A handoff document your team can
-          actually use. And 100% of the code is yours at delivery. No
-          subscriptions, no platform lock-in, no rental fees. The goal is for
-          you to never need to call us again unless you want to build something
-          new.
+          Thirty days of post-launch support. Then the Handoff Package arrives:
+          your code, your hosting credentials, your CMS instructions, and the
+          original Problem Statement. You own everything. Nothing is locked to us.
         </p>
-        <p class="step-outcome">&gt; OUTCOME: Your code. Your system. Complete ownership.</p>
+        <div class="step-outcome-block">
+          <p class="step-outcome">&gt; OUTCOME: The Handoff Package. Your code, your system, complete ownership.</p>
+          <p class="step-comment">// Most projects ship in 30 to 90 days.</p>
+        </div>
       </div>
     </li>
   </ol>
 
-  <!-- Bridge -->
-  <div class="bridge">
-    <div class="bridge-rule" aria-hidden="true"></div>
-    <p class="bridge-text">
-      <span>Ready to find out what's broken?</span>
-      <span>The diagnostic is free. Results are instant.</span>
-    </p>
-    <Button variant="primary" href="#diagnostic">START DIAGNOSTIC &gt;</Button>
-    <p class="bridge-support">// no commitment required. Just data.</p>
+  <!-- CTA -->
+  <div class="process-cta">
+    <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
+    <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
   </div>
-
-  <!-- Section bottom rule -->
-  <div class="section-bottom-rule" aria-hidden="true"></div>
 </SectionWrapper>
 
 <style>
   /* Amber divider rule at top */
   .process-divider {
     height: 1px;
-    background: oklch(0.76 0.18 62 / 0.15);
+    background: var(--border);
+  }
+
+  /* Warm gradient background — !important overrides SectionWrapper inline style */
+  :global(.process-section) {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-plan-end) 100%) !important;
   }
 
   /* Section label */
@@ -126,7 +127,7 @@ import Button from '../Button.astro';
   }
 
   .process-headline span:last-child {
-    color: var(--text-accent-muted);
+    color: oklch(0.76 0.18 62 / 0.7);
   }
 
   /* ── Pipeline layout ── */
@@ -144,7 +145,7 @@ import Button from '../Button.astro';
   /* Horizontal connecting line (desktop) */
   .pipeline-line {
     position: absolute;
-    top: 38px; /* vertically centered on 24px node + label above */
+    top: 38px;
     left: 12px;
     right: 12px;
     height: 2px;
@@ -199,9 +200,10 @@ import Button from '../Button.astro';
 
   .step-title {
     font-family: var(--font-pixel);
-    font-size: 24px;
+    font-size: var(--step-2);
     line-height: 1.25;
-    color: var(--text);
+    color: var(--amber-4);
+    letter-spacing: 0.04em;
     margin-bottom: var(--space-4);
   }
 
@@ -213,59 +215,34 @@ import Button from '../Button.astro';
     margin-bottom: var(--space-5);
   }
 
-  .step-outcome {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-feature-settings: 'tnum' 1;
-    color: var(--text-accent-dim);
-    line-height: 1.5;
+  /* Outcome block */
+  .step-outcome-block {
     padding-top: var(--space-4);
     border-top: 1px solid var(--border-muted);
   }
 
-  /* ── Bridge ── */
-  .bridge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: var(--space-16);
-  }
-
-  .bridge-rule {
-    width: 48px;
-    height: 1px;
-    background: oklch(0.76 0.18 62 / 0.25);
-    margin-bottom: var(--space-10);
-  }
-
-  .bridge-text {
-    font-family: var(--font-sans);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: var(--text);
-    margin-bottom: var(--space-8);
-  }
-
-  .bridge-text span {
-    display: block;
-  }
-
-  .bridge-support {
+  .step-outcome {
     font-family: var(--font-mono);
-    font-size: var(--step--2);
-    color: var(--text-accent-dim);
-    letter-spacing: 0.06em;
-    margin-top: var(--space-4);
+    font-size: 13px;
+    font-feature-settings: 'tnum' 1;
+    color: var(--success);
+    line-height: 1.5;
+    margin-bottom: var(--space-2);
   }
 
-  /* ── Section bottom rule ── */
-  .section-bottom-rule {
-    height: 1px;
-    background: oklch(0.76 0.18 62 / 0.20);
-    margin-top: var(--space-20);
-    max-width: 100%;
+  .step-comment {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--amber-2);
+    line-height: 1.5;
+  }
+
+  /* ── CTA area ── */
+  .process-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
   }
 
   /* ── Responsive: mobile ── */
@@ -310,21 +287,18 @@ import Button from '../Button.astro';
     }
 
     .step-title {
-      font-size: 20px;
+      font-size: var(--step-1);
     }
 
-    .bridge-text {
-      font-size: 18px;
+    .process-cta {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
   @media (max-width: 480px) {
     .process-headline {
       font-size: var(--step-2);
-    }
-
-    .step-title {
-      font-size: 18px;
     }
   }
 
