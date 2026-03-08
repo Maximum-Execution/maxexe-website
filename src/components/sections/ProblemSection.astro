@@ -2,93 +2,83 @@
 import SectionWrapper from '../SectionWrapper.astro';
 import BruteCard from '../BruteCard.astro';
 import Badge from '../Badge.astro';
+import Button from '../Button.astro';
 ---
-<div class="problem-divider" aria-hidden="true"></div>
-<SectionWrapper bg="dark" id="problem" class="problem-section">
+<div class="stakes-divider" aria-hidden="true"></div>
+<SectionWrapper bg="base" id="stakes" class="stakes-section">
   <!-- Section label -->
-  <p class="section-label">// 01 THE PROBLEM</p>
+  <p class="section-label">// 02 THE STAKES</p>
 
   <!-- Headline -->
-  <h2 class="problem-headline">
-    <span>The problem isn't your effort.</span>
-    <span>It's that no one diagnosed the actual problem.</span>
+  <h2 class="stakes-headline">
+    <span>Your work earns trust.</span>
+    <span>Your website should too.</span>
   </h2>
 
   <!-- Body copy -->
-  <div class="problem-body">
+  <div class="stakes-body">
     <p>
-      You already know something isn't working. The website went live and the
-      calls didn't come. The app was supposed to connect everything and now
-      there are three apps instead of one. The AI tool you tried didn't sound
-      like you and you're still paying for it every month.
+      Prospects visit your site. They can't figure out what you offer. They
+      leave. Someone with a worse product, but a clearer message, gets the call
+      instead.
     </p>
 
     <p>
-      Here's what the data says. Eighty-one percent of your potential customers
-      look you up online before they ever call or walk in. What they find in the
-      first 0.05 seconds decides whether they stay or leave. Ninety-four percent
-      of that snap judgment is based on design and clarity alone. Not your price.
-      Not your experience. How your business reads at first glance.
+      You already know this. That quiet dread when you send someone to your
+      site, wondering if it'll make you look smaller than you are. That's not a
+      feeling. That's a signal.
     </p>
 
     <p>
-      The average small business runs 15 to 30 separate tools. A CRM that
-      doesn't talk to the scheduling app. A website that can't see the
-      inventory. Invoices in one place, client history in three others.
-      Employees switch between apps 1,200 times a day. That's 44 hours per
-      employee, per year, lost to nothing but switching tabs. For a 10-person
-      team: 440 hours. More than 11 full work weeks gone every year into the
-      space between your tools.
-    </p>
-
-    <p>
-      You tried AI. Maybe two tools. They generated content that didn't sound
-      like you and answered questions your customers weren't asking.
-    </p>
-
-    <p class="problem-closing">
-      The problem isn't effort. You've put in the effort.<br />
-      The problem is that every solution you've tried was built for someone
-      else's business. Nobody diagnosed yours first.
+      Good work deserves to be found. Bad marketing shouldn't be a tax on good
+      work.
     </p>
   </div>
 
-  <!-- Diagnostic cards -->
-  <div class="diagnostic-grid">
+  <!-- Root cause -->
+  <p class="root-cause">// ROOT CAUSE IDENTIFIED &gt; VILLAIN: FRAGMENTATION</p>
+
+  <!-- [ERR] cards -->
+  <div class="err-grid">
     <BruteCard>
       <Badge variant="err">[ERR]</Badge>
-      <h3 class="card-title">FIRST IMPRESSION</h3>
-      <p class="card-desc">Visitors form their opinion in 0.05s.</p>
-      <p class="card-stat">67% of businesses lose revenue to poor website performance.</p>
+      <h3 class="err-title">CREDIBILITY PROBLEM</h3>
+      <p class="err-desc">Your site forms an impression in 50 milliseconds. Before anyone reads a word.</p>
+      <p class="err-source">// Lindgaard et al., 2006</p>
     </BruteCard>
 
     <BruteCard>
       <Badge variant="err">[ERR]</Badge>
-      <h3 class="card-title">TOOL FRAGMENTATION</h3>
-      <p class="card-desc">23 tools. 0 operating system.</p>
-      <p class="card-stat">440 hrs/year lost per 10 employees.</p>
+      <h3 class="err-title">CONFIDENCE PROBLEM</h3>
+      <p class="err-desc">4 out of 5 small business owners are not confident their marketing is working.</p>
+      <p class="err-source">// Constant Contact / Ascend2, 2025 · n=2,500</p>
     </BruteCard>
 
     <BruteCard>
       <Badge variant="err">[ERR]</Badge>
-      <h3 class="card-title">AI MISFIT</h3>
-      <p class="card-desc">68% of small businesses use AI.</p>
-      <p class="card-stat">84% of technology projects fail. Most were never diagnosed.</p>
+      <h3 class="err-title">REFERRAL PROBLEM</h3>
+      <p class="err-desc">57% of people won't recommend a business with a poorly designed mobile site.</p>
+      <p class="err-source">// networksolutions.com / multiple sources, 2025</p>
     </BruteCard>
   </div>
 
-  <!-- Closing comment -->
-  <p class="section-comment">// this is a diagnosis problem, not a hustle problem.</p>
+  <!-- CTA -->
+  <div class="stakes-cta">
+    <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
+    <p class="cta-comment">// Five minutes tells you exactly what's broken.</p>
+  </div>
+
+  <!-- INFOGRAPHIC 01: SYSTEM SCAN goes here -- see Part 4.3 -->
 </SectionWrapper>
 
 <style>
-  /* Amber divider rule between hero and problem */
-  .problem-divider {
+  /* Amber divider rule between hero and stakes */
+  .stakes-divider {
     height: 1px;
     background: oklch(0.76 0.18 62 / 0.15);
   }
 
-  /* Section label - monospace, small, amber at 35% */
+  /* Section label - monospace, small */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -98,8 +88,8 @@ import Badge from '../Badge.astro';
     margin-bottom: var(--space-6);
   }
 
-  /* Headline - Geist Pixel, two hard-break lines */
-  .problem-headline {
+  /* Headline - Geist Pixel, two lines */
+  .stakes-headline {
     font-family: var(--font-pixel);
     font-size: var(--step-4);
     line-height: 1.15;
@@ -108,25 +98,25 @@ import Badge from '../Badge.astro';
     margin-bottom: var(--space-10);
   }
 
-  .problem-headline span {
+  .stakes-headline span {
     display: block;
   }
 
-  .problem-headline span:first-child {
+  .stakes-headline span:first-child {
     color: var(--primary);
   }
 
-  .problem-headline span:last-child {
-    color: var(--text-accent-muted);
+  .stakes-headline span:last-child {
+    color: oklch(0.76 0.18 62 / 0.7);
   }
 
   /* Body copy */
-  .problem-body {
+  .stakes-body {
     max-width: 640px;
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-10);
   }
 
-  .problem-body p {
+  .stakes-body p {
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.65;
@@ -134,28 +124,42 @@ import Badge from '../Badge.astro';
     margin-bottom: var(--space-6);
   }
 
-  .problem-body p:last-child {
+  .stakes-body p:last-child {
     margin-bottom: 0;
   }
 
-  .problem-closing {
-    margin-top: var(--space-10);
-    font-style: italic;
-    color: var(--text-muted) !important;
-    border-left: 2px solid oklch(0.76 0.18 62 / 0.25);
-    padding-left: var(--space-6);
+  /* Root cause line */
+  .root-cause {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--danger);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-12);
+    text-shadow: 0 0 4px oklch(0.70 0.18 30 / 0.5);
   }
 
-  /* Diagnostic card grid */
-  .diagnostic-grid {
+  /* [ERR] card grid */
+  .err-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-12);
+  }
+
+  /* Override BruteCard default colors for [ERR] cards */
+  .err-grid :global(.brute-card) {
+    background: var(--bg-stakes-err);
+    border-color: var(--bg-stakes-border);
+    box-shadow: 4px 4px 0 0 oklch(0.28 0.12 30 / 0.4);
+  }
+
+  .err-grid :global(.brute-card:hover) {
+    border-color: var(--danger);
+    box-shadow: 6px 6px 0 0 var(--danger);
   }
 
   /* Card internals */
-  .card-title {
+  .err-title {
     font-family: var(--font-mono);
     font-size: var(--step--1);
     font-weight: 600;
@@ -166,7 +170,7 @@ import Badge from '../Badge.astro';
     margin-bottom: var(--space-3);
   }
 
-  .card-desc {
+  .err-desc {
     font-family: var(--font-sans);
     font-size: var(--step--1);
     color: var(--text-muted);
@@ -174,18 +178,25 @@ import Badge from '../Badge.astro';
     margin-bottom: var(--space-4);
   }
 
-  .card-stat {
+  .err-source {
     font-family: var(--font-mono);
     font-size: var(--step--2);
     color: var(--text-accent-dim);
     line-height: 1.4;
     font-feature-settings: 'tnum' 1;
     padding-top: var(--space-3);
-    border-top: 1px solid var(--border-muted);
+    border-top: 1px solid var(--bg-stakes-border);
   }
 
-  /* Closing comment */
-  .section-comment {
+  /* CTA area */
+  .stakes-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .cta-comment {
     font-family: var(--font-mono);
     font-size: var(--step--2);
     color: var(--text-accent-dim);
@@ -194,18 +205,23 @@ import Badge from '../Badge.astro';
 
   /* Responsive */
   @media (max-width: 768px) {
-    .problem-headline {
+    .stakes-headline {
       font-size: var(--step-3);
     }
 
-    .diagnostic-grid {
+    .err-grid {
       grid-template-columns: 1fr;
       gap: var(--space-4);
+    }
+
+    .stakes-cta {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
   @media (max-width: 480px) {
-    .problem-headline {
+    .stakes-headline {
       font-size: var(--step-2);
     }
   }

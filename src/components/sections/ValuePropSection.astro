@@ -1,52 +1,110 @@
 ---
 import SectionWrapper from '../SectionWrapper.astro';
-import Card from '../Card.astro';
+import Button from '../Button.astro';
 ---
 <div class="value-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="services" class="value-section">
+<SectionWrapper bg="light" id="services" class="value-section">
   <!-- Section label -->
-  <p class="section-label">// 02 WHAT WE BUILD</p>
+  <p class="section-label">// 03 VALUE PROPOSITION</p>
 
   <!-- Intro headline -->
   <h2 class="value-headline">
-    <span>One diagnosis. Three things built for your business.</span>
-    <span>One person accountable from start to finish.</span>
+    <span>Most businesses have one of three problems.</span>
+    <span>The diagnostic finds which one is yours.</span>
   </h2>
 
-  <!-- Subhead -->
-  <div class="value-subhead">
-    <p>// The diagnostic tells us which one you need.</p>
-    <p>// Sometimes it's all three.</p>
+  <!-- Intro comment -->
+  <p class="value-comment">// DOES THIS SOUND FAMILIAR?</p>
+
+  <!-- Symptom cards -->
+  <div class="symptoms-stack">
+
+    <!-- Symptom 01: MESSAGE PROBLEM -->
+    <div class="symptom-card">
+      <p class="symptom-label">// SYMPTOM 01: MESSAGE PROBLEM</p>
+      <h3 class="symptom-headline">"Prospects find me, but they don't get what I do."</h3>
+      <div class="symptom-body">
+        <p>Your site describes your process. It doesn't describe their outcome. The people who already know you understand it. Strangers don't. And strangers are the ones you're trying to reach.</p>
+        <p>You have three seconds to answer one question: is this the right business for me? Right now, your site isn't answering it.</p>
+        <p>We build websites that answer that question before the visitor has to ask it.</p>
+      </div>
+      <div class="stat-block">
+        <div class="stat-line">
+          <span class="stat-label">&gt; FIRST IMPRESSION WINDOW:</span>
+          <span class="stat-value">50ms</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label">&gt; LOAD ABANDONMENT:</span>
+          <span class="stat-value">53% leave after 3 seconds</span>
+        </div>
+        <p class="stat-source">// Lindgaard, 2006 · Google, 2016</p>
+        <p class="stat-note">// Simple sites ship in under a week.</p>
+      </div>
+    </div>
+
+    <!-- Symptom 02: TOOL PROBLEM -->
+    <div class="symptom-card">
+      <p class="symptom-label">// SYMPTOM 02: TOOL PROBLEM</p>
+      <h3 class="symptom-headline">"I'm the one holding all the tools together."</h3>
+      <div class="symptom-body">
+        <p>You didn't plan to become your own IT department. You bought software one at a time, each one solving a specific problem, until you became the glue between all of them.</p>
+        <p>The average small business owner juggles four different digital tools every day. Nearly one in three uses five or more. None of them were designed to work together. That's not a software problem. That's a system problem.</p>
+        <p>We build apps around how your business actually runs. Not around how a software company thinks it should.</p>
+      </div>
+      <div class="stat-block">
+        <div class="stat-line">
+          <span class="stat-label">&gt; DAILY TOOLS (avg, small business owners):</span>
+          <span class="stat-value">4</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label">&gt; OWNERS USING 5+:</span>
+          <span class="stat-value">1 in 3</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label">&gt; DAILY TIME LOST TO TOOL SWITCHING:</span>
+          <span class="stat-value">1.5 hrs/day</span>
+        </div>
+        <p class="stat-source">// Slack / Salesforce Small Business Productivity Survey, 2024 · n=2,000</p>
+        <p class="stat-note">// App projects start at two weeks.</p>
+      </div>
+      <!-- INFOGRAPHIC 02: YOUR YEAR IN TIME goes here -- see Part 4.4 -->
+      <!-- INFOGRAPHIC 03: THE 18-MONTH TRAP goes here -- see Part 4.5 -->
+    </div>
+
+    <!-- Symptom 03: AI PROBLEM -->
+    <div class="symptom-card">
+      <p class="symptom-label">// SYMPTOM 03: AI PROBLEM</p>
+      <h3 class="symptom-headline">"I know I should be using AI. I just don't know where to start."</h3>
+      <div class="symptom-body">
+        <p>Maybe you've tried it. Maybe it didn't sound like you. Maybe it was one more thing to learn on top of everything else you're already managing.</p>
+        <p>Most AI tools are built for everyone. That means they're optimized for no one. They don't know your services, your tone, or how you actually talk to clients.</p>
+        <p>The right question isn't "what AI should I use?" It's "what task do I do by hand every week that a machine should handle?" We find that task, build around your data, and train it in your voice. You approve every output before it goes live.</p>
+      </div>
+      <div class="stat-block">
+        <div class="stat-line">
+          <span class="stat-label">&gt; SMALL BUSINESSES USING AI REGULARLY:</span>
+          <span class="stat-value">68%</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label">&gt; AVERAGE TIME SAVED PER WEEK:</span>
+          <span class="stat-value">5 hrs</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label">&gt; PROFIT GROWTH LIKELIHOOD (w/ AI):</span>
+          <span class="stat-value">+12 pts</span>
+        </div>
+        <p class="stat-source">// QuickBooks, 2025 · Google, 2025 · U.S. Chamber of Commerce, 2023</p>
+        <p class="stat-note">// You approve every output before it goes live.</p>
+      </div>
+      <!-- INFOGRAPHIC 05: AI USE CASE READOUT goes here -- see Part 4.7 -->
+    </div>
+
   </div>
 
-  <!-- Service cards bento grid -->
-  <div class="services-grid">
-    <!-- Card 01 - WEBSITES -->
-    <Card glow>
-      <p class="card-label">// WEBSITES</p>
-      <h3 class="card-headline">Your website should be closing deals while you sleep.</h3>
-      <p class="card-body">We build custom marketing websites that tell your business's story clearly and move visitors toward a decision. Not a template dressed up as custom work. Not a site with a new logo slapped on a stock layout. A site engineered to convert, built from a clear message, and handed off with code you own completely.</p>
-      <p class="card-stat">&gt; 67% of businesses lose revenue to poor website performance.</p>
-      <p class="card-timeline">// Simple sites ship in under one week.</p>
-    </Card>
-
-    <!-- Card 02 - APPS + SOFTWARE -->
-    <Card glow>
-      <p class="card-label">// APPS + SOFTWARE</p>
-      <h3 class="card-headline">Your team should use tools built for how they actually work.</h3>
-      <p class="card-body">Custom business apps for the workflows that off-the-shelf software never quite covers: intake portals, client dashboards, booking systems, internal tools, operations apps. Built around your actual process. Documented. Owned by you at delivery. Not rented from us by the month.</p>
-      <p class="card-stat">&gt; 53% of small businesses report data problems from disconnected tools.</p>
-      <p class="card-timeline">// App projects start at 2 weeks.</p>
-    </Card>
-
-    <!-- Card 03 - AI TOOLS -->
-    <Card glow>
-      <p class="card-label">// AI TOOLS</p>
-      <h3 class="card-headline">Your AI should know your business, not just the internet.</h3>
-      <p class="card-body">We don't bolt a chatbot onto your site and call it AI. We diagnose where AI actually saves your team time: answering FAQs, capturing leads, drafting follow-up emails, processing intake. Then we build a narrow, focused system trained on your data. No vaporware. No black boxes. A specific tool built around what your business actually does.</p>
-      <p class="card-stat">&gt; Small businesses using AI save 5.6 hrs per person, per week.</p>
-      <p class="card-timeline">// You see exactly what it does and why.</p>
-    </Card>
+  <!-- Routing comment + CTA -->
+  <div class="value-cta">
+    <p class="routing-comment">// Not sure which one fits? The diagnostic routes you.</p>
+    <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
   </div>
 </SectionWrapper>
 
@@ -54,10 +112,10 @@ import Card from '../Card.astro';
   /* Amber divider rule at top */
   .value-divider {
     height: 1px;
-    background: oklch(0.76 0.18 62 / 0.15);
+    background: var(--border);
   }
 
-  /* Section label - monospace, small */
+  /* Section label */
   .section-label {
     font-family: var(--font-mono);
     font-size: var(--step--2);
@@ -89,27 +147,32 @@ import Card from '../Card.astro';
     color: oklch(0.76 0.18 62 / 0.7);
   }
 
-  /* Subhead - terminal comments, mono */
-  .value-subhead {
-    margin-bottom: var(--space-16);
-  }
-
-  .value-subhead p {
+  /* Intro comment */
+  .value-comment {
     font-family: var(--font-mono);
     font-size: var(--step--1);
     color: var(--text-accent-dim);
-    line-height: 1.6;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-16);
   }
 
-  /* Services bento grid - 3 cols desktop, 1 col mobile */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
+  /* Symptoms - vertical stack */
+  .symptoms-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+    margin-bottom: var(--space-16);
   }
 
-  /* Card internals */
-  .card-label {
+  /* Symptom card */
+  .symptom-card {
+    border: 1px solid var(--border);
+    padding: var(--space-8);
+    position: relative;
+  }
+
+  /* Symptom label */
+  .symptom-label {
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--text-accent-dim);
@@ -118,38 +181,92 @@ import Card from '../Card.astro';
     margin-bottom: var(--space-5);
   }
 
-  .card-headline {
+  /* Symptom quoted headline */
+  .symptom-headline {
     font-family: var(--font-pixel);
-    font-size: 22px;
+    font-size: var(--step-2);
     line-height: 1.25;
-    color: var(--text);
-    margin-bottom: var(--space-5);
+    color: var(--amber-4);
+    margin-bottom: var(--space-6);
   }
 
-  .card-body {
+  /* Symptom body */
+  .symptom-body {
+    max-width: 640px;
+    margin-bottom: var(--space-8);
+  }
+
+  .symptom-body p {
     font-family: var(--font-sans);
     font-size: 15px;
     line-height: 1.65;
     color: var(--text-accent-muted);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
   }
 
-  .card-stat {
+  .symptom-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Terminal stat block */
+  .stat-block {
+    background: var(--crt-black);
+    border: 1px solid var(--border-muted);
+    padding: var(--space-6);
     font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--text-accent-dim);
-    line-height: 1.5;
     font-feature-settings: 'tnum' 1;
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--border-muted);
-    margin-bottom: var(--space-3);
   }
 
-  .card-timeline {
-    font-family: var(--font-mono);
-    font-size: 12px;
+  .stat-line {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-1) 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-label {
+    font-size: var(--step--2);
+    color: var(--amber-2);
+    white-space: nowrap;
+  }
+
+  .stat-value {
+    font-size: var(--step--2);
+    color: var(--amber-4);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .stat-source {
+    font-size: 11px;
     color: var(--text-accent-dim);
-    letter-spacing: 0.04em;
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-muted);
+    line-height: 1.5;
+  }
+
+  .stat-note {
+    font-size: 11px;
+    color: var(--text-accent-dim);
+    margin-top: var(--space-1);
+    line-height: 1.5;
+  }
+
+  /* CTA area */
+  .value-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .routing-comment {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--text-accent-dim);
+    letter-spacing: 0.06em;
   }
 
   /* Responsive */
@@ -158,9 +275,22 @@ import Card from '../Card.astro';
       font-size: var(--step-3);
     }
 
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
+    .symptom-headline {
+      font-size: var(--step-1);
+    }
+
+    .stat-line {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .stat-value {
+      text-align: left;
+    }
+
+    .value-cta {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 

@@ -8,27 +8,24 @@ import Cursor from '../Cursor.astro';
   <div class="hero-inner">
     <!-- Left Column -->
     <div class="hero-content">
-      <p class="hero-intro">Web development studio // Richmond, Virginia</p>
+      <p class="hero-intro">// Maximum Execution · Richmond, VA · Web Design · Apps · AI Tools</p>
 
       <h1 class="hero-headline">
-        <span class="line-1">We don't design solutions.</span>
-        <span class="line-2">We debug the problem.</span>
+        <span class="line-1">Your business is better than</span>
+        <span class="line-2">your website says it is.</span>
       </h1>
 
       <p class="hero-subhead">
-        Your website should convert. Your tools should connect. Your AI
-        should know your business, not just the internet. Diagnosed first.
-        Built to spec. Yours to own.
+        We find what's broken in your message, your tools, or your workflow.
+        Then we build the fix.
       </p>
 
       <p class="hero-tagline">// Clarity. Code. Results.</p>
 
       <div class="hero-ctas">
-        <Button variant="primary" href="#diagnostic">[START DIAGNOSTIC &gt;]</Button>
-        <Button variant="ghost" href="#process">[SEE HOW IT WORKS &gt;]</Button>
+        <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
+        <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
       </div>
-
-      <p class="hero-support">// 5 minutes. Free results. No commitment.</p>
     </div>
 
     <!-- Right Column -->
@@ -42,7 +39,7 @@ import Cursor from '../Cursor.astro';
         <div class="status-list">
           <div class="status-line">
             <span class="status-badge ok">[OK]</span>
-            <span class="status-text">Projects shipped:</span>
+            <span class="status-text">Businesses served:</span>
             <span class="status-value">12+</span>
           </div>
           <div class="status-line">
@@ -85,6 +82,7 @@ import Cursor from '../Cursor.astro';
     padding: var(--space-24) var(--space-8);
     position: relative;
     overflow: hidden;
+    background: var(--crt-black);
   }
 
   .hero-bg-glow {
@@ -119,9 +117,8 @@ import Cursor from '../Cursor.astro';
   .hero-intro {
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: var(--text-accent-dim);
+    color: var(--amber-3);
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     margin-bottom: var(--space-6);
   }
 
@@ -135,12 +132,12 @@ import Cursor from '../Cursor.astro';
 
   .hero-headline .line-1 {
     display: block;
-    color: var(--primary);
+    color: var(--text);
   }
 
   .hero-headline .line-2 {
     display: block;
-    color: var(--text-accent-muted);
+    color: var(--text);
   }
 
   .hero-subhead {
@@ -155,7 +152,7 @@ import Cursor from '../Cursor.astro';
   .hero-tagline {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: var(--text-accent-dim);
+    color: var(--amber-3);
     letter-spacing: 0.08em;
     margin-bottom: var(--space-8);
   }
@@ -164,13 +161,6 @@ import Cursor from '../Cursor.astro';
     display: flex;
     gap: var(--space-4);
     flex-wrap: wrap;
-    margin-bottom: var(--space-4);
-  }
-
-  .hero-support {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    color: var(--text-accent-dim);
   }
 
   /* Terminal widget */
