@@ -61,7 +61,7 @@
 
   /* Amber scale (Brand Book v1.0) */
   --amber-1:      oklch(0.32 0.10 46);   /* #5C2800 — disabled, faint glow */
-  --amber-2:      oklch(0.57 0.15 54);   /* #B36000 — dim text, borders */
+  --amber-2:      oklch(0.61 0.15 54);   /* ~#C56800 — dim text, borders (4.7:1 on dark bg) */
   --amber-3:      oklch(0.66 0.17 57);   /* #DE7400 — body text, eyebrow */
   --amber-4:      oklch(0.87 0.16 86);   /* #FFCC4A — headings, bright moments */
 

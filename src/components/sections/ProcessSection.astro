@@ -14,10 +14,10 @@ import Button from '../Button.astro';
   </h2>
 
   <!-- Pipeline -->
-  <ol class="pipeline" data-animate>
+  <div class="pipeline-wrapper" data-animate>
     <!-- Pipeline connecting line (desktop: horizontal, mobile: vertical) -->
     <div class="pipeline-line" aria-hidden="true"></div>
-
+    <ol class="pipeline">
     <!-- Step 01: CLARITY -->
     <li class="step">
       <div class="step-node-area" aria-hidden="true">
@@ -78,6 +78,7 @@ import Button from '../Button.astro';
       </div>
     </li>
   </ol>
+  </div>
 
   <!-- CTA -->
   <div class="process-cta">
@@ -130,16 +131,20 @@ import Button from '../Button.astro';
     color: oklch(0.76 0.18 62 / 0.7);
   }
 
+  /* ── Pipeline wrapper (positioning context for the decorative line) ── */
+  .pipeline-wrapper {
+    position: relative;
+    margin-bottom: var(--space-16);
+  }
+
   /* ── Pipeline layout ── */
   .pipeline {
-    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-10);
-    margin-bottom: var(--space-16);
     list-style: none;
     padding: 0;
-    margin-top: 0;
+    margin: 0;
   }
 
   /* Horizontal connecting line (desktop) */
@@ -155,7 +160,7 @@ import Button from '../Button.astro';
     transition: transform 1.8s var(--ease-phosphor);
   }
 
-  .pipeline.revealed .pipeline-line {
+  .pipeline-wrapper.revealed .pipeline-line {
     transform: scaleX(1);
   }
 
@@ -270,7 +275,7 @@ import Button from '../Button.astro';
       transform-origin: top;
     }
 
-    .pipeline.revealed .pipeline-line {
+    .pipeline-wrapper.revealed .pipeline-line {
       transform: scaleY(1);
     }
 
