@@ -335,12 +335,12 @@ section > header > h2:first-child {
   margin-top: 0;
 }
 
-/* Section headings: wrapper padding already creates separation —
-   suppress the prose-context 3em push */
-.section-inner h1,
-.section-inner h2,
-.section-inner h3,
-.section-inner h4 {
+/* Section headings: section padding already creates separation —
+   suppress the prose-context 3em push for all page sections */
+section h1,
+section h2,
+section h3,
+section h4 {
   margin-top: 0;
 }
 
