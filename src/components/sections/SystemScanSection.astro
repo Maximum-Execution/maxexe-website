@@ -192,7 +192,7 @@ import Button from '../Button.astro';
     font-family: var(--font-mono);
     font-size: var(--step--2);
     color: var(--text-accent-dim);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     margin-bottom: var(--space-6);
   }
@@ -202,7 +202,7 @@ import Button from '../Button.astro';
     font-family: var(--font-pixel);
     font-size: var(--step-4);
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--tracking-snug);
     color: var(--primary);
     margin-bottom: var(--space-8);
   }
@@ -218,7 +218,7 @@ import Button from '../Button.astro';
   /* Bridge copy */
   .bridge-copy {
     font-family: var(--font-sans);
-    font-size: 20px;
+    font-size: var(--step-1);
     line-height: 1.6;
     color: oklch(0.88 0.06 62);
     max-width: 660px;
@@ -266,13 +266,13 @@ import Button from '../Button.astro';
 
   /* ── Panel header lines ── */
   .panel-header {
-    font-size: 13px;
+    font-size: var(--step--1);
     line-height: 1.6;
     color: oklch(0.76 0.18 62 / 0.8);
   }
 
   .panel-section-title {
-    font-size: 13px;
+    font-size: var(--step--1);
     font-weight: 600;
     color: var(--text-accent-dim);
     letter-spacing: 0.04em;
@@ -297,7 +297,7 @@ import Button from '../Button.astro';
   }
 
   .scan-line {
-    font-size: 12px;
+    font-size: var(--step--2);
     line-height: 1.6;
     color: var(--text-accent-dim);
     white-space: nowrap;
@@ -334,7 +334,7 @@ import Button from '../Button.astro';
 
   /* ── Scan status label ── */
   .scan-status-label {
-    font-size: 13px;
+    font-size: var(--step--1);
     font-weight: 600;
     color: var(--text-accent-dim);
     letter-spacing: 0.04em;
@@ -351,7 +351,7 @@ import Button from '../Button.astro';
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 12px;
+    font-size: var(--step--2);
     line-height: 1.6;
   }
 
@@ -369,7 +369,7 @@ import Button from '../Button.astro';
 
   /* ── Status line + panel summary ── */
   .status-line {
-    font-size: 13px;
+    font-size: var(--step--1);
     line-height: 1.6;
   }
 
@@ -382,7 +382,7 @@ import Button from '../Button.astro';
   }
 
   .panel-summary {
-    font-size: 12px;
+    font-size: var(--step--2);
     line-height: 1.6;
     color: var(--text-accent-dim);
     margin-top: var(--space-2);
@@ -400,7 +400,7 @@ import Button from '../Button.astro';
 
   .transition-label {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--step--2);
     color: var(--text-accent-dim);
     letter-spacing: 0.06em;
     white-space: nowrap;
@@ -479,7 +479,7 @@ import Button from '../Button.astro';
     }
 
     .bridge-copy {
-      font-size: 17px;
+      font-size: var(--step-0);
     }
 
     .panel-content {
@@ -487,11 +487,11 @@ import Button from '../Button.astro';
     }
 
     .scan-line {
-      font-size: 11px;
+      font-size: var(--step--2);
     }
 
     .summary-row {
-      font-size: 11px;
+      font-size: var(--step--2);
     }
   }
 
@@ -501,11 +501,11 @@ import Button from '../Button.astro';
     }
 
     .bridge-copy {
-      font-size: 16px;
+      font-size: var(--step-0);
     }
 
     .scan-line {
-      font-size: 10px;
+      font-size: var(--step--2);
     }
   }
 </style>

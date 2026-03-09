@@ -3,10 +3,9 @@ import Cursor from './Cursor.astro';
 ---
 <nav class="topbar" aria-label="Main navigation">
   <a href="#" class="topbar-brand">
-    <span class="brand-full" aria-hidden="true">MAXIMUM EXECUTION</span>
-    <span class="brand-short" aria-hidden="true">MAX.EXE</span>
+    <span class="brand-full" aria-hidden="true">MAXIMUM EXECUTION<Cursor /></span>
+    <span class="brand-short" aria-hidden="true">MAX.EXE<Cursor /></span>
     <span class="sr-only">Maximum Execution</span>
-    <Cursor />
   </a>
 
   <ul class="topbar-nav">
@@ -194,7 +193,7 @@ import Cursor from './Cursor.astro';
     text-decoration: none;
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: color var(--dur-micro) var(--ease-ui);
   }
@@ -249,8 +248,8 @@ import Cursor from './Cursor.astro';
   }
   .mobile-nav a {
     font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
     text-decoration: none;

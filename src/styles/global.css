@@ -53,11 +53,11 @@
   --text-accent-dim:   oklch(0.76 0.18 62 / 0.75);   /* tertiary text // passes AA */
 
   /* Semantic */
-  --secondary:    oklch(0.76 0.18 242);
+  --secondary:    oklch(0.76 0.12 62);
   --danger:       oklch(0.70 0.18 30);
   --warning:      oklch(0.70 0.18 100);
   --success:      oklch(0.70 0.18 160);
-  --info:         oklch(0.70 0.18 260);
+  --info:         oklch(0.70 0.12 62);
 
   /* Amber scale (Brand Book v1.0) */
   --amber-1:      oklch(0.32 0.10 46);   /* #5C2800 — disabled, faint glow */
@@ -100,25 +100,76 @@
   --step-4:  clamp(3rem, 2.5455rem + 2.2727vw, 4.5rem);
   --step-5:  clamp(3.5rem, 2.8409rem + 3.2955vw, 6rem);
 
+  /* Tracking (letter-spacing) */
+  --tracking-tighter: -0.04em;
+  --tracking-tight:   -0.03em;
+  --tracking-snug:    -0.02em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.01em;
+  --tracking-wider:    0.02em;
+
+  /* Leading (line-height) */
+  --leading-solid:   1.0;
+  --leading-tight:   1.1;
+  --leading-snug:    1.2;
+  --leading-normal:  1.4;
+  --leading-relaxed: 1.6;
+
   /* Spacing (4px base) */
+  --space-0: 0px;
   --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
   --space-4: 16px;  --space-5: 20px;  --space-6: 24px;
   --space-8: 32px;  --space-10: 40px; --space-12: 48px;
   --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-32: 128px;
 
-  /* Layout */
-  --container-xl: 1280px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  /* Layout — Containers */
+  --container-xs:  480px;
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+  --container-max: 1920px;
+
+  /* Layout — Radii */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  20px;
+  --radius-full: 9999px;
+
+  /* Layout — Measure */
+  --measure-narrow: 45ch;
   --measure-normal: 65ch;
+  --measure-wide:   75ch;
+  --measure-max:    90ch;
 
-  /* Motion */
-  --dur-micro:     100ms;
-  --dur-cursor:    533ms;
+  /* Paragraph Spacing */
+  --space-paragraph:      1.5em;
+  --space-after-heading:  0.6em;
+  --space-before-heading: 3em;
+
+  /* Motion — Durations */
+  --dur-instant:     0ms;
+  --dur-micro:       100ms;
+  --dur-frame:       16ms;
+  --dur-char:        40ms;
+  --dur-tick:        250ms;
+  --dur-cursor:      533ms;
+  --dur-cursor-half: 266ms;
+  --dur-decay-10:    1600ms;
+  --dur-decay-50:    5330ms;
+  --dur-decay-full:  16000ms;
+  --dur-screen-fill: 800ms;
+  --dur-degauss:     2400ms;
+
+  /* Motion — Easing */
   --ease-phosphor: cubic-bezier(0.0, 0.85, 0.35, 1.0);
   --ease-beam:     cubic-bezier(0.0, 0.0, 0.1, 1.0);
   --ease-ui:       cubic-bezier(0.2, 0.0, 0.0, 1.0);
+  --ease-key:      cubic-bezier(0.34, 1.56, 0.64, 1.0);
 }
 
 /* ============================================
@@ -127,8 +178,8 @@
 
 @plugin "daisyui/theme" {
   name: "phosphor-dark";
-  default: false;
-  prefersdark: false;
+  default: true;
+  prefersdark: true;
   color-scheme: dark;
   --color-base-100: oklch(15% .09 62);
   --color-base-200: oklch(12% .07 62);
@@ -136,14 +187,14 @@
   --color-base-content: oklch(92% .1 62);
   --color-primary: oklch(76% .18 62);
   --color-primary-content: oklch(12% .07 62);
-  --color-secondary: oklch(76% .18 242);
-  --color-secondary-content: oklch(98% .01 242);
+  --color-secondary: oklch(76% .12 62);
+  --color-secondary-content: oklch(15% .09 62);
   --color-accent: oklch(87% .16 86);
   --color-accent-content: oklch(12% .07 62);
   --color-neutral: oklch(20% .06 62);
   --color-neutral-content: oklch(76% .12 62);
-  --color-info: oklch(76% .18 242);
-  --color-info-content: oklch(98% .01 242);
+  --color-info: oklch(76% .12 62);
+  --color-info-content: oklch(15% .09 62);
   --color-success: oklch(72% .2 142);
   --color-success-content: oklch(12% .05 142);
   --color-warning: oklch(87% .16 86);
@@ -195,6 +246,99 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+}
+
+/* ============================================
+   BASE TYPOGRAPHY - from dashboard heading rules
+   ============================================ */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-pixel);
+  color: var(--text);
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: var(--step-4);
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--step-3);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--step-2);
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: var(--step-1);
+  letter-spacing: 0em;
+  font-weight: 600;
+}
+
+/* ============================================
+   OPENTYPE FEATURES
+   ============================================ */
+
+body, p, article, li, blockquote {
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+/* Mono data: tabular nums + slashed zero */
+code, pre, [data-mono], .font-mono,
+.stat-value, .stat-label, .stat-number, .stat-desc, .stat-source,
+.preview-num, .preview-title,
+.receipt-value, .receipt-row, .receipt-item, .receipt-total-row,
+.receipt-status, .receipt-sources, .receipt-grand-value,
+.slider-label-row, .slider-hint, .tick,
+.delta-equation, .delta-comment,
+.confirm-badge, .confirm-text,
+.scan-line, .panel-header, .panel-section-title, .panel-summary,
+.status-line, .summary-row, .transition-label,
+.step-num-label, .step-comment, .step-outcome,
+.err-badge, .cost-stats, .signoff-line, .signoff-eof {
+  font-feature-settings: 'tnum' 1, 'zero' 1, 'kern' 1;
+}
+
+/* Uppercase mono labels: case-sensitive forms */
+.uppercase, [data-label],
+.section-label, .col-header, .mobile-label,
+.cta-comment, .cta-reassurance, .copyright {
+  font-feature-settings: 'tnum' 1, 'case' 1;
+}
+
+/* ============================================
+   PARAGRAPH SPACING & MEASURE
+   ============================================ */
+
+/* Consecutive paragraphs get vertical rhythm */
+p + p { margin-top: var(--space-paragraph); }
+
+/* Heading spacing: push away from preceding, pull toward following */
+h1, h2, h3, h4 {
+  margin-top: var(--space-before-heading);
+  margin-bottom: var(--space-after-heading);
+}
+
+/* First heading in a section shouldn't push down */
+section > h1:first-child,
+section > h2:first-child,
+section > h3:first-child,
+section > header > h1:first-child,
+section > header > h2:first-child {
+  margin-top: 0;
+}
+
+/* Body text measure constraint */
+.body-text,
+.section-body {
+  max-width: var(--measure-normal);
 }
 
 /* CRT Scanlines */

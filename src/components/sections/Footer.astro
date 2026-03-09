@@ -81,7 +81,7 @@ import Cursor from '../Cursor.astro';
   /* Brand */
   .brand-name {
     font-family: var(--font-pixel);
-    font-size: 18px;
+    font-size: var(--step-0);
     color: var(--primary);
     letter-spacing: 0.04em;
     margin-bottom: var(--space-2);
@@ -95,7 +95,7 @@ import Cursor from '../Cursor.astro';
 
   .brand-tagline {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--step--1);
     color: var(--text-accent-dim);
     letter-spacing: 0.04em;
   }
@@ -108,7 +108,7 @@ import Cursor from '../Cursor.astro';
   }
 
   :global(.footer-btn) {
-    font-size: 12px !important;
+    font-size: var(--step--2) !important;
     padding: var(--space-2) var(--space-5) !important;
   }
 
@@ -124,7 +124,7 @@ import Cursor from '../Cursor.astro';
   /* Contact */
   .footer-contact {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--step--1);
     line-height: 1.6;
   }
 
@@ -153,7 +153,7 @@ import Cursor from '../Cursor.astro';
 
   .nav-link {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--step--1);
     color: var(--amber-2);
     text-decoration: none;
     letter-spacing: 0.04em;
@@ -173,14 +173,14 @@ import Cursor from '../Cursor.astro';
 
   .copyright {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: var(--step--2);
     color: var(--amber-2);
     margin-bottom: var(--space-4);
   }
 
   .signoff-comment {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--step--1);
     color: var(--amber-2);
     letter-spacing: 0.04em;
     margin-bottom: var(--space-4);
@@ -188,7 +188,7 @@ import Cursor from '../Cursor.astro';
 
   .signoff-eof {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--step--1);
     font-weight: 600;
     color: var(--amber-2);
     letter-spacing: 0.2em;
@@ -217,7 +217,7 @@ import Cursor from '../Cursor.astro';
     }
 
     .brand-name {
-      font-size: 16px;
+      font-size: var(--step--1);
     }
   }
 </style>

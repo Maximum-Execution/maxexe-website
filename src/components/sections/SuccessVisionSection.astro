@@ -1,7 +1,6 @@
 ---
 import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
-import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInfographic.astro';
 ---
 <div class="success-divider" aria-hidden="true"></div>
 <section class="success-section" id="success">
@@ -55,8 +54,6 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
       </div>
     </div>
 
-    <BeforeAfterNetworkInfographic />
-
     <!-- CTA -->
     <div class="success-cta">
       <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
@@ -83,7 +80,7 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
     font-family: var(--font-mono);
     font-size: var(--step--2);
     color: oklch(0.50 0.10 62);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     margin-bottom: var(--space-6);
     max-width: var(--container-xl);
@@ -93,7 +90,7 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
 
   /* Content wrapper - centered 640px */
   .success-content {
-    max-width: 640px;
+    max-width: var(--measure-normal);
     margin: 0 auto;
   }
 
@@ -102,7 +99,7 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
     font-family: var(--font-pixel);
     font-size: var(--step-4);
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--tracking-snug);
     color: var(--light-h2);
     margin-bottom: var(--space-10);
   }
@@ -122,7 +119,7 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
 
   .success-body p {
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: var(--step-0);
     line-height: 1.65;
     color: oklch(0.35 0.10 62);
   }
@@ -140,7 +137,7 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
     align-items: baseline;
     gap: var(--space-3);
     font-family: var(--font-mono);
-    font-size: 15px;
+    font-size: var(--step--1);
     line-height: 1.5;
     background: var(--light-badge-bg);
     padding: var(--space-3) var(--space-4);
@@ -186,7 +183,7 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
     }
 
     .confirm-line {
-      font-size: 14px;
+      font-size: var(--step--1);
     }
   }
 
@@ -196,7 +193,7 @@ import BeforeAfterNetworkInfographic from '../infographics/BeforeAfterNetworkInf
     }
 
     .confirm-line {
-      font-size: 13px;
+      font-size: var(--step--2);
       gap: var(--space-2);
     }
   }

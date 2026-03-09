@@ -1,18 +1,13 @@
 ---
-const months = [
-  { label: "J", name: "Jan" },
-  { label: "F", name: "Feb" },
-  { label: "M", name: "Mar" },
-  { label: "A", name: "Apr" },
-  { label: "M", name: "May" },
-  { label: "J", name: "Jun" },
-  { label: "J", name: "Jul" },
-  { label: "A", name: "Aug" },
-  { label: "S", name: "Sep" },
-  { label: "OCT", name: "Oct", danger: true },
-  { label: "N", name: "Nov" },
-  { label: "D", name: "Dec" },
-];
+const MONTH_LABELS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+const MONTH_ABBR   = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+const buildMonth   = new Date().getMonth(); // 0-based
+
+const months = MONTH_LABELS.map((full, i) => ({
+  label: i === buildMonth ? full : MONTH_ABBR[i],
+  name: full.charAt(0) + full.slice(1).toLowerCase(),
+  danger: i === buildMonth,
+}));
 ---
 
 <div class="year-infographic" data-infographic>
@@ -22,6 +17,7 @@ const months = [
         class:list={["month-box", { "month-danger": month.danger }]}
         style={`--delay: ${month.danger ? "750ms" : `${i * 50}ms`}`}
         aria-label={month.name}
+        data-month-index={i}
       >
         <span class="month-label">{month.label}</span>
       </div>
@@ -82,6 +78,26 @@ const months = [
   document.addEventListener("astro:after-swap", initInfographic);
 </script>
 
+<script>
+  /* Runtime month correction — ensures the highlighted month matches
+     the visitor's current month, not the build-time month. */
+  function correctMonth() {
+    const now = new Date().getMonth();
+    const LABELS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const ABBR   = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+    document.querySelectorAll('[data-month-index]').forEach(el => {
+      const i = Number((el as HTMLElement).dataset.monthIndex);
+      const isDanger = i === now;
+      const label = el.querySelector('.month-label');
+      if (label) label.textContent = isDanger ? LABELS[i] : ABBR[i];
+      el.classList.toggle('month-danger', isDanger);
+      el.classList.toggle('month-box', true);
+    });
+  }
+  correctMonth();
+  document.addEventListener('astro:after-swap', correctMonth);
+</script>
+
 <style>
   /* ── Container ── */
   .year-infographic {
@@ -131,7 +147,7 @@ const months = [
     user-select: none;
   }
 
-  /* Danger month (October) */
+  /* Danger month (current month — dynamically set) */
   .month-danger {
     background: oklch(0.25 0.1 30);
     border-color: oklch(0.35 0.12 30);
