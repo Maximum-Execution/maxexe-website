@@ -335,6 +335,15 @@ section > header > h2:first-child {
   margin-top: 0;
 }
 
+/* Section headings: wrapper padding already creates separation —
+   suppress the prose-context 3em push */
+.section-inner h1,
+.section-inner h2,
+.section-inner h3,
+.section-inner h4 {
+  margin-top: 0;
+}
+
 /* Body text measure constraint */
 .body-text,
 .section-body {
