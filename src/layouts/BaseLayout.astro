@@ -57,12 +57,15 @@ const ogImageUrl = new URL(ogImage, siteUrl).href;
 
     <!-- Fonts -->
     <link rel="preload" href="/fonts/GeistSans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GeistMono.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GeistPixel.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Analytics (Plausible) -->
     <script defer data-domain="maximumexecution.com" src="https://plausible.io/js/script.js"></script>
 
     <!-- Error Monitoring (Sentry) -->
     <script
+      async
       src="https://js.sentry-cdn.com/db6e3b69e4be76fafc18e6e339b4c684.min.js"
       crossorigin="anonymous"
     ></script>
