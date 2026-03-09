@@ -9,7 +9,7 @@ The company's own homepage and diagnostic tool at [maximumexecution.com](https:/
 
 ## Current Phase
 
-**Post-build, deployed.** Next up: QA phase (accessibility, metadata, performance, Playwright).
+**QA complete, pre-launch.** Next up: Email automation (MailerLite) + official launch.
 
 ## Stack
 
@@ -29,10 +29,10 @@ npm run build && npx wrangler pages deploy dist
 ## Section Order (Current)
 
 ```
-Hero → Problem → ValueProp → AIFear → Guide → Process → Stakes → TimeReceipt → Diagnostic → SuccessVision → FAQ → Contact → Footer
+Hero → Problem → ValueProp → Guide → Process → SuccessVision → About → Diagnostic → CostOfWaiting → FAQ → Footer
 ```
 
-`SystemScanSection.astro` exists in the codebase but is **not rendered** in `index.astro`.
+These section components exist but are **not rendered** in `index.astro`: `AIFearSection`, `StakesSection`, `TimeReceiptSection`, `ContactSection`, `SystemScanSection`.
 
 ## Architecture
 
@@ -48,7 +48,7 @@ Hero → Problem → ValueProp → AIFear → Guide → Process → Stakes → T
 
 ## Copy Source of Truth
 
-**Code is authoritative.** The copy doc at `../copy/maxexe-landing-page-copy-v10.md` is behind the deployed site after the 2026-03-07 narrative arc overhaul. Copy doc v11 will be created to match.
+**Code is authoritative.** Copy doc v11 (`../copy/maxexe-landing-page-copy-v11.md`) matches the deployed site. v10 is archived.
 
 ## Key Files
 
@@ -59,7 +59,7 @@ Hero → Problem → ValueProp → AIFear → Guide → Process → Stakes → T
 | Base layout + fonts | `src/layouts/BaseLayout.astro` |
 | Design tokens | `src/styles/global.css` |
 | Creative brief | `../maxexe-website-creative-brief-v3.md` |
-| Copy doc | `../copy/maxexe-landing-page-copy-v10.md` |
+| Copy doc | `../copy/maxexe-landing-page-copy-v11.md` |
 
 ## Links
 

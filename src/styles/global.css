@@ -115,6 +115,13 @@
   --leading-normal:  1.4;
   --leading-relaxed: 1.6;
 
+  /* Font weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    800;
+
   /* Spacing (4px base) */
   --space-0: 0px;
   --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
@@ -253,9 +260,10 @@ body {
    ============================================ */
 
 h1, h2, h3, h4 {
-  font-family: var(--font-pixel);
+  font-family: var(--font-sans);
   color: var(--text);
   line-height: 1.15;
+  font-feature-settings: 'ss02' 1, 'cv01' 1, 'kern' 1;
 }
 
 h1 {
@@ -280,6 +288,13 @@ h4 {
   font-size: var(--step-1);
   letter-spacing: 0em;
   font-weight: 600;
+}
+
+/* Hero display — Geist Pixel, once per page max */
+.hero-display {
+  font-family: var(--font-pixel);
+  font-feature-settings: normal;
+  text-rendering: optimizeLegibility;
 }
 
 /* ============================================
