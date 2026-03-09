@@ -12,94 +12,84 @@ import SectionWrapper from '../SectionWrapper.astro';
   <!-- FAQ container -->
   <div class="faq-container">
     <!-- Q1 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="Do you use WordPress, Webflow, or Squarespace?" />
-      <div class="collapse-title">Do you use WordPress, Webflow, or Squarespace?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">Do you use WordPress, Webflow, or Squarespace?</summary>
+      <div class="faq-answer">
         <p>No. We write custom code. You can update your own content without calling us, and the code is permanently yours. No platform lock-in.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q2 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="How long does a project take?" />
-      <div class="collapse-title">How long does a project take?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">How long does a project take?</summary>
+      <div class="faq-answer">
         <p>Simple marketing sites ship in under a week. Email automation takes two to four weeks. App projects start at two weeks and expand with complexity. The diagnostic tells us which situation you're in. Timeline follows scope, and scope follows diagnosis. We don't quote a timeline before we understand the problem.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q3 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="What's in the Handoff Package?" />
-      <div class="collapse-title">What&rsquo;s in the Handoff Package?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">What&rsquo;s in the Handoff Package?</summary>
+      <div class="faq-answer">
         <p>Full codebase. Hosting credentials. CMS instructions. Original Problem Statement. Everything your team needs to run the system without us. Nothing is locked to MAX.EXE.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q4 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="I've hired people before and it didn't work. Why would this be different?" />
-      <div class="collapse-title">I&rsquo;ve hired people before and it didn&rsquo;t work. Why would this be different?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">I&rsquo;ve hired people before and it didn&rsquo;t work. Why would this be different?</summary>
+      <div class="faq-answer">
         <p>Most projects fail because the answer was sold before the question was asked. Someone built what they thought you needed instead of diagnosing what was actually broken. MAX.EXE starts with a written Problem Statement, verified by you in plain language, before a dollar is spent on development.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q5 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="I already have something partially built. Can you work with that?" />
-      <div class="collapse-title">I already have something partially built. Can you work with that?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">I already have something partially built. Can you work with that?</summary>
+      <div class="faq-answer">
         <p>Usually yes. We map what exists, find what's broken, and build around your actual situation. The diagnostic starts there.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q6 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="How are you different from a freelancer?" />
-      <div class="collapse-title">How are you different from a freelancer?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">How are you different from a freelancer?</summary>
+      <div class="faq-answer">
         <p>Everything ships documented. The Handoff Package is built so your team can run it without us. Most freelancers don't build that way. We do because we'd rather you be independent than dependent.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q7 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="I'm not technical. Will I understand what you're building?" />
-      <div class="collapse-title">I&rsquo;m not technical. Will I understand what you&rsquo;re building?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">I&rsquo;m not technical. Will I understand what you&rsquo;re building?</summary>
+      <div class="faq-answer">
         <p>The Problem Statement is written in plain language before any code starts. If it's not clear, that's on us, not you. You shouldn't have to learn technical vocabulary to own your own business tools.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q8 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="What does AI for small business actually mean?" />
-      <div class="collapse-title">What does &ldquo;AI for small business&rdquo; actually mean?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">What does &ldquo;AI for small business&rdquo; actually mean?</summary>
+      <div class="faq-answer">
         <p>Start with one question: what task do you do by hand every week that a machine should handle? That's where we start. Narrow. Specific. Trained on your data. Approved by you before anything goes live.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q9 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="What does hosting cost?" />
-      <div class="collapse-title">What does hosting cost?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">What does hosting cost?</summary>
+      <div class="faq-answer">
         <p>We deploy to Cloudflare or Vercel. Both platforms are under $20 per month, often free for static sites. You get full credentials before handoff. Nothing is billed through us after launch.</p>
       </div>
-    </div>
+    </details>
 
     <!-- Q10 -->
-    <div class="collapse collapse-plus faq-item">
-      <input type="radio" name="faq-accordion" aria-label="I don't have a website yet. Where do I start?" />
-      <div class="collapse-title">I don&rsquo;t have a website yet. Where do I start?</div>
-      <div class="collapse-content">
+    <details class="faq-item">
+      <summary class="faq-question">I don&rsquo;t have a website yet. Where do I start?</summary>
+      <div class="faq-answer">
         <p>The diagnostic. Five minutes tells us which situation you're in and what type of project fits. You might need a full site. You might need something smaller. We don't quote scope before we understand the problem.</p>
       </div>
-    </div>
+    </details>
   </div>
 </SectionWrapper>
 
@@ -110,20 +100,10 @@ import SectionWrapper from '../SectionWrapper.astro';
     background: var(--border);
   }
 
-  /* Section label */
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    color: var(--text-accent-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: var(--space-6);
-  }
-
   /* Headline */
   .faq-headline {
     font-family: var(--font-sans);
-    font-size: var(--step-3);
+    font-size: var(--step-4);
     line-height: 1.2;
     color: var(--primary);
     margin-bottom: var(--space-12);
@@ -131,43 +111,64 @@ import SectionWrapper from '../SectionWrapper.astro';
 
   /* FAQ container - 840px max, centered */
   .faq-container {
-    max-width: 840px;
+    max-width: var(--measure-max);
     margin: 0 auto;
   }
 
-  /* Accordion item overrides */
+  /* Accordion items */
   .faq-item {
-    background: transparent;
-    border: none;
     border-bottom: 1px solid var(--border-muted);
-    border-radius: 0;
   }
 
   .faq-item:last-child {
     border-bottom: none;
   }
 
-  /* Question title - amber-3 per palette */
-  .faq-item .collapse-title {
+  /* Question trigger */
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     font-family: var(--font-pixel);
     font-size: var(--step-0);
     color: var(--amber-3);
     min-height: 44px;
     padding: var(--space-5) 0;
     padding-right: var(--space-10);
+    cursor: pointer;
+    list-style: none;
+    position: relative;
   }
 
-  /* Plus/minus indicator */
-  .faq-item .collapse-title::after {
+  /* Remove native disclosure marker */
+  .faq-question::-webkit-details-marker,
+  .faq-question::marker {
+    display: none;
+    content: '';
+  }
+
+  /* Custom +/− indicator */
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-family: var(--font-mono);
+    font-size: var(--step-1);
     color: var(--amber-3);
+    line-height: 1;
   }
 
-  /* Answer content - text-muted per palette */
-  .faq-item .collapse-content {
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+
+  /* Answer content */
+  .faq-answer {
     padding: 0 0 var(--space-6) 0;
   }
 
-  .faq-item .collapse-content p {
+  .faq-answer p {
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
@@ -178,10 +179,10 @@ import SectionWrapper from '../SectionWrapper.astro';
   /* Responsive */
   @media (max-width: 768px) {
     .faq-headline {
-      font-size: var(--step-2);
+      font-size: var(--step-3);
     }
 
-    .faq-item .collapse-title {
+    .faq-question {
       font-size: var(--step--1);
       padding-right: var(--space-8);
     }
@@ -189,10 +190,10 @@ import SectionWrapper from '../SectionWrapper.astro';
 
   @media (max-width: 480px) {
     .faq-headline {
-      font-size: var(--step-1);
+      font-size: var(--step-2);
     }
 
-    .faq-item .collapse-title {
+    .faq-question {
       font-size: var(--step--1);
     }
   }

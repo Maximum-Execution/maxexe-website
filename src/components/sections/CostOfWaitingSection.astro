@@ -38,34 +38,36 @@ import Button from '../Button.astro';
 
       <!-- Terminal stat block -->
       <div class="cost-stats">
-        <div class="stat-line">
-          <span class="stat-label stat-danger">&gt; DAILY TIME LOST TO WASTED ADMIN (per owner):</span>
-          <span class="stat-value stat-danger">~1.5 hrs</span>
-        </div>
-        <div class="stat-line">
-          <span class="stat-label stat-danger">&gt; THAT'S PER WEEK:</span>
-          <span class="stat-value stat-danger">~7.5 hrs</span>
-        </div>
-        <div class="stat-line">
-          <span class="stat-label stat-danger">&gt; THAT'S PER YEAR:</span>
-          <span class="stat-value stat-danger">~1 full work month</span>
-        </div>
-        <div class="stat-line">
-          <span class="stat-label stat-danger">&gt; SOLOPRENEURS WHO'VE LOST A MONTH OF INCOME:</span>
-          <span class="stat-value stat-danger">42%</span>
-        </div>
-        <div class="stat-line">
-          <span class="stat-label stat-danger">&gt; SMALL BIZ OWNERS CONFIDENT THEIR MARKETING WORKS:</span>
-          <span class="stat-value stat-danger">1 in 5</span>
-        </div>
-        <div class="stat-line stat-line-positive">
-          <span class="stat-label stat-success">&gt; COST TO DIAGNOSE:</span>
-          <span class="stat-value stat-success">$0.00</span>
-        </div>
-        <div class="stat-line">
-          <span class="stat-label stat-compounding">&gt; COST TO DO NOTHING:</span>
-          <span class="stat-value stat-compounding">compounding</span>
-        </div>
+        <dl>
+          <div class="stat-line">
+            <dt class="stat-label stat-danger">&gt; DAILY TIME LOST TO WASTED ADMIN (per owner):</dt>
+            <dd class="stat-value stat-danger">~1.5 hrs</dd>
+          </div>
+          <div class="stat-line">
+            <dt class="stat-label stat-danger">&gt; THAT'S PER WEEK:</dt>
+            <dd class="stat-value stat-danger">~7.5 hrs</dd>
+          </div>
+          <div class="stat-line">
+            <dt class="stat-label stat-danger">&gt; THAT'S PER YEAR:</dt>
+            <dd class="stat-value stat-danger">~1 full work month</dd>
+          </div>
+          <div class="stat-line">
+            <dt class="stat-label stat-danger">&gt; SOLOPRENEURS WHO'VE LOST A MONTH OF INCOME:</dt>
+            <dd class="stat-value stat-danger">42%</dd>
+          </div>
+          <div class="stat-line">
+            <dt class="stat-label stat-danger">&gt; SMALL BIZ OWNERS CONFIDENT THEIR MARKETING WORKS:</dt>
+            <dd class="stat-value stat-danger">1 in 5</dd>
+          </div>
+          <div class="stat-line stat-line-positive">
+            <dt class="stat-label stat-success">&gt; COST TO DIAGNOSE:</dt>
+            <dd class="stat-value stat-success">$0.00</dd>
+          </div>
+          <div class="stat-line">
+            <dt class="stat-label stat-compounding">&gt; COST TO DO NOTHING:</dt>
+            <dd class="stat-value stat-compounding">compounding</dd>
+          </div>
+        </dl>
         <p class="stat-source">// Slack / Salesforce, 2024 · Simply Business, 2025, n=1,023 · Constant Contact / Ascend2, 2025</p>
       </div>
 
@@ -97,19 +99,10 @@ import Button from '../Button.astro';
     margin: 0 auto;
   }
 
-  /* Section label */
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    color: var(--text-accent-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: var(--space-6);
-  }
-
   /* Content wrapper - 640px */
   .cost-content {
     max-width: var(--measure-normal);
+    margin: 0 auto;
   }
 
   /* Headline */

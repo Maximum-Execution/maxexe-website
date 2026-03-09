@@ -17,9 +17,9 @@ import Cursor from './Cursor.astro';
   </ul>
 
   <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
   </button>
 </nav>
 
@@ -130,7 +130,7 @@ import Cursor from './Cursor.astro';
     border-bottom: 1px solid var(--border-muted);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: var(--z-topbar);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     background: oklch(0.15 0.09 62 / 0.75);
@@ -154,7 +154,6 @@ import Cursor from './Cursor.astro';
     white-space: nowrap;
     vertical-align: bottom;
     transform-origin: left center;
-    will-change: transform, opacity;
   }
 
   .brand-full {
@@ -238,7 +237,7 @@ import Cursor from './Cursor.astro';
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: var(--space-6);
-    z-index: 99;
+    z-index: var(--z-mobile-nav);
     border-bottom: 1px solid var(--border-muted);
   }
   .mobile-nav.open {

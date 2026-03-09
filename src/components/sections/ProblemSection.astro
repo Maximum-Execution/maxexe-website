@@ -39,28 +39,34 @@ import Button from '../Button.astro';
   <p class="root-cause">// ROOT CAUSE IDENTIFIED &gt; VILLAIN: FRAGMENTATION</p>
 
   <!-- [ERR] cards -->
-  <div class="err-grid">
-    <BruteCard>
-      <Badge variant="err">[ERR]</Badge>
-      <h3 class="err-title">CREDIBILITY PROBLEM</h3>
-      <p class="err-desc">Your site forms an impression in 50 milliseconds. Before anyone reads a word.</p>
-      <p class="err-source">// Lindgaard et al., 2006</p>
-    </BruteCard>
+  <ul class="err-grid">
+    <li>
+      <BruteCard>
+        <Badge variant="err">[ERR]</Badge>
+        <h3 class="err-title">CREDIBILITY PROBLEM</h3>
+        <p class="err-desc">Your site forms an impression in 50 milliseconds. Before anyone reads a word.</p>
+        <p class="err-source">// Lindgaard et al., 2006</p>
+      </BruteCard>
+    </li>
 
-    <BruteCard>
-      <Badge variant="err">[ERR]</Badge>
-      <h3 class="err-title">CONFIDENCE PROBLEM</h3>
-      <p class="err-desc">4 out of 5 small business owners are not confident their marketing is working.</p>
-      <p class="err-source">// Constant Contact / Ascend2, 2025 · n=2,500</p>
-    </BruteCard>
+    <li>
+      <BruteCard>
+        <Badge variant="err">[ERR]</Badge>
+        <h3 class="err-title">CONFIDENCE PROBLEM</h3>
+        <p class="err-desc">4 out of 5 small business owners are not confident their marketing is working.</p>
+        <p class="err-source">// Constant Contact / Ascend2, 2025 · n=2,500</p>
+      </BruteCard>
+    </li>
 
-    <BruteCard>
-      <Badge variant="err">[ERR]</Badge>
-      <h3 class="err-title">REFERRAL PROBLEM</h3>
-      <p class="err-desc">57% of people won't recommend a business with a poorly designed mobile site.</p>
-      <p class="err-source">// networksolutions.com / multiple sources, 2025</p>
-    </BruteCard>
-  </div>
+    <li>
+      <BruteCard>
+        <Badge variant="err">[ERR]</Badge>
+        <h3 class="err-title">REFERRAL PROBLEM</h3>
+        <p class="err-desc">57% of people won't recommend a business with a poorly designed mobile site.</p>
+        <p class="err-source">// networksolutions.com / multiple sources, 2025</p>
+      </BruteCard>
+    </li>
+  </ul>
 
   <!-- CTA -->
   <div class="stakes-cta">
@@ -74,16 +80,6 @@ import Button from '../Button.astro';
   .stakes-divider {
     height: 1px;
     background: oklch(0.76 0.18 62 / 0.15);
-  }
-
-  /* Section label - monospace, small */
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    color: var(--text-accent-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: var(--space-6);
   }
 
   /* Headline - Geist Sans, two lines */

@@ -26,28 +26,28 @@ import Button from '../Button.astro';
       </div>
 
       <!-- Preview rows -->
-      <div class="preview-rows">
-        <div class="preview-row">
-          <div class="preview-num">&gt; [01]</div>
+      <ol class="preview-rows">
+        <li class="preview-row">
+          <span class="preview-num" aria-hidden="true">&gt; [01]</span>
           <div class="preview-content">
             <h3 class="preview-title">TELL US WHAT YOU NEED</h3>
           </div>
-        </div>
+        </li>
 
-        <div class="preview-row">
-          <div class="preview-num">&gt; [02]</div>
+        <li class="preview-row">
+          <span class="preview-num" aria-hidden="true">&gt; [02]</span>
           <div class="preview-content">
             <h3 class="preview-title">ANSWER WHAT APPLIES TO YOUR SITUATION</h3>
           </div>
-        </div>
+        </li>
 
-        <div class="preview-row">
-          <div class="preview-num">&gt; [03]</div>
+        <li class="preview-row">
+          <span class="preview-num" aria-hidden="true">&gt; [03]</span>
           <div class="preview-content">
             <h3 class="preview-title">GET YOUR DIAGNOSIS. NO EMAIL REQUIRED TO SEE RESULTS.</h3>
           </div>
-        </div>
-      </div>
+        </li>
+      </ol>
 
       <!-- CTA -->
       <div class="diagnostic-cta">
@@ -73,18 +73,8 @@ import Button from '../Button.astro';
 
   /* Inner container - 860px max */
   .diagnostic-inner {
-    max-width: 860px;
+    max-width: var(--measure-max);
     margin: 0 auto;
-  }
-
-  /* Section label */
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: var(--step--2);
-    color: var(--text-accent-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: var(--space-6);
   }
 
   /* Headline */
@@ -159,7 +149,7 @@ import Button from '../Button.astro';
   .diagnostic-cta {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-4);
   }
 
