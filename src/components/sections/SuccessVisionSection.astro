@@ -2,185 +2,114 @@
 import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
 ---
-<div class="success-divider" aria-hidden="true"></div>
-<section class="success-section" id="success">
+<SectionWrapper id="success" theme="amber">
   <!-- Section label -->
-  <p class="section-label section-label--light">// 06 SUCCESS VISION</p>
+  <p class="section-label section-label--light">// 06 THE RESULT</p>
 
-  <!-- Content wrapper - 640px centered -->
-  <div class="success-content">
-    <!-- Headline -->
-    <h2 class="success-headline">
-      <span>You stop chasing clients.</span>
-      <span>They start finding you.</span>
-    </h2>
+  <!-- Headline -->
+  <h2 class="success-headline">What your business looks like when the system works.</h2>
 
-    <!-- Body paragraph -->
-    <div class="success-body">
-      <p>
-        Clients land on your site and understand exactly what you do. They reach
-        out without friction. Leads come in from people who found you, not just
-        people who already knew you. Your tools connect to each other. Your
-        workflow runs without you holding the pieces together. You spend your time
-        doing the work, not explaining it.
-      </p>
-    </div>
+  <!-- Prose scene -->
+  <div class="success-body" data-animate>
+    <p>
+      Clients land on your site and immediately understand what you do. They
+      reach out. You're not explaining the business to every new person who
+      finds it. The site handles that.
+    </p>
 
-    <!-- Confirmation stack -->
-    <ul class="confirmation-stack">
-      <li class="confirm-line">
-        <span class="confirm-badge" aria-hidden="true">[OK]</span>
-        <span class="confirm-text">Clients find you, understand you, and reach out. Without friction.</span>
-      </li>
-      <li class="confirm-line">
-        <span class="confirm-badge" aria-hidden="true">[OK]</span>
-        <span class="confirm-text">Tools connect to each other. Not a pile of apps. A system.</span>
-      </li>
-      <li class="confirm-line">
-        <span class="confirm-badge" aria-hidden="true">[OK]</span>
-        <span class="confirm-text">AI handles intake, FAQs, and follow-ups in your voice, on your data.</span>
-      </li>
-      <li class="confirm-line">
-        <span class="confirm-badge" aria-hidden="true">[OK]</span>
-        <span class="confirm-text">You own every line of code. No subscriptions. No lock-in. No fees owed to us.</span>
-      </li>
-      <li class="confirm-line">
-        <span class="confirm-badge" aria-hidden="true">[OK]</span>
-        <span class="confirm-text">One person knows your full system and responds in under 24 hours.</span>
-      </li>
-      <li class="confirm-line">
-        <span class="confirm-badge" aria-hidden="true">[OK]</span>
-        <span class="confirm-text">Your site, tools, and automations sound and feel like the same business.</span>
-      </li>
-    </ul>
+    <p>
+      Your tools connect to each other. There's no copy-paste loop between apps
+      that weren't designed to talk. Your intake runs automatically. Your
+      follow-up goes out in your voice, on your schedule.
+    </p>
 
-    <!-- CTA -->
-    <div class="success-cta">
-      <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
-    </div>
+    <p>
+      You own every line of code. No platform holds it hostage. No monthly bill
+      owed to me. No calling me to make a simple update.
+    </p>
+
+    <p class="success-emphasis">
+      You spend your time doing the work. Not managing the system that's
+      supposed to support it. Your business finally looks as good as it
+      actually is.
+    </p>
   </div>
-</section>
+
+  <!-- Scarcity note -->
+  <p class="success-scarcity">
+    // Currently accepting 2 of 3 project slots. When a slot opens, the diagnostic is how you get in line.
+  </p>
+
+  <!-- CTA -->
+  <div class="success-cta">
+    <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
+  </div>
+</SectionWrapper>
 
 <style>
-  /* Amber divider rule at top — uses light-mode border */
-  .success-divider {
-    height: 1px;
-    background: var(--light-border);
-  }
-
-  /* ── Full Light Mode Inversion ── */
-  .success-section {
-    background: var(--light-bg);
-    color: var(--light-text);
-    padding: var(--space-24) var(--space-8);
-  }
-
-  /* Content wrapper - centered 640px */
-  .success-content {
-    max-width: var(--measure-normal);
-    margin: 0 auto;
-  }
-
-  /* Headline - darkest amber for light mode */
+  /* Headline - Geist Sans */
   .success-headline {
     font-family: var(--font-sans);
     font-size: var(--step-4);
     line-height: 1.15;
     letter-spacing: var(--tracking-snug);
-    color: var(--light-h2);
+    color: var(--text);
     margin-bottom: var(--space-10);
+    max-width: var(--measure-wide);
   }
 
-  .success-headline span {
-    display: block;
-  }
-
-  .success-headline span:last-child {
-    color: oklch(0.35 0.12 62);
-  }
-
-  /* Body copy */
+  /* Body prose */
   .success-body {
-    margin-bottom: var(--space-12);
+    max-width: var(--measure-normal);
+    margin-bottom: var(--space-10);
   }
 
   .success-body p {
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
-    color: oklch(0.35 0.10 62);
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
   }
 
-  /* ── Confirmation stack ── */
-  .confirmation-stack {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    margin-bottom: var(--space-12);
+  .success-body p:last-child {
+    margin-bottom: 0;
   }
 
-  .confirm-line {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-3);
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    line-height: 1.5;
-    background: var(--light-badge-bg);
-    padding: var(--space-3) var(--space-4);
-    border: 1px solid var(--light-border);
-  }
-
-  .confirm-badge {
-    flex-shrink: 0;
+  /* Emphasis on closing paragraph */
+  .success-emphasis {
     font-weight: 600;
-    color: oklch(0.40 0.16 160);
+    color: var(--text) !important;
+    font-size: var(--step-1) !important;
   }
 
-  .confirm-text {
-    color: var(--light-text);
+  /* Scarcity note */
+  .success-scarcity {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    max-width: var(--measure-normal);
+    margin-bottom: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-muted);
   }
 
-  /* ── CTA ── */
+  /* CTA area */
   .success-cta {
     display: flex;
   }
 
-  /* Override button colors for light mode */
-  .success-cta :global(.btn-primary) {
-    background: var(--light-h2);
-    color: var(--light-bg);
-    border-color: var(--light-h2);
-  }
-
-  .success-cta :global(.btn-primary:hover) {
-    background: oklch(0.30 0.14 62);
-    border-color: oklch(0.30 0.14 62);
-  }
-
-  /* ── Responsive ── */
+  /* Responsive */
   @media (max-width: 768px) {
-    .success-section {
-      padding: var(--space-16) var(--space-6);
-    }
-
     .success-headline {
       font-size: var(--step-3);
-    }
-
-    .confirm-line {
-      font-size: var(--step--1);
     }
   }
 
   @media (max-width: 480px) {
     .success-headline {
       font-size: var(--step-2);
-    }
-
-    .confirm-line {
-      font-size: var(--step--2);
-      gap: var(--space-2);
     }
   }
 </style>

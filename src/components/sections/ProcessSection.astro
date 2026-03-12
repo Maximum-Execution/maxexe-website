@@ -2,15 +2,14 @@
 import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
 ---
-<div class="process-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="process" class="process-section">
+<SectionWrapper id="process" theme="light">
   <!-- Section label -->
-  <p class="section-label">// 05 THE PLAN</p>
+  <p class="section-label section-label--light">// 05 THE PLAN</p>
 
   <!-- Intro headline -->
   <h2 class="process-headline">
+    <span>How it works.</span>
     <span>Three steps.</span>
-    <span>Zero guessing.</span>
   </h2>
 
   <!-- Pipeline -->
@@ -27,13 +26,14 @@ import Button from '../Button.astro';
       <div class="step-content">
         <h3 class="step-title">CLARITY</h3>
         <p class="step-body">
-          The diagnostic is free. We map what's broken. Then we write the Problem
-          Statement in plain language. No jargon. No assumptions. You read it. If
-          it's not right, we fix it. No code gets written until you sign off.
+          The diagnostic is free. I map what's broken across your message, your
+          site, and your tools. Then I write the Problem Statement in plain
+          language: exactly what's broken and what the fix looks like. You read
+          it. You sign off. No code gets written until you do.
         </p>
         <div class="step-outcome-block">
-          <p class="step-outcome">&gt; OUTCOME: The Problem Statement. A written diagnosis you read and verify before anything is built.</p>
-          <p class="step-comment">// Diagnostic is free. Takes five minutes.</p>
+          <p class="step-outcome">&gt; OUTCOME: A written diagnosis in plain language. You verify it before anything is built.</p>
+          <p class="step-comment">// The diagnostic takes five minutes. It's free.</p>
         </div>
       </div>
     </li>
@@ -47,13 +47,14 @@ import Button from '../Button.astro';
       <div class="step-content">
         <h3 class="step-title">CODE</h3>
         <p class="step-body">
-          One person builds your project from start to finish. No templates. No
-          agency layers. No handoffs to someone who wasn't in the room when the
-          problem was defined. Ships with full documentation so your team can run it.
+          One person builds your project from start to finish. Not a team with a
+          project manager between you and the work. Not a template reskinned as
+          something custom. Production-ready code with full documentation so you
+          can run it without me.
         </p>
         <div class="step-outcome-block">
-          <p class="step-outcome">&gt; OUTCOME: Production-ready. Documented. Tested. Deployed.</p>
-          <p class="step-comment">// Simple sites ship in under a week. Apps start at two weeks.</p>
+          <p class="step-outcome">&gt; OUTCOME: Your operating system, built and deployed.</p>
+          <p class="step-comment">// Simple sites ship in under a week. App projects start at two weeks.</p>
         </div>
       </div>
     </li>
@@ -67,12 +68,13 @@ import Button from '../Button.astro';
       <div class="step-content">
         <h3 class="step-title">RESULTS</h3>
         <p class="step-body">
-          Thirty days of post-launch support. Then the Handoff Package arrives:
+          Thirty days of post-launch support included. Then the Handoff Package:
           your code, your hosting credentials, your CMS instructions, and the
-          original Problem Statement. You own everything. Nothing is locked to us.
+          original Problem Statement. You own everything. Nothing is locked to
+          MAX.EXE.
         </p>
         <div class="step-outcome-block">
-          <p class="step-outcome">&gt; OUTCOME: The Handoff Package. Your code, your system, complete ownership.</p>
+          <p class="step-outcome">&gt; OUTCOME: Complete ownership. Nothing owed after launch.</p>
           <p class="step-comment">// Most projects ship in 30 to 90 days.</p>
         </div>
       </div>
@@ -82,23 +84,12 @@ import Button from '../Button.astro';
 
   <!-- CTA -->
   <div class="process-cta">
-    <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
+    <Button variant="ghost" href="/diagnostic">[GET YOUR FREE DIAGNOSTIC &gt;]</Button>
     <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
   </div>
 </SectionWrapper>
 
 <style>
-  /* Amber divider rule at top */
-  .process-divider {
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* Warm gradient background — !important overrides SectionWrapper inline style */
-  :global(.process-section) {
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-plan-end) 100%) !important;
-  }
-
   /* Headline - Geist Sans, two lines */
   .process-headline {
     font-family: var(--font-sans);
@@ -111,14 +102,6 @@ import Button from '../Button.astro';
 
   .process-headline span {
     display: block;
-  }
-
-  .process-headline span:first-child {
-    color: var(--primary);
-  }
-
-  .process-headline span:last-child {
-    color: oklch(0.76 0.18 62 / 0.7);
   }
 
   /* ── Pipeline wrapper (positioning context for the decorative line) ── */
@@ -171,7 +154,7 @@ import Button from '../Button.astro';
     font-family: var(--font-mono);
     font-size: var(--step--2);
     font-feature-settings: 'tnum' 1;
-    color: var(--text-accent-dim);
+    color: var(--text-muted);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin-bottom: var(--space-2);
@@ -182,7 +165,7 @@ import Button from '../Button.astro';
     height: 24px;
     border-radius: 50%;
     background: var(--primary);
-    color: var(--bg-dark);
+    color: var(--bg);
     font-family: var(--font-mono);
     font-size: var(--step--2);
     font-weight: 700;
@@ -197,7 +180,7 @@ import Button from '../Button.astro';
     font-family: var(--font-pixel);
     font-size: var(--step-2);
     line-height: 1.25;
-    color: var(--amber-4);
+    color: var(--text);
     letter-spacing: 0.04em;
     margin-bottom: var(--space-4);
   }
@@ -206,7 +189,7 @@ import Button from '../Button.astro';
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
-    color: oklch(0.88 0.06 62);
+    color: var(--text-muted);
     margin-bottom: var(--space-5);
     max-width: var(--measure-normal);
   }
@@ -229,7 +212,7 @@ import Button from '../Button.astro';
   .step-comment {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: var(--amber-2);
+    color: var(--text-muted);
     line-height: 1.5;
   }
 

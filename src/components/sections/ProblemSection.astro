@@ -1,89 +1,100 @@
 ---
 import SectionWrapper from '../SectionWrapper.astro';
-import BruteCard from '../BruteCard.astro';
-import Badge from '../Badge.astro';
 import Button from '../Button.astro';
 ---
-<div class="stakes-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="stakes" class="stakes-section">
+<SectionWrapper id="problem" theme="light">
   <!-- Section label -->
-  <p class="section-label">// 02 THE STAKES</p>
+  <p class="section-label section-label--light">// 02 PROBLEM IDENTIFIED</p>
 
   <!-- Headline -->
-  <h2 class="stakes-headline">
-    <span>Good reputation. Bad website.</span>
-    <span>Fixable problem.</span>
-  </h2>
+  <h2 class="problem-headline">Your business is missing one thing.</h2>
 
   <!-- Body copy -->
-  <div class="stakes-body">
+  <div class="problem-body">
     <p>
-      Prospects visit your site. They can't figure out what you offer. They
-      leave. Someone with a worse product, but a clearer message, gets the call
-      instead.
+      Every small business runs on three things: the message you put in front of
+      strangers, the tools you use to do your work, and the website that holds it
+      all together. Most business owners treat these as three separate problems.
+      They're not. They're three layers of the same missing system.
     </p>
 
     <p>
-      You already know this. That quiet dread when you send someone to your
-      site, wondering if it'll make you look smaller than you are. That's not a
-      feeling. That's a signal.
+      Maybe you've been in business for years. Maybe you're just starting out.
+      Either way, if your message, your site, and your tools weren't built to
+      work together, you don't have an operating system for your business. You
+      have parts.
     </p>
 
     <p>
-      Good work deserves to be found. Bad marketing shouldn't be a tax on good
-      work.
+      Parts don't convert. Parts don't scale. And you end up being the glue that
+      holds them all together, manually, every day.
     </p>
   </div>
 
-  <!-- Root cause -->
-  <p class="root-cause">// ROOT CAUSE IDENTIFIED &gt; VILLAIN: FRAGMENTATION</p>
+  <!-- Philosophical statement -->
+  <blockquote class="problem-philosophy" data-animate>
+    <p>Good work deserves to be found.</p>
+    <p>Bad marketing shouldn't be a tax on good work.</p>
+  </blockquote>
 
-  <!-- [ERR] cards -->
-  <ul class="err-grid">
-    <li>
-      <BruteCard>
-        <Badge variant="err">[ERR]</Badge>
-        <h3 class="err-title">CREDIBILITY PROBLEM</h3>
-        <p class="err-desc">Your site forms an impression in 50 milliseconds. Before anyone reads a word.</p>
-        <p class="err-source">// Lindgaard et al., 2006</p>
-      </BruteCard>
+  <!-- ERR nodes -->
+  <ul class="err-stack" data-animate>
+    <li class="err-node">
+      <div class="err-status">
+        <span class="err-badge">[ERR]</span>
+        <span class="err-label">YOUR MESSAGE</span>
+      </div>
+      <p class="err-desc">
+        Strangers visit your site and can't figure out what you do. They leave.
+        Someone with a worse product but a clearer message gets the call.
+      </p>
+      <p class="err-cite">
+        "Your site forms a first impression in 50ms. Before anyone reads a word."
+      </p>
+      <p class="err-source">// Lindgaard, Behavioural &amp; IT, 2006</p>
     </li>
 
-    <li>
-      <BruteCard>
-        <Badge variant="err">[ERR]</Badge>
-        <h3 class="err-title">CONFIDENCE PROBLEM</h3>
-        <p class="err-desc">4 out of 5 small business owners are not confident their marketing is working.</p>
-        <p class="err-source">// Constant Contact / Ascend2, 2025 · n=2,500</p>
-      </BruteCard>
+    <li class="err-node">
+      <div class="err-status">
+        <span class="err-badge">[ERR]</span>
+        <span class="err-label">YOUR SITE</span>
+      </div>
+      <p class="err-desc">
+        You send someone to your website and feel that quiet dread: will this
+        make me look smaller than I actually am?
+      </p>
+      <p class="err-cite">
+        "Only 1 in 5 small business owners believe their marketing is actually working."
+      </p>
+      <p class="err-source">// Constant Contact / Ascend2, 2025</p>
     </li>
 
-    <li>
-      <BruteCard>
-        <Badge variant="err">[ERR]</Badge>
-        <h3 class="err-title">REFERRAL PROBLEM</h3>
-        <p class="err-desc">57% of people won't recommend a business with a poorly designed mobile site.</p>
-        <p class="err-source">// networksolutions.com / multiple sources, 2025</p>
-      </BruteCard>
+    <li class="err-node">
+      <div class="err-status">
+        <span class="err-badge">[ERR]</span>
+        <span class="err-label">YOUR TOOLS</span>
+      </div>
+      <p class="err-desc">
+        You bought software one tool at a time. Each one solved a specific
+        problem. Now you're the thing that connects them. That wasn't the plan.
+      </p>
+      <p class="err-cite">
+        "The average small business owner spends ~1.5 hours per day on tool switching alone."
+      </p>
+      <p class="err-source">// Slack / Salesforce Productivity Survey, 2024</p>
     </li>
   </ul>
 
   <!-- CTA -->
-  <div class="stakes-cta">
-    <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
-    <p class="cta-comment">// Five minutes tells you exactly what's broken.</p>
+  <div class="problem-cta">
+    <Button variant="primary" href="/diagnostic">[GET YOUR FREE DIAGNOSTIC &gt;]</Button>
+    <p class="problem-cta-note">// Five minutes tells you exactly which layer is broken.</p>
   </div>
 </SectionWrapper>
 
 <style>
-  /* Amber divider rule between hero and stakes */
-  .stakes-divider {
-    height: 1px;
-    background: oklch(0.76 0.18 62 / 0.15);
-  }
-
-  /* Headline - Geist Sans, two lines */
-  .stakes-headline {
+  /* Headline - Geist Sans */
+  .problem-headline {
     font-family: var(--font-sans);
     font-size: var(--step-4);
     line-height: 1.15;
@@ -92,130 +103,144 @@ import Button from '../Button.astro';
     margin-bottom: var(--space-10);
   }
 
-  .stakes-headline span {
-    display: block;
-  }
-
-  .stakes-headline span:first-child {
-    color: var(--primary);
-  }
-
-  .stakes-headline span:last-child {
-    color: oklch(0.76 0.18 62 / 0.7);
-  }
-
   /* Body copy */
-  .stakes-body {
+  .problem-body {
     max-width: var(--measure-normal);
     margin-bottom: var(--space-10);
   }
 
-  .stakes-body p {
+  .problem-body p {
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
-    color: oklch(0.88 0.06 62);
+    color: var(--text-muted);
     margin-bottom: var(--space-6);
   }
 
-  .stakes-body p:last-child {
+  .problem-body p:last-child {
     margin-bottom: 0;
   }
 
-  /* Root cause line */
-  .root-cause {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--danger);
-    letter-spacing: 0.06em;
+  /* Philosophical blockquote */
+  .problem-philosophy {
+    border-left: 3px solid var(--primary);
+    padding-left: var(--space-6);
     margin-bottom: var(--space-12);
-    text-shadow: 0 0 4px oklch(0.70 0.18 30 / 0.5);
+    max-width: var(--measure-normal);
   }
 
-  /* [ERR] card grid */
-  .err-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .problem-philosophy p {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: var(--space-2);
+  }
+
+  .problem-philosophy p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ERR stack */
+  .err-stack {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-6);
     margin-bottom: var(--space-12);
   }
 
-  /* Override BruteCard default colors for [ERR] cards */
-  .err-grid :global(.brute-card) {
-    background: var(--bg-stakes-err);
-    border-color: var(--bg-stakes-border);
-    box-shadow: 4px 4px 0 0 oklch(0.28 0.12 30 / 0.4);
+  .err-node {
+    border: 1px solid var(--border-muted);
+    padding: var(--space-6);
+    background: var(--bg-light);
   }
 
-  .err-grid :global(.brute-card:hover) {
-    border-color: var(--danger);
-    box-shadow: 6px 6px 0 0 var(--danger);
+  /* ERR status line */
+  .err-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
   }
 
-  /* Card internals */
-  .err-title {
+  .err-badge {
     font-family: var(--font-mono);
-    font-size: var(--step--1);
+    font-size: var(--step--2);
+    font-weight: 700;
+    color: var(--error);
+    letter-spacing: 0.04em;
+  }
+
+  .err-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
     font-weight: 600;
     color: var(--text);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-3);
   }
 
+  /* ERR description */
   .err-desc {
     font-family: var(--font-sans);
-    font-size: var(--step--1);
+    font-size: var(--step-0);
+    line-height: 1.65;
     color: var(--text-muted);
-    line-height: 1.5;
+    max-width: var(--measure-normal);
     margin-bottom: var(--space-4);
+  }
+
+  /* ERR citation */
+  .err-cite {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
   }
 
   .err-source {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: var(--text-accent-dim);
-    line-height: 1.4;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
     font-feature-settings: 'tnum' 1;
     padding-top: var(--space-3);
-    border-top: 1px solid var(--bg-stakes-border);
+    border-top: 1px solid var(--border-muted);
   }
 
   /* CTA area */
-  .stakes-cta {
+  .problem-cta {
     display: flex;
     align-items: center;
     gap: var(--space-6);
     flex-wrap: wrap;
   }
 
-  .cta-comment {
+  .problem-cta-note {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: var(--text-accent-dim);
+    color: var(--text-muted);
     letter-spacing: 0.06em;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .stakes-headline {
+    .problem-headline {
       font-size: var(--step-3);
     }
 
-    .err-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-    }
-
-    .stakes-cta {
+    .problem-cta {
       flex-direction: column;
       align-items: flex-start;
     }
   }
 
   @media (max-width: 480px) {
-    .stakes-headline {
+    .problem-headline {
       font-size: var(--step-2);
     }
   }

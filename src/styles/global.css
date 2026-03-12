@@ -31,10 +31,10 @@
    ============================================ */
 
 :root {
-  /* Backgrounds */
-  --bg-dark:      oklch(0.10 0.09 62);
-  --bg:           oklch(0.15 0.09 62);
-  --bg-light:     oklch(0.20 0.09 62);
+  /* Backgrounds (aligned to Visual Identity v1.0) */
+  --bg-dark:      oklch(0.07 0.06 62);
+  --bg:           oklch(0.07 0.06 62);
+  --bg-light:     oklch(0.10 0.09 62);
 
   /* Text */
   --text:         oklch(0.90 0.16 62);
@@ -68,12 +68,7 @@
   /* CRT Black (deepest background) */
   --crt-black:    oklch(0.10 0.03 58);   /* #110A02 */
 
-  /* Light mode inversion (Success Vision only) */
-  --light-bg:     oklch(0.90 0.05 62);   /* #F5E8CC — warm amber paper */
-  --light-text:   oklch(0.25 0.12 62);   /* #3D1A00 — dark amber */
-  --light-h2:     oklch(0.20 0.14 62);   /* darkest amber in light mode */
-  --light-badge-bg: oklch(0.85 0.04 62); /* slightly darker than light-bg */
-  --light-border: oklch(0.72 0.10 62);   /* subtle amber border on light */
+  /* (light-mode one-offs removed — replaced by .theme-light / .theme-amber classes) */
 
   /* Section-specific backgrounds */
   --bg-stakes-err:    oklch(0.12 0.05 30);   /* [ERR] card bg — dark red-orange */
@@ -190,6 +185,66 @@
 }
 
 /* ============================================
+   SECTION THEME CLASSES
+   60% light · 30% dark · 10% amber
+   Children inherit via CSS custom property cascade
+   ============================================ */
+
+/* ── Section Theme: Dark ── */
+.theme-dark {
+  --bg-dark: oklch(0.07 0.06 62);
+  --bg: oklch(0.07 0.06 62);
+  --bg-light: oklch(0.10 0.09 62);
+  --text: oklch(0.90 0.16 62);
+  --text-muted: oklch(0.76 0.12 62);
+  --primary: oklch(0.76 0.18 62);
+  --border: oklch(0.40 0.18 62);
+  --border-muted: oklch(0.30 0.18 62);
+  --success: oklch(0.72 0.19 145);
+  --warning: oklch(0.76 0.18 62);
+  --error: oklch(0.65 0.22 25);
+  --info: oklch(0.70 0.15 230);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Section Theme: Light ── */
+.theme-light {
+  --bg-dark: oklch(0.86 0.05 62);
+  --bg: oklch(0.91 0.04 62);
+  --bg-light: oklch(0.95 0.03 62);
+  --text: oklch(0.18 0.10 62);
+  --text-muted: oklch(0.34 0.10 62);
+  --primary: oklch(0.36 0.16 62);
+  --border: oklch(0.48 0.09 62);
+  --border-muted: oklch(0.65 0.06 62);
+  --success: oklch(0.40 0.16 145);
+  --warning: oklch(0.36 0.16 62);
+  --error: oklch(0.45 0.20 25);
+  --info: oklch(0.40 0.14 230);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Section Theme: Amber ── */
+.theme-amber {
+  --bg-dark: oklch(0.65 0.20 62);
+  --bg: oklch(0.76 0.18 62);
+  --bg-light: oklch(0.83 0.14 62);
+  --text: oklch(0.10 0.08 62);
+  --text-muted: oklch(0.24 0.10 62);
+  --primary: oklch(0.12 0.08 62);
+  --border: oklch(0.55 0.16 62);
+  --border-muted: oklch(0.65 0.14 62);
+  --success: oklch(0.35 0.14 145);
+  --warning: oklch(0.12 0.08 62);
+  --error: oklch(0.40 0.18 25);
+  --info: oklch(0.30 0.12 230);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ============================================
    TAILWIND THEME MAPPING
    ============================================ */
 
@@ -198,9 +253,9 @@
   default: true;
   prefersdark: true;
   color-scheme: dark;
-  --color-base-100: oklch(15% .09 62);
-  --color-base-200: oklch(12% .07 62);
-  --color-base-300: oklch(10% .05 62);
+  --color-base-100: oklch(7% .06 62);
+  --color-base-200: oklch(10% .07 62);
+  --color-base-300: oklch(7% .05 62);
   --color-base-content: oklch(92% .1 62);
   --color-primary: oklch(76% .18 62);
   --color-primary-content: oklch(12% .07 62);
@@ -239,9 +294,6 @@
   --color-amber-3: oklch(66% .17 57);
   --color-amber-4: oklch(87% .16 86);
   --color-crt-black: oklch(10% .03 58);
-  --color-light-bg: oklch(90% .05 62);
-  --color-light-text: oklch(25% .12 62);
-  --color-light-h2: oklch(20% .14 62);
   --color-stakes-err: oklch(12% .05 30);
   --color-stakes-border: oklch(28% .12 30);
   --color-cost-waiting: oklch(11% .05 30);
@@ -387,38 +439,49 @@ section h4 {
   margin-bottom: var(--space-6);
 }
 
-/* Light-mode override for sections with inverted backgrounds */
+/* Section label in light/amber themes — inherits from theme tokens */
 .section-label--light {
-  color: oklch(0.50 0.10 62);
+  color: var(--text-muted);
   max-width: var(--container-xl);
   margin-left: auto;
   margin-right: auto;
 }
 
-/* CRT Scanlines */
-body::before {
+/* CRT Shell — scoped to dark sections only */
+.theme-dark {
+  position: relative;
+}
+
+/* CRT Scanlines (dark sections only) */
+.theme-dark::before {
   content: '';
-  position: fixed;
+  position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    oklch(0 0 0 / 0.03) 0px,
-    oklch(0 0 0 / 0.03) 1px,
+    transparent,
     transparent 1px,
-    transparent 3px
+    oklch(0 0 0 / 0.03) 1px,
+    oklch(0 0 0 / 0.03) 2px
   );
   pointer-events: none;
-  z-index: var(--z-scanlines);
+  z-index: 1;
 }
 
-/* CRT Vignette */
-body::after {
+/* CRT Vignette (dark sections only) */
+.theme-dark::after {
   content: '';
-  position: fixed;
+  position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 65%, oklch(0 0 0 / 0.35) 100%);
+  background: radial-gradient(ellipse at center, transparent 50%, oklch(0 0 0 / 0.3) 100%);
   pointer-events: none;
-  z-index: var(--z-overlay);
+  z-index: 1;
+}
+
+/* Ensure section content sits above CRT overlays */
+.section-inner {
+  position: relative;
+  z-index: 2;
 }
 
 /* Reduced motion */
@@ -427,7 +490,7 @@ body::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  body::before { display: none; }
+  .theme-dark::before { display: none; }
 }
 
 /* ============================================

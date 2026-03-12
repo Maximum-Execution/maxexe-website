@@ -1,111 +1,85 @@
 ---
+import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
 ---
-<div class="cost-divider" aria-hidden="true"></div>
-<section class="cost-section" id="cost">
-  <div class="cost-inner">
-    <!-- Section label -->
-    <p class="section-label">// 09 COST OF WAITING</p>
+<SectionWrapper id="cost" theme="dark">
+  <!-- Section label -->
+  <p class="section-label">// 08 COST OF WAITING</p>
 
-    <!-- Content wrapper - 640px -->
-    <div class="cost-content">
-      <!-- Headline -->
-      <h2 class="cost-headline">
-        <span>You're already paying for this.</span>
-        <span>You just don't have an invoice for it yet.</span>
-      </h2>
+  <!-- Headline -->
+  <h2 class="cost-headline">
+    <span>You're already paying for this.</span>
+    <span>There's just no invoice for it yet.</span>
+  </h2>
 
-      <!-- Body copy -->
-      <div class="cost-body">
-        <p>
-          That slow month. That competitor who keeps winning work you know you
-          could do better. That referral who visited your site and never called
-          back. There's no line item for any of it. But the cost is real and
-          it's compounding.
-        </p>
+  <!-- Body copy -->
+  <div class="cost-body" data-animate>
+    <p>
+      That slow month. That competitor who keeps winning work you know you
+      could do better. That referral who visited your site and never called
+      back. There's no line item for any of it. But the cost is real and it
+      compounds.
+    </p>
 
-        <p>
-          Every day you're copying and pasting between tools that weren't
-          designed to work together, re-answering the same intake questions,
-          rebuilding the same follow-up from scratch. That time is already gone.
-        </p>
+    <p>
+      Every day without a working system is a day you're paying the
+      fragmentation tax. Copy-pasting between tools. Re-answering the same
+      intake questions. Rebuilding the same follow-up from scratch. That time
+      is already gone.
+    </p>
 
-        <p>
-          Word-of-mouth works until it stops. When it does, there's nothing
-          underneath it.
-        </p>
-      </div>
-
-      <!-- Terminal stat block -->
-      <div class="cost-stats">
-        <dl>
-          <div class="stat-line">
-            <dt class="stat-label stat-danger">&gt; DAILY TIME LOST TO WASTED ADMIN (per owner):</dt>
-            <dd class="stat-value stat-danger">~1.5 hrs</dd>
-          </div>
-          <div class="stat-line">
-            <dt class="stat-label stat-danger">&gt; THAT'S PER WEEK:</dt>
-            <dd class="stat-value stat-danger">~7.5 hrs</dd>
-          </div>
-          <div class="stat-line">
-            <dt class="stat-label stat-danger">&gt; THAT'S PER YEAR:</dt>
-            <dd class="stat-value stat-danger">~1 full work month</dd>
-          </div>
-          <div class="stat-line">
-            <dt class="stat-label stat-danger">&gt; SOLOPRENEURS WHO'VE LOST A MONTH OF INCOME:</dt>
-            <dd class="stat-value stat-danger">42%</dd>
-          </div>
-          <div class="stat-line">
-            <dt class="stat-label stat-danger">&gt; SMALL BIZ OWNERS CONFIDENT THEIR MARKETING WORKS:</dt>
-            <dd class="stat-value stat-danger">1 in 5</dd>
-          </div>
-          <div class="stat-line stat-line-positive">
-            <dt class="stat-label stat-success">&gt; COST TO DIAGNOSE:</dt>
-            <dd class="stat-value stat-success">$0.00</dd>
-          </div>
-          <div class="stat-line">
-            <dt class="stat-label stat-compounding">&gt; COST TO DO NOTHING:</dt>
-            <dd class="stat-value stat-compounding">compounding</dd>
-          </div>
-        </dl>
-        <p class="stat-source">// Slack / Salesforce, 2024 · Simply Business, 2025, n=1,023 · Constant Contact / Ascend2, 2025</p>
-      </div>
-
-      <!-- CTA -->
-      <div class="cost-cta">
-        <Button variant="ghost" href="/diagnostic">[RUN THE FREE DIAGNOSTIC &gt;]</Button>
-        <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
-      </div>
-    </div>
+    <p>
+      Word-of-mouth works until it stops. When it does, there's nothing
+      underneath it. The person who found your site, saw nothing that made
+      them confident, and called your competitor instead. That cost never
+      shows up on a statement.
+    </p>
   </div>
-</section>
+
+  <!-- Terminal stat block -->
+  <div class="cost-stats" data-animate>
+    <dl>
+      <div class="stat-line">
+        <dt class="stat-label stat-danger">&gt; DAILY TIME LOST TO TOOL SWITCHING (avg, per owner):</dt>
+        <dd class="stat-value stat-danger">~1.5 hrs</dd>
+      </div>
+      <div class="stat-line">
+        <dt class="stat-label stat-danger">&gt; PER WEEK:</dt>
+        <dd class="stat-value stat-danger">~7.5 hrs</dd>
+      </div>
+      <div class="stat-line">
+        <dt class="stat-label stat-danger">&gt; PER YEAR:</dt>
+        <dd class="stat-value stat-danger">~47 work days</dd>
+      </div>
+      <div class="stat-line">
+        <dt class="stat-label stat-danger">&gt; OWNERS WHO'VE LOST SIGNIFICANT INCOME TO INEFFICIENT SYSTEMS:</dt>
+        <dd class="stat-value stat-danger">42%</dd>
+      </div>
+      <div class="stat-line">
+        <dt class="stat-label stat-danger">&gt; OWNERS CONFIDENT THEIR MARKETING WORKS:</dt>
+        <dd class="stat-value stat-danger">1 in 5</dd>
+      </div>
+      <div class="stat-line stat-line-positive">
+        <dt class="stat-label stat-success">&gt; COST TO DIAGNOSE:</dt>
+        <dd class="stat-value stat-success">$0.00</dd>
+      </div>
+      <div class="stat-line">
+        <dt class="stat-label stat-compounding">&gt; COST TO DO NOTHING:</dt>
+        <dd class="stat-value stat-compounding">compounding</dd>
+      </div>
+    </dl>
+    <p class="stat-source">// Slack / Salesforce, 2024 · Simply Business, 2025, n=1,023 · Constant Contact / Ascend2, 2025</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cost-cta">
+    <Button variant="ghost" href="/diagnostic">[GET YOUR FREE DIAGNOSTIC &gt;]</Button>
+    <Button variant="primary" href="#diagnostic">[START YOUR PROJECT &gt;]</Button>
+  </div>
+</SectionWrapper>
 
 <style>
-  /* Amber divider rule at top */
-  .cost-divider {
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* Red-shifted dark background */
-  .cost-section {
-    background: var(--bg-cost-waiting);
-    color: var(--text);
-    padding: var(--space-24) var(--space-8);
-  }
-
-  .cost-inner {
-    max-width: var(--container-xl);
-    margin: 0 auto;
-  }
-
-  /* Content wrapper - 640px */
-  .cost-content {
-    max-width: var(--measure-normal);
-    margin: 0 auto;
-  }
-
-  /* Headline */
+  /* Headline - Geist Sans */
   .cost-headline {
     font-family: var(--font-sans);
     font-size: var(--step-4);
@@ -124,11 +98,12 @@ import Button from '../Button.astro';
   }
 
   .cost-headline span:last-child {
-    color: oklch(0.76 0.18 62 / 0.7);
+    color: var(--text-muted);
   }
 
   /* Body copy */
   .cost-body {
+    max-width: var(--measure-normal);
     margin-bottom: var(--space-12);
   }
 
@@ -136,7 +111,7 @@ import Button from '../Button.astro';
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
-    color: oklch(0.88 0.06 62);
+    color: var(--text-muted);
     margin-bottom: var(--space-6);
   }
 
@@ -146,12 +121,13 @@ import Button from '../Button.astro';
 
   /* Terminal stat block */
   .cost-stats {
-    background: var(--crt-black);
+    background: var(--bg-dark);
     border: 1px solid var(--border-muted);
     padding: var(--space-6);
     font-family: var(--font-mono);
     font-feature-settings: 'tnum' 1;
     margin-bottom: var(--space-12);
+    max-width: var(--measure-normal);
   }
 
   .stat-line {
@@ -170,7 +146,6 @@ import Button from '../Button.astro';
 
   .stat-label {
     font-size: var(--step--2);
-    white-space: nowrap;
   }
 
   .stat-value {
@@ -180,7 +155,7 @@ import Button from '../Button.astro';
   }
 
   .stat-danger {
-    color: var(--danger);
+    color: var(--error);
   }
 
   .stat-success {
@@ -188,12 +163,12 @@ import Button from '../Button.astro';
   }
 
   .stat-compounding {
-    color: var(--amber-4);
+    color: var(--warning);
   }
 
   .stat-source {
     font-size: var(--step--2);
-    color: var(--text-accent-dim);
+    color: var(--text-muted);
     margin-top: var(--space-3);
     padding-top: var(--space-3);
     border-top: 1px solid var(--border-muted);
@@ -210,10 +185,6 @@ import Button from '../Button.astro';
 
   /* Responsive */
   @media (max-width: 768px) {
-    .cost-section {
-      padding: var(--space-16) var(--space-6);
-    }
-
     .cost-headline {
       font-size: var(--step-3);
     }
