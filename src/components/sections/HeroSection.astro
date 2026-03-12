@@ -2,19 +2,18 @@
 import Button from '../Button.astro';
 ---
 <section class="hero theme-dark" id="hero">
-  <div class="hero-bg-glow" aria-hidden="true"></div>
   <div class="hero-inner">
     <p class="hero-intro">
       <span>// Maximum Execution · Richmond, VA</span>
       <span>// Web Design · Apps · AI Tools</span>
     </p>
 
-    <h1 class="hero-headline crt-live">
-      <span class="line-1 hero-glitch" data-text="Your business is better than">Your business is better than</span>
+    <h1 class="hero-headline">
+      <span class="line-1">Your business is better than</span>
       <span class="line-2">your website says it is.</span>
     </h1>
 
-    <p class="hero-subhead glow">
+    <p class="hero-subhead">
       You know your work is good. Strangers can't tell.
       I diagnose what's broken and build the system that fixes it.
     </p>
@@ -39,18 +38,6 @@ import Button from '../Button.astro';
     background: var(--bg);
   }
 
-  .hero-bg-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 600px;
-    height: 400px;
-    background: radial-gradient(ellipse, oklch(0.76 0.18 62 / 0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
   .hero-inner {
     max-width: var(--measure-wide);
     margin: 0 auto;
@@ -60,6 +47,7 @@ import Button from '../Button.astro';
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   .hero-intro {

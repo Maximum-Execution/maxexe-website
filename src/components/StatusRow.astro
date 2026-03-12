@@ -28,9 +28,9 @@ const { status = 'nominal', label, value } = Astro.props;
     flex-shrink: 0;
   }
   .sdot-nominal  { background: var(--success); box-shadow: 0 0 6px var(--success); }
-  .sdot-caution  { background: var(--primary); box-shadow: 0 0 6px var(--primary); animation: phosphor-flicker 4s infinite; }
+  .sdot-caution  { background: var(--primary); box-shadow: 0 0 6px var(--primary); }
   .sdot-warning  { background: var(--warning); box-shadow: 0 0 6px var(--warning); }
-  .sdot-critical { background: var(--danger);  box-shadow: 0 0 6px var(--danger);  animation: phosphor-flicker 2s infinite; }
+  .sdot-critical { background: var(--danger);  box-shadow: 0 0 6px var(--danger); }
   .status-label {
     font-family: var(--font-mono);
     font-size: var(--step--1);

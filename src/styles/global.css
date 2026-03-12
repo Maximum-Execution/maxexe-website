@@ -180,7 +180,7 @@
   --z-mobile-nav: 90;
   --z-topbar:     100;
   --z-overlay:    9998;
-  --z-scanlines:  9999;
+
   --z-skip:       10000;
 }
 
@@ -447,50 +447,12 @@ section h4 {
   margin-right: auto;
 }
 
-/* CRT Shell — scoped to dark sections only */
-.theme-dark {
-  position: relative;
-}
-
-/* CRT Scanlines (dark sections only) */
-.theme-dark::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 1px,
-    oklch(0 0 0 / 0.03) 1px,
-    oklch(0 0 0 / 0.03) 2px
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* CRT Vignette (dark sections only) */
-.theme-dark::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, oklch(0 0 0 / 0.3) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Ensure section content sits above CRT overlays */
-.section-inner {
-  position: relative;
-  z-index: 2;
-}
-
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .theme-dark::before { display: none; }
 }
 
 /* ============================================
@@ -507,87 +469,6 @@ section h4 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes phosphor-flicker {
-  0%,100% { opacity: 1; }
-  2% { opacity: 0.93; }
-  4% { opacity: 1; }
-  19% { opacity: 1; }
-  21% { opacity: 0.94; }
-  23% { opacity: 1; }
-  62% { opacity: 1; }
-  64% { opacity: 0.96; }
-  66% { opacity: 1; }
-}
-
-@keyframes phosphor-drift {
-  0%   { text-shadow: 0 0 6px oklch(0.80 0.16 62/0.12), 0 0 16px oklch(0.70 0.14 62/0.04); }
-  52%  { text-shadow: 0 0 8px oklch(0.80 0.16 62/0.15), 0 0 20px oklch(0.70 0.14 62/0.06); }
-  100% { text-shadow: 0 0 6px oklch(0.80 0.16 62/0.12), 0 0 16px oklch(0.70 0.14 62/0.04); }
-}
-
-@keyframes glitch-1 {
-  0%, 92%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-  93%           { clip-path: inset(40% 0 20% 0); transform: translate(-4px, 2px); }
-  95%           { clip-path: inset(10% 0 60% 0); transform: translate(3px, -1px); }
-  97%           { clip-path: inset(50% 0 10% 0); transform: translate(-2px, 1px); }
-}
-
-@keyframes glitch-2 {
-  0%, 88%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-  89%           { clip-path: inset(20% 0 50% 0); transform: translate(3px, -2px); }
-  91%           { clip-path: inset(60% 0 10% 0); transform: translate(-3px, 1px); }
-  93%           { clip-path: inset(30% 0 30% 0); transform: translate(2px, -1px); }
-}
-
-/* ============================================
-   CRT + GLOW UTILITIES
-   ============================================ */
-
-/* CRT live text — phosphor drift + flicker */
-.crt-live {
-  animation: phosphor-drift 4.5s ease-in-out infinite, phosphor-flicker 10s linear infinite;
-}
-
-/* Hero glitch — chromatic aberration on hero wordmark ONLY */
-.hero-glitch {
-  position: relative;
-}
-.hero-glitch::before,
-.hero-glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.hero-glitch::after {
-  left: 1px;
-  text-shadow: -1px 0 oklch(0.80 0.14 40 / 0.06);
-  animation: glitch-1 8s linear infinite;
-}
-.hero-glitch::before {
-  left: -1px;
-  text-shadow: 1px 0 oklch(0.80 0.14 85 / 0.06);
-  animation: glitch-2 12s linear infinite;
-}
-
-/* Disable glitch in light/amber themes and reduced motion */
-.theme-light .hero-glitch::before,
-.theme-light .hero-glitch::after,
-.theme-amber .hero-glitch::before,
-.theme-amber .hero-glitch::after { display: none; }
-
-/* Glow utilities */
-.glow { text-shadow: 0 0 8px oklch(0.80 0.16 62 / 0.20); }
-.glow-strong { text-shadow: 0 0 12px oklch(0.80 0.16 62 / 0.30), 0 0 36px oklch(0.70 0.14 62 / 0.10); }
-
-@media (prefers-reduced-motion: reduce) {
-  .crt-live { animation: none; }
-  .hero-glitch::before,
-  .hero-glitch::after { animation: none; display: none; }
-}
 
 /* ============================================
    SCROLL REVEAL
