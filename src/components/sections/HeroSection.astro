@@ -29,7 +29,7 @@ import Button from '../Button.astro';
 
 <style>
   .hero {
-    height: calc(100dvh - 55px);       /* CONSTRAIN to viewport minus sticky topbar (44px min-h + padding + border) */
+    min-height: calc(100dvh - 55px);   /* fill remaining viewport after ~55px sticky topbar (min-height 44px + 12px vertical padding + 1px border) */
     display: flex;
     flex-direction: column;
     padding: var(--space-8);
@@ -98,10 +98,14 @@ import Button from '../Button.astro';
     flex-wrap: wrap;
   }
 
-  /* Tablet */
+  /* Tablet + mobile — align to top, not center */
   @media (max-width: 768px) {
     .hero {
       padding: var(--space-6) var(--space-5);
+    }
+
+    .hero-inner {
+      justify-content: space-between;  /* spread content top-to-bottom — fills viewport on mobile */
     }
 
     .hero-headline {
