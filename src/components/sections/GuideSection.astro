@@ -2,89 +2,55 @@
 import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
 ---
-<div class="guide-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="guide" class="guide-section">
+<SectionWrapper id="guide" theme="light">
   <!-- Section label -->
-  <p class="section-label">// 04 THE GUIDE</p>
+  <p class="section-label section-label--light">// 04 YOUR GUIDE</p>
 
   <!-- Headline -->
-  <h2 class="guide-headline">
-    <span>You approve the strategy.</span>
-    <span>Then we write the code.</span>
-  </h2>
+  <h2 class="guide-headline">I diagnose before I build. Every time.</h2>
 
-  <!-- Two-column layout -->
-  <div class="guide-grid">
-    <!-- LEFT column: guide copy -->
-    <div class="guide-copy">
-      <div class="guide-body">
-        <p>
-          Every failed project we've ever seen had the same root cause: the answer
-          was sold before the question was asked. The designer built the design.
-          The developer wrote the code. Nobody stopped to ask whether the message
-          made sense to a stranger.
-        </p>
+  <!-- Empathy copy -->
+  <div class="guide-body" data-animate>
+    <p>
+      I know what it's like to hand someone your card, watch them visit your
+      site later, and feel the conversation go cold. The problem wasn't that
+      they weren't interested. The site just didn't carry the weight of the
+      conversation.
+    </p>
 
-        <p>
-          We start differently. Before any code is written, we produce a Problem
-          Statement. It's a plain-language document that defines exactly what's
-          broken and what the fix looks like. You read it. You verify it. You sign
-          off on it. Then we build.
-        </p>
+    <p>
+      Every client I've worked with had the same pattern. Strong work. Loyal
+      clients. A site that was built for the version of the business that
+      existed a few years ago. Strangers couldn't bridge the gap. The business
+      looked smaller than it was.
+    </p>
 
-        <p>
-          One person handles your project from discovery to launch. No handoffs.
-          No "the other person had that file." No explaining your business twice.
-          When it ships, it comes with a Handoff Package: your code, your
-          credentials, your documentation. Everything you need to run it without us.
-        </p>
-
-        <p>
-          If you never call us again after launch, that's a win. That's what the
-          Handoff Package is for.
-        </p>
-
-        <p class="guide-closing">
-          That's Maximum Execution, based in Richmond, Virginia.
-        </p>
-      </div>
-    </div>
-
-    <!-- RIGHT column: testimonials -->
-    <div class="proof-col">
-      <div class="testimonials">
-        <blockquote class="testimonial">
-          <p class="testimonial-body">
-            "They understood the problem before they started building. That had
-            never happened with any agency we'd worked with before."
-          </p>
-          <p class="testimonial-header">
-            <cite class="log-meta">Client testimonial coming soon</cite>
-          </p>
-        </blockquote>
-
-        <blockquote class="testimonial">
-          <p class="testimonial-body">
-            "I actually understand what I own now. The handoff documentation was
-            better than anything I've received from a team twice the size."
-          </p>
-          <p class="testimonial-header">
-            <cite class="log-meta">Client testimonial coming soon</cite>
-          </p>
-        </blockquote>
-
-        <blockquote class="testimonial">
-          <p class="testimonial-body">
-            "The diagnostic found two problems I didn't know I had. We fixed both
-            in the same build. Our lead flow doubled in the first month."
-          </p>
-          <p class="testimonial-header">
-            <cite class="log-meta">Client testimonial coming soon</cite>
-          </p>
-        </blockquote>
-      </div>
-    </div>
+    <p class="guide-emphasis">That's the gap I close.</p>
   </div>
+
+  <!-- Authority copy -->
+  <div class="guide-authority" data-animate>
+    <p>
+      Before any code is written, I produce a Problem Statement. It's a
+      plain-language document that defines exactly what's broken and what the
+      fix looks like. You read it. You verify it. You sign off. Then I build.
+    </p>
+
+    <p>
+      One person handles your project from discovery to launch. No handoffs.
+      No "the other person had that file." No explaining your business twice.
+      When it ships, you get a Handoff Package: your code, your credentials,
+      your documentation. Everything you need to run the system without me.
+    </p>
+
+    <p>
+      If you never call me again after launch, that's a win. That's what the
+      Handoff Package is for.
+    </p>
+  </div>
+
+  <!-- Closing -->
+  <p class="guide-closing">// That's Maximum Execution, based in Richmond, Virginia.</p>
 
   <!-- CTA -->
   <div class="guide-cta">
@@ -93,53 +59,28 @@ import Button from '../Button.astro';
 </SectionWrapper>
 
 <style>
-  /* Amber divider rule at top */
-  .guide-divider {
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* Headline - Geist Sans, two lines */
+  /* Headline - Geist Sans */
   .guide-headline {
     font-family: var(--font-sans);
     font-size: var(--step-4);
     line-height: 1.15;
     letter-spacing: var(--tracking-snug);
     color: var(--text);
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-10);
+    max-width: var(--measure-wide);
   }
 
-  .guide-headline span {
-    display: block;
-  }
-
-  .guide-headline span:first-child {
-    color: var(--primary);
-  }
-
-  .guide-headline span:last-child {
-    color: oklch(0.76 0.18 62 / 0.7);
-  }
-
-  /* Two-column grid */
-  .guide-grid {
-    display: grid;
-    grid-template-columns: 5fr 4fr;
-    gap: var(--space-16);
-    align-items: start;
-    margin-bottom: var(--space-12);
-  }
-
-  /* ── Guide copy column ── */
+  /* Empathy body copy */
   .guide-body {
     max-width: var(--measure-normal);
+    margin-bottom: var(--space-10);
   }
 
   .guide-body p {
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
-    color: oklch(0.88 0.06 62);
+    color: var(--text-muted);
     margin-bottom: var(--space-6);
   }
 
@@ -147,77 +88,52 @@ import Button from '../Button.astro';
     margin-bottom: 0;
   }
 
-  .guide-body .guide-closing {
+  .guide-emphasis {
     font-weight: 600;
-    color: var(--text);
+    color: var(--text) !important;
+    font-size: var(--step-1) !important;
   }
 
-  /* ── Proof column ── */
-  .proof-col {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
+  /* Authority copy */
+  .guide-authority {
+    max-width: var(--measure-normal);
+    margin-bottom: var(--space-10);
+    padding-top: var(--space-10);
+    border-top: 1px solid var(--border-muted);
   }
 
-  /* ── Testimonials — frosted glass ── */
-  .testimonials {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .testimonial {
-    background: oklch(0.20 0.09 62 / 0.8);
-    border: 1px solid var(--border-muted);
-    border-left: 4px solid var(--border);
-    padding: var(--space-5) var(--space-6);
-    margin: 0;
-  }
-
-  .testimonial-body {
+  .guide-authority p {
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
-    color: oklch(0.88 0.06 62);
-    margin-bottom: var(--space-3);
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
   }
 
-  .testimonial-header {
+  .guide-authority p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Closing line */
+  .guide-closing {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-8);
   }
 
-  .log-meta {
-    color: var(--amber-2);
-    font-style: normal;
-  }
-
-  /* ── CTA ── */
+  /* CTA area */
   .guide-cta {
     display: flex;
     align-items: center;
     gap: var(--space-6);
   }
 
-  /* ── Desktop sticky scroll for copy ── */
-  @media (min-width: 769px) {
-    .guide-copy {
-      position: sticky;
-      top: 80px;
-      align-self: start;
-    }
-  }
-
-  /* ── Responsive ── */
+  /* Responsive */
   @media (max-width: 768px) {
     .guide-headline {
       font-size: var(--step-3);
-    }
-
-    .guide-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-10);
     }
   }
 

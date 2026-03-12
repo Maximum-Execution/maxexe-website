@@ -1,118 +1,120 @@
 ---
 import SectionWrapper from '../SectionWrapper.astro';
 ---
-<div class="faq-divider" aria-hidden="true"></div>
-<SectionWrapper bg="base" id="faq" class="faq-section">
+<SectionWrapper id="faq" theme="light">
   <!-- Section label -->
-  <p class="section-label">// 10 FAQ</p>
+  <p class="section-label section-label--light">// 09 FAQ</p>
 
   <!-- Headline -->
   <h2 class="faq-headline">Common concerns. Direct answers.</h2>
 
   <!-- FAQ container -->
-  <div class="faq-container">
+  <div class="faq-container" data-animate>
     <!-- Q1 -->
     <details class="faq-item">
-      <summary class="faq-question">Do you use WordPress, Webflow, or Squarespace?</summary>
+      <summary class="faq-question">What exactly is a 'business operating system'?</summary>
       <div class="faq-answer">
-        <p>No. We write custom code. You can update your own content without calling us, and the code is permanently yours. No platform lock-in.</p>
+        <p>It's the three things every business needs to work without the owner holding them together manually: a clear message that explains what you do to a stranger, a website that converts visitors into leads, and tools that connect to each other. Most businesses have all three. None of them were built to work together. That's the problem I fix.</p>
       </div>
     </details>
 
     <!-- Q2 -->
     <details class="faq-item">
-      <summary class="faq-question">How long does a project take?</summary>
+      <summary class="faq-question">Do you use WordPress, Webflow, or Squarespace?</summary>
       <div class="faq-answer">
-        <p>Simple marketing sites ship in under a week. Email automation takes two to four weeks. App projects start at two weeks and expand with complexity. The diagnostic tells us which situation you're in. Timeline follows scope, and scope follows diagnosis. We don't quote a timeline before we understand the problem.</p>
+        <p>No. I write custom code. You can update your own content without calling me, and the code is permanently yours. No platform holds it hostage. No monthly fee to maintain access to your own site.</p>
       </div>
     </details>
 
     <!-- Q3 -->
     <details class="faq-item">
-      <summary class="faq-question">What&rsquo;s in the Handoff Package?</summary>
+      <summary class="faq-question">How long does a project take?</summary>
       <div class="faq-answer">
-        <p>Full codebase. Hosting credentials. CMS instructions. Original Problem Statement. Everything your team needs to run the system without us. Nothing is locked to MAX.EXE.</p>
+        <p>Simple marketing sites ship in under a week. Email automation takes two to four weeks. App projects start at two weeks and expand with complexity. I don't quote a timeline before I understand the problem. The diagnostic tells us which situation you're in. Timeline follows scope, and scope follows diagnosis.</p>
       </div>
     </details>
 
     <!-- Q4 -->
     <details class="faq-item">
-      <summary class="faq-question">I&rsquo;ve hired people before and it didn&rsquo;t work. Why would this be different?</summary>
+      <summary class="faq-question">What's in the Handoff Package?</summary>
       <div class="faq-answer">
-        <p>Most projects fail because the answer was sold before the question was asked. Someone built what they thought you needed instead of diagnosing what was actually broken. MAX.EXE starts with a written Problem Statement, verified by you in plain language, before a dollar is spent on development.</p>
+        <p>Full codebase. Hosting credentials. CMS instructions. The original Problem Statement. Everything you need to run your operating system without me. Nothing is locked to MAX.EXE.</p>
       </div>
     </details>
 
     <!-- Q5 -->
     <details class="faq-item">
-      <summary class="faq-question">I already have something partially built. Can you work with that?</summary>
+      <summary class="faq-question">I've hired people before and it didn't work. Why would this be different?</summary>
       <div class="faq-answer">
-        <p>Usually yes. We map what exists, find what's broken, and build around your actual situation. The diagnostic starts there.</p>
+        <p>Most projects fail because the answer was sold before the question was asked. Someone built what they thought you needed instead of diagnosing what was actually broken. I start with a written Problem Statement, verified by you in plain language, before a dollar is spent on development. You know exactly what you're getting before I build it.</p>
       </div>
     </details>
 
     <!-- Q6 -->
     <details class="faq-item">
-      <summary class="faq-question">How are you different from a freelancer?</summary>
+      <summary class="faq-question">I already have a website. Do I need to start over?</summary>
       <div class="faq-answer">
-        <p>Everything ships documented. The Handoff Package is built so your team can run it without us. Most freelancers don't build that way. We do because we'd rather you be independent than dependent.</p>
+        <p>Not necessarily. I map what exists, find what's broken, and build around your actual situation. Sometimes the site just needs new copy and structure. Sometimes it needs a rebuild. The diagnostic tells us which.</p>
       </div>
     </details>
 
     <!-- Q7 -->
     <details class="faq-item">
-      <summary class="faq-question">I&rsquo;m not technical. Will I understand what you&rsquo;re building?</summary>
+      <summary class="faq-question">I'm just starting my business. Is this for me?</summary>
       <div class="faq-answer">
-        <p>The Problem Statement is written in plain language before any code starts. If it's not clear, that's on us, not you. You shouldn't have to learn technical vocabulary to own your own business tools.</p>
+        <p>Yes. Starting with a complete operating system is easier than building one piece at a time and trying to connect them later. The diagnostic routes you to the right starting point.</p>
       </div>
     </details>
 
     <!-- Q8 -->
     <details class="faq-item">
-      <summary class="faq-question">What does &ldquo;AI for small business&rdquo; actually mean?</summary>
+      <summary class="faq-question">How are you different from a freelancer or agency?</summary>
       <div class="faq-answer">
-        <p>Start with one question: what task do you do by hand every week that a machine should handle? That's where we start. Narrow. Specific. Trained on your data. Approved by you before anything goes live.</p>
+        <p>Everything ships documented. You can run your own system without me after launch. Most freelancers and agencies don't build that way because it removes the dependency that keeps you calling them back. I build for your independence because I'd rather earn future work by being the best option, not the only option.</p>
       </div>
     </details>
 
     <!-- Q9 -->
     <details class="faq-item">
-      <summary class="faq-question">What does hosting cost?</summary>
+      <summary class="faq-question">I'm not technical. Will I understand what you're building?</summary>
       <div class="faq-answer">
-        <p>We deploy to Cloudflare or Vercel. Both platforms are under $20 per month, often free for static sites. You get full credentials before handoff. Nothing is billed through us after launch.</p>
+        <p>The Problem Statement is written in plain language before any code starts. If it doesn't make sense to you, that's on me, not you. You don't need to understand the code. You need to understand what it does for your business. That's what the Problem Statement covers.</p>
       </div>
     </details>
 
     <!-- Q10 -->
     <details class="faq-item">
-      <summary class="faq-question">I don&rsquo;t have a website yet. Where do I start?</summary>
+      <summary class="faq-question">What does 'AI for small business' actually mean here?</summary>
       <div class="faq-answer">
-        <p>The diagnostic. Five minutes tells us which situation you're in and what type of project fits. You might need a full site. You might need something smaller. We don't quote scope before we understand the problem.</p>
+        <p>It starts with one question: what task do you do by hand every week that a machine should handle? Intake, follow-up, FAQs, appointment scheduling. I find that task, build around your data, and train it in your voice. You approve every output before anything goes live.</p>
+      </div>
+    </details>
+
+    <!-- Q11 -->
+    <details class="faq-item">
+      <summary class="faq-question">What does hosting cost after launch?</summary>
+      <div class="faq-answer">
+        <p>I deploy to Cloudflare or Vercel. Both are under $20 per month, often free for static sites. You get full credentials before handoff. Nothing is billed through me after launch.</p>
       </div>
     </details>
   </div>
 </SectionWrapper>
 
 <style>
-  /* Amber divider rule at top */
-  .faq-divider {
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* Headline */
+  /* Headline - Geist Sans */
   .faq-headline {
     font-family: var(--font-sans);
     font-size: var(--step-4);
-    line-height: 1.2;
-    color: var(--primary);
+    line-height: 1.15;
+    letter-spacing: var(--tracking-snug);
+    color: var(--text);
     margin-bottom: var(--space-12);
+    max-width: var(--measure-wide);
   }
 
-  /* FAQ container - 840px max, centered */
+  /* FAQ container */
   .faq-container {
-    max-width: var(--measure-max);
-    margin: 0 auto;
+    max-width: var(--measure-normal);
   }
 
   /* Accordion items */
@@ -132,7 +134,7 @@ import SectionWrapper from '../SectionWrapper.astro';
     width: 100%;
     font-family: var(--font-pixel);
     font-size: var(--step-0);
-    color: var(--amber-3);
+    color: var(--primary);
     min-height: 44px;
     padding: var(--space-5) 0;
     padding-right: var(--space-10);
@@ -148,19 +150,19 @@ import SectionWrapper from '../SectionWrapper.astro';
     content: '';
   }
 
-  /* Custom +/− indicator */
+  /* Custom +/- indicator */
   .faq-question::after {
     content: '+';
     position: absolute;
     right: 0;
     font-family: var(--font-mono);
     font-size: var(--step-1);
-    color: var(--amber-3);
+    color: var(--primary);
     line-height: 1;
   }
 
   .faq-item[open] .faq-question::after {
-    content: '−';
+    content: '\2212';
   }
 
   /* Answer content */

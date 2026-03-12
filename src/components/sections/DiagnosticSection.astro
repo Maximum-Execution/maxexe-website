@@ -2,82 +2,59 @@
 import SectionWrapper from '../SectionWrapper.astro';
 import Button from '../Button.astro';
 ---
-<div class="diagnostic-divider" aria-hidden="true"></div>
-<SectionWrapper bg="light" id="diagnostic" class="diagnostic-section">
-  <div class="diagnostic-frame">
-    <div class="diagnostic-inner">
-      <!-- Section label -->
-      <p class="section-label">// 08 THE FREE DIAGNOSTIC</p>
+<SectionWrapper id="diagnostic" theme="light">
+  <!-- Section label -->
+  <p class="section-label section-label--light">// 07 FREE DIAGNOSTIC</p>
 
-      <!-- Headline -->
-      <h2 class="diagnostic-headline">
-        <span>The diagnosis is free.</span>
-        <span>The problem isn't going away.</span>
-      </h2>
+  <!-- Headline -->
+  <h2 class="diagnostic-headline">Five minutes. Find out exactly what's broken.</h2>
 
-      <!-- Body -->
-      <div class="diagnostic-body">
-        <p>
-          The diagnostic isn't a contact form. It's a branching set of questions
-          that adjusts to your situation. At the end, you get a plain-language
-          readout of what's likely broken and what type of project fits your
-          situation. You see the results before we ask for your email.
-        </p>
-      </div>
+  <!-- Body -->
+  <div class="diagnostic-body" data-animate>
+    <p>
+      The diagnostic isn't a contact form. It's a set of questions that adjusts
+      based on your situation. At the end, I send a plain-language written report
+      to your inbox: which layer of your operating system is broken, and what
+      type of project fits your situation.
+    </p>
 
-      <!-- Preview rows -->
-      <ol class="preview-rows">
-        <li class="preview-row">
-          <span class="preview-num" aria-hidden="true">&gt; [01]</span>
-          <div class="preview-content">
-            <h3 class="preview-title">TELL US WHAT YOU NEED</h3>
-          </div>
-        </li>
+    <p>
+      It's free. You get the written report before we talk. No sales call
+      required to see the results.
+    </p>
+  </div>
 
-        <li class="preview-row">
-          <span class="preview-num" aria-hidden="true">&gt; [02]</span>
-          <div class="preview-content">
-            <h3 class="preview-title">ANSWER WHAT APPLIES TO YOUR SITUATION</h3>
-          </div>
-        </li>
+  <!-- Preview rows -->
+  <ol class="preview-rows" data-animate>
+    <li class="preview-row">
+      <span class="preview-num" aria-hidden="true">&gt; [01]</span>
+      <h3 class="preview-title">TELL ME ABOUT YOUR BUSINESS</h3>
+    </li>
 
-        <li class="preview-row">
-          <span class="preview-num" aria-hidden="true">&gt; [03]</span>
-          <div class="preview-content">
-            <h3 class="preview-title">GET YOUR DIAGNOSIS. NO EMAIL REQUIRED TO SEE RESULTS.</h3>
-          </div>
-        </li>
-      </ol>
+    <li class="preview-row">
+      <span class="preview-num" aria-hidden="true">&gt; [02]</span>
+      <h3 class="preview-title">ANSWER WHAT APPLIES TO YOUR SITUATION</h3>
+    </li>
 
-      <!-- CTA -->
-      <div class="diagnostic-cta">
-        <Button variant="primary" href="/diagnostic">[START FREE DIAGNOSTIC &gt;]</Button>
-        <p class="cta-reassurance">// Five minutes. Free. Results before we ask for anything.</p>
-      </div>
+    <li class="preview-row">
+      <span class="preview-num" aria-hidden="true">&gt; [03]</span>
+      <h3 class="preview-title">GET YOUR WRITTEN DIAGNOSTIC REPORT</h3>
+    </li>
+  </ol>
+
+  <!-- CTA -->
+  <div class="diagnostic-cta">
+    <Button variant="primary" href="/diagnostic">[START FREE DIAGNOSTIC &gt;]</Button>
+    <div class="cta-reassurance">
+      <p>// Five minutes. Free.</p>
+      <p>// Your written report arrives in your inbox.</p>
+      <p>// No email required to start.</p>
     </div>
   </div>
 </SectionWrapper>
 
 <style>
-  /* Amber divider rule at top */
-  .diagnostic-divider {
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* Amber border frame around the section content */
-  .diagnostic-frame {
-    border: 1px solid var(--border);
-    padding: var(--space-12) var(--space-10);
-  }
-
-  /* Inner container - 860px max */
-  .diagnostic-inner {
-    max-width: var(--measure-max);
-    margin: 0 auto;
-  }
-
-  /* Headline */
+  /* Headline - Geist Sans */
   .diagnostic-headline {
     font-family: var(--font-sans);
     font-size: var(--step-4);
@@ -85,31 +62,25 @@ import Button from '../Button.astro';
     letter-spacing: var(--tracking-snug);
     color: var(--text);
     margin-bottom: var(--space-8);
-  }
-
-  .diagnostic-headline span {
-    display: block;
-  }
-
-  .diagnostic-headline span:first-child {
-    color: var(--primary);
-  }
-
-  .diagnostic-headline span:last-child {
-    color: oklch(0.76 0.18 62 / 0.7);
+    max-width: var(--measure-wide);
   }
 
   /* Body */
   .diagnostic-body {
     max-width: var(--measure-normal);
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-10);
   }
 
   .diagnostic-body p {
     font-family: var(--font-sans);
     font-size: var(--step-0);
     line-height: 1.65;
-    color: oklch(0.88 0.06 62);
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .diagnostic-body p:last-child {
+    margin-bottom: 0;
   }
 
   /* Preview rows - terminal style */
@@ -117,9 +88,11 @@ import Button from '../Button.astro';
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-10);
     padding-top: var(--space-8);
     border-top: 1px solid var(--border-muted);
+    list-style: none;
+    padding-left: 0;
   }
 
   .preview-row {
@@ -132,7 +105,7 @@ import Button from '../Button.astro';
     font-family: var(--font-mono);
     font-size: var(--step--1);
     font-feature-settings: 'tnum' 1;
-    color: var(--amber-2);
+    color: var(--primary);
     flex-shrink: 0;
   }
 
@@ -153,43 +126,23 @@ import Button from '../Button.astro';
     gap: var(--space-4);
   }
 
-  /* CTA button override - brightest element */
-  .diagnostic-cta :global(.btn-primary) {
-    background: var(--amber-4);
-    color: var(--bg-dark);
-    border-color: var(--amber-4);
-    font-weight: 700;
-  }
-
-  .diagnostic-cta :global(.btn-primary:hover) {
-    background: oklch(0.92 0.14 86);
-    border-color: oklch(0.92 0.14 86);
-  }
-
-  .cta-reassurance {
+  .cta-reassurance p {
     font-family: var(--font-mono);
     font-size: var(--step--2);
-    color: var(--text-accent-dim);
+    color: var(--text-muted);
     letter-spacing: 0.04em;
     line-height: 1.5;
+    margin: 0;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .diagnostic-frame {
-      padding: var(--space-8) var(--space-6);
-    }
-
     .diagnostic-headline {
       font-size: var(--step-3);
     }
   }
 
   @media (max-width: 480px) {
-    .diagnostic-frame {
-      padding: var(--space-6) var(--space-4);
-    }
-
     .diagnostic-headline {
       font-size: var(--step-2);
     }

@@ -1,18 +1,27 @@
 ---
 interface Props {
   id?: string;
+  theme?: 'dark' | 'light' | 'amber';
+  /** @deprecated Use `theme` instead. Kept for backward compatibility. */
   bg?: 'dark' | 'base' | 'light';
   class?: string;
   overflow?: 'hidden' | 'visible';
 }
-const { id, bg = 'dark', class: className, overflow = 'hidden' } = Astro.props;
-const bgMap = {
-  dark: 'var(--bg-dark)',
-  base: 'var(--bg)',
-  light: 'var(--bg-light)'
+const { id, theme, bg, class: className, overflow = 'hidden' } = Astro.props;
+
+/* New `theme` prop takes priority; old `bg` prop maps to closest theme */
+const bgToTheme: Record<string, 'dark' | 'light' | 'amber'> = {
+  dark: 'dark',
+  base: 'dark',
+  light: 'light',
 };
+const resolvedTheme = theme ?? (bg ? bgToTheme[bg] : 'dark');
 ---
-<section id={id} class:list={['section-wrap', className]} style={`background: ${bgMap[bg]}; overflow: ${overflow};`}>
+<section
+  id={id}
+  class:list={['section-wrap', `theme-${resolvedTheme}`, className]}
+  style={`overflow: ${overflow};`}
+>
   <div class="section-inner">
     <slot />
   </div>

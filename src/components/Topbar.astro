@@ -9,11 +9,10 @@ import Cursor from './Cursor.astro';
   </a>
 
   <ul class="topbar-nav">
-    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#diagnostic">Diagnostic</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#diagnostic" class="topbar-cta">[GET YOUR DIAGNOSTIC]</a></li>
   </ul>
 
   <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -24,11 +23,10 @@ import Cursor from './Cursor.astro';
 </nav>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
-  <a href="#about">About</a>
+  <a href="#services">Services</a>
   <a href="#process">Process</a>
-  <a href="#diagnostic">Diagnostic</a>
   <a href="#faq">FAQ</a>
-  <a href="#contact">Contact</a>
+  <a href="#diagnostic" class="topbar-cta">[GET YOUR DIAGNOSTIC]</a>
 </nav>
 
 <script>
@@ -197,6 +195,11 @@ import Cursor from './Cursor.astro';
     transition: color var(--dur-micro) var(--ease-ui);
   }
   .topbar-nav a:hover { color: var(--primary); }
+
+  .topbar-cta {
+    color: var(--primary) !important;
+    font-weight: 600;
+  }
 
   .hamburger {
     display: none;
