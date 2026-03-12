@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# lighthouse reports
+lighthouse-*.json
+
+# editor temp files
+*.tmp.*

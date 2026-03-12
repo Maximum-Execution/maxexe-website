@@ -9,7 +9,7 @@ The company's own homepage and diagnostic tool at [maximumexecution.com](https:/
 
 ## Current Phase
 
-**QA complete, pre-launch.** Next up: Email automation (MailerLite) + official launch.
+**Homepage v2.0 deployed.** Next up: Email automation (MailerLite) + official launch.
 
 ## Stack
 
@@ -26,13 +26,15 @@ npm run build && npx wrangler pages deploy dist
 - **GitHub:** `Maximum-Execution/maxexe-website` (public)
 - If build fails with EBUSY, Dropbox is locking `.astro/` cache — retry immediately
 
-## Section Order (Current)
+## Section Order (Current — v2.0)
 
 ```
-Hero → Problem → ValueProp → Guide → Process → SuccessVision → About → Diagnostic → CostOfWaiting → FAQ → Footer
+Hero(dark) → Problem(light) → ValueProp(light) → Guide(light) → Process(light) → SuccessVision(amber) → Diagnostic(light) → CostOfWaiting(dark) → FAQ(light) → Footer(dark)
 ```
 
-These section components exist but are **not rendered** in `index.astro`: `AIFearSection`, `StakesSection`, `TimeReceiptSection`, `ContactSection`, `SystemScanSection`.
+**Theme distribution:** 60% light / 30% dark / 10% amber. Per-section theming via `.theme-dark`, `.theme-light`, `.theme-amber` CSS classes in `global.css`. CRT effects (scanlines + vignette) scoped to `.theme-dark` sections only.
+
+These section components exist but are **not rendered** in `index.astro`: `AboutSection`, `AIFearSection`, `StakesSection`, `TimeReceiptSection`, `ContactSection`, `SystemScanSection`.
 
 ## Architecture
 
@@ -48,7 +50,7 @@ These section components exist but are **not rendered** in `index.astro`: `AIFea
 
 ## Copy Source of Truth
 
-**Code is authoritative.** Copy doc v11 (`../copy/maxexe-landing-page-copy-v11.md`) matches the deployed site. v10 is archived.
+**Code is authoritative.** Homepage v2.0 copy (`maxexe-homepage-v2.md`) is the source doc for the current deployed site. Prior copy doc v11 (`../copy/maxexe-landing-page-copy-v11.md`) is archived.
 
 ## Key Files
 
@@ -59,7 +61,9 @@ These section components exist but are **not rendered** in `index.astro`: `AIFea
 | Base layout + fonts | `src/layouts/BaseLayout.astro` |
 | Design tokens | `src/styles/global.css` |
 | Creative brief | `../maxexe-website-creative-brief-v3.md` |
-| Copy doc | `../copy/maxexe-landing-page-copy-v11.md` |
+| Copy doc (v2.0) | `maxexe-homepage-v2.md` (in Downloads — move to project) |
+| Visual Identity | `../../_BUSINESS/Brand/MAX_EXE_VISUAL_IDENTITY.html` |
+| Copy doc (archived) | `../copy/maxexe-landing-page-copy-v11.md` |
 
 ## Links
 
