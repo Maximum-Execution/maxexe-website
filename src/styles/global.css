@@ -520,9 +520,9 @@ section h4 {
 }
 
 @keyframes phosphor-drift {
-  0%   { text-shadow: 0 0 8px oklch(0.80 0.16 62/0.30), 0 0 20px oklch(0.70 0.14 62/0.10); }
-  52%  { text-shadow: 0 0 10px oklch(0.80 0.16 62/0.35), 0 0 24px oklch(0.70 0.14 62/0.13); }
-  100% { text-shadow: 0 0 8px oklch(0.80 0.16 62/0.30), 0 0 20px oklch(0.70 0.14 62/0.10); }
+  0%   { text-shadow: 0 0 6px oklch(0.80 0.16 62/0.12), 0 0 16px oklch(0.70 0.14 62/0.04); }
+  52%  { text-shadow: 0 0 8px oklch(0.80 0.16 62/0.15), 0 0 20px oklch(0.70 0.14 62/0.06); }
+  100% { text-shadow: 0 0 6px oklch(0.80 0.16 62/0.12), 0 0 16px oklch(0.70 0.14 62/0.04); }
 }
 
 @keyframes glitch-1 {
@@ -563,13 +563,13 @@ section h4 {
   overflow: hidden;
 }
 .hero-glitch::after {
-  left: 2px;
-  text-shadow: -2px 0 oklch(0.80 0.14 40 / 0.25);
+  left: 1px;
+  text-shadow: -1px 0 oklch(0.80 0.14 40 / 0.06);
   animation: glitch-1 8s linear infinite;
 }
 .hero-glitch::before {
-  left: -2px;
-  text-shadow: 2px 0 oklch(0.80 0.14 85 / 0.25);
+  left: -1px;
+  text-shadow: 1px 0 oklch(0.80 0.14 85 / 0.06);
   animation: glitch-2 12s linear infinite;
 }
 
@@ -580,8 +580,8 @@ section h4 {
 .theme-amber .hero-glitch::after { display: none; }
 
 /* Glow utilities */
-.glow { text-shadow: 0 0 12px oklch(0.80 0.16 62 / 0.5); }
-.glow-strong { text-shadow: 0 0 16px oklch(0.80 0.16 62 / 0.65), 0 0 48px oklch(0.70 0.14 62 / 0.25); }
+.glow { text-shadow: 0 0 8px oklch(0.80 0.16 62 / 0.20); }
+.glow-strong { text-shadow: 0 0 12px oklch(0.80 0.16 62 / 0.30), 0 0 36px oklch(0.70 0.14 62 / 0.10); }
 
 @media (prefers-reduced-motion: reduce) {
   .crt-live { animation: none; }
