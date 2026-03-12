@@ -9,12 +9,12 @@ import Button from '../Button.astro';
       <span>// Web Design · Apps · AI Tools</span>
     </p>
 
-    <h1 class="hero-headline">
-      <span class="line-1">Your business is better than</span>
+    <h1 class="hero-headline crt-live">
+      <span class="line-1 hero-glitch" data-text="Your business is better than">Your business is better than</span>
       <span class="line-2">your website says it is.</span>
     </h1>
 
-    <p class="hero-subhead">
+    <p class="hero-subhead glow">
       You know your work is good. Strangers can't tell.
       I diagnose what's broken and build the system that fixes it.
     </p>
@@ -30,11 +30,12 @@ import Button from '../Button.astro';
 
 <style>
   .hero {
-    min-height: 85dvh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: var(--space-24) var(--space-8);
+    padding: var(--space-16) var(--space-8);
+    padding-top: calc(var(--space-16) + 44px);
     position: relative;
     overflow: hidden;
     background: var(--bg);
@@ -111,7 +112,8 @@ import Button from '../Button.astro';
   /* Responsive */
   @media (max-width: 768px) {
     .hero {
-      padding: var(--space-16) var(--space-6);
+      padding: var(--space-10) var(--space-6);
+      padding-top: calc(var(--space-10) + 44px);
     }
 
     .hero-headline {
@@ -129,8 +131,17 @@ import Button from '../Button.astro';
   }
 
   @media (max-width: 480px) {
+    .hero {
+      padding: var(--space-8) var(--space-5);
+      padding-top: calc(var(--space-8) + 44px);
+    }
+
     .hero-headline {
-      font-size: var(--step-2);
+      font-size: var(--step-4);
+    }
+
+    .hero-subhead {
+      font-size: var(--step--1);
     }
   }
 </style>

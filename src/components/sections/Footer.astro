@@ -5,13 +5,13 @@ import Cursor from '../Cursor.astro';
 <div class="footer-rule" aria-hidden="true"></div>
 <footer class="site-footer theme-dark">
   <div class="footer-inner">
-    <!-- Top area: brand + CTAs -->
-    <div class="footer-top">
+    <!-- Top area: glass CTA card -->
+    <div class="footer-top card-glass">
       <!-- Brand -->
       <div class="footer-brand">
-        <p class="brand-name">MAXIMUM EXECUTION<Cursor class="footer-cursor" /></p>
-        <p class="brand-tagline">// Clarity. Code. Results.</p>
-        <p class="brand-tagline">// I don't design solutions. I debug the problem.</p>
+        <p class="brand-name crt-live">MAXIMUM EXECUTION<Cursor class="footer-cursor" /></p>
+        <p class="brand-tagline glow">// Clarity. Code. Results.</p>
+        <p class="brand-tagline glow">// I don't design solutions. I debug the problem.</p>
       </div>
 
       <!-- CTAs -->
@@ -69,15 +69,13 @@ import Cursor from '../Cursor.astro';
     z-index: 2;
   }
 
-  /* Top area: brand + CTAs */
+  /* Top area: glass CTA card */
   .footer-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--space-10);
     margin-bottom: var(--space-12);
-    padding-bottom: var(--space-12);
-    border-bottom: 1px solid var(--border-muted);
   }
 
   /* Brand */
@@ -168,7 +166,7 @@ import Cursor from '../Cursor.astro';
 
   /* Bottom sign-off */
   .footer-signoff {
-    border-top: 1px solid var(--border-muted);
+    border-top: 1px solid oklch(1 0 0 / 0.10);
     padding-top: var(--space-6);
     text-align: center;
   }

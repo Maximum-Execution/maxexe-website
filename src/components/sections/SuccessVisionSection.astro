@@ -9,30 +9,32 @@ import Button from '../Button.astro';
   <!-- Headline -->
   <h2 class="success-headline">What your business looks like when the system works.</h2>
 
-  <!-- Prose scene -->
-  <div class="success-body" data-animate>
-    <p>
-      Clients land on your site and immediately understand what you do. They
-      reach out. You're not explaining the business to every new person who
-      finds it. The site handles that.
-    </p>
+  <!-- Prose scene — skeuomorphic card -->
+  <div class="success-card" data-animate>
+    <div class="success-body">
+      <p>
+        Clients land on your site and immediately understand what you do. They
+        reach out. You're not explaining the business to every new person who
+        finds it. The site handles that.
+      </p>
 
-    <p>
-      Your tools connect to each other. There's no copy-paste loop between apps
-      that weren't designed to talk. Your intake runs automatically. Your
-      follow-up goes out in your voice, on your schedule.
-    </p>
+      <p>
+        Your tools connect to each other. There's no copy-paste loop between apps
+        that weren't designed to talk. Your intake runs automatically. Your
+        follow-up goes out in your voice, on your schedule.
+      </p>
 
-    <p>
-      You own every line of code. No platform holds it hostage. No monthly bill
-      owed to me. No calling me to make a simple update.
-    </p>
+      <p>
+        You own every line of code. No platform holds it hostage. No monthly bill
+        owed to me. No calling me to make a simple update.
+      </p>
 
-    <p class="success-emphasis">
-      You spend your time doing the work. Not managing the system that's
-      supposed to support it. Your business finally looks as good as it
-      actually is.
-    </p>
+      <p class="success-emphasis">
+        You spend your time doing the work. Not managing the system that's
+        supposed to support it. Your business finally looks as good as it
+        actually is.
+      </p>
+    </div>
   </div>
 
   <!-- Scarcity note -->
@@ -58,10 +60,18 @@ import Button from '../Button.astro';
     max-width: var(--measure-wide);
   }
 
+  /* Skeuomorphic prose card */
+  .success-card {
+    background: oklch(0.83 0.14 62);
+    box-shadow: 0 4px 16px oklch(0 0 0 / 0.2), inset 0 1px 0 oklch(1 0 0 / 0.08);
+    border-radius: var(--radius-panel);
+    padding: var(--space-10);
+    margin-bottom: var(--space-10);
+  }
+
   /* Body prose */
   .success-body {
     max-width: var(--measure-normal);
-    margin-bottom: var(--space-10);
   }
 
   .success-body p {

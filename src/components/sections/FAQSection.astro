@@ -117,13 +117,17 @@ import SectionWrapper from '../SectionWrapper.astro';
     max-width: var(--measure-normal);
   }
 
-  /* Accordion items */
+  /* Accordion items — neo-brutal */
   .faq-item {
-    border-bottom: 1px solid var(--border-muted);
+    border-bottom: 2px solid var(--text);
+  }
+
+  .faq-item:first-child {
+    border-top: 2px solid var(--text);
   }
 
   .faq-item:last-child {
-    border-bottom: none;
+    border-bottom: 2px solid var(--text);
   }
 
   /* Question trigger */

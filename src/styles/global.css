@@ -519,6 +519,76 @@ section h4 {
   66% { opacity: 1; }
 }
 
+@keyframes phosphor-drift {
+  0%   { text-shadow: 0 0 12px oklch(0.80 0.16 62/0.60), 0 0 40px oklch(0.70 0.14 62/0.25), 0 0 80px oklch(0.60 0.12 62/0.10), 0.3px 0 0.8px oklch(0.80 0.14 40/0.28), -0.3px 0 0.8px oklch(0.80 0.14 85/0.20); }
+  52%  { text-shadow: 0 0 16px oklch(0.80 0.16 62/0.65), 0 0 48px oklch(0.70 0.14 62/0.28), 0 0 90px oklch(0.60 0.12 62/0.12), 1.4px 0 1.6px oklch(0.80 0.14 40/0.38), -1.4px 0 1.6px oklch(0.80 0.14 85/0.28); }
+  100% { text-shadow: 0 0 12px oklch(0.80 0.16 62/0.60), 0 0 40px oklch(0.70 0.14 62/0.25), 0 0 80px oklch(0.60 0.12 62/0.10), 0.3px 0 0.8px oklch(0.80 0.14 40/0.28), -0.3px 0 0.8px oklch(0.80 0.14 85/0.20); }
+}
+
+@keyframes glitch-1 {
+  0%, 92%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  93%           { clip-path: inset(40% 0 20% 0); transform: translate(-4px, 2px); }
+  95%           { clip-path: inset(10% 0 60% 0); transform: translate(3px, -1px); }
+  97%           { clip-path: inset(50% 0 10% 0); transform: translate(-2px, 1px); }
+}
+
+@keyframes glitch-2 {
+  0%, 88%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  89%           { clip-path: inset(20% 0 50% 0); transform: translate(3px, -2px); }
+  91%           { clip-path: inset(60% 0 10% 0); transform: translate(-3px, 1px); }
+  93%           { clip-path: inset(30% 0 30% 0); transform: translate(2px, -1px); }
+}
+
+/* ============================================
+   CRT + GLOW UTILITIES
+   ============================================ */
+
+/* CRT live text — phosphor drift + flicker */
+.crt-live {
+  animation: phosphor-drift 4.5s ease-in-out infinite, phosphor-flicker 10s linear infinite;
+}
+
+/* Hero glitch — chromatic aberration on hero wordmark ONLY */
+.hero-glitch {
+  position: relative;
+}
+.hero-glitch::before,
+.hero-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-glitch::after {
+  left: 2px;
+  text-shadow: -2px 0 oklch(0.80 0.14 40 / 0.6);
+  animation: glitch-1 8s linear infinite;
+}
+.hero-glitch::before {
+  left: -2px;
+  text-shadow: 2px 0 oklch(0.80 0.14 85 / 0.6);
+  animation: glitch-2 12s linear infinite;
+}
+
+/* Disable glitch in light/amber themes and reduced motion */
+.theme-light .hero-glitch::before,
+.theme-light .hero-glitch::after,
+.theme-amber .hero-glitch::before,
+.theme-amber .hero-glitch::after { display: none; }
+
+/* Glow utilities */
+.glow { text-shadow: 0 0 12px oklch(0.80 0.16 62 / 0.5); }
+.glow-strong { text-shadow: 0 0 16px oklch(0.80 0.16 62 / 0.65), 0 0 48px oklch(0.70 0.14 62 / 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-live { animation: none; }
+  .hero-glitch::before,
+  .hero-glitch::after { animation: none; display: none; }
+}
+
 /* ============================================
    SCROLL REVEAL
    ============================================ */
@@ -538,6 +608,67 @@ section h4 {
     transform: none;
     transition: none;
   }
+}
+
+/* ============================================
+   SURFACE PARADIGM UTILITIES
+   ============================================ */
+
+/* Glass card — dark sections (Glassmorphism) */
+.card-glass {
+  background: oklch(0.20 0.09 62 / 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid oklch(1 0 0 / 0.08);
+  border-radius: var(--radius-panel);
+  padding: var(--space-8);
+}
+.card-glass h2, .card-glass h3 { color: oklch(0.90 0.16 62 / 0.95); }
+.card-glass p { color: oklch(0.76 0.12 62 / 0.70); }
+.card-glass .label { color: oklch(0.76 0.12 62 / 0.50); }
+
+/* Neo-brutal card — light sections (Neo-Brutalism) */
+.card-brutal {
+  border: 2px solid var(--text);
+  border-radius: 0;
+  padding: var(--space-6);
+  background: var(--bg-light);
+}
+
+/* Elevated card — amber section (Neo-Skeuomorphism) */
+.card-elevated {
+  box-shadow: 0 4px 16px oklch(0 0 0 / 0.3), inset 0 1px 0 oklch(1 0 0 / 0.05);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+}
+
+/* ============================================
+   BUTTON VARIANT UTILITIES
+   ============================================ */
+
+.btn-glass {
+  background: oklch(0.20 0.09 62 / 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid oklch(1 0 0 / 0.08);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+}
+.btn-glass:hover {
+  background: oklch(0.20 0.09 62 / 0.6);
+  border-color: oklch(1 0 0 / 0.15);
+}
+
+.btn-brutal {
+  border: 2px solid var(--text);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+}
+.btn-brutal:hover {
+  background: var(--text);
+  color: var(--bg);
 }
 
 /* ============================================
