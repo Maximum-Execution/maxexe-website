@@ -520,9 +520,9 @@ section h4 {
 }
 
 @keyframes phosphor-drift {
-  0%   { text-shadow: 0 0 12px oklch(0.80 0.16 62/0.60), 0 0 40px oklch(0.70 0.14 62/0.25), 0 0 80px oklch(0.60 0.12 62/0.10), 0.3px 0 0.8px oklch(0.80 0.14 40/0.28), -0.3px 0 0.8px oklch(0.80 0.14 85/0.20); }
-  52%  { text-shadow: 0 0 16px oklch(0.80 0.16 62/0.65), 0 0 48px oklch(0.70 0.14 62/0.28), 0 0 90px oklch(0.60 0.12 62/0.12), 1.4px 0 1.6px oklch(0.80 0.14 40/0.38), -1.4px 0 1.6px oklch(0.80 0.14 85/0.28); }
-  100% { text-shadow: 0 0 12px oklch(0.80 0.16 62/0.60), 0 0 40px oklch(0.70 0.14 62/0.25), 0 0 80px oklch(0.60 0.12 62/0.10), 0.3px 0 0.8px oklch(0.80 0.14 40/0.28), -0.3px 0 0.8px oklch(0.80 0.14 85/0.20); }
+  0%   { text-shadow: 0 0 8px oklch(0.80 0.16 62/0.30), 0 0 20px oklch(0.70 0.14 62/0.10); }
+  52%  { text-shadow: 0 0 10px oklch(0.80 0.16 62/0.35), 0 0 24px oklch(0.70 0.14 62/0.13); }
+  100% { text-shadow: 0 0 8px oklch(0.80 0.16 62/0.30), 0 0 20px oklch(0.70 0.14 62/0.10); }
 }
 
 @keyframes glitch-1 {
@@ -564,12 +564,12 @@ section h4 {
 }
 .hero-glitch::after {
   left: 2px;
-  text-shadow: -2px 0 oklch(0.80 0.14 40 / 0.6);
+  text-shadow: -2px 0 oklch(0.80 0.14 40 / 0.25);
   animation: glitch-1 8s linear infinite;
 }
 .hero-glitch::before {
   left: -2px;
-  text-shadow: 2px 0 oklch(0.80 0.14 85 / 0.6);
+  text-shadow: 2px 0 oklch(0.80 0.14 85 / 0.25);
   animation: glitch-2 12s linear infinite;
 }
 

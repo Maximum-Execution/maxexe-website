@@ -30,12 +30,11 @@ import Button from '../Button.astro';
 
 <style>
   .hero {
-    min-height: 100dvh;
+    min-height: calc(100dvh - 44px);  /* fills remaining viewport after 44px sticky topbar */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: var(--space-16) var(--space-8);
-    padding-top: calc(var(--space-16) + 44px);
+    padding: var(--space-10) var(--space-8);  /* symmetric — topbar handles its own 44px */
     position: relative;
     overflow: hidden;
     background: var(--bg);
@@ -112,8 +111,7 @@ import Button from '../Button.astro';
   /* Responsive */
   @media (max-width: 768px) {
     .hero {
-      padding: var(--space-10) var(--space-6);
-      padding-top: calc(var(--space-10) + 44px);
+      padding: var(--space-8) var(--space-6);
     }
 
     .hero-headline {
@@ -132,8 +130,7 @@ import Button from '../Button.astro';
 
   @media (max-width: 480px) {
     .hero {
-      padding: var(--space-8) var(--space-5);
-      padding-top: calc(var(--space-8) + 44px);
+      padding: var(--space-6) var(--space-5);
     }
 
     .hero-headline {
