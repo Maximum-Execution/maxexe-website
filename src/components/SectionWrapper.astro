@@ -29,7 +29,7 @@ const resolvedTheme = theme ?? (bg ? bgToTheme[bg] : 'dark');
 
 <style>
   .section-wrap {
-    padding: var(--space-12) var(--space-8);
+    padding: var(--space-16) var(--space-8); /* 64px — brand spec section vertical */
   }
   .section-inner {
     max-width: var(--container-xl);
@@ -37,7 +37,7 @@ const resolvedTheme = theme ?? (bg ? bgToTheme[bg] : 'dark');
   }
   @media (max-width: 768px) {
     .section-wrap {
-      padding: var(--space-8) var(--space-6);
+      padding: var(--space-10) var(--space-6); /* 40px vertical, 24px horizontal */
     }
   }
 </style>
