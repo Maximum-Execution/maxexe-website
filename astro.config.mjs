@@ -7,7 +7,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://maximumexecution.com',
   output: 'static',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: { enabled: true }, // exposes Cloudflare env bindings in local dev via wrangler
+  }),
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
