@@ -1426,6 +1426,14 @@ import '../styles/global.css';
               hasError = true;
             }
             if (!hasError) {
+              // Fire-and-forget — subscribe to MailerLite; diagnostic flow never waits on this
+              fetch("/api/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, company: company || undefined }),
+              }).catch(() => {
+                /* silent — subscription failure never blocks the diagnostic */
+              });
               dispatch({
                 type: "EMAIL_SUBMIT",
                 name,
